@@ -13,6 +13,7 @@ import { ActionsPageComponent } from './actions-page/actions-page.component';
 import { ReportsPageComponent } from './reports-page/reports-page.component';
 import { UsersPageComponent } from './users-page/users-page.component';
 import { ComparisonPageComponent } from './comparison-page/comparison-page.component';
+import { PersonalPageComponent } from './personal-page/personal-page.component';
 
 const routes: Routes = [{
   path: '',
@@ -48,6 +49,10 @@ const routes: Routes = [{
     {
       path: 'comparison',
       component: ComparisonPageComponent,
+    },
+    {
+      path: 'personal/:id',
+      component: PersonalPageComponent,
     },
     {
       path: '',

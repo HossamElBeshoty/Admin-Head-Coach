@@ -1,3 +1,78 @@
-<p>
-  comparison-page works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Comparison</h2>
+    </div>
+  </div>
+</div>
+<button type="button" (click)="showPlayerDialog()" class="btn btn-light btn-lg btn-block"><i
+    class="fab fa-deviantart"></i> Compare Between Players</button>
+<p-dialog header="Players" [(visible)]="displayPlayer" width="1200" [(visible)]="display" [modal]="true"
+  [responsive]="true" [maximizable]="true" [baseZIndex]="10000">
+  <button pButton type="button" icon="pi pi-plus" title="Add Column" (click)="addColumnPlayer()"
+    [disabled]="columnsPlayer.length === 20" style="margin-right: .5em"></button>
+  <button pButton type="button" icon="pi pi-minus" title="Remove Column" (click)="removeColumnPlayer()"
+    [disabled]="columnsPlayer.length === 1"></button>
+  <div class="p-grid" style="margin-top: .5em">
+    <div class="p-col-6" *ngFor="let col of columnsPlayer; let i=index" [@animation]="'visible'">
+      <div class="box">
+        <div class="card mb-3" style="width: 100%;">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="../../../assets/images/cover1.jpg" class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                  content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="displayPlayer=false" label="Yes"></button>
+    <button type="button" pButton icon="pi pi-close" (click)="displayPlayer=false" label="No"
+      class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
+<br>
+<button type="button" (click)="showTeamDialog()" class="btn btn-light btn-lg btn-block"><i
+    class="fab fa-deviantart"></i> Compare Between Teams</button>
+<p-dialog header="Teams" [(visible)]="displayTeam" width="1200" [modal]="true" [responsive]="true" [minY]="70"
+  [maximizable]="true" [baseZIndex]="10000">
+  <button pButton type="button" icon="pi pi-plus" title="Add Column" (click)="addColumnTeam()"
+    [disabled]="columnsTeam.length === 20" style="margin-right: .5em"></button>
+  <button pButton type="button" icon="pi pi-minus" title="Remove Column" (click)="removeColumnTeam()"
+    [disabled]="columnsTeam.length === 1"></button>
+  <div class="p-grid" style="margin-top: .5em">
+    <div class="p-col-6" *ngFor="let col of columnsTeam; let i=index" [@animation]="'visible'">
+      <div class="box">
+        <div class="card mb-3" style="width: 100%;">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="../../../assets/images/cover1.jpg" class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                  content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="displayTeam=false" label="Yes"></button>
+    <button type="button" pButton icon="pi pi-close" (click)="displayTeam=false" label="No"
+      class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
