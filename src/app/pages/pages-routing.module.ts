@@ -21,7 +21,7 @@ const routes: Routes = [{
   children: [
     {
       path: 'home',
-      component: HomePageComponent,
+      component: ECommerceComponent,
     },
     {
       path: 'clubs',
