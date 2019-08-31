@@ -12,6 +12,7 @@ import { TeamsPageComponent } from './teams-page/teams-page.component';
 import { ActionsPageComponent } from './actions-page/actions-page.component';
 import { ReportsPageComponent } from './reports-page/reports-page.component';
 import { UsersPageComponent } from './users-page/users-page.component';
+import { ComparisonPageComponent } from './comparison-page/comparison-page.component';
 
 const routes: Routes = [{
   path: '',
@@ -43,6 +44,10 @@ const routes: Routes = [{
     {
       path: 'analysis',
       component: AnalysisPageComponent,
+    },
+    {
+      path: 'comparison',
+      component: ComparisonPageComponent,
     },
     {
       path: '',

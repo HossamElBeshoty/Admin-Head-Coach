@@ -21,7 +21,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Actions',
-    icon: 'activity-outline',
+    icon: 'options-2-outline',
     link: '/pages/actions',
     home: true,
   },
@@ -29,6 +29,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Analysis',
     icon: 'settings-2-outline',
     link: '/pages/analysis',
+    home: true,
+  },
+  {
+    title: 'Comparison',
+    icon: 'pantone-outline',
+    link: '/pages/comparison',
     home: true,
   },
   {

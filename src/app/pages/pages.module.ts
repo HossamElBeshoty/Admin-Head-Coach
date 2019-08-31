@@ -17,6 +17,7 @@ import { UsersPageComponent } from './users-page/users-page.component';
 import { ModalComponent } from './widgets/modal/modal.component';
 import { PrimengModule } from './primeng.module';
 import { UserFormComponent } from './websiteForms/user-form/user-form.component';
+import { ComparisonPageComponent } from './comparison-page/comparison-page.component';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { UserFormComponent } from './websiteForms/user-form/user-form.component'
     UsersPageComponent,
     ModalComponent,
     UserFormComponent,
+    ComparisonPageComponent,
   ],
 })
 export class PagesModule {
