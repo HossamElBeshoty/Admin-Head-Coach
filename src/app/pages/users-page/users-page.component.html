@@ -1,0 +1,119 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Users</h2>
+    </div>
+    <div class="col-md-6">
+      <ngx-modal [buttonName]="'Add User'" [width]="1000" [header]="'Head Coach Users'" [buttonCss]="'btn btn-light float-right'"
+        [iconClass]="'fas fa-user-plus'">
+        <div forms>
+          <ngx-user-form></ngx-user-form>
+        </div>
+        <div buttons>
+          <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
+          <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No"
+            class="ui-button-secondary"></button>
+        </div>
+      </ngx-modal>
+    </div>
+  </div>
+</div>
+
+<p-table #dt [columns]="cols" [value]="allUsers" [paginator]="true" [rows]="10" dataKey="id">
+  <ng-template pTemplate="caption">
+    <div class="ui-helper-clearfix">
+      <button type="button" (click)="dt.exportCSV()" class="btn btn-light float-left"><i
+          class="fas fa-file-download"></i> All Data</button>
+      <button type="button" (click)="dt.exportCSV({selectionOnly:true})" class="btn btn-light float-right"><i
+          class="fas fa-file-download"></i> Selection Only</button>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th style="width: 3em"></th>
+      <th style="width: 3em">
+        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+      <th *ngFor="let col of columns">
+        {{col.header}}
+      </th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-expanded="expanded" let-rowData let-columns="columns">
+    <tr>
+      <td>
+        <a href="#" [pRowToggler]="rowData">
+          <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+        </a>
+      </td>
+      <td>
+        <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+      </td>
+      <td *ngFor="let col of columns">
+        {{rowData[col.field]}}
+      </td>
+      <td>
+        <div class="row text-center">
+          <div class="col-md-4">
+            <button type="button" class="btn btn-light"><i class="far fa-user"></i> </button>
+
+          </div>
+          <div class="col-md-4">
+            <ngx-modal [header]="'Edit User'" [buttonCss]="'btn btn-light'" [iconClass]="'fas fa-users-cog'">
+              <div forms>Forms</div>
+              <div buttons>
+                <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
+                <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No"
+                  class="ui-button-secondary"></button>
+              </div>
+            </ngx-modal>
+          </div>
+          <div class="col-md-4">
+            <ngx-modal [header]="'Delete User'" [buttonCss]="'btn btn-light'" [iconClass]="'fas fa-user-times'">
+              <div forms>Forms</div>
+              <div buttons>
+                <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
+                <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No"
+                  class="ui-button-secondary"></button>
+              </div>
+            </ngx-modal>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+    <tr>
+      <td></td>
+      <td></td>
+      <td [attr.colspan]="columns.length + 1">
+        <div class="ui-g ui-fluid" style="font-size:16px;padding:20px">
+          <div class="ui-g-12 ui-md-3" style="text-align:center">
+            <img [attr.alt]="rowData.name" style="width: 100px; height: 100px;"
+              src="../../../assets/images/WebSite Images/Logo/index.png">
+          </div>
+          <div class="ui-g-12 ui-md-9">
+            <div class="ui-g">
+              <div class="ui-g-12">
+                <b>Name:</b> {{rowData.name}}
+              </div>
+              <div class="ui-g-12">
+                <b>Sport:</b> {{rowData.sport}}
+              </div>
+              <div class="ui-g-12">
+                <b>Ceration Date:</b> {{rowData.cerationDate}}
+              </div>
+              <div class="ui-g-12">
+                <b>Club:</b> {{rowData.club}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+    There are {{allUsers?.length}} Users
+  </ng-template>
+</p-table>

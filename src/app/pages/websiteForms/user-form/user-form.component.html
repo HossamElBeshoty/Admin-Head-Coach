@@ -1,0 +1,119 @@
+<form action="" style="width: 99%">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">First And Last Name</span>
+        </div>
+        <input type="text" aria-label="First name" class="form-control">
+        <input type="text" aria-label="Last name" class="form-control">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="Username">User Name</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+          aria-describedby="Username">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="Passwords">Passwords</span>
+        </div>
+        <input type="password" class="form-control" placeholder="Passwords" aria-label="Passwords"
+          aria-describedby="Passwords">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="National ID">National ID</span>
+        </div>
+        <input type="text" class="form-control" placeholder="National ID" aria-label="National ID"
+          aria-describedby="National ID">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="Club">Club</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Club" aria-label="Club" aria-describedby="Club">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="Phone Number">Phone Number</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Phone Number" aria-label="Phone Number"
+          aria-describedby="Phone Number">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="Address">Address</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Address" aria-label="Address" aria-describedby="Address">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="Cereation Date">Cereation Date</span>
+        </div>
+        <input type="date" class="form-control" placeholder="Cereation Date" aria-label="Cereation Date"
+          aria-describedby="Cereation Date">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="Age">Age</span>
+        </div>
+        <input type="number" class="form-control" placeholder="Age" aria-label="Age" aria-describedby="Age">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Nationality</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect01">
+          <option selected>Choose...</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Gender</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect01">
+          <option selected>Choose...</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <label> Choose Image</label>
+      <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"
+      multiple="multiple" accept="image/*" maxFileSize="1000000">
+      <ng-template pTemplate="content">
+          <ul *ngIf="uploadedFiles.length">
+              <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+          </ul>
+      </ng-template>
+</p-fileUpload>
+    </div>
+  </div>
+</form>
