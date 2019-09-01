@@ -48,5 +48,5 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'person-add-outline',
     link: '/pages/users',
     home: true,
-  }
+  },
 ];

@@ -7,6 +7,6 @@ import { FileUploadModule } from 'primeng/fileupload';
 @NgModule({
   declarations: [],
   imports: [CommonModule, DialogModule, ButtonModule, TableModule, FileUploadModule],
-  exports: [CommonModule, DialogModule, ButtonModule, TableModule, FileUploadModule]
+  exports: [CommonModule, DialogModule, ButtonModule, TableModule, FileUploadModule],
 })
 export class PrimengModule { }

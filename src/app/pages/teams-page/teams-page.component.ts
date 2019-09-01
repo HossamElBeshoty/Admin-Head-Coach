@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'ngx-teams-page',
   templateUrl: './teams-page.component.html',
-  styleUrls: ['./teams-page.component.scss']
+  styleUrls: ['./teams-page.component.scss'],
 })
 export class TeamsPageComponent implements OnInit {
   cols: any[];
@@ -37,7 +37,7 @@ export class TeamsPageComponent implements OnInit {
     player: 'Hossam El Beshoty',
     position: 'Back Left',
     team: 'Under 16',
-  },];
+  }];
 
   rowGroupMetadata: any;
   constructor() { }
@@ -56,14 +56,15 @@ export class TeamsPageComponent implements OnInit {
     this.rowGroupMetadata = {};
     if (this.allTeams) {
       for (let i = 0; i < this.allTeams.length; i++) {
-        let rowData = this.allTeams[i];
-        let brand = rowData.club;
-        if (i == 0) {
+        const rowData = this.allTeams[i];
+        const brand = rowData.club;
+        if (i === 0) {
           this.rowGroupMetadata[brand] = { index: 0, size: 1 };
         }
+        // tslint:disable-next-line:one-line
         else {
-          let previousRowData = this.allTeams[i - 1];
-          let previousRowGroup = previousRowData.club;
+          const previousRowData = this.allTeams[i - 1];
+          const previousRowGroup = previousRowData.club;
           if (brand === previousRowGroup)
             this.rowGroupMetadata[brand].size++;
           else
