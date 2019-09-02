@@ -1,3 +1,166 @@
-<p>
-  analysis-page works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8 animated fadeInLeft">
+      <div class="embed-responsive embed-responsive-21by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/sP-sjQQU35g"></iframe>
+      </div>
+      <br>
+      <div class="p-3 mb-2 bg-secondary text-white">
+        <p-panel header="Godfather I" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
+          The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
+          His beloved son Michael has just come home from the war, but does not intend to become part of his father's
+          business.
+          Through Michael's life the nature of the family business becomes clear. The business of the family is just
+          like the head of the family,
+          kind and benevolent to those who give respect, but given to ruthless violence whenever anything stands against
+          the good of the family.
+        </p-panel>
+      </div>
+    </div>
+    <div class="col-md-4 animated fadeInRight">
+      <div class="p-3 mb-2 bg-secondary text-white">
+        <p-panel>
+          <p-header>
+            <div class="ui-helper-clearfix">
+              <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">Actions</span>
+              <p-splitButton [style]="{'float':'right'}" label="Finished" icon="pi pi-thumbs-up" (onClick)="save()"
+                [model]="items"></p-splitButton>
+            </div>
+          </p-header>
+          <div class="row">
+            <div class="col-md-12">
+              <p-panel>
+                <p-header>
+                  <div class="ui-helper-clearfix">
+                    <span class="ui-panel-title"
+                      style="font-size:16px;display:inline-block;margin-top:2px">Possition</span>
+                    <p-splitButton [style]="{'float':'right'}" label="Save" icon="pi pi-check" (onClick)="save()"
+                      [model]="items"></p-splitButton>
+                  </div>
+                </p-header>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Team A</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Team B</button>
+              </p-panel>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+              <p-panel>
+                <p-header>
+                  <div class="ui-helper-clearfix">
+                    <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">Standerd Set
+                      Pieces</span>
+                    <p-splitButton [style]="{'float':'right'}" label="Save" icon="pi pi-check" (onClick)="save()"
+                      [model]="items"></p-splitButton>
+                  </div>
+                </p-header>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Kick Off</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Corner</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Throw In</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Penalty</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Free Kick</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Goal Kick</button>
+              </p-panel>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+              <p-panel>
+                <p-header>
+                  <div class="ui-helper-clearfix">
+                    <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">Game Set
+                      Pieces</span>
+                    <p-splitButton [style]="{'float':'right'}" label="Save" icon="pi pi-check" (onClick)="save()"
+                      [model]="items"></p-splitButton>
+                  </div>
+                </p-header>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shot</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Cross</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tackie</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Foul</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Pass</button>
+              </p-panel>
+            </div>
+          </div>
+        </p-panel>
+      </div>
+
+      <div class="p-3 mb-2 bg-secondary text-white">
+        <p-panel>
+          <p-header>
+            <div class="ui-helper-clearfix">
+              <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">Tactic</span>
+              <p-splitButton [style]="{'float':'right'}" label="Save" icon="pi pi-check" (onClick)="save()"
+                [model]="items"></p-splitButton>
+            </div>
+          </p-header>
+
+          <p-tabView>
+            <p-tabPanel header="Shot Outcome">
+              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shot</button>
+              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Cross</button>
+              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tackie</button>
+              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Foul</button>
+              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Pass</button>
+            </p-tabPanel>
+            <p-tabPanel header="Cross Replacement">
+              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Shot</button>
+              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Cross</button>
+              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Tackie</button>
+              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Foul</button>
+              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Pass</button>
+            </p-tabPanel>
+            <p-tabPanel header="Pass Description">
+              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Shot</button>
+              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Cross</button>
+              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Tackie</button>
+              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Foul</button>
+              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Pass</button>
+            </p-tabPanel>
+            <p-tabPanel header="Caution">
+              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shot</button>
+              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Cross</button>
+              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tackie</button>
+              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Foul</button>
+              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Pass</button>
+            </p-tabPanel>
+          </p-tabView>
+        </p-panel>
+      </div>
+      <div class="p-3 mb-2 bg-secondary text-white">
+        <p-panel>
+          <p-header>
+            <div class="ui-helper-clearfix">
+              <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">Team A</span>
+              <p-splitButton [style]="{'float':'right'}" label="Save" icon="pi pi-check" (onClick)="save()"
+                [model]="items"></p-splitButton>
+            </div>
+          </p-header>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shot</button>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Cross</button>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tackie</button>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Foul</button>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Pass</button>
+        </p-panel>
+      </div>
+      <div class="p-3 mb-2 bg-secondary text-white">
+        <p-panel>
+          <p-header>
+            <div class="ui-helper-clearfix">
+              <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">Team B</span>
+              <p-splitButton [style]="{'float':'right'}" label="Save" icon="pi pi-check" (onClick)="save()"
+                [model]="items"></p-splitButton>
+            </div>
+          </p-header>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shot</button>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Cross</button>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tackie</button>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Foul</button>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Pass</button>
+        </p-panel>
+      </div>
+    </div>
+  </div>
+</div>

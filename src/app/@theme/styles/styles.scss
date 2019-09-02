@@ -41,14 +41,11 @@ body .ui-fieldset .ui-fieldset-legend a {
   transition: background-color 0.2s;
   text-decoration: none;
 }
-.line-in-middle {
-  width:400px;
-  height:200px;
-  background: linear-gradient(to right,
-                              transparent 0%,
-                              transparent calc(50% - 0.81px),
-                              black calc(50% - 0.8px),
-                              black calc(50% + 0.8px),
-                              transparent calc(50% + 0.81px),
-                              transparent 100%);
+body .ui-tabview.ui-tabview-top .ui-tabview-nav li.ui-state-active a, body .ui-tabview.ui-tabview-bottom .ui-tabview-nav li.ui-state-active a, body .ui-tabview.ui-tabview-left .ui-tabview-nav li.ui-state-active a, body .ui-tabview.ui-tabview-right .ui-tabview-nav li.ui-state-active a {
+  color: #ffffff;
+  font-size: 11px;
+}
+.ui-tabview .ui-tabview-nav li a, .ui-tabview.ui-tabview-collapsible .ui-tabview-nav li.ui-tabview-selected a {
+  cursor: pointer;
+  font-size: 11px;
 }

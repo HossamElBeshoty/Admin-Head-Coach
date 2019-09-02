@@ -8,7 +8,7 @@ import { AnalyticsService } from './@core/utils/analytics.service';
 
 @Component({
   selector: 'ngx-app',
-  template: '<router-outlet></router-outlet>',
+  template: '<router-outlet></router-outlet> <nb-sidebar start></nb-sidebar>',
 })
 export class AppComponent implements OnInit {
 

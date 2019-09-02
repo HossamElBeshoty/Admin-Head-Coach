@@ -7,7 +7,8 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { TabViewModule } from 'primeng/tabview';
 import { FieldsetModule } from 'primeng/fieldset';
 import { RatingModule } from 'primeng/rating';
-
+import {PanelModule} from 'primeng/panel';
+import {SplitButtonModule} from 'primeng/splitbutton';
 @NgModule({
   declarations: [],
   imports: [CommonModule,
@@ -16,14 +17,18 @@ import { RatingModule } from 'primeng/rating';
     TableModule,
     FileUploadModule,
     TabViewModule,
+    PanelModule,
     FieldsetModule,
+    SplitButtonModule,
     RatingModule],
   exports: [CommonModule,
     DialogModule,
     ButtonModule,
     TableModule,
     FileUploadModule,
+    SplitButtonModule,
     TabViewModule,
+    PanelModule,
     FieldsetModule,
     RatingModule],
 })
