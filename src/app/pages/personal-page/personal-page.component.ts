@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./personal-page.component.scss'],
 })
 export class PersonalPageComponent implements OnInit {
-
+  val1: number = 5;
   constructor() { }
 
   ngOnInit() {

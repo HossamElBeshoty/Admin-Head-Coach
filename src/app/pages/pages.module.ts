@@ -19,6 +19,8 @@ import { PrimengModule } from './primeng.module';
 import { UserFormComponent } from './websiteForms/user-form/user-form.component';
 import { ComparisonPageComponent } from './comparison-page/comparison-page.component';
 import { PersonalPageComponent } from './personal-page/personal-page.component';
+import { UserCardComponent } from './widgets/user-card/user-card.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -29,6 +31,7 @@ import { PersonalPageComponent } from './personal-page/personal-page.component';
     ECommerceModule,
     MiscellaneousModule,
     PrimengModule,
+    FormsModule,
   ],
   declarations: [
     PagesComponent,
@@ -43,6 +46,7 @@ import { PersonalPageComponent } from './personal-page/personal-page.component';
     UserFormComponent,
     ComparisonPageComponent,
     PersonalPageComponent,
+    UserCardComponent,
   ],
 })
 export class PagesModule {

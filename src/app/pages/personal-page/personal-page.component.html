@@ -1,3 +1,41 @@
-<p>
-  personal-page works!
-</p>
+<div class="row">
+  <div class="col-md-3 animated fadeInUp line-in-middle">
+    <ngx-user-card></ngx-user-card>
+  </div>
+  <div class="col-md-9 animated fadeInRight">
+    <p-tabView>
+      <p-tabPanel header="Data">
+        <p-fieldset legend="Name" styleClass="myFieldset">
+          <span for="">Lionel Messi</span>
+        </p-fieldset>
+        <p-fieldset legend="Known As" styleClass="myFieldset">
+          <span for="">Messi</span>
+        </p-fieldset>
+        <p-fieldset legend="Date Of Birth" styleClass="myFieldset">
+          <span for="">12/4/1993</span>
+        </p-fieldset>
+        <p-fieldset legend="Height" styleClass="myFieldset">
+          <span for="">6'5''</span>
+        </p-fieldset>
+        <p-fieldset legend="Player Work Rate (Attacking/Defensive)" styleClass="myFieldset">
+          <span for="">Medium / High</span>
+        </p-fieldset>
+        <p-fieldset legend="Preferred Foot" styleClass="myFieldset">
+          <span for="">Right</span>
+        </p-fieldset>
+        <p-fieldset legend="Week Feet" styleClass="myFieldset">
+          <p-rating [ngModel]="val1" disabled="true" stars="10"></p-rating>
+        </p-fieldset>
+        <p-fieldset legend="Skill Moves" styleClass="myFieldset">
+          <p-rating [ngModel]="val1" disabled="true" stars="10"></p-rating>
+        </p-fieldset>
+      </p-tabPanel>
+      <p-tabPanel header="Pictures">
+        Content 2
+      </p-tabPanel>
+      <p-tabPanel header="Matches">
+        Content 3
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>
