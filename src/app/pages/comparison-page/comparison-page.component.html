@@ -1,13 +1,6 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <h2>Comparison</h2>
-    </div>
-  </div>
-</div>
-<button type="button" (click)="showPlayerDialog()" class="btn btn-light btn-lg btn-block"><i
+<button type="button" (click)="showPlayerDialog()" class="btn btn-outline-primary animated zoomIn btn-block"><i
     class="fab fa-deviantart"></i> Compare Between Players</button>
-<p-dialog header="Players" [(visible)]="displayPlayer" width="1200" [(visible)]="display" [modal]="true"  [minY]="70"
+<p-dialog header="Players" [(visible)]="displayPlayer" width="1200" [(visible)]="display" [modal]="true" [minY]="70"
   [responsive]="true" [maximizable]="true" [baseZIndex]="10000">
   <button pButton type="button" icon="pi pi-plus" title="Add Column" (click)="addColumnPlayer()"
     [disabled]="columnsPlayer.length === 20" style="margin-right: .5em"></button>
@@ -16,7 +9,7 @@
   <div class="p-grid" style="margin-top: .5em">
     <div class="p-col-6 text-center" *ngFor="let col of columnsPlayer; let i=index" [@animation]="'visible'">
       <div class="box">
-      <ngx-user-card></ngx-user-card>
+        <ngx-user-card></ngx-user-card>
       </div>
     </div>
   </div>
@@ -27,7 +20,7 @@
   </p-footer>
 </p-dialog>
 <br>
-<button type="button" (click)="showTeamDialog()" class="btn btn-light btn-lg btn-block"><i
+<button type="button" (click)="showTeamDialog()" class="btn btn-outline-primary animated zoomIn btn-block"><i
     class="fab fa-deviantart"></i> Compare Between Teams</button>
 <p-dialog header="Teams" [(visible)]="displayTeam" width="1200" [modal]="true" [responsive]="true" [minY]="70"
   [maximizable]="true" [baseZIndex]="10000">

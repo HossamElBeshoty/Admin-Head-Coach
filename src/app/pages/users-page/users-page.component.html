@@ -1,10 +1,7 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <h2>Users</h2>
-    </div>
-    <div class="col-md-6">
-      <ngx-modal [buttonName]="'Add User'" [width]="1000" [header]="'Head Coach Users'" [buttonCss]="'btn btn-light float-right'"
+  <div class="row animated fadeInDown">
+    <div class="col-md-12">
+      <ngx-modal [buttonName]="'Add New User'" [width]="1000" [header]="'Head Coach Users'" [buttonCss]="'btn btn-outline-primary btn-block m-4'"
         [iconClass]="'fas fa-user-plus'">
         <div forms>
           <ngx-user-form></ngx-user-form>
@@ -18,7 +15,7 @@
     </div>
   </div>
 </div>
-
+<div class="animated fadeInUp">
 <p-table #dt [columns]="cols" [value]="allUsers" [paginator]="true" [rows]="10" dataKey="id">
   <ng-template pTemplate="caption">
     <div class="ui-helper-clearfix">
@@ -117,3 +114,5 @@
     There are {{allUsers?.length}} Users
   </ng-template>
 </p-table>
+</div>
+
