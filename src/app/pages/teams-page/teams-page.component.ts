@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeamsPageComponent implements OnInit {
   cols: any[];
-  display=false;
+  display = false;
   allTeams = [{
     id: 1,
     club: 'Zamalik Sports Club',
