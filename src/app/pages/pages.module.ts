@@ -21,6 +21,7 @@ import { ComparisonPageComponent } from './comparison-page/comparison-page.compo
 import { PersonalPageComponent } from './personal-page/personal-page.component';
 import { UserCardComponent } from './widgets/user-card/user-card.component';
 import { FormsModule } from '@angular/forms';
+import { TablePrimeNgComponent } from './widgets/table-prime-ng/table-prime-ng.component';
 
 @NgModule({
   imports: [
@@ -47,6 +48,7 @@ import { FormsModule } from '@angular/forms';
     ComparisonPageComponent,
     PersonalPageComponent,
     UserCardComponent,
+    TablePrimeNgComponent,
   ],
 })
 export class PagesModule {
