@@ -31,6 +31,7 @@ export class ComparisonPageComponent implements OnInit {
   columnsTeam: number[];
   displayPlayer: boolean = false;
   displayTeam: boolean = false;
+  display=false;
   constructor() { }
 
   ngOnInit() {
