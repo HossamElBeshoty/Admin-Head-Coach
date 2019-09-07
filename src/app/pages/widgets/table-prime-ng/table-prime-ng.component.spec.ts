@@ -8,7 +8,7 @@ describe('TablePrimeNgComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TablePrimeNgComponent ]
+      declarations: [ TablePrimeNgComponent ],
     })
     .compileComponents();
   }));
