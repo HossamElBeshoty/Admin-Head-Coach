@@ -1,183 +1,175 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-8 animated fadeInLeft">
-      <div class="embed-responsive embed-responsive-21by9">
-        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/sP-sjQQU35g"></iframe>
-      </div>
-      <br>
-      <div class="p-3 mb-2 bg-secondary text-white">
-        <p-panel header="Events" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
-
-          <p-table [columns]="cols" [value]="cars">
-            <ng-template pTemplate="header" let-columns>
-              <tr>
-                <th [ngStyle]="{'width': col.width}" *ngFor="let col of columns">
-                  {{col.header}}
-                </th>
-              </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-rowData let-columns="columns">
-              <tr>
-                <td *ngFor="let col of columns">
-                  {{rowData[col.field]}}
-                </td>
-              </tr>
-            </ng-template>
-          </p-table>
-
-        </p-panel>
-      </div>
+<div class="row">
+  <div class="col-md-3 animated fadeInLeft delay-3">
+    <p-panel>
+      <p-header>
+        <div class="ui-helper-clearfix">
+          <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">Team A</span>
+          <p-splitButton [style]="{'float':'right'}" label="Save" icon="pi pi-check" (onClick)="save()" [model]="items">
+          </p-splitButton>
+        </div>
+      </p-header>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Ferjani Sassi</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shikabala</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Mahmoud Abdel Rahim</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tarek Hamed</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Mostafa Fathi</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Hamdi Nagguez</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Mahmoud Alaa</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Ayman Hefny</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Ferjani Sassi</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shikabala</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Mahmoud Abdel Rahim</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tarek Hamed</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Mostafa Fathi</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Hamdi Nagguez</button>
+    </p-panel>
+  </div>
+  <div class="col-md-6 animated fadeInDown delay-4">
+    <div class="embed-responsive embed-responsive-21by9">
+      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/sP-sjQQU35g"></iframe>
     </div>
-    <div class="col-md-4 animated fadeInRight">
-      <div class="p-3 mb-2 bg-secondary text-white">
-        <p-panel>
-          <p-header>
-            <div class="ui-helper-clearfix">
-              <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">Actions</span>
-              <p-splitButton [style]="{'float':'right'}" label="Finished" icon="pi pi-thumbs-up" (onClick)="save()"
-                [model]="items"></p-splitButton>
-            </div>
-          </p-header>
-          <div class="row">
-            <div class="col-md-12">
-              <p-panel>
-                <p-header>
-                  <div class="ui-helper-clearfix">
-                    <span class="ui-panel-title"
-                      style="font-size:16px;display:inline-block;margin-top:2px">Possition</span>
-                    <p-splitButton [style]="{'float':'right'}" label="Save" icon="pi pi-check" (onClick)="save()"
-                      [model]="items"></p-splitButton>
-                  </div>
-                </p-header>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Team A</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Team B</button>
-              </p-panel>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-12">
-              <p-panel>
-                <p-header>
-                  <div class="ui-helper-clearfix">
-                    <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">Standerd Set
-                      Pieces</span>
-                    <p-splitButton [style]="{'float':'right'}" label="Save" icon="pi pi-check" (onClick)="save()"
-                      [model]="items"></p-splitButton>
-                  </div>
-                </p-header>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Kick Off</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Corner</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Throw In</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Penalty</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Free Kick</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Goal Kick</button>
-              </p-panel>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-12">
-              <p-panel>
-                <p-header>
-                  <div class="ui-helper-clearfix">
-                    <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">Game Set
-                      Pieces</span>
-                    <p-splitButton [style]="{'float':'right'}" label="Save" icon="pi pi-check" (onClick)="save()"
-                      [model]="items"></p-splitButton>
-                  </div>
-                </p-header>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shot</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Cross</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tackie</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Foul</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Pass</button>
-              </p-panel>
-            </div>
-          </div>
-        </p-panel>
+  </div>
+  <div class="col-md-3 animated fadeInRight delay-3">
+    <p-panel>
+      <p-header>
+        <div class="ui-helper-clearfix">
+          <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">Team B</span>
+          <p-splitButton [style]="{'float':'right'}" label="Save" icon="pi pi-check" (onClick)="save()" [model]="items">
+          </p-splitButton>
+        </div>
+      </p-header>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Ferjani Sassi</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shikabala</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Mahmoud Abdel Rahim</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tarek Hamed</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Mostafa Fathi</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Hamdi Nagguez</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Mahmoud Alaa</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Ayman Hefny</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Ferjani Sassi</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shikabala</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Mahmoud Abdel Rahim</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tarek Hamed</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Mostafa Fathi</button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Hamdi Nagguez</button>
+    </p-panel>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-12 animated fadeInUp delay-3">
+    <p-panel>
+      <p-header>
+        <div class="ui-helper-clearfix">
+          <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">Actions</span>
+          <p-splitButton [style]="{'float':'right'}" label="Finished" icon="pi pi-thumbs-up" (onClick)="save()"
+            [model]="items"></p-splitButton>
+        </div>
+      </p-header>
+      <div class="row">
+        <div class="col-md-6">
+          <p-panel>
+            <p-header>
+              <div class="ui-helper-clearfix">
+                <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">Standerd Set
+                  Pieces</span>
+                <p-splitButton [style]="{'float':'right'}" label="Save" icon="pi pi-check" (onClick)="save()"
+                  [model]="items"></p-splitButton>
+              </div>
+            </p-header>
+            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Kick Off</button>
+            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Corner</button>
+            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Throw In</button>
+            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Penalty</button>
+            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Free Kick</button>
+            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Goal Kick</button>
+          </p-panel>
+        </div>
+        <div class="col-md-6">
+          <p-panel>
+            <p-header>
+              <div class="ui-helper-clearfix">
+                <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">Game Set
+                  Pieces</span>
+                <p-splitButton [style]="{'float':'right'}" label="Save" icon="pi pi-check" (onClick)="save()"
+                  [model]="items"></p-splitButton>
+              </div>
+            </p-header>
+            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shot</button>
+            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Cross</button>
+            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tackie</button>
+            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Foul</button>
+            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Pass</button>
+          </p-panel>
+        </div>
       </div>
-
-      <div class="p-3 mb-2 bg-secondary text-white">
-        <p-panel>
-          <p-header>
-            <div class="ui-helper-clearfix">
-              <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">Tactic</span>
-              <p-splitButton [style]="{'float':'right'}" label="Save" icon="pi pi-check" (onClick)="save()"
-                [model]="items"></p-splitButton>
-            </div>
-          </p-header>
-
-          <p-tabView>
-            <p-tabPanel header="Shot Outcome">
-              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shot</button>
-              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Cross</button>
-              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tackie</button>
-              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Foul</button>
-              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Pass</button>
-            </p-tabPanel>
-            <p-tabPanel header="Cross Replacement">
-              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Shot</button>
-              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Cross</button>
-              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Tackie</button>
-              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Foul</button>
-              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Pass</button>
-            </p-tabPanel>
-            <p-tabPanel header="Pass Description">
-              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Shot</button>
-              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Cross</button>
-              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Tackie</button>
-              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Foul</button>
-              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Pass</button>
-            </p-tabPanel>
-            <p-tabPanel header="Penalty">
-              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shot</button>
-              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Cross</button>
-              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tackie</button>
-              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Foul</button>
-              <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Pass</button>
-            </p-tabPanel>
-          </p-tabView>
-        </p-panel>
-      </div>
-      <div class="p-3 mb-2 bg-secondary text-white">
-        <p-panel>
-          <p-header>
-            <div class="ui-helper-clearfix">
-              <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">Team A</span>
-              <p-splitButton [style]="{'float':'right'}" label="Save" icon="pi pi-check" (onClick)="save()"
-                [model]="items"></p-splitButton>
-            </div>
-          </p-header>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Ferjani Sassi</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shikabala</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Mahmoud Abdel Rahim</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tarek Hamed</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Mostafa Fathi</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Hamdi Nagguez</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Mahmoud Alaa</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Ayman Hefny</button>
-        </p-panel>
-      </div>
-      <div class="p-3 mb-2 bg-secondary text-white">
-        <p-panel>
-          <p-header>
-            <div class="ui-helper-clearfix">
-              <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">Team B</span>
-              <p-splitButton [style]="{'float':'right'}" label="Save" icon="pi pi-check" (onClick)="save()"
-                [model]="items"></p-splitButton>
-            </div>
-          </p-header>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Ferjani Sassi</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shikabala</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Mahmoud Abdel Rahim</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tarek Hamed</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Mostafa Fathi</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Hamdi Nagguez</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Mahmoud Alaa</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Ayman Hefny</button>
-        </p-panel>
-      </div>
-    </div>
+    </p-panel>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-12 animated fadeInUp delay-3">
+    <p-panel>
+      <p-header>
+        <div class="ui-helper-clearfix">
+          <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">Tactic</span>
+          <p-splitButton [style]="{'float':'right'}" label="Save" icon="pi pi-check" (onClick)="save()" [model]="items">
+          </p-splitButton>
+        </div>
+      </p-header>
+      <p-tabView>
+        <p-tabPanel header="Shot Outcome">
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shot</button>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Cross</button>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tackie</button>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Foul</button>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Pass</button>
+        </p-tabPanel>
+        <p-tabPanel header="Cross Replacement">
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Shot</button>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Cross</button>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Tackie</button>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Foul</button>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Pass</button>
+        </p-tabPanel>
+        <p-tabPanel header="Pass Description">
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Shot</button>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Cross</button>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Tackie</button>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Foul</button>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Pass</button>
+        </p-tabPanel>
+        <p-tabPanel header="Penalty">
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shot</button>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Cross</button>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tackie</button>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Foul</button>
+          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Pass</button>
+        </p-tabPanel>
+      </p-tabView>
+    </p-panel>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-12 animated fadeInUp delay-3">
+    <p-panel header="Events" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
+      <p-table [columns]="cols" [value]="cars">
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th [ngStyle]="{'width': col.width}" *ngFor="let col of columns">
+              {{col.header}}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr>
+            <td *ngFor="let col of columns">
+              {{rowData[col.field]}}
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-panel>
   </div>
 </div>

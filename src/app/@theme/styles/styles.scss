@@ -30,7 +30,9 @@
   @include ngx-pace-theme();
 
   @include nb-overrides();
-};
+}
+
+;
 
 
 
@@ -47,25 +49,9 @@ body .ui-fieldset .ui-fieldset-legend a {
   outline: none;
 }
 
-body .ui-tabview.ui-tabview-top .ui-tabview-nav li.ui-state-active a,
-body .ui-tabview.ui-tabview-bottom .ui-tabview-nav li.ui-state-active a,
-body .ui-tabview.ui-tabview-left .ui-tabview-nav li.ui-state-active a,
-body .ui-tabview.ui-tabview-right .ui-tabview-nav li.ui-state-active a {
-  color: #ffffff;
-  font-size: 11px;
-  outline: none;
 
-}
 
-.ui-tabview .ui-tabview-nav li a,
-.ui-tabview.ui-tabview-collapsible .ui-tabview-nav li.ui-tabview-selected a {
-  cursor: pointer;
-  font-size: 11px;
-  outline: none;
-
-}
-
-body .ui-table .ui-table-thead > tr > th {
+body .ui-table .ui-table-thead>tr>th {
 
   padding: 0.571em 0.857em;
   border: 1px solid #c8c8c8;
@@ -77,7 +63,7 @@ body .ui-table .ui-table-thead > tr > th {
 
 }
 
-body .ui-table .ui-table-tbody > tr > td {
+body .ui-table .ui-table-tbody>tr>td {
   background-color: inherit;
   border: 1px solid #c8c8c8;
   font-size: 10px;
@@ -94,4 +80,27 @@ a:focus {
 .btn:active,
 .btn:focus {
   outline: none;
+}
+
+/* Animation Delay */
+.delay-1 {
+  animation-delay: .25s;
+  animation-duration: .25s;
+}
+
+.delay-2 {
+  animation-delay: .5s;
+  animation-duration: .5s;
+
+}
+
+.delay-3 {
+  animation-delay: .75s;
+  animation-duration: 1s;
+
+}
+
+.delay-4 {
+  animation-delay: 1.25s;
+  animation-duration: 1.25s;
 }
