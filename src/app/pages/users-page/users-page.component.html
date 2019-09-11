@@ -1,7 +1,7 @@
 <div class="container">
-  <div class="row animated fadeInDown">
+
     <div class="col-md-12">
-      <ngx-modal [buttonName]="'Add New User'" [width]="1000" [header]="'Head Coach Users'" [buttonCss]="'btn btn-outline-primary btn-block m-4'"
+      <ngx-modal [buttonName]="'Add New User'" [width]="1000" [header]="'Head Coach Users'" [buttonCss]="'btn btn-outline-primary animated slow fadeInDown btn-block m-4'"
         [iconClass]="'fas fa-user-plus'">
         <div forms>
           <ngx-user-form></ngx-user-form>
@@ -13,15 +13,15 @@
         </div>
       </ngx-modal>
     </div>
-  </div>
+
 </div>
-<div class="animated fadeInUp">
+
 <p-table #dt [columns]="cols" [value]="allUsers" [paginator]="true" [rows]="10" dataKey="id">
   <ng-template pTemplate="caption">
     <div class="ui-helper-clearfix">
-      <button type="button" (click)="dt.exportCSV()" class="btn btn-light float-left"><i
+      <button type="button" (click)="dt.exportCSV()" class="btn btn-outline-primary float-left"><i
           class="fas fa-file-download"></i> All Data</button>
-      <button type="button" (click)="dt.exportCSV({selectionOnly:true})" class="btn btn-light float-right"><i
+      <button type="button" (click)="dt.exportCSV({selectionOnly:true})" class="btn btn-outline-primary float-right"><i
           class="fas fa-file-download"></i> Selection Only</button>
     </div>
   </ng-template>
@@ -53,11 +53,11 @@
       <td>
         <div class="row text-center">
           <div class="col-md-4">
-            <button type="button" class="btn btn-light" [routerLink]="['../personal/' , rowData.id]"><i class="far fa-user"></i> </button>
+            <button type="button" class="btn btn-outline-success" [routerLink]="['../personal/' , rowData.id]"><i class="far fa-user"></i> </button>
 
           </div>
           <div class="col-md-4">
-            <ngx-modal [header]="'Edit User'" [buttonCss]="'btn btn-light'" [iconClass]="'fas fa-users-cog'">
+            <ngx-modal [header]="'Edit User'" [buttonCss]="'btn btn-outline-secondary'" [iconClass]="'fas fa-users-cog'">
               <div forms>Forms</div>
               <div buttons>
                 <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
@@ -67,7 +67,7 @@
             </ngx-modal>
           </div>
           <div class="col-md-4">
-            <ngx-modal [header]="'Delete User'" [buttonCss]="'btn btn-light'" [iconClass]="'fas fa-user-times'">
+            <ngx-modal [header]="'Delete User'" [buttonCss]="'btn btn-outline-danger'" [iconClass]="'fas fa-user-times'">
               <div forms>Forms</div>
               <div buttons>
                 <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
@@ -114,5 +114,4 @@
     There are {{allUsers?.length}} Users
   </ng-template>
 </p-table>
-</div>
 

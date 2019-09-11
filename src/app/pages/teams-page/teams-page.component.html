@@ -2,7 +2,8 @@
   <div class="row">
     <div class="col-md-12">
       <ngx-modal [buttonName]="'Add Team'" [width]="1000" [header]="'Head Coach Teams'"
-        [buttonCss]="'btn btn-outline-primary animated fadeInDown btn-block m-4'" [iconClass]="'fas fa-user-plus'">
+        [buttonCss]="'btn btn-outline-primary animated slow  fadeInDown btn-block m-4'"
+        [iconClass]="'fas fa-user-plus'">
         <div forms>
           <ngx-user-form></ngx-user-form>
         </div>
@@ -15,77 +16,75 @@
     </div>
   </div>
 </div>
-<div class="animated fadeInUp">
-  <p-table #dt [columns]="cols" [value]="allTeams" [paginator]="true" [rows]="10" dataKey="club">
-    <ng-template pTemplate="caption">
-      <div class="ui-helper-clearfix">
-        <button type="button" (click)="dt.exportCSV()" class="btn btn-light float-left"><i
-            class="fas fa-file-download"></i> All Data</button>
-        <button type="button" (click)="dt.exportCSV({selectionOnly:true})" class="btn btn-light float-right"><i
-            class="fas fa-file-download"></i> Selection Only</button>
-      </div>
-    </ng-template>
-    <ng-template pTemplate="header" let-columns>
-      <tr>
-        <th style="width: 3em">
-          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-        </th>
-        <th *ngFor="let col of columns">
-          {{col.header}}
-        </th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-expanded="expanded" let-columns="columns">
-      <tr class="ui-widget-header" *ngIf="rowGroupMetadata[rowData.club].index === rowIndex">
-        <td>
-          <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
-        </td>
-        <td colspan="3">
-          <a href="#" [pRowToggler]="rowData">
-            <i [ngClass]="expanded ? 'fa fa-fw fa-chevron-circle-down' : 'fa fa-fw fa-chevron-circle-right'"></i>
-            <span> {{rowData.club}}</span>
-          </a>
-        </td>
-        <td>
-          <div class="row text-center">
-            <div class="col-md-4">
-              <button type="button" class="btn btn-light" [routerLink]="['../personal/' , rowData.id]"><i
-                  class="far fa-user"></i> </button>
 
-            </div>
-            <div class="col-md-4">
-              <ngx-modal [header]="'Edit User'" [buttonCss]="'btn btn-light'" [iconClass]="'fas fa-users-cog'">
-                <div forms>Forms</div>
-                <div buttons>
-                  <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
-                  <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No"
-                    class="ui-button-secondary"></button>
-                </div>
-              </ngx-modal>
-            </div>
-            <div class="col-md-4">
-              <ngx-modal [header]="'Delete User'" [buttonCss]="'btn btn-light'" [iconClass]="'fas fa-user-times'">
-                <div forms>Forms</div>
-                <div buttons>
-                  <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
-                  <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No"
-                    class="ui-button-secondary"></button>
-                </div>
-              </ngx-modal>
-            </div>
+<p-table #dt [columns]="cols" [value]="allTeams" [paginator]="true" [rows]="10" dataKey="club">
+  <ng-template pTemplate="caption">
+    <div class="ui-helper-clearfix">
+      <button type="button" (click)="dt.exportCSV()" class="btn btn-outline-primary float-left"><i
+          class="fas fa-file-download"></i> All Data</button>
+      <button type="button" (click)="dt.exportCSV({selectionOnly:true})" class="btn btn-outline-primary float-right"><i
+          class="fas fa-file-download"></i> Selection Only</button>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th style="width: 3em">
+        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+      <th *ngFor="let col of columns">
+        {{col.header}}
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-expanded="expanded" let-columns="columns">
+    <tr class="ui-widget-header" *ngIf="rowGroupMetadata[rowData.club].index === rowIndex">
+      <td>
+        <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+      </td>
+      <td colspan="3">
+        <a href="#" [pRowToggler]="rowData">
+          <i [ngClass]="expanded ? 'fa fa-fw fa-chevron-circle-down' : 'fa fa-fw fa-chevron-circle-right'"></i>
+          <span> {{rowData.club}}</span>
+        </a>
+      </td>
+      <td>
+        <div class="row text-center">
+          <div class="col-md-4">
+            <button type="button" class="btn btn-outline-success" [routerLink]="['../personal/' , rowData.id]"><i
+                class="far fa-user"></i> </button>
+
           </div>
-        </td>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="rowexpansion" let-rowData let-rowIndex="rowIndex">
-      <tr>
-        <td></td>
-        <td>{{rowData.player}}</td>
-        <td>{{rowData.position}}</td>
-        <td>{{rowData.team}}</td>
-        <td></td>
-      </tr>
-    </ng-template>
-  </p-table>
-
-</div>
+          <div class="col-md-4">
+            <ngx-modal [header]="'Edit User'" [buttonCss]="'btn btn-outline-secondary'" [iconClass]="'fas fa-users-cog'">
+              <div forms>Forms</div>
+              <div buttons>
+                <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
+                <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No"
+                  class="ui-button-secondary"></button>
+              </div>
+            </ngx-modal>
+          </div>
+          <div class="col-md-4">
+            <ngx-modal [header]="'Delete User'" [buttonCss]="'btn btn-outline-danger'" [iconClass]="'fas fa-user-times'">
+              <div forms>Forms</div>
+              <div buttons>
+                <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
+                <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No"
+                  class="ui-button-secondary"></button>
+              </div>
+            </ngx-modal>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="rowexpansion" let-rowData let-rowIndex="rowIndex">
+    <tr>
+      <td></td>
+      <td>{{rowData.player}}</td>
+      <td>{{rowData.position}}</td>
+      <td>{{rowData.team}}</td>
+      <td></td>
+    </tr>
+  </ng-template>
+</p-table>
