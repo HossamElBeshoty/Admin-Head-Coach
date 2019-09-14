@@ -7,8 +7,11 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { TabViewModule } from 'primeng/tabview';
 import { FieldsetModule } from 'primeng/fieldset';
 import { RatingModule } from 'primeng/rating';
-import {PanelModule} from 'primeng/panel';
-import {SplitButtonModule} from 'primeng/splitbutton';
+import { PanelModule } from 'primeng/panel';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { AccordionModule } from 'primeng/accordion';
+
 @NgModule({
   declarations: [],
   imports: [CommonModule,
@@ -20,6 +23,8 @@ import {SplitButtonModule} from 'primeng/splitbutton';
     PanelModule,
     FieldsetModule,
     SplitButtonModule,
+    AutoCompleteModule,
+    AccordionModule,
     RatingModule],
   exports: [CommonModule,
     DialogModule,
@@ -30,6 +35,8 @@ import {SplitButtonModule} from 'primeng/splitbutton';
     TabViewModule,
     PanelModule,
     FieldsetModule,
+    AutoCompleteModule,
+    AccordionModule,
     RatingModule],
 })
 export class PrimengModule { }

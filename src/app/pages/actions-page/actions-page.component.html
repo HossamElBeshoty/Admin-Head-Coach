@@ -1,4 +1,40 @@
-<p-panel header="Possition Buttons" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
+<p-dialog header="New Action" [(visible)]="displayAddingAnAction" [modal]="true" [responsive]="true" [minY]="70"
+  [maximizable]="true" [baseZIndex]="10000">
+  <form action="" style="width: 99%">
+
+    <div class="row mt-3">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="addAction">Action Name</label>
+          <input type="text" class="form-control" id="addAction" placeholder="Add Your Action Name Please">
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="addAction">Action Buttons</label>
+          <span class="ui-fluid">
+            <p-autoComplete [suggestions]="filteredbtns" (completeMethod)="filterBtn($event)"
+              styleClass="wid100" [minLength]="1" placeholder="Add Your Action Buttons Please" field="name" [multiple]="true">
+            </p-autoComplete>
+          </span>
+        </div>
+      </div>
+    </div>
+  </form>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="displayAddingAnAction=false" label="Yes"></button>
+    <button type="button" pButton icon="pi pi-close" (click)="displayAddingAnAction=false" label="No"
+      class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
+
+<button type="button" (click)="showAddingAnActionDialog()"
+  class="btn btn-outline-primary animated slow fadeInDown btn-block m-4"><i class="fa fa-plus"></i> Add New
+  Action</button>
+
+
+
+<p-panel header="Possition Buttons" [toggleable]="true" [style]="{'margin-bottom':'20px'}" >
   <div class="row ">
     <div class="col-md-12">
       <ngx-modal [header]="'Delete Buttons'" [iconClass]="'fas fa-trash-alt'" [width]="1000"
@@ -12,8 +48,8 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Team A</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Team B</button>
+      <button type="button"  (click)="clickEvent()"  [ngClass]="status ? 'active' : ''" class="btn btn-sm ml-2 mb-1 btn-outline-success">Team A</button>
+      <button type="button"  class="btn btn-sm ml-2 mb-1 btn-outline-success">Team B</button>
     </div>
   </div>
 </p-panel>
