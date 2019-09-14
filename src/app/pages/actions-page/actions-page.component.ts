@@ -19,8 +19,7 @@ export class ActionsPageComponent implements OnInit {
     this.displayAddingAnAction = true;
   }
   filterBtn(event) {
-    let query = event.query;
-    console.log(query);
+    const query = event.query;
   }
   clickEvent() {
     this.status = !this.status;
