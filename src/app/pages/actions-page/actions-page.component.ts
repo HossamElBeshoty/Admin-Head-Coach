@@ -20,6 +20,8 @@ export class ActionsPageComponent implements OnInit {
   }
   filterBtn(event) {
     const query = event.query;
+    // tslint:disable-next-line:no-console
+    console.log(query);
   }
   clickEvent() {
     this.status = !this.status;
