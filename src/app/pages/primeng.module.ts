@@ -11,7 +11,7 @@ import { PanelModule } from 'primeng/panel';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { AccordionModule } from 'primeng/accordion';
-
+import {StepsModule} from 'primeng/steps';
 @NgModule({
   declarations: [],
   imports: [CommonModule,
@@ -25,6 +25,7 @@ import { AccordionModule } from 'primeng/accordion';
     SplitButtonModule,
     AutoCompleteModule,
     AccordionModule,
+    StepsModule,
     RatingModule],
   exports: [CommonModule,
     DialogModule,
@@ -35,6 +36,7 @@ import { AccordionModule } from 'primeng/accordion';
     TabViewModule,
     PanelModule,
     FieldsetModule,
+    StepsModule,
     AutoCompleteModule,
     AccordionModule,
     RatingModule],
