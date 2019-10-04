@@ -34,7 +34,7 @@
       <p-header>
         <div class="ui-helper-clearfix">
           <span class="ui-panel-title" style="font-size:16px; display:inline-block; margin-top:2px;">Team B</span>
-          <p-splitButton [style]="{'float':'right'}" label="Save" icon="pi pi-check" (onClick)="save()" [model]="items">
+          <p-splitButton [style]="{'float':'right'}" label="More" icon="pi pi-plus" [model]="itemsPlayerB">
           </p-splitButton>
         </div>
       </p-header>
@@ -62,8 +62,8 @@
       <p-header>
         <div class="ui-helper-clearfix">
           <span class="ui-panel-title" style="font-size:16px; display:inline-block; margin-top:2px;">Actions</span>
-          <p-splitButton [style]="{'float':'right'}" label="Finished" icon="pi pi-thumbs-up" (onClick)="save()"
-                         [model]="items"></p-splitButton>
+          <!--          <p-splitButton [style]="{'float':'right'}" label="Finished" icon="pi pi-thumbs-up" (onClick)="save()"-->
+          <!--                         [model]="items"></p-splitButton>-->
         </div>
       </p-header>
       <div class="row">
@@ -73,8 +73,8 @@
               <div class="ui-helper-clearfix">
                 <span class="ui-panel-title" style="font-size:16px; display:inline-block; margin-top:2px;">Standerd Set
                   Pieces</span>
-                <p-splitButton [style]="{'float':'right'}" label="Save" icon="pi pi-check" (onClick)="save()"
-                               [model]="items"></p-splitButton>
+                <p-splitButton [style]="{'float':'right'}" label="More" icon="pi pi-plus"
+                               [model]="itemsActions"></p-splitButton>
               </div>
             </p-header>
             <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-secondary">Kick Off</button>
@@ -91,8 +91,8 @@
               <div class="ui-helper-clearfix">
                 <span class="ui-panel-title" style="font-size:16px; display:inline-block; margin-top:2px;">Game Set
                   Pieces</span>
-                <p-splitButton [style]="{'float':'right'}" label="Save" icon="pi pi-check" (onClick)="save()"
-                               [model]="items"></p-splitButton>
+                <p-splitButton [style]="{'float':'right'}" label="More" icon="pi pi-plus"
+                               [model]="itemsActions"></p-splitButton>
               </div>
             </p-header>
             <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Shot</button>
@@ -102,51 +102,51 @@
             <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Pass</button>
           </p-panel>
         </div>
-      </div>
-    </p-panel>
-  </div>
-</div>
-<br>
-<div class="row">
-  <div class="col-md-12 animated fadeInUp slow">
-    <p-panel>
-      <p-header>
-        <div class="ui-helper-clearfix">
-          <span class="ui-panel-title" style="font-size:16px; display:inline-block; margin-top:2px;">Tactic</span>
-          <p-splitButton [style]="{'float':'right'}" label="Save" icon="pi pi-check" (onClick)="save()" [model]="items">
-          </p-splitButton>
+
+        <div class="col-md-12">
+          <br>
+          <p-panel>
+            <p-header>
+              <div class="ui-helper-clearfix">
+                <span class="ui-panel-title" style="font-size:16px; display:inline-block; margin-top:2px;">Tactic</span>
+                <p-splitButton [style]="{'float':'right'}" label="More" icon="pi pi-plus"
+                               [model]="itemsActionsTactic">
+                </p-splitButton>
+              </div>
+            </p-header>
+            <p-tabView>
+              <p-tabPanel header="Shot Outcome">
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shot</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Cross</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tackie</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Foul</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Pass</button>
+              </p-tabPanel>
+              <p-tabPanel header="Cross Replacement">
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Shot</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Cross</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Tackie</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Foul</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Pass</button>
+              </p-tabPanel>
+              <p-tabPanel header="Pass Description">
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Shot</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Cross</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Tackie</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Foul</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Pass</button>
+              </p-tabPanel>
+              <p-tabPanel header="Penalty">
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shot</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Cross</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tackie</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Foul</button>
+                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Pass</button>
+              </p-tabPanel>
+            </p-tabView>
+          </p-panel>
         </div>
-      </p-header>
-      <p-tabView>
-        <p-tabPanel header="Shot Outcome">
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shot</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Cross</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tackie</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Foul</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Pass</button>
-        </p-tabPanel>
-        <p-tabPanel header="Cross Replacement">
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Shot</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Cross</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Tackie</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Foul</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Pass</button>
-        </p-tabPanel>
-        <p-tabPanel header="Pass Description">
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Shot</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Cross</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Tackie</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Foul</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Pass</button>
-        </p-tabPanel>
-        <p-tabPanel header="Penalty">
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shot</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Cross</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tackie</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Foul</button>
-          <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Pass</button>
-        </p-tabPanel>
-      </p-tabView>
+      </div>
     </p-panel>
   </div>
 </div>
@@ -174,3 +174,237 @@
   </div>
 </div>
 <!--Update Player A-->
+<p-dialog header="Edit Player A" [(visible)]="displayPlayersADialog" [modal]="true" [responsive]="true"
+          [minY]="70" [baseZIndex]="10000">
+  <p-pickList [source]="sourceCars" [target]="targetCars" sourceHeader="All Players" targetHeader="Selected Players"
+              [responsive]="true" filterBy="brand"
+              dragdrop="true" sourceFilterPlaceholder="Search by Players" targetFilterPlaceholder="Search by Players"
+              [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}">
+    <ng-template let-car pTemplate="item">
+      <div class="ui-helper-clearfix">
+        <img src="assets/showcase/images/demo/car/{{car.brand}}.png" style="display:inline-block; margin:2px 0 2px 2px;"
+             width="48">
+        <div style="font-size:14px; float:right; margin:15px 5px 0 0;">{{car.brand}} - {{car.year}}
+          - {{car.color}}</div>
+      </div>
+    </ng-template>
+  </p-pickList>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="displayPlayersADialog=false" label="Yes"></button>
+    <button type="button" pButton icon="pi pi-close" (click)="displayPlayersADialog=false" label="No"
+            class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
+<!--Update Player B-->
+<p-dialog header="Edit Player B" [(visible)]="displayPlayersBDialog" [modal]="true" [responsive]="true"
+          [minY]="70" [baseZIndex]="10000">
+  <p-pickList [source]="sourceCars" [target]="targetCars" sourceHeader="All Players" targetHeader="Selected Players"
+              [responsive]="true" filterBy="brand"
+              dragdrop="true" sourceFilterPlaceholder="Search by Players" targetFilterPlaceholder="Search by Players"
+              [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}">
+    <ng-template let-car pTemplate="item">
+      <div class="ui-helper-clearfix">
+        <img src="assets/showcase/images/demo/car/{{car.brand}}.png" style="display:inline-block; margin:2px 0 2px 2px;"
+             width="48">
+        <div style="font-size:14px; float:right; margin:15px 5px 0 0;">{{car.brand}} - {{car.year}}
+          - {{car.color}}</div>
+      </div>
+    </ng-template>
+  </p-pickList>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="displayPlayersBDialog=false" label="Yes"></button>
+    <button type="button" pButton icon="pi pi-close" (click)="displayPlayersBDialog=false" label="No"
+            class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
+<!--Add & Update Action-->
+<p-dialog header="Action" [(visible)]="displayActionsDialog" [modal]="true" [responsive]="true"
+          [minY]="70" [baseZIndex]="10000">
+  <form action="" style="width: 99%;">
+    <div class="row mt-3">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="addAction">Action Name</label>
+          <input type="text" class="form-control" id="addAction" placeholder="Add Your Action Name Please">
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="addAction">Action Buttons</label>
+          <span class="ui-fluid">
+            <p-autoComplete [suggestions]="filteredbtns" (completeMethod)="filterBtn($event)"
+                            styleClass="wid100" [minLength]="1" placeholder="Add Your Action Buttons Please"
+                            field="name" [multiple]="true">
+            </p-autoComplete>
+          </span>
+        </div>
+      </div>
+    </div>
+  </form>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="displayActionsDialog=false" label="Yes"></button>
+    <button type="button" pButton icon="pi pi-close" (click)="displayActionsDialog=false" label="No"
+            class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
+<!--Add & Update Tactic-->
+<p-dialog header="Tactic" [(visible)]="displayActionTacticsDialog" [style]="{width: '900px', minWidth: '500px'}"
+          [modal]="true" [responsive]="true"
+          [minY]="70" [baseZIndex]="10000">
+
+  <p-tabView>
+    <p-tabPanel header="Shot Outcome">
+      <p-table [columns]="colsTactic" [value]="tactics" [reorderableColumns]="true" selectionMode="single"
+               [(selection)]="selectedTactic" dataKey="id">
+        <ng-template pTemplate="caption">
+          <form action="">
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group">
+                  <input type="email" class="form-control" placeholder="Insert Tactic Name">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-outline-primary"><i class="fa fa-plus"></i> Add</button>
+              </div>
+            </div>
+          </form>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th style="width:2.5em;"></th>
+            <th *ngFor="let col of columns" pReorderableColumn>
+              {{col.header}}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
+          <tr [pReorderableRow]="index" [pSelectableRow]="rowData">
+            <td>
+              <i class="fas fa-sort" pReorderableRowHandle></i>
+            </td>
+            <td *ngFor="let col of columns">
+              {{rowData[col.field]}}
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-tabPanel>
+    <p-tabPanel header="Cross Replacement">
+      <p-table [columns]="colsTactic" [value]="tactics" [reorderableColumns]="true" selectionMode="single"
+               [(selection)]="selectedTactic" dataKey="id">
+        <ng-template pTemplate="caption">
+          <form action="">
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group">
+                  <input type="email" class="form-control" placeholder="Insert Tactic Name">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-outline-primary"><i class="fa fa-plus"></i> Add</button>
+              </div>
+            </div>
+          </form>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th style="width:2.5em;"></th>
+            <th *ngFor="let col of columns" pReorderableColumn>
+              {{col.header}}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
+          <tr [pReorderableRow]="index" [pSelectableRow]="rowData">
+            <td>
+              <i class="fas fa-sort" pReorderableRowHandle></i>
+            </td>
+            <td *ngFor="let col of columns">
+              {{rowData[col.field]}}
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-tabPanel>
+    <p-tabPanel header="Pass Description">
+      <p-table [columns]="colsTactic" [value]="tactics" [reorderableColumns]="true" selectionMode="single"
+               [(selection)]="selectedTactic" dataKey="id">
+        <ng-template pTemplate="caption">
+          <form action="">
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group">
+                  <input type="email" class="form-control" placeholder="Insert Tactic Name">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-outline-primary"><i class="fa fa-plus"></i> Add</button>
+              </div>
+            </div>
+          </form>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th style="width:2.5em;"></th>
+            <th *ngFor="let col of columns" pReorderableColumn>
+              {{col.header}}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
+          <tr [pReorderableRow]="index" [pSelectableRow]="rowData">
+            <td>
+              <i class="fas fa-sort" pReorderableRowHandle></i>
+            </td>
+            <td *ngFor="let col of columns">
+              {{rowData[col.field]}}
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-tabPanel>
+    <p-tabPanel header="Penalty">
+      <p-table [columns]="colsTactic" [value]="tactics" [reorderableColumns]="true" selectionMode="single"
+               [(selection)]="selectedTactic" dataKey="id">
+        <ng-template pTemplate="caption">
+          <form action="">
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group">
+                  <input type="email" class="form-control" placeholder="Insert Tactic Name">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-outline-primary"><i class="fa fa-plus"></i> Add</button>
+              </div>
+            </div>
+          </form>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th style="width:2.5em;"></th>
+            <th *ngFor="let col of columns" pReorderableColumn>
+              {{col.header}}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
+          <tr [pReorderableRow]="index" [pSelectableRow]="rowData">
+            <td>
+              <i class="fas fa-sort" pReorderableRowHandle></i>
+            </td>
+            <td *ngFor="let col of columns">
+              {{rowData[col.field]}}
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-tabPanel>
+  </p-tabView>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="displayActionTacticsDialog=false" label="Yes"></button>
+    <button type="button" pButton icon="pi pi-close" (click)="displayActionTacticsDialog=false" label="No"
+            class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
