@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MenuItem} from 'primeng/api';
 
 @Component({
@@ -22,8 +22,10 @@ export class AnalysisMatchPageComponent implements OnInit {
     score: '1:0',
   }];
   cols: any[];
-  items: MenuItem[];
-  constructor() { }
+  itemsPlayerA: MenuItem[];
+
+  constructor() {
+  }
 
   ngOnInit() {
     this.cols = [
@@ -40,30 +42,31 @@ export class AnalysisMatchPageComponent implements OnInit {
       {field: 'penalty', header: 'Penalty', width: '20%'},
       {field: 'score', header: 'Score', width: '15%'},
     ];
-    this.items = [
+    this.itemsPlayerA = [
       {
-        label: 'Update', icon: 'pi pi-refresh', command: () => {
-          this.update();
+        label: 'Update Player', icon: 'pi pi-refresh', command: () => {
+          this.updatePlayer();
         },
       },
       {
-        label: 'Delete', icon: 'pi pi-times', command: () => {
-          this.delete();
+        label: 'Delete Player', icon: 'pi pi-times', command: () => {
+          this.deletePlayer();
         },
       },
     ];
   }
-  save() {
-    // tslint:disable-next-line:no-console
-    console.log('Save Works');
-  }
 
-  update() {
+  // save() {
+  //   // tslint:disable-next-line:no-console
+  //   console.log('Save Works');
+  // }
+
+  updatePlayer() {
     // tslint:disable-next-line:no-console
     console.log('Update Works');
   }
 
-  delete() {
+  deletePlayer() {
     // tslint:disable-next-line:no-console
     console.log('Delete Works');
   }
