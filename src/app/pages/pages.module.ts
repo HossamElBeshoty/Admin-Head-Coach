@@ -23,6 +23,7 @@ import {UserCardComponent} from './widgets/user-card/user-card.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TablePrimeNgComponent} from './widgets/table-prime-ng/table-prime-ng.component';
 import {AngularMaterialModule} from './angular-material.module';
+import { AnalysisMatchPageComponent } from './analysis-page/analysis-match-page/analysis-match-page.component';
 
 @NgModule({
   imports: [
@@ -52,6 +53,7 @@ import {AngularMaterialModule} from './angular-material.module';
     PersonalPageComponent,
     UserCardComponent,
     TablePrimeNgComponent,
+    AnalysisMatchPageComponent,
   ],
 })
 export class PagesModule {

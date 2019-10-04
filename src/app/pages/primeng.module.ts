@@ -1,17 +1,19 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DialogModule } from 'primeng/dialog';
-import { ButtonModule } from 'primeng/button';
-import { TableModule } from 'primeng/table';
-import { FileUploadModule } from 'primeng/fileupload';
-import { TabViewModule } from 'primeng/tabview';
-import { FieldsetModule } from 'primeng/fieldset';
-import { RatingModule } from 'primeng/rating';
-import { PanelModule } from 'primeng/panel';
-import { SplitButtonModule } from 'primeng/splitbutton';
-import { AutoCompleteModule } from 'primeng/autocomplete';
-import { AccordionModule } from 'primeng/accordion';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {DialogModule} from 'primeng/dialog';
+import {ButtonModule} from 'primeng/button';
+import {TableModule} from 'primeng/table';
+import {FileUploadModule} from 'primeng/fileupload';
+import {TabViewModule} from 'primeng/tabview';
+import {FieldsetModule} from 'primeng/fieldset';
+import {RatingModule} from 'primeng/rating';
+import {PanelModule} from 'primeng/panel';
+import {SplitButtonModule} from 'primeng/splitbutton';
+import {AutoCompleteModule} from 'primeng/autocomplete';
+import {AccordionModule} from 'primeng/accordion';
 import {StepsModule} from 'primeng/steps';
+import {PickListModule} from 'primeng/picklist';
+
 @NgModule({
   declarations: [],
   imports: [CommonModule,
@@ -25,6 +27,7 @@ import {StepsModule} from 'primeng/steps';
     SplitButtonModule,
     AutoCompleteModule,
     AccordionModule,
+    PickListModule,
     StepsModule,
     RatingModule],
   exports: [CommonModule,
@@ -36,9 +39,11 @@ import {StepsModule} from 'primeng/steps';
     TabViewModule,
     PanelModule,
     FieldsetModule,
+    PickListModule,
     StepsModule,
     AutoCompleteModule,
     AccordionModule,
     RatingModule],
 })
-export class PrimengModule { }
+export class PrimengModule {
+}
