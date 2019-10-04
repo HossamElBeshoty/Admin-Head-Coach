@@ -8,7 +8,7 @@ describe('AnalysisMatchPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AnalysisMatchPageComponent ]
+      declarations: [ AnalysisMatchPageComponent ],
     })
     .compileComponents();
   }));
