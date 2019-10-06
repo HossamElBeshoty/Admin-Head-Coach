@@ -27,7 +27,10 @@ export class AnalysisMatchPageComponent implements OnInit {
   itemsActions: MenuItem[];
   itemsActionsTactic: MenuItem[];
   displayPlayersADialog = false;
+  displayPlayersADeleteDialog = false;
+  displayConfirmPlayersADeleteDialog = false;
   displayPlayersBDialog = false;
+  displayPlayersBDeleteDialog = false;
   displayActionsDialog = false;
   displayActionTacticsDialog = false;
   tactics = [
@@ -37,8 +40,15 @@ export class AnalysisMatchPageComponent implements OnInit {
     {id: 4, name: 'Foul'},
     {id: 5, name: 'Pass'},
   ];
+  teamADeleteTable = [
+    {playerName: 'Ferjani Sassi', position: 'Midfielder'},
+    {playerName: 'Shikabala ', position: 'Midfielder'},
+    {playerName: 'Mahmoud Abdel Rahim ', position: 'Goalkeeper'},
+    {playerName: 'Tarek Hamed', position: 'Midfielder'},
+  ];
   colsTactic: any[];
   selectedTactic;
+
   constructor() {
   }
 
@@ -120,18 +130,17 @@ export class AnalysisMatchPageComponent implements OnInit {
     ];
   }
 
-  // save() {
-  //   // tslint:disable-next-line:no-console
-  //   console.log('Save Works');
-  // }
 
   updatePlayerA() {
     this.displayPlayersADialog = true;
   }
 
   deletePlayerA() {
-    // tslint:disable-next-line:no-console
-    console.log('Delete Works');
+    this.displayPlayersADeleteDialog = true;
+  }
+
+  confirmDeletePlayerA() {
+    this.displayConfirmPlayersADeleteDialog = true;
   }
 
   updatePlayerB() {
@@ -139,8 +148,7 @@ export class AnalysisMatchPageComponent implements OnInit {
   }
 
   deletePlayerB() {
-    // tslint:disable-next-line:no-console
-    console.log('Delete Works');
+    this.displayPlayersBDeleteDialog = true;
   }
 
   addAction() {

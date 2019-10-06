@@ -195,6 +195,51 @@
             class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>
+<!--Delete Player A-->
+<p-dialog header="Delete Player A" [(visible)]="displayPlayersADeleteDialog" [modal]="true" [responsive]="true"
+          [style]="{width: '700px'}"
+          [minY]="70" [baseZIndex]="10000">
+  <p-table [value]="teamADeleteTable">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>PlayerName</th>
+        <th>Position</th>
+        <th style="width: 100px;">Delete</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-teamADeleteTable>
+      <tr>
+        <td>{{teamADeleteTable.playerName}}</td>
+        <td>{{teamADeleteTable.position}}</td>
+        <td class="text-center">
+          <button class="btn btn-outline-danger" (click)="confirmDeletePlayerA()"><i class="far fa-trash-alt"></i>
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="displayPlayersADeleteDialog=false" label="Yes"></button>
+    <button type="button" pButton icon="pi pi-close" (click)="displayPlayersADeleteDialog=false" label="No"
+            class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
+<!-- Confirm Delete Player A-->
+<p-dialog header="Delete Player" [(visible)]="displayConfirmPlayersADeleteDialog" [modal]="true" [responsive]="true"
+          [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
+          [baseZIndex]="10000">
+<div class="text-center">
+  <i class="fas fa-exclamation-triangle fa-4x text-danger"></i>
+</div>
+  <p class="text-center">Are You Sure To Remove This Player?!</p>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check"
+            (click)="displayConfirmPlayersADeleteDialog=false;displayPlayersADeleteDialog=false;" label="Yes"></button>
+    <button type="button" pButton icon="pi pi-close"
+            (click)="displayConfirmPlayersADeleteDialog=false;displayPlayersADeleteDialog=false;" label="No"
+            class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
 <!--Update Player B-->
 <p-dialog header="Edit Player B" [(visible)]="displayPlayersBDialog" [modal]="true" [responsive]="true"
           [minY]="70" [baseZIndex]="10000">
@@ -214,6 +259,16 @@
   <p-footer>
     <button type="button" pButton icon="pi pi-check" (click)="displayPlayersBDialog=false" label="Yes"></button>
     <button type="button" pButton icon="pi pi-close" (click)="displayPlayersBDialog=false" label="No"
+            class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
+<!--Delete Player B-->
+<p-dialog header="Delete Player B" [(visible)]="displayPlayersBDeleteDialog" [modal]="true" [responsive]="true"
+          [minY]="70" [baseZIndex]="10000">
+  Delete Table
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="displayPlayersBDeleteDialog=false" label="Yes"></button>
+    <button type="button" pButton icon="pi pi-close" (click)="displayPlayersBDeleteDialog=false" label="No"
             class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>
