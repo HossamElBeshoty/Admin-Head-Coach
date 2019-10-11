@@ -1,10 +1,9 @@
-
-
-<button type="button" (click)="showNewAnalysisDialog()"
-        class="btn btn-outline-primary animated slow fadeInDown btn-block m-4"><i class="fa fa-plus"></i> Add New
-  Analysis
-</button>
-
+<div class="container">
+  <button type="button" (click)="showNewAnalysisDialog()"
+          class="btn btn-outline-primary animated slow fadeInDown btn-block m-4"><i class="fa fa-plus"></i> Add New
+    Analysis
+  </button>
+</div>
 
 <div class="container-fluid">
   <p-accordion>
@@ -79,11 +78,24 @@
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Controls</ng-template>
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-6">
             <div class="form-group">
               <label for="Youtube Link">Youtube Link</label>
               <input type="text" class="form-control" id="Youtube Link" aria-describedby="emailHelp"
                      placeholder="Please Enter Youtube Link">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="actionStatement">Select Your Action Statement</label>
+              <select class="form-control" id="actionStatement">
+                <option>Please Select Action Statement</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
             </div>
           </div>
           <div class="col-md-6">
@@ -212,7 +224,8 @@
       <hr>
       <div class="row">
         <div class="col-md-6">
-          <button class="btn btn-outline-success float-left" (click)="displayNewAnalysis=false" [routerLink]="['../analysis/matchAnalysis']"><i
+          <button class="btn btn-outline-success float-left" (click)="displayNewAnalysis=false"
+                  [routerLink]="['../analysis/matchAnalysis']"><i
             class="far fa-hand-peace"></i> Lets Start
           </button>
         </div>

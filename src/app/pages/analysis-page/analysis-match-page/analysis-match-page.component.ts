@@ -53,7 +53,7 @@ export class AnalysisMatchPageComponent implements OnInit {
     cc_lang_pref: 'en',
   };
   private player;
-  private ytEvent;
+  public ytEvent;
 
   constructor() {
   }
