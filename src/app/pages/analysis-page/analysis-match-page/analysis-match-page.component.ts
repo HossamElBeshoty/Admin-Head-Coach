@@ -48,6 +48,12 @@ export class AnalysisMatchPageComponent implements OnInit {
   ];
   colsTactic: any[];
   selectedTactic;
+  id = 'Du3fYule9-k';
+  playerVars = {
+    cc_lang_pref: 'en',
+  };
+  private player;
+  private ytEvent;
 
   constructor() {
   }
@@ -130,7 +136,6 @@ export class AnalysisMatchPageComponent implements OnInit {
     ];
   }
 
-
   updatePlayerA() {
     this.displayPlayersADialog = true;
   }
@@ -175,5 +180,29 @@ export class AnalysisMatchPageComponent implements OnInit {
   deleteTactic() {
     // tslint:disable-next-line:no-console
     console.log('Delete Works');
+  }
+
+  onStateChange(event) {
+    this.ytEvent = event.data;
+  }
+
+  savePlayer(player) {
+    this.player = player;
+  }
+
+  playVideo() {
+    this.player.playVideo();
+  }
+
+  pauseVideo() {
+    this.player.pauseVideo();
+  }
+
+  setSlowMotion() {
+    this.player.setPlaybackRate(.25);
+  }
+
+  getCurrentTimeFromYoutubeVideo() {
+    this.player.getCurrentTime();
   }
 }

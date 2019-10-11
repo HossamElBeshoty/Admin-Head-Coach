@@ -13,6 +13,7 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
 import {AccordionModule} from 'primeng/accordion';
 import {StepsModule} from 'primeng/steps';
 import {PickListModule} from 'primeng/picklist';
+import {ToolbarModule} from 'primeng/toolbar';
 
 @NgModule({
   declarations: [],
@@ -21,6 +22,7 @@ import {PickListModule} from 'primeng/picklist';
     ButtonModule,
     TableModule,
     FileUploadModule,
+    ToolbarModule,
     TabViewModule,
     PanelModule,
     FieldsetModule,
@@ -38,6 +40,7 @@ import {PickListModule} from 'primeng/picklist';
     SplitButtonModule,
     TabViewModule,
     PanelModule,
+    ToolbarModule,
     FieldsetModule,
     PickListModule,
     StepsModule,

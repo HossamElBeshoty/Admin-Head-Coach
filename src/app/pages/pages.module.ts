@@ -23,7 +23,8 @@ import {UserCardComponent} from './widgets/user-card/user-card.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TablePrimeNgComponent} from './widgets/table-prime-ng/table-prime-ng.component';
 import {AngularMaterialModule} from './angular-material.module';
-import { AnalysisMatchPageComponent } from './analysis-page/analysis-match-page/analysis-match-page.component';
+import {AnalysisMatchPageComponent} from './analysis-page/analysis-match-page/analysis-match-page.component';
+import {NgxYoutubePlayerModule} from 'ngx-youtube-player';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { AnalysisMatchPageComponent } from './analysis-page/analysis-match-page/
     DashboardModule,
     ECommerceModule,
     MiscellaneousModule,
+    NgxYoutubePlayerModule.forRoot(),
     PrimengModule,
     FormsModule,
     AngularMaterialModule,

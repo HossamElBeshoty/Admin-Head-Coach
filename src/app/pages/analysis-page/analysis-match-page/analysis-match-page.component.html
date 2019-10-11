@@ -26,8 +26,31 @@
   </div>
   <div class="col-md-6 animated fadeInDown slow">
     <div class="embed-responsive embed-responsive-21by9">
-      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/sP-sjQQU35g"></iframe>
+      <!--      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/sP-sjQQU35g"></iframe>-->
+      <youtube-player
+        [videoId]="id"
+        (ready)="savePlayer($event)"
+        (change)="onStateChange($event)"
+        [playerVars]="playerVars">
+      </youtube-player>
     </div>
+    <p-toolbar>
+      <div class="text-center">
+        <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary" (click)="playVideo()"><i
+          class="fas fa-play"></i> Play
+        </button>
+        <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger" (click)="pauseVideo()"><i
+          class="fas fa-pause"></i> Pause
+        </button>
+        <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success" (click)="setSlowMotion()"><i
+          class="fas fa-tachometer-alt"></i> Speed
+        </button>
+        <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-warning" (click)="getCurrentTimeFromYoutubeVideo()"><i
+          class="fas fa-stopwatch"></i> Current
+          Time
+        </button>
+      </div>
+    </p-toolbar>
   </div>
   <div class="col-md-3 animated fadeInRight slow">
     <p-panel>
