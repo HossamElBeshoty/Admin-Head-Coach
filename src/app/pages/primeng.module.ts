@@ -14,11 +14,16 @@ import {AccordionModule} from 'primeng/accordion';
 import {StepsModule} from 'primeng/steps';
 import {PickListModule} from 'primeng/picklist';
 import {ToolbarModule} from 'primeng/toolbar';
+import {LightboxModule} from 'primeng/lightbox';
+
+import {TreeTableModule} from 'primeng/treetable';
+
 
 @NgModule({
   declarations: [],
   imports: [CommonModule,
     DialogModule,
+    TreeTableModule,
     ButtonModule,
     TableModule,
     FileUploadModule,
@@ -29,6 +34,7 @@ import {ToolbarModule} from 'primeng/toolbar';
     SplitButtonModule,
     AutoCompleteModule,
     AccordionModule,
+    LightboxModule,
     PickListModule,
     StepsModule,
     RatingModule],
@@ -42,6 +48,8 @@ import {ToolbarModule} from 'primeng/toolbar';
     PanelModule,
     ToolbarModule,
     FieldsetModule,
+    LightboxModule,
+    TreeTableModule,
     PickListModule,
     StepsModule,
     AutoCompleteModule,

@@ -7,12 +7,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/home',
     home: true,
   },
-  {
-    title: 'Clubs',
-    icon: 'flag-outline',
-    link: '/pages/clubs',
-    home: true,
-  },
+  // {
+  //   title: 'Clubs',
+  //   icon: 'flag-outline',
+  //   link: '/pages/clubs',
+  //   home: true,
+  // },
   {
     title: 'Teams',
     icon: 'people-outline',

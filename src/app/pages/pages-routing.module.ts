@@ -22,10 +22,11 @@ const routes: Routes = [{
       path: 'home',
       component: ECommerceComponent,
     },
+    // {
+    //   path: 'clubs',
+    //   component: ClubsPageComponent,
+    // },
     {
-      path: 'clubs',
-      component: ClubsPageComponent,
-    }, {
       path: 'teams',
       component: TeamsPageComponent,
     },
