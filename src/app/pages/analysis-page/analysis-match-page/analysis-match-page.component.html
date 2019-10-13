@@ -79,100 +79,101 @@
   </div>
 </div>
 <br>
-<div class="row">
-  <div class="col-md-12 animated fadeInUp slow">
-    <p-panel>
-      <p-header>
-        <div class="ui-helper-clearfix">
-          <span class="ui-panel-title" style="font-size:16px; display:inline-block; margin-top:2px;">Actions</span>
-          <!--          <p-splitButton [style]="{'float':'right'}" label="Finished" icon="pi pi-thumbs-up" (onClick)="save()"-->
-          <!--                         [model]="items"></p-splitButton>-->
-        </div>
-      </p-header>
-      <div class="row">
-        <div class="col-md-6">
-          <p-panel>
-            <p-header>
-              <div class="ui-helper-clearfix">
-                <span class="ui-panel-title" style="font-size:16px; display:inline-block; margin-top:2px;">Standerd Set
-                  Pieces</span>
-                <p-splitButton [style]="{'float':'right'}" label="More" icon="pi pi-plus"
-                               [model]="itemsActions"></p-splitButton>
-              </div>
-            </p-header>
-            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-secondary">Kick Off</button>
-            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-secondary">Corner</button>
-            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-secondary">Throw In</button>
-            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-secondary">Penalty</button>
-            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-secondary">Free Kick</button>
-            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-secondary">Goal Kick</button>
-          </p-panel>
-        </div>
-        <div class="col-md-6">
-          <p-panel>
-            <p-header>
-              <div class="ui-helper-clearfix">
-                <span class="ui-panel-title" style="font-size:16px; display:inline-block; margin-top:2px;">Game Set
-                  Pieces</span>
-                <p-splitButton [style]="{'float':'right'}" label="More" icon="pi pi-plus"
-                               [model]="itemsActions"></p-splitButton>
-              </div>
-            </p-header>
-            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Shot</button>
-            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Cross</button>
-            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Tackie</button>
-            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Foul</button>
-            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Pass</button>
-          </p-panel>
-        </div>
+<!--<div class="row">-->
+<!--  <div class="col-md-12 animated fadeInUp slow">-->
+<!--    <p-panel>-->
+<!--      <p-header>-->
+<!--        <div class="ui-helper-clearfix">-->
+<!--          <span class="ui-panel-title" style="font-size:16px; display:inline-block; margin-top:2px;">Actions Type</span>-->
+<!--          &lt;!&ndash;          <p-splitButton [style]="{'float':'right'}" label="Finished" icon="pi pi-thumbs-up" (onClick)="save()"&ndash;&gt;-->
+<!--          &lt;!&ndash;                         [model]="items"></p-splitButton>&ndash;&gt;-->
+<!--        </div>-->
+<!--      </p-header>-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-6">-->
+<!--          <p-panel>-->
+<!--            <p-header>-->
+<!--              <div class="ui-helper-clearfix">-->
+<!--                <span class="ui-panel-title" style="font-size:16px; display:inline-block; margin-top:2px;">Standerd Set-->
+<!--                  Pieces</span>-->
+<!--                <p-splitButton [style]="{'float':'right'}" label="More" icon="pi pi-plus"-->
+<!--                               [model]="itemsActions"></p-splitButton>-->
+<!--              </div>-->
+<!--            </p-header>-->
+<!--            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-secondary">Kick Off</button>-->
+<!--            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-secondary">Corner</button>-->
+<!--            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-secondary">Throw In</button>-->
+<!--            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-secondary">Penalty</button>-->
+<!--            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-secondary">Free Kick</button>-->
+<!--            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-secondary">Goal Kick</button>-->
+<!--          </p-panel>-->
+<!--        </div>-->
+<!--        <div class="col-md-6">-->
+<!--          <p-panel>-->
+<!--            <p-header>-->
+<!--              <div class="ui-helper-clearfix">-->
+<!--                <span class="ui-panel-title" style="font-size:16px; display:inline-block; margin-top:2px;">Game Set-->
+<!--                  Pieces</span>-->
+<!--                <p-splitButton [style]="{'float':'right'}" label="More" icon="pi pi-plus"-->
+<!--                               [model]="itemsActions"></p-splitButton>-->
+<!--              </div>-->
+<!--            </p-header>-->
+<!--            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Shot</button>-->
+<!--            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Cross</button>-->
+<!--            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Tackie</button>-->
+<!--            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Foul</button>-->
+<!--            <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Pass</button>-->
+<!--          </p-panel>-->
+<!--        </div>-->
 
-        <div class="col-md-12">
-          <br>
-          <p-panel>
-            <p-header>
-              <div class="ui-helper-clearfix">
-                <span class="ui-panel-title" style="font-size:16px; display:inline-block; margin-top:2px;">Tactic</span>
-                <p-splitButton [style]="{'float':'right'}" label="More" icon="pi pi-plus"
-                               [model]="itemsActionsTactic">
-                </p-splitButton>
-              </div>
-            </p-header>
-            <p-tabView>
-              <p-tabPanel header="Shot Outcome">
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shot</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Cross</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tackie</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Foul</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Pass</button>
-              </p-tabPanel>
-              <p-tabPanel header="Cross Replacement">
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Shot</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Cross</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Tackie</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Foul</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Pass</button>
-              </p-tabPanel>
-              <p-tabPanel header="Pass Description">
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Shot</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Cross</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Tackie</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Foul</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Pass</button>
-              </p-tabPanel>
-              <p-tabPanel header="Penalty">
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shot</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Cross</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tackie</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Foul</button>
-                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Pass</button>
-              </p-tabPanel>
-            </p-tabView>
-          </p-panel>
-        </div>
-      </div>
-    </p-panel>
-  </div>
-</div>
+<!--        <div class="col-md-12">-->
+<!--          <br>-->
+<!--          <p-panel>-->
+<!--            <p-header>-->
+<!--              <div class="ui-helper-clearfix">-->
+<!--                <span class="ui-panel-title" style="font-size:16px; display:inline-block; margin-top:2px;">Tactic</span>-->
+<!--                <p-splitButton [style]="{'float':'right'}" label="More" icon="pi pi-plus"-->
+<!--                               [model]="itemsActionsTactic">-->
+<!--                </p-splitButton>-->
+<!--              </div>-->
+<!--            </p-header>-->
+<!--            <p-tabView>-->
+<!--              <p-tabPanel header="Shot Outcome">-->
+<!--                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shot</button>-->
+<!--                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Cross</button>-->
+<!--                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tackie</button>-->
+<!--                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Foul</button>-->
+<!--                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Pass</button>-->
+<!--              </p-tabPanel>-->
+<!--              <p-tabPanel header="Cross Replacement">-->
+<!--                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Shot</button>-->
+<!--                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Cross</button>-->
+<!--                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Tackie</button>-->
+<!--                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Foul</button>-->
+<!--                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary">Pass</button>-->
+<!--              </p-tabPanel>-->
+<!--              <p-tabPanel header="Pass Description">-->
+<!--                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Shot</button>-->
+<!--                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Cross</button>-->
+<!--                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Tackie</button>-->
+<!--                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Foul</button>-->
+<!--                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Pass</button>-->
+<!--              </p-tabPanel>-->
+<!--              <p-tabPanel header="Penalty">-->
+<!--                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Shot</button>-->
+<!--                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Cross</button>-->
+<!--                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Tackie</button>-->
+<!--                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Foul</button>-->
+<!--                <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger">Pass</button>-->
+<!--              </p-tabPanel>-->
+<!--            </p-tabView>-->
+<!--          </p-panel>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </p-panel>-->
+<!--  </div>-->
+<!--</div>-->
+<ngx-action></ngx-action>
 <br>
 <div class="row">
   <div class="col-md-12 animated fadeInUp slow">

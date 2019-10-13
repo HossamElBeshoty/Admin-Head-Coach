@@ -25,6 +25,7 @@ import {TablePrimeNgComponent} from './widgets/table-prime-ng/table-prime-ng.com
 import {AngularMaterialModule} from './angular-material.module';
 import {AnalysisMatchPageComponent} from './analysis-page/analysis-match-page/analysis-match-page.component';
 import {NgxYoutubePlayerModule} from 'ngx-youtube-player';
+import { ActionComponent } from './components/action/action.component';
 
 @NgModule({
   imports: [
@@ -56,6 +57,7 @@ import {NgxYoutubePlayerModule} from 'ngx-youtube-player';
     UserCardComponent,
     TablePrimeNgComponent,
     AnalysisMatchPageComponent,
+    ActionComponent,
   ],
 })
 export class PagesModule {
