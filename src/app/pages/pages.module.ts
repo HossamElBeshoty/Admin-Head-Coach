@@ -26,6 +26,8 @@ import {AngularMaterialModule} from './angular-material.module';
 import {AnalysisMatchPageComponent} from './analysis-page/analysis-match-page/analysis-match-page.component';
 import {NgxYoutubePlayerModule} from 'ngx-youtube-player';
 import { ActionComponent } from './components/action/action.component';
+import { PlayersBoxTeamComponent } from './components/players-box-team/players-box-team.component';
+import { YoutubePlayerComponent } from './components/youtube-player/youtube-player.component';
 
 @NgModule({
   imports: [
@@ -58,6 +60,8 @@ import { ActionComponent } from './components/action/action.component';
     TablePrimeNgComponent,
     AnalysisMatchPageComponent,
     ActionComponent,
+    PlayersBoxTeamComponent,
+    YoutubePlayerComponent,
   ],
 })
 export class PagesModule {

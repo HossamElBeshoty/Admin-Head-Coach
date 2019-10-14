@@ -73,67 +73,6 @@ export class AnalysisMatchPageComponent implements OnInit {
       {field: 'penalty', header: 'Penalty', width: '20%'},
       {field: 'score', header: 'Score', width: '15%'},
     ];
-    this.colsTactic = [
-      {field: 'name', header: 'Name'},
-    ];
-    this.itemsPlayerA = [
-      {
-        label: 'Update Player', icon: 'pi pi-refresh', command: () => {
-          this.updatePlayerA();
-        },
-      },
-      {
-        label: 'Delete Player', icon: 'pi pi-times', command: () => {
-          this.deletePlayerA();
-        },
-      },
-    ];
-    this.itemsPlayerB = [
-      {
-        label: 'Update Player', icon: 'pi pi-refresh', command: () => {
-          this.updatePlayerB();
-        },
-      },
-      {
-        label: 'Delete Player', icon: 'pi pi-times', command: () => {
-          this.deletePlayerB();
-        },
-      },
-    ];
-    this.itemsActions = [
-      {
-        label: 'Add Action', icon: 'pi pi-plus', command: () => {
-          this.addAction();
-        },
-      },
-      {
-        label: 'Update Action', icon: 'pi pi-refresh', command: () => {
-          this.updateAction();
-        },
-      },
-      {
-        label: 'Delete Action', icon: 'pi pi-times', command: () => {
-          this.deleteAction();
-        },
-      },
-    ];
-    this.itemsActionsTactic = [
-      {
-        label: 'Add Tactic', icon: 'pi pi-plus', command: () => {
-          this.addTactic();
-        },
-      },
-      {
-        label: 'Update Tactic', icon: 'pi pi-refresh', command: () => {
-          this.updateTactic();
-        },
-      },
-      {
-        label: 'Delete Tactic', icon: 'pi pi-times', command: () => {
-          this.deleteTactic();
-        },
-      },
-    ];
   }
 
   updatePlayerA() {
