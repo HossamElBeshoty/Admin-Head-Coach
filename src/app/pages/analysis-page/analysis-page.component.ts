@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {MenuItem} from 'primeng/components/common/menuitem';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'ngx-analysis-page',
@@ -9,50 +8,29 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class AnalysisPageComponent implements OnInit {
   items: MenuItem[];
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-  thirdFormGroup: FormGroup;
-  isOptional = false;
   displayNewAnalysis = false;
-  matches = [
-    {date: '12/4/2019', teamA: 'Ahly', teamB: 'Zamalik'},
+  cols: any[];
+  matchs = [
+    {id: 1, date: '12/4/2018', teamA: 'Al Ahly SC', teamB: 'Zamalek SC'},
+    {id: 2, date: '19/4/2018', teamA: 'FC Barcelona', teamB: 'Liverpool F.C.'},
   ];
 
-
-
-
-  constructor(private _formBuilder: FormBuilder) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required],
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required],
-    });
-    this.thirdFormGroup = this._formBuilder.group({
-      thirdControl: ['', Validators.required],
-    });
 
-
-  }
-
-  save() {
-    // tslint:disable-next-line:no-console
-    console.log('Save Works');
+    this.cols = [
+      {field: 'date', header: 'Match Date'},
+      {field: 'teamA', header: 'Team A'},
+      {field: 'teamB', header: 'Team B'},
+    ];
   }
 
   update() {
     // tslint:disable-next-line:no-console
     console.log('Update Works');
   }
-
-  delete() {
-    // tslint:disable-next-line:no-console
-    console.log('Delete Works');
-  }
-
 
   showNewAnalysisDialog() {
     this.displayNewAnalysis = true;

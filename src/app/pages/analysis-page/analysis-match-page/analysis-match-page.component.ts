@@ -22,38 +22,6 @@ export class AnalysisMatchPageComponent implements OnInit {
     score: '1:0',
   }];
   cols: any[];
-  itemsPlayerA: MenuItem[];
-  itemsPlayerB: MenuItem[];
-  itemsActions: MenuItem[];
-  itemsActionsTactic: MenuItem[];
-  displayPlayersADialog = false;
-  displayPlayersADeleteDialog = false;
-  displayConfirmPlayersADeleteDialog = false;
-  displayPlayersBDialog = false;
-  displayPlayersBDeleteDialog = false;
-  displayActionsDialog = false;
-  displayActionTacticsDialog = false;
-  tactics = [
-    {id: 1, name: 'Shot'},
-    {id: 2, name: 'Cross'},
-    {id: 3, name: 'Tackie'},
-    {id: 4, name: 'Foul'},
-    {id: 5, name: 'Pass'},
-  ];
-  teamADeleteTable = [
-    {playerName: 'Ferjani Sassi', position: 'Midfielder'},
-    {playerName: 'Shikabala ', position: 'Midfielder'},
-    {playerName: 'Mahmoud Abdel Rahim ', position: 'Goalkeeper'},
-    {playerName: 'Tarek Hamed', position: 'Midfielder'},
-  ];
-  colsTactic: any[];
-  selectedTactic;
-  id = 'Du3fYule9-k';
-  playerVars = {
-    cc_lang_pref: 'en',
-  };
-  private player;
-  public ytEvent;
 
   constructor() {
   }
@@ -75,73 +43,5 @@ export class AnalysisMatchPageComponent implements OnInit {
     ];
   }
 
-  updatePlayerA() {
-    this.displayPlayersADialog = true;
-  }
 
-  deletePlayerA() {
-    this.displayPlayersADeleteDialog = true;
-  }
-
-  confirmDeletePlayerA() {
-    this.displayConfirmPlayersADeleteDialog = true;
-  }
-
-  updatePlayerB() {
-    this.displayPlayersBDialog = true;
-  }
-
-  deletePlayerB() {
-    this.displayPlayersBDeleteDialog = true;
-  }
-
-  addAction() {
-    this.displayActionsDialog = true;
-  }
-
-  updateAction() {
-    this.displayActionsDialog = true;
-  }
-
-  deleteAction() {
-    // tslint:disable-next-line:no-console
-    console.log('Delete Works');
-  }
-
-  addTactic() {
-    this.displayActionTacticsDialog = true;
-  }
-
-  updateTactic() {
-    this.displayActionTacticsDialog = true;
-  }
-
-  deleteTactic() {
-    // tslint:disable-next-line:no-console
-    console.log('Delete Works');
-  }
-
-  onStateChange(event) {
-    this.ytEvent = event.data;
-  }
-
-  savePlayer(player) {
-    this.player = player;
-  }
-
-  playVideo() {
-    this.player.playVideo();
-  }
-
-  pauseVideo() {
-    this.player.pauseVideo();
-  }
-
-  setSlowMotion() {
-    this.player.setPlaybackRate(.25);
-  }
-
-  getCurrentTimeFromYoutubeVideo() {
-    this.player.getCurrentTime();
-  }
 }
