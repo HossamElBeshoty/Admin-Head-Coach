@@ -17,7 +17,7 @@
   </div>
 </div>
 
-<p-table #dt [columns]="cols" [value]="allTeams" [paginator]="true" [rows]="10" dataKey="club">
+<!-- <p-table #dt [columns]="cols" [value]="allTeams" [paginator]="true" [rows]="10" dataKey="club">
   <ng-template pTemplate="caption">
     <div class="ui-helper-clearfix">
       <button type="button" (click)="dt.exportCSV()" class="btn btn-outline-primary float-left"><i
@@ -87,4 +87,58 @@
       <td></td>
     </tr>
   </ng-template>
-</p-table>
+</p-table> -->
+
+
+
+
+
+
+
+<p-treeTable [value]="clubs" [columns]="cols">
+  <ng-template pTemplate="header" let-columns>
+      <tr [ttRow]="rowNode">
+          <th *ngFor="let col of columns">
+              {{col.header}}
+          </th>
+          <th>Actions</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowNode let-rowData="rowData" let-columns="columns">
+      <tr>
+          <td *ngFor="let col of columns; let i = index">
+              <p-treeTableToggler [rowNode]="rowNode" *ngIf="i == 0"></p-treeTableToggler>
+              {{rowData[col.field]}}
+          </td>
+          <td>
+            <div class="row text-center">
+              <div class="col-md-4">
+                <button type="button" class="btn btn-outline-success" [routerLink]="['../personal/' , rowData.id]"><i
+                    class="far fa-user"></i> </button>
+
+              </div>
+              <div class="col-md-4">
+                <ngx-modal [header]="'Edit User'" [buttonCss]="'btn btn-outline-secondary'" [iconClass]="'fas fa-users-cog'">
+                  <div forms>Forms</div>
+                  <div buttons>
+                    <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
+                    <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No"
+                      class="ui-button-secondary"></button>
+                  </div>
+                </ngx-modal>
+              </div>
+              <div class="col-md-4">
+                <ngx-modal [header]="'Delete User'" [buttonCss]="'btn btn-outline-danger'" [iconClass]="'fas fa-user-times'">
+                  <div forms>Forms</div>
+                  <div buttons>
+                    <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
+                    <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No"
+                      class="ui-button-secondary"></button>
+                  </div>
+                </ngx-modal>
+              </div>
+            </div>
+          </td>
+      </tr>
+  </ng-template>
+</p-treeTable>
