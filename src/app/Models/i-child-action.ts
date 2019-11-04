@@ -1,5 +1,5 @@
 export interface IChildAction {
-  id: string;
+  id?: string;
   nameAr: string;
   nameEn: string;
   actionId: string;

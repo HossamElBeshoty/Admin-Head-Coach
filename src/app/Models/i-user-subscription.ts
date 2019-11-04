@@ -1,5 +1,5 @@
 export interface IUserSubscription {
-  id: string;
+  id?: string;
   userId: string;
   subscriptionsId: number;
   subscriptionsDate: Date;

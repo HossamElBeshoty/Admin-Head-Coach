@@ -1,5 +1,5 @@
 export interface IGroup {
-  id: string;
+  id?: string;
   nameAr: string;
   nameEn: string;
   userId: string;
