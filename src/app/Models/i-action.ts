@@ -1,8 +1,8 @@
 export interface IAction {
-  id: string;
+  id?: string;
   nameAr: string;
   nameEn: string;
-  categoryId: string;
-  type: number;
+  categoryId?: string;
+  type?: number;
   isDeleted: boolean;
 }
