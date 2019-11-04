@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MenuItem} from 'primeng/api';
+
 
 @Component({
   selector: 'ngx-analysis-match-page',
@@ -22,23 +22,7 @@ export class AnalysisMatchPageComponent implements OnInit {
     score: '1:0',
   }];
   cols: any[];
-  itemsPlayerA: MenuItem[];
-  itemsPlayerB: MenuItem[];
-  itemsActions: MenuItem[];
-  itemsActionsTactic: MenuItem[];
-  displayPlayersADialog = false;
-  displayPlayersBDialog = false;
-  displayActionsDialog = false;
-  displayActionTacticsDialog = false;
-  tactics = [
-    {id: 1, name: 'Shot'},
-    {id: 2, name: 'Cross'},
-    {id: 3, name: 'Tackie'},
-    {id: 4, name: 'Foul'},
-    {id: 5, name: 'Pass'},
-  ];
-  colsTactic: any[];
-  selectedTactic;
+
   constructor() {
   }
 
@@ -57,115 +41,7 @@ export class AnalysisMatchPageComponent implements OnInit {
       {field: 'penalty', header: 'Penalty', width: '20%'},
       {field: 'score', header: 'Score', width: '15%'},
     ];
-    this.colsTactic = [
-      {field: 'name', header: 'Name'},
-    ];
-    this.itemsPlayerA = [
-      {
-        label: 'Update Player', icon: 'pi pi-refresh', command: () => {
-          this.updatePlayerA();
-        },
-      },
-      {
-        label: 'Delete Player', icon: 'pi pi-times', command: () => {
-          this.deletePlayerA();
-        },
-      },
-    ];
-    this.itemsPlayerB = [
-      {
-        label: 'Update Player', icon: 'pi pi-refresh', command: () => {
-          this.updatePlayerB();
-        },
-      },
-      {
-        label: 'Delete Player', icon: 'pi pi-times', command: () => {
-          this.deletePlayerB();
-        },
-      },
-    ];
-    this.itemsActions = [
-      {
-        label: 'Add Action', icon: 'pi pi-plus', command: () => {
-          this.addAction();
-        },
-      },
-      {
-        label: 'Update Action', icon: 'pi pi-refresh', command: () => {
-          this.updateAction();
-        },
-      },
-      {
-        label: 'Delete Action', icon: 'pi pi-times', command: () => {
-          this.deleteAction();
-        },
-      },
-    ];
-    this.itemsActionsTactic = [
-      {
-        label: 'Add Tactic', icon: 'pi pi-plus', command: () => {
-          this.addTactic();
-        },
-      },
-      {
-        label: 'Update Tactic', icon: 'pi pi-refresh', command: () => {
-          this.updateTactic();
-        },
-      },
-      {
-        label: 'Delete Tactic', icon: 'pi pi-times', command: () => {
-          this.deleteTactic();
-        },
-      },
-    ];
   }
 
-  // save() {
-  //   // tslint:disable-next-line:no-console
-  //   console.log('Save Works');
-  // }
 
-  updatePlayerA() {
-    this.displayPlayersADialog = true;
-  }
-
-  deletePlayerA() {
-    // tslint:disable-next-line:no-console
-    console.log('Delete Works');
-  }
-
-  updatePlayerB() {
-    this.displayPlayersBDialog = true;
-  }
-
-  deletePlayerB() {
-    // tslint:disable-next-line:no-console
-    console.log('Delete Works');
-  }
-
-  addAction() {
-    this.displayActionsDialog = true;
-  }
-
-  updateAction() {
-    this.displayActionsDialog = true;
-  }
-
-  deleteAction() {
-    // tslint:disable-next-line:no-console
-    console.log('Delete Works');
-  }
-
-  addTactic() {
-    this.displayActionTacticsDialog = true;
-  }
-
-  updateTactic() {
-    this.displayActionTacticsDialog = true;
-  }
-
-  deleteTactic() {
-    // tslint:disable-next-line:no-console
-    console.log('Delete Works');
-  }
 }

@@ -23,9 +23,9 @@
         <p-fieldset legend="Preferred Foot" styleClass="myFieldset">
           <span for="">Right</span>
         </p-fieldset>
-        <p-fieldset legend="Week Feet" styleClass="myFieldset">
-          <p-rating [ngModel]="val1" disabled="true" stars="10"></p-rating>
-        </p-fieldset>
+        <!--        <p-fieldset legend="Week Feet" styleClass="myFieldset">-->
+        <!--          <p-rating [ngModel]="val1" disabled="true" stars="10"></p-rating>-->
+        <!--        </p-fieldset>-->
         <p-fieldset legend="Skill Moves" styleClass="myFieldset">
           <p-rating [ngModel]="val1" disabled="true" stars="10"></p-rating>
         </p-fieldset>
@@ -34,7 +34,96 @@
         Content 2
       </p-tabPanel>
       <p-tabPanel header="Matches">
-        Content 3
+        <p-accordion>
+          <p-accordionTab header="Ahly Vs. Zamalik">
+            <p-table [value]="matches">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Date</th>
+                  <th>Team A</th>
+                  <th>Team B</th>
+                  <th>Action</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-match>
+                <tr>
+                  <td>{{match.date}}</td>
+                  <td>{{match.teamA}}</td>
+                  <td>{{match.teamB}}</td>
+                  <td>View Match</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </p-accordionTab>
+          <p-accordionTab header="Barcelona Vs. Real Madrid">
+            <p-table [value]="matches">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Date</th>
+                  <th>Team A</th>
+                  <th>Team B</th>
+                  <th>Action</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-match>
+                <tr>
+                  <td>{{match.date}}</td>
+                  <td>{{match.teamA}}</td>
+                  <td>{{match.teamB}}</td>
+                  <td>View Match</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </p-accordionTab>
+          <p-accordionTab header="Atletico Madrid Vs. Liverpool">
+            <p-table [value]="matches">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Date</th>
+                  <th>Team A</th>
+                  <th>Team B</th>
+                  <th>Action</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-match>
+                <tr>
+                  <td>{{match.date}}</td>
+                  <td>{{match.teamA}}</td>
+                  <td>{{match.teamB}}</td>
+                  <td>View Match</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </p-accordionTab>
+        </p-accordion>
+      </p-tabPanel>
+      <p-tabPanel header="Analysis">
+        <div class="row" style="margin-bottom: 1em;">
+          <div class="col-md-6">
+            <button type="button" class="btn btn-outline-primary float-left"
+                    (click)="openNext()"><i
+              class="fas fa-sort-amount-down"></i> Next Tactic
+            </button>
+          </div>
+          <div class="col-md-6">
+            <button type="button" class="btn btn-outline-primary float-right"
+                    (click)="openPrev()">Previous Tactic <i class="fas fa-sort-amount-up"></i></button>
+          </div>
+        </div>
+        <p-accordion [activeIndex]="indexAnalysis">
+          <p-accordionTab header="Tactic 1">
+            <p-progressBar [value]="50"></p-progressBar>
+          </p-accordionTab>
+          <p-accordionTab header="Tactic 2">
+            <p-progressBar [value]="70"></p-progressBar>
+          </p-accordionTab>
+          <p-accordionTab header="Tactic 3">
+            <p-progressBar [value]="40"></p-progressBar>
+          </p-accordionTab>
+          <p-accordionTab header="Tactic 4">
+            <p-progressBar [value]="90"></p-progressBar>
+          </p-accordionTab>
+        </p-accordion>
       </p-tabPanel>
     </p-tabView>
   </div>

@@ -5,7 +5,6 @@ import {PagesComponent} from './pages.component';
 import {ECommerceComponent} from './e-commerce/e-commerce.component';
 import {NotFoundComponent} from './miscellaneous/not-found/not-found.component';
 import {AnalysisPageComponent} from './analysis-page/analysis-page.component';
-import {ClubsPageComponent} from './clubs-page/clubs-page.component';
 import {TeamsPageComponent} from './teams-page/teams-page.component';
 import {ActionsPageComponent} from './actions-page/actions-page.component';
 import {ReportsPageComponent} from './reports-page/reports-page.component';
@@ -23,9 +22,6 @@ const routes: Routes = [{
       component: ECommerceComponent,
     },
     {
-      path: 'clubs',
-      component: ClubsPageComponent,
-    }, {
       path: 'teams',
       component: TeamsPageComponent,
     },

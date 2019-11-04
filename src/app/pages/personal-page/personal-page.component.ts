@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'ngx-personal-page',
@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonalPageComponent implements OnInit {
   val1: number = 5;
-  constructor() { }
+  matches = [
+    {date: '12/4/2019', teamA: 'Ahly', teamB: 'Zamalik'},
+  ];
+  indexAnalysis: number = -1;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
+  openNext() {
+    this.indexAnalysis = (this.indexAnalysis === 3) ? 0 : this.indexAnalysis + 1;
+  }
+
+  openPrev() {
+    this.indexAnalysis = (this.indexAnalysis <= 0) ? 3 : this.indexAnalysis - 1;
+  }
 }

@@ -1,253 +1,39 @@
-<p-dialog header="New Action" [(visible)]="displayAddingAnAction" [modal]="true" [responsive]="true" [minY]="70"
-  [maximizable]="true" [baseZIndex]="10000">
-  <form action="" style="width: 99%">
+<div class="animated slow fadeInDown">
+  <div class="container">
+    <button type="button"
+            class="btn btn-outline-primary animated slow fadeInDown btn-block m-4"><i class="fa fa-plus"></i> Add New
+      Action Group
+    </button>
+  </div>
+</div>
 
-    <div class="row mt-3">
-      <div class="col-md-12">
-        <div class="form-group">
-          <label for="addAction">Action Name</label>
-          <input type="text" class="form-control" id="addAction" placeholder="Add Your Action Name Please">
-        </div>
+<div class="animated slow fadeInUp">
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Page 1">
+      <div class="container">
+        <ngx-action></ngx-action>
       </div>
-      <div class="col-md-12">
-        <div class="form-group">
-          <label for="addAction">Action Buttons</label>
-          <span class="ui-fluid">
-            <p-autoComplete [suggestions]="filteredbtns" (completeMethod)="filterBtn($event)"
-              styleClass="wid100" [minLength]="1" placeholder="Add Your Action Buttons Please" field="name" [multiple]="true">
-            </p-autoComplete>
-          </span>
-        </div>
+    </mat-tab>
+    <mat-tab label="Page 2">
+      <div class="container">
+        <ngx-action></ngx-action>
       </div>
-    </div>
-  </form>
-  <p-footer>
-    <button type="button" pButton icon="pi pi-check" (click)="displayAddingAnAction=false" label="Yes"></button>
-    <button type="button" pButton icon="pi pi-close" (click)="displayAddingAnAction=false" label="No"
-      class="ui-button-secondary"></button>
-  </p-footer>
-</p-dialog>
+    </mat-tab>
+    <mat-tab label="Page 3">
+      <div class="container">
+        <ngx-action></ngx-action>
+      </div>
+    </mat-tab>
+    <mat-tab label="Page 4">
+      <div class="container">
+        <ngx-action></ngx-action>
+      </div>
+    </mat-tab>
+    <mat-tab label="Page 5">
+      <div class="container">
+        <ngx-action></ngx-action>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
 
-<button type="button" (click)="showAddingAnActionDialog()"
-  class="btn btn-outline-primary animated slow fadeInDown btn-block m-4"><i class="fa fa-plus"></i> Add New
-  Action</button>
-
-
-
-<p-panel header="Possition Buttons" [toggleable]="true" [style]="{'margin-bottom':'20px'}" >
-  <div class="row ">
-    <div class="col-md-12">
-      <ngx-modal [header]="'Delete Buttons'" [iconClass]="'fas fa-trash-alt'" [width]="1000"
-        [buttonCss]="'btn btn-outline-danger mr-3 btn-sm float-right'"></ngx-modal>
-      <ngx-modal [header]="'Edit Button'" [iconClass]="'fas fa-pen'" [width]="1000"
-        [buttonCss]="'btn btn-outline-warning mr-3 btn-sm float-right'"></ngx-modal>
-      <ngx-modal [header]="'Add Buttons'" [iconClass]="'fa fa-plus'" [width]="1000"
-        [buttonCss]="'btn btn-outline-primary mr-3 btn-sm float-right'"></ngx-modal>
-
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <button type="button"  (click)="clickEvent()"  [ngClass]="status ? 'active' : ''" class="btn btn-sm ml-2 mb-1 btn-outline-success">Team A</button>
-      <button type="button"  class="btn btn-sm ml-2 mb-1 btn-outline-success">Team B</button>
-    </div>
-  </div>
-</p-panel>
-
-
-<p-panel header="Standerd Set Pieces Buttons" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
-  <div class="row">
-    <div class="col-md-12">
-      <ngx-modal [header]="'Delete Buttons'" [iconClass]="'fas fa-trash-alt'" [width]="1000"
-        [buttonCss]="'btn btn-outline-danger mr-3 btn-sm float-right'"></ngx-modal>
-      <ngx-modal [header]="'Edit Button'" [iconClass]="'fas fa-pen'" [width]="1000"
-        [buttonCss]="'btn btn-outline-warning mr-3 btn-sm float-right'"></ngx-modal>
-      <ngx-modal [header]="'Add Buttons'" [iconClass]="'fa fa-plus'" [width]="1000"
-        [buttonCss]="'btn btn-outline-primary mr-3 btn-sm float-right'"></ngx-modal>
-
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Kick Off</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Corner</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Throw In</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Penalty</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Free Kick</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Goal Kick</button>
-    </div>
-  </div>
-</p-panel>
-
-
-<p-panel header="Game Set Pieces Buttons" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
-  <div class="row">
-    <div class="col-md-12">
-      <ngx-modal [header]="'Delete Buttons'" [iconClass]="'fas fa-trash-alt'" [width]="1000"
-        [buttonCss]="'btn btn-outline-danger mr-3 btn-sm float-right'"></ngx-modal>
-      <ngx-modal [header]="'Edit Button'" [iconClass]="'fas fa-pen'" [width]="1000"
-        [buttonCss]="'btn btn-outline-warning mr-3 btn-sm float-right'"></ngx-modal>
-      <ngx-modal [header]="'Add Buttons'" [iconClass]="'fa fa-plus'" [width]="1000"
-        [buttonCss]="'btn btn-outline-primary mr-3 btn-sm float-right'"></ngx-modal>
-
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Shot</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Cross</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Tackie</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Foul</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Pass</button>
-    </div>
-  </div>
-</p-panel>
-
-<p-panel header="Tactic Shot Outcome" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
-  <div class="row">
-    <div class="col-md-12">
-      <ngx-modal [header]="'Delete Buttons'" [iconClass]="'fas fa-trash-alt'" [width]="1000"
-        [buttonCss]="'btn btn-outline-danger mr-3 btn-sm float-right'"></ngx-modal>
-      <ngx-modal [header]="'Edit Button'" [iconClass]="'fas fa-pen'" [width]="1000"
-        [buttonCss]="'btn btn-outline-warning mr-3 btn-sm float-right'"></ngx-modal>
-      <ngx-modal [header]="'Add Buttons'" [iconClass]="'fa fa-plus'" [width]="1000"
-        [buttonCss]="'btn btn-outline-primary mr-3 btn-sm float-right'"></ngx-modal>
-
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Shot</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Cross</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Tackie</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Foul</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Pass</button>
-    </div>
-  </div>
-</p-panel>
-
-
-<p-panel header="Tactic Cross Replacement" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
-  <div class="row">
-    <div class="col-md-12">
-      <ngx-modal [header]="'Delete Buttons'" [iconClass]="'fas fa-trash-alt'" [width]="1000"
-        [buttonCss]="'btn btn-outline-danger mr-3 btn-sm float-right'"></ngx-modal>
-      <ngx-modal [header]="'Edit Button'" [iconClass]="'fas fa-pen'" [width]="1000"
-        [buttonCss]="'btn btn-outline-warning mr-3 btn-sm float-right'"></ngx-modal>
-      <ngx-modal [header]="'Add Buttons'" [iconClass]="'fa fa-plus'" [width]="1000"
-        [buttonCss]="'btn btn-outline-primary mr-3 btn-sm float-right'"></ngx-modal>
-
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Shot</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Cross</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Tackie</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Foul</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Pass</button>
-    </div>
-  </div>
-</p-panel>
-
-
-<p-panel header="Tactic Pass Description" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
-  <div class="row">
-    <div class="col-md-12">
-      <ngx-modal [header]="'Delete Buttons'" [iconClass]="'fas fa-trash-alt'" [width]="1000"
-        [buttonCss]="'btn btn-outline-danger mr-3 btn-sm float-right'"></ngx-modal>
-      <ngx-modal [header]="'Edit Button'" [iconClass]="'fas fa-pen'" [width]="1000"
-        [buttonCss]="'btn btn-outline-warning mr-3 btn-sm float-right'"></ngx-modal>
-      <ngx-modal [header]="'Add Buttons'" [iconClass]="'fa fa-plus'" [width]="1000"
-        [buttonCss]="'btn btn-outline-primary mr-3 btn-sm float-right'"></ngx-modal>
-
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Shot</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Cross</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Tackie</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Foul</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Pass</button>
-    </div>
-  </div>
-</p-panel>
-
-
-<p-panel header="Tactic Penalty" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
-  <div class="row">
-    <div class="col-md-12">
-      <ngx-modal [header]="'Delete Buttons'" [iconClass]="'fas fa-trash-alt'" [width]="1000"
-        [buttonCss]="'btn btn-outline-danger mr-3 btn-sm float-right'"></ngx-modal>
-      <ngx-modal [header]="'Edit Button'" [iconClass]="'fas fa-pen'" [width]="1000"
-        [buttonCss]="'btn btn-outline-warning mr-3 btn-sm float-right'"></ngx-modal>
-      <ngx-modal [header]="'Add Buttons'" [iconClass]="'fa fa-plus'" [width]="1000"
-        [buttonCss]="'btn btn-outline-primary mr-3 btn-sm float-right'"></ngx-modal>
-
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Shot</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Cross</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Tackie</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Foul</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Pass</button>
-    </div>
-  </div>
-</p-panel>
-
-
-<p-panel header="Team A" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
-  <div class="row">
-    <div class="col-md-12">
-      <ngx-modal [header]="'Delete Buttons'" [iconClass]="'fas fa-trash-alt'" [width]="1000"
-        [buttonCss]="'btn btn-outline-danger btn-sm mr-3 float-right'"></ngx-modal>
-      <ngx-modal [header]="'Edit Button'" [iconClass]="'fas fa-pen'" [width]="1000"
-        [buttonCss]="'btn btn-outline-warning btn-sm mr-3 float-right'"></ngx-modal>
-      <ngx-modal [header]="'Add Buttons'" [iconClass]="'fa fa-plus'" [width]="1000"
-        [buttonCss]="'btn btn-outline-primary btn-sm mr-3 float-right'"></ngx-modal>
-
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Ferjani Sassi</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Shikabala</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Mahmoud Abdel Rahim</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Tarek Hamed</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Mostafa Fathi</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Hamdi Nagguez</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Mahmoud Alaa</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Ayman Hefny</button>
-    </div>
-  </div>
-</p-panel>
-
-
-<p-panel header="Team B" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
-  <div class="row">
-    <div class="col-md-12">
-      <ngx-modal [header]="'Delete Buttons'" [iconClass]="'fas fa-trash-alt'" [width]="1000"
-        [buttonCss]="'btn btn-outline-danger mr-3 btn-sm float-right'"></ngx-modal>
-      <ngx-modal [header]="'Edit Button'" [iconClass]="'fas fa-pen'" [width]="1000"
-        [buttonCss]="'btn btn-outline-warning mr-3 btn-sm float-right'"></ngx-modal>
-      <ngx-modal [header]="'Add Buttons'" [iconClass]="'fa fa-plus'" [width]="1000"
-        [buttonCss]="'btn btn-outline-primary mr-3 btn-sm float-right'"></ngx-modal>
-
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Ferjani Sassi</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Shikabala</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Mahmoud Abdel Rahim</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Tarek Hamed</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Mostafa Fathi</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Hamdi Nagguez</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Mahmoud Alaa</button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success">Ayman Hefny</button>
-    </div>
-  </div>
-</p-panel>

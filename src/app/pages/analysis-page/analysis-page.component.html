@@ -1,83 +1,58 @@
-
-
-<button type="button" (click)="showNewAnalysisDialog()"
-        class="btn btn-outline-primary animated slow fadeInDown btn-block m-4"><i class="fa fa-plus"></i> Add New
-  Analysis
-</button>
-
-
-<div class="container-fluid">
-  <p-accordion>
-    <p-accordionTab header="Ahly Vs. Zamalik">
-      <p-table [value]="matches">
-        <ng-template pTemplate="header">
-          <tr>
-            <th>Date</th>
-            <th>Team A</th>
-            <th>Team B</th>
-            <th>Action</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-match>
-          <tr>
-            <td>{{match.date}}</td>
-            <td>{{match.teamA}}</td>
-            <td>{{match.teamB}}</td>
-            <td>View Match</td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </p-accordionTab>
-    <p-accordionTab header="Barcelona Vs. Real Madrid">
-      <p-table [value]="matches">
-        <ng-template pTemplate="header">
-          <tr>
-            <th>Date</th>
-            <th>Team A</th>
-            <th>Team B</th>
-            <th>Action</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-match>
-          <tr>
-            <td>{{match.date}}</td>
-            <td>{{match.teamA}}</td>
-            <td>{{match.teamB}}</td>
-            <td>View Match</td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </p-accordionTab>
-    <p-accordionTab header="Atletico Madrid Vs. Liverpool">
-      <p-table [value]="matches">
-        <ng-template pTemplate="header">
-          <tr>
-            <th>Date</th>
-            <th>Team A</th>
-            <th>Team B</th>
-            <th>Action</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-match>
-          <tr>
-            <td>{{match.date}}</td>
-            <td>{{match.teamA}}</td>
-            <td>{{match.teamB}}</td>
-            <td>View Match</td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </p-accordionTab>
-  </p-accordion>
+<div class="container">
+  <button type="button" (click)="showNewAnalysisDialog()"
+          class="btn btn-outline-primary animated slow fadeInDown btn-block m-4"><i class="fa fa-plus"></i> Add New
+    Analysis
+  </button>
 </div>
-
-
+<div class="container-fluid">
+  <p-table #dt1 [columns]="cols" [value]="matchs" [paginator]="true" [rows]="10" dataKey="id" [resizableColumns]="true"
+           [reorderableColumns]="true"
+           stateStorage="session" stateKey="statedemo-session">
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn pReorderableColumn>
+          {{col.header}}
+          <p-sortIcon [field]="col.field"></p-sortIcon>
+        </th>
+        <th>Actions</th>
+      </tr>
+      <tr>
+        <th *ngFor="let col of columns" [ngSwitch]="col.field" class="ui-fluid">
+          <input class="form-control" type="text"
+                 (input)="dt1.filter($event.target.value, col.field, col.filterMatchMode)"
+                 [value]="dt1.filters[col.field]?.value">
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns">
+          {{rowData[col.field]}}
+        </td>
+        <td>
+          <div class="row">
+            <div class="col-md-4 text-center">
+              <button class="btn btn-outline-primary " title="Go To Match"><i class="fas fa-desktop"></i></button>
+            </div>
+            <div class="col-md-4 text-center">
+              <button class="btn btn-outline-secondary" title="Go To Report"><i class="fas fa-print"></i></button>
+            </div>
+            <div class="col-md-4 text-center">
+              <button class="btn btn-outline-danger" title="Delete"><i class="fas fa-trash-alt"></i></button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
 <p-dialog header="New Analysis" [(visible)]="displayNewAnalysis" [modal]="true" [responsive]="true" [minY]="70"
-          [baseZIndex]="10000">
+          [baseZIndex]="10000" [style]="{width: '900px', minWidth: '800px'}">
   <mat-horizontal-stepper labelPosition="bottom" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Controls</ng-template>
+    <mat-step>
+      <form>
+        <ng-template matStepLabel>Youtube URL</ng-template>
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
@@ -86,6 +61,20 @@
                      placeholder="Please Enter Youtube Link">
             </div>
           </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-outline-primary float-right" matStepperNext><i
+              class="far fa-hand-point-right"></i> Next Step
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <form>
+        <ng-template matStepLabel>Teams</ng-template>
+        <div class="row">
           <div class="col-md-6">
             <div class="form-group">
               <label for="clubA">Select Club A</label>
@@ -140,13 +129,23 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-outline-primary btn-block" matStepperNext><i
-          class="far fa-hand-point-right"></i> Next Step
-        </button>
+        <div class="row">
+          <div class="col-md-6 float-left">
+            <button type="submit" class="btn btn-outline-secondary" matStepperPrevious><i
+              class="far fa-hand-point-left"></i> Previous Step
+            </button>
+          </div>
+          <div class="col-md-6 ">
+            <button type="submit" class="btn btn-outline-primary float-right" matStepperNext><i
+              class="far fa-hand-point-right"></i> Next Step
+            </button>
+          </div>
+        </div>
+
       </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
+    <mat-step>
+      <form>
         <ng-template matStepLabel>Team A Players</ng-template>
         <div class="form-group">
           <p-pickList [source]="sourceCars" [target]="targetCars" sourceHeader="Team A" targetHeader="Selected Players"
@@ -164,13 +163,22 @@
             </ng-template>
           </p-pickList>
         </div>
-        <button type="submit" class="btn btn-outline-primary btn-block" matStepperNext><i
-          class="far fa-hand-point-right"></i> Next Step
-        </button>
+        <div class="row">
+          <div class="col-md-6 float-left">
+            <button type="submit" class="btn btn-outline-secondary" matStepperPrevious><i
+              class="far fa-hand-point-left"></i> Previous Step
+            </button>
+          </div>
+          <div class="col-md-6 ">
+            <button type="submit" class="btn btn-outline-primary float-right" matStepperNext><i
+              class="far fa-hand-point-right"></i> Next Step
+            </button>
+          </div>
+        </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="thirdFormGroup">
-      <form [formGroup]="thirdFormGroup">
+    <mat-step>
+      <form>
         <ng-template matStepLabel>Team B Players</ng-template>
         <div class="form-group">
           <p-pickList [source]="sourceCars" [target]="targetCars" sourceHeader="Team B" targetHeader="Selected Players"
@@ -181,16 +189,57 @@
             <ng-template let-car pTemplate="item">
               <div class="ui-helper-clearfix">
                 <img src="assets/showcase/images/demo/car/{{car.brand}}.png"
-                     style="display:inline-block;margin:2px 0 2px 2px" width="48">
-                <div style="font-size:14px;float:right;margin:15px 5px 0 0px">{{car.brand}} - {{car.year}}
+                     style="display:inline-block; margin:2px 0 2px 2px;" width="48">
+                <div style="font-size:14px; float:right; margin:15px 5px 0 0;">{{car.brand}} - {{car.year}}
                   - {{car.color}}</div>
               </div>
             </ng-template>
           </p-pickList>
         </div>
-        <button type="submit" class="btn btn-outline-primary btn-block" matStepperNext><i
-          class="far fa-hand-point-right"></i> Final Step
-        </button>
+        <div class="row">
+          <div class="col-md-6 float-left">
+            <button type="submit" class="btn btn-outline-secondary" matStepperPrevious><i
+              class="far fa-hand-point-left"></i> Previous Step
+            </button>
+          </div>
+          <div class="col-md-6 ">
+            <button type="submit" class="btn btn-outline-primary float-right" matStepperNext><i
+              class="far fa-hand-point-right"></i> Next Step
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <form>
+        <ng-template matStepLabel>Statement</ng-template>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="actionStatement">Select Your Action Statement</label>
+              <select class="form-control" id="actionStatement">
+                <option>Please Select Action Statement</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 float-left">
+            <button type="submit" class="btn btn-outline-secondary" matStepperPrevious><i
+              class="far fa-hand-point-left"></i> Previous Step
+            </button>
+          </div>
+          <div class="col-md-6 ">
+            <button type="submit" class="btn btn-outline-primary float-right" matStepperNext><i
+              class="far fa-hand-point-right"></i> Next Step
+            </button>
+          </div>
+        </div>
       </form>
     </mat-step>
     <mat-step>
@@ -202,33 +251,26 @@
       <h4 class="display-4 text-center text-primary"> Are You Ready To Start? <i
         class="fas fa-chart-line animated pulse infinite"></i>
       </h4>
-
-      <!--      <div>-->
-      <!--        <button mat-button matStepperPrevious>Back</button>-->
-      <!--        <button mat-button (click)="stepper.reset()">Reset</button>-->
-      <!--      </div>-->
-
       <br>
       <hr>
       <div class="row">
-        <div class="col-md-6">
-          <button class="btn btn-outline-success float-left" (click)="displayNewAnalysis=false" [routerLink]="['../analysis/matchAnalysis']"><i
+        <div class="col-md-4">
+          <button type="submit" class="btn btn-outline-secondary" matStepperPrevious><i
+            class="far fa-hand-point-left"></i> Previous Step
+          </button>
+        </div>
+        <div class="col-md-4 text-center">
+          <button class="btn btn-outline-success " (click)="displayNewAnalysis=false"
+                  [routerLink]="['../analysis/matchAnalysis']"><i
             class="far fa-hand-peace"></i> Lets Start
           </button>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
           <button class="btn btn-outline-danger float-right" (click)="displayNewAnalysis=false;stepper.reset()"><i
             class="far fa-window-close"></i> Cansel
           </button>
         </div>
-
       </div>
-      <!--      <p-footer>-->
-      <!--        <button type="button" pButton icon="pi pi-check" (click)="displayNewAnalysis=false" label="Yes"></button>-->
-      <!--        <button type="button" pButton icon="pi pi-close" (click)="displayNewAnalysis=false" label="No"-->
-      <!--                class="ui-button-secondary"></button>-->
-      <!--      </p-footer>-->
     </mat-step>
   </mat-horizontal-stepper>
-
 </p-dialog>
