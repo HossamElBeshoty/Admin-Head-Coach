@@ -31,6 +31,6 @@ export class DataService {
   }
 
   token(OBJ: any) {
-    return this.httpClient.post(`${environment.apiEndPoint}admin/token`, OBJ);
+    return this.httpClient.post(`${environment.apiEndPoint}/token`, OBJ);
   }
 }
