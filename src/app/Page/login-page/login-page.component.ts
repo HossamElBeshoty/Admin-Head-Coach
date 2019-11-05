@@ -26,7 +26,7 @@ export class LoginPageComponent implements OnInit {
       this.router.navigateByUrl('/pages/home');
     }, error => {
       if (error.status === 404) {
-        console.log(error);
+        // console.log(error);
       }
     });
   }
