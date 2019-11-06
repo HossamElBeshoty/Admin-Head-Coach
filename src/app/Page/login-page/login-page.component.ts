@@ -21,7 +21,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   onLogin(form: NgForm) {
-    this.loginService.loginMember(form).subscribe((result: any) => {
+    this.loginService.loginMember(form.value).subscribe((result: any) => {
       localStorage.setItem('token', result.token);
       this.router.navigateByUrl('/pages/home');
     }, error => {
