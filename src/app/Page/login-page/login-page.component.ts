@@ -25,7 +25,7 @@ export class LoginPageComponent implements OnInit {
      + this.loginFormModel.username + '&password=' + this.loginFormModel.password;
 
     this.loginService.loginMember(loginObj).subscribe((result: any) => {
-      localStorage.setItem('token', result.token);
+      localStorage.setItem('access_token', result.access_token);
       this.router.navigateByUrl('/pages/home');
     }, error => {
       if (error.status === 404) {
