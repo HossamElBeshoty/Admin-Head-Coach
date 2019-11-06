@@ -1,24 +1,28 @@
-import { Injectable } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
-import { throwError, Observable, BehaviorSubject, of } from 'rxjs';
-import { catchError, filter, finalize, take, switchMap } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
-import { CookieService } from 'ngx-cookie-service';
+import {Injectable} from '@angular/core';
+import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse} from '@angular/common/http';
+import {throwError, Observable, BehaviorSubject, of} from 'rxjs';
+import {catchError, filter, finalize, take, switchMap} from 'rxjs/operators';
+import {CookieService} from 'ngx-cookie-service';
+import {environment} from '../../environments/environment';
+
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private cookieService: CookieService) {}
+  constructor(private cookieService: CookieService) {
+  }
+
   private AUTH_HEADER = 'Authorization';
   private token = this.cookieService.get('token');
   private refreshTokenInProgress = false;
   private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (req.url.includes('token')) {
-      req = req.clone({ headers: req.headers.set('Content-Type', 'application/x-www-form-urlencoded') });
+      req = req.clone({headers: req.headers.set('Content-Type', 'application/x-www-form-urlencoded')});
       return next.handle(req);
     }
     if (!req.headers.has('Content-Type') && !req.url.includes('upload')) {
       req = req.clone({
-        headers: req.headers.set('Content-Type', 'application/json')
+        headers: req.headers.set('Content-Type', 'application/json'),
       });
     }
     req = this.addAuthenticationToken(req);
@@ -32,11 +36,12 @@ export class AuthInterceptor implements HttpInterceptor {
             return this.refreshTokenSubject.pipe(
               filter(result => result !== null),
               take(1),
-              switchMap(() => next.handle(this.addAuthenticationToken(req)))
+              switchMap(() => next.handle(this.addAuthenticationToken(req))),
             );
           } else {
             this.refreshTokenInProgress = true;
-            // Set the refreshTokenSubject to null so that subsequent API calls will wait until the new token has been retrieved
+            // Set the refreshTokenSubject to null so that subsequent API calls will wait until the new token has been
+            // retrieved
             this.refreshTokenSubject.next(null);
             return this.refreshAccessToken().pipe(
               switchMap((success: boolean) => {
@@ -45,18 +50,20 @@ export class AuthInterceptor implements HttpInterceptor {
               }),
               // When the call to refreshToken completes we reset the refreshTokenInProgress to false
               // for the next time the token needs to be refreshed
-              finalize(() => (this.refreshTokenInProgress = false))
+              finalize(() => (this.refreshTokenInProgress = false)),
             );
           }
         } else {
           return throwError(error);
         }
-      })
+      }),
     );
   }
+
   private refreshAccessToken(): Observable<any> {
     return of(this.token);
   }
+
   private addAuthenticationToken(request: HttpRequest<any>): HttpRequest<any> {
     // If we do not have a token yet then we should not set the header.
     // Here we could first retrieve the token from where we store it.
@@ -64,11 +71,11 @@ export class AuthInterceptor implements HttpInterceptor {
       return request;
     }
     // If you are calling an outside domain then do not add the token.
-    if (!request.url.match(environment.apiEndpoint)) {
+    if (!request.url.match(environment.apiEndPoint)) {
       return request;
     }
     return request.clone({
-      headers: request.headers.set(this.AUTH_HEADER, 'Bearer ' + this.token)
+      headers: request.headers.set(this.AUTH_HEADER, 'Bearer ' + this.token),
     });
   }
 }
