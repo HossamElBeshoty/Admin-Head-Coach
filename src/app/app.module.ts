@@ -24,6 +24,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginPageComponent } from './Page/login-page/login-page.component';
 import { RegistrationPageComponent } from './Page/registration-page/registration-page.component';
 import {httpInterceptorProviders} from './Interceptor';
+import { CookieService } from 'ngx-cookie-service';
 
 
 
@@ -49,7 +50,7 @@ import {httpInterceptorProviders} from './Interceptor';
     CoreModule.forRoot(),
   ],
   bootstrap: [AppComponent],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders, CookieService],
 })
 export class AppModule {
 }

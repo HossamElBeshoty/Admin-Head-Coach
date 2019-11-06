@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 })
 export class LoginPageComponent implements OnInit {
   loginFormModel = {
-    userName: '',
+    username: '',
     password: '',
   };
 
@@ -21,7 +21,10 @@ export class LoginPageComponent implements OnInit {
   }
 
   onLogin(form: NgForm) {
-    this.loginService.loginMember(form.value).subscribe((result: any) => {
+    const loginObj = 'grant_type=password' + '&username='
+     + this.loginFormModel.username + '&password=' + this.loginFormModel.password;
+
+    this.loginService.loginMember(loginObj).subscribe((result: any) => {
       localStorage.setItem('token', result.token);
       this.router.navigateByUrl('/pages/home');
     }, error => {

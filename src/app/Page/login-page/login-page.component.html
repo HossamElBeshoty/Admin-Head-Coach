@@ -6,7 +6,7 @@
     <form #loginForm="ngForm" autocomplete="off" (submit)="onLogin(loginForm)">
       <div class="form-group">
         <label for="userName">User Name</label>
-        <input type="text" class="form-control" id="userName" #UserName="ngModel" [(ngModel)]="loginFormModel.userName"
+        <input type="text" class="form-control" id="userName" #UserName="ngModel" [(ngModel)]="loginFormModel.username"
                name="userName"
                placeholder="Enter Your User Name" required>
       </div>
