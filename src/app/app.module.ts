@@ -21,11 +21,13 @@ import {
   NbWindowModule,
 } from '@nebular/theme';
 import { FormsModule } from '@angular/forms';
+import { LoginPageComponent } from './Page/login-page/login-page.component';
+import { RegistrationPageComponent } from './Page/registration-page/registration-page.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoginPageComponent, RegistrationPageComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -33,7 +35,6 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     FormsModule,
     ThemeModule.forRoot(),
-
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),
