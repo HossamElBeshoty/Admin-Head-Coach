@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {LoginService} from '../../Service/login.service';
 import {Router} from '@angular/router';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'ngx-login-page',
@@ -14,7 +15,7 @@ export class LoginPageComponent implements OnInit {
     password: '',
   };
 
-  constructor(private loginService: LoginService, private router: Router) {
+  constructor(private loginService: LoginService, private router: Router, private  cookieService: CookieService) {
   }
 
   ngOnInit() {
@@ -22,10 +23,10 @@ export class LoginPageComponent implements OnInit {
 
   onLogin(form: NgForm) {
     const loginObj = 'grant_type=password' + '&username='
-     + this.loginFormModel.username + '&password=' + this.loginFormModel.password;
+      + this.loginFormModel.username + '&password=' + this.loginFormModel.password;
 
     this.loginService.loginMember(loginObj).subscribe((result: any) => {
-      localStorage.setItem('access_token', result.access_token);
+      this.cookieService.set('access_token', result.access_token);
       this.router.navigateByUrl('/pages/home');
     }, error => {
       if (error.status === 404) {

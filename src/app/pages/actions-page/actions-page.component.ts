@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {GroupService} from '../../Service/group.service';
 import {NgForm} from '@angular/forms';
+import {IGroup} from '../../Models/i-group';
 
 @Component({
   selector: 'ngx-actions-page',
@@ -9,10 +10,11 @@ import {NgForm} from '@angular/forms';
 })
 export class ActionsPageComponent implements OnInit {
   status: boolean = false;
-  allPages;
+  allPages: IGroup[] = [];
   displayAddNewPage: boolean = false;
-
-  constructor(private groupService: GroupService) {
+  displayDeletePage: boolean = false;
+  deleteId;
+  constructor(public groupService: GroupService) {
   }
 
   ngOnInit() {
@@ -23,10 +25,13 @@ export class ActionsPageComponent implements OnInit {
   showAddNewPageDialog() {
     this.displayAddNewPage = true;
   }
-
+    showDeletePageDialog(id) {
+    this.deleteId = id;
+    this.displayDeletePage = true;
+  }
   getAllPages() {
     this.groupService.getAllGroupPages().subscribe(res => {
-      this.allPages = res;
+      this.allPages = res as IGroup[];
     });
   }
 
@@ -42,11 +47,54 @@ export class ActionsPageComponent implements OnInit {
     this.displayAddNewPage = false;
   }
 
-  onSubmit(form: NgForm) {
-    this.groupService.postAllGroupPages(form.value).subscribe(res => {
-      this.resetForm(form);
+  populateForm(group: IGroup) {
+    this.displayAddNewPage = true;
+    this.groupService.group = Object.assign({}, group);
+  }
+
+  onSubmit() {
+    if (this.groupService.group.id === null) {
+      // Post
+      this.postNewPage();
+    } else {
+      //  Update
+      this.updateNewPage();
+    }
+  }
+
+  postNewPage() {
+    this.groupService.postAllGroupPages().subscribe(res => {
     }, error => {
-      // console.log(error);
+    }, () => {
+      this.allPages.push(this.groupService.group);
+      this.displayAddNewPage = false;
+    });
+  }
+
+  updateNewPage() {
+    this.groupService.putAllGroupPages().subscribe(res => {
+      // this.resetForm(form);
+      this.getAllPages();
+    }, error => {
+    }, () => {
+      const index = this.allPages.findIndex(c => c.id === this.groupService.group.id);
+      if (index) {
+        this.allPages[index] = this.groupService.group;
+      }
+      this.displayAddNewPage = false;
+    });
+  }
+
+  onDelete() {
+    this.groupService.deleteGroupPage(this.deleteId).subscribe(res => {
+      this.getAllPages();
+    }, () => {
+    }, () => {
+      const index = this.allPages.findIndex(c => c.id === this.deleteId);
+      if (index) {
+        this.allPages.slice(index, 1);
+      }
+      this.displayDeletePage = false;
     });
   }
 }

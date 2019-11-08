@@ -43,14 +43,9 @@
             </div>
           </div>
           <hr>
-          <div class="col-md-6">
-            <button class="btn btn-outline-primary" (click)="onSubmit(pagesForm)" [disabled]="pagesForm.invalid"><i
+          <div class="col-md-12">
+            <button class="btn btn-outline-primary btn-block btn-sm" type="submit" [disabled]="pagesForm.invalid"><i
               class="far fa-check-square"></i> Submit
-            </button>
-          </div>
-          <div class="col-md-6">
-            <button class="btn btn-outline-danger float-right" (click)="displayAddNewPage = false"><i
-              class="far fa-window-close"></i> Cancel
             </button>
           </div>
         </div>
@@ -61,9 +56,37 @@
 
 <div class="animated slow fadeInUp">
   <p-tabView>
-    <p-tabPanel [header]="item.nameAr" *ngFor="let item of allPages; let i = index" [selected]="i == 0">
-      <ngx-action></ngx-action>
+    <p-tabPanel [header]="item.nameAr" *ngFor="let item of allPages;let i = index" [selected]="i == 0">
+      <div class="row">
+        <div class="col-md-6">
+          <button class="btn btn-outline-secondary btn-block btn-sm" (click)="populateForm(item)"><i
+            class="far fa-edit"></i> Update Page
+          </button>
+        </div>
+        <div class="col-md-6">
+          <button class="btn btn-outline-danger btn-block btn-sm" (click)="showDeletePageDialog(item.id)"><i
+            class="fas fa-ban"></i> Delete Page
+          </button>
+        </div>
+      </div>
+      <ngx-action [pageName]="item.nameAr"></ngx-action>
     </p-tabPanel>
   </p-tabView>
 </div>
 
+<p-dialog header="Delete Page" [(visible)]="displayDeletePage" [modal]="true" [responsive]="true"
+          [minY]="70" appendTo="body" [style]="{width: '350px', minWidth: '200px'}"
+          [baseZIndex]="10000">
+  <div class="text-center">
+    <i class="fas fa-exclamation-circle fa-4x text-danger "></i>
+  </div>
+  <br>
+  <h6 class="text-center">
+    Are You Sure To Delete This Page?!
+  </h6>
+  <br>
+  <button class="btn btn-outline-danger btn-sm btn-block" type="submit" (click)="onDelete()"><i class="fas fa-bomb"></i>
+    Delete
+  </button>
+
+</p-dialog>

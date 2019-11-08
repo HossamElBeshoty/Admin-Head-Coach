@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MenuItem} from 'primeng/api';
 
 @Component({
@@ -15,7 +15,7 @@ export class ActionComponent implements OnInit {
   displayDeleteCategoryAction: boolean = false;
   displayUpdateButton: boolean = false;
   displayDeleteButton: boolean = false;
-
+  @Input() pageName: string;
   constructor() {
   }
 

@@ -15,7 +15,15 @@ export class GroupService {
     return this.dateService.get('api/Group/getAll/');
   }
 
-  postAllGroupPages(group: IGroup) {
-    return this.dateService.add('api/Group', group);
+  postAllGroupPages() {
+    return this.dateService.add('api/Group', this.group);
+  }
+
+  putAllGroupPages() {
+    return this.dateService.edit('api/Group/', this.group);
+  }
+
+  deleteGroupPage(id) {
+    return this.dateService.delete('api/Group/', id);
   }
 }
