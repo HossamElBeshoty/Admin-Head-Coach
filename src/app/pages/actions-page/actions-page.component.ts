@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {GroupService} from '../../Service/group.service';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'ngx-actions-page',
@@ -6,24 +8,43 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./actions-page.component.scss'],
 })
 export class ActionsPageComponent implements OnInit {
-  displayAddingAnAction: boolean = false;
-  actionBtns: any[];
-  filteredbtns: any[];
   status: boolean = false;
+  allPages;
+  displayAddNewPage: boolean = false;
 
-  constructor() { }
+  constructor(private groupService: GroupService) {
+  }
 
   ngOnInit() {
+    this.getAllPages();
+    this.resetForm();
   }
-  showAddingAnActionDialog() {
-    this.displayAddingAnAction = true;
+
+  showAddNewPageDialog() {
+    this.displayAddNewPage = true;
   }
-  filterBtn(event) {
-    const query = event.query;
-    // tslint:disable-next-line:no-console
-    console.log(query);
+
+  getAllPages() {
+    this.groupService.getAllGroupPages().subscribe(res => {
+      this.allPages = res;
+    });
   }
-  clickEvent() {
-    this.status = !this.status;
+
+  resetForm(form?: NgForm) {
+    if (form != null) {
+      form.resetForm();
+    }
+    this.groupService.group = {
+      id: null,
+      nameAr: '',
+      nameEn: '',
+    };
+    this.displayAddNewPage = false;
+  }
+
+  onSubmit(form: NgForm) {
+    this.groupService.postAllGroupPages(form.value).subscribe(res => {
+      // console.log(res);
+    });
   }
 }

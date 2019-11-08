@@ -11,7 +11,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   private AUTH_HEADER = 'Authorization';
-  private token = this.cookieService.get('token');
+  private token = this.cookieService.get('access_token');
   private refreshTokenInProgress = false;
   private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 

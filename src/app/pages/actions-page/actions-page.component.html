@@ -1,39 +1,69 @@
 <div class="animated slow fadeInDown">
   <div class="container">
     <button type="button"
-            class="btn btn-outline-primary animated slow fadeInDown btn-block m-4"><i class="fa fa-plus"></i> Add New
-      Action Group
+            class="btn btn-outline-primary animated slow fadeInDown btn-block m-4" (click)="showAddNewPageDialog()"><i
+      class="fa fa-plus"></i> Add New
+      Action Group Page
     </button>
+
+    <p-dialog header="New Action Page" [(visible)]="displayAddNewPage" [modal]="true" [responsive]="true"
+              [style]="{width: '350px', minWidth: '200px'}" [minY]="70" appendTo="body"
+              [baseZIndex]="10000">
+      <form action="" style="width: 99%;" #pagesForm="ngForm" autocomplete="off" (submit)="onSubmit(pagesForm)">
+        <input type="hidden" name="id" [(ngModel)]="groupService.group.id">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text bg-white">
+                    <i class="far fa-file-alt" [class.green-icon]="nameAr.valid"
+                       [class.red-icon]="nameAr.invalid && nameAr.touched"></i>
+                  </div>
+                </div>
+                <input id="nameAr" type="text" class="form-control" name="nameAr"
+                       [(ngModel)]="groupService.group.nameAr"
+                       #nameAr="ngModel" placeholder="Insert Name In Arabic" required>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text bg-white">
+                    <i class="far fa-file-alt" [class.green-icon]="nameEn.valid"
+                       [class.red-icon]="nameEn.invalid && nameEn.touched"></i>
+                  </div>
+                </div>
+                <input id="nameEn" type="text" class="form-control" name="nameEn"
+                       [(ngModel)]="groupService.group.nameEn"
+                       #nameEn="ngModel" placeholder="Insert Name In English" required>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="col-md-6">
+            <button class="btn btn-outline-primary" (click)="onSubmit(pagesForm)" [disabled]="pagesForm.invalid"><i
+              class="far fa-check-square"></i> Submit
+            </button>
+          </div>
+          <div class="col-md-6">
+            <button class="btn btn-outline-danger float-right" (click)="resetForm()"><i
+              class="far fa-window-close"></i> Cancel
+            </button>
+          </div>
+        </div>
+      </form>
+    </p-dialog>
   </div>
 </div>
 
 <div class="animated slow fadeInUp">
-  <mat-tab-group mat-align-tabs="center">
-    <mat-tab label="Page 1">
-      <div class="container">
-        <ngx-action></ngx-action>
-      </div>
-    </mat-tab>
-    <mat-tab label="Page 2">
-      <div class="container">
-        <ngx-action></ngx-action>
-      </div>
-    </mat-tab>
-    <mat-tab label="Page 3">
-      <div class="container">
-        <ngx-action></ngx-action>
-      </div>
-    </mat-tab>
-    <mat-tab label="Page 4">
-      <div class="container">
-        <ngx-action></ngx-action>
-      </div>
-    </mat-tab>
-    <mat-tab label="Page 5">
-      <div class="container">
-        <ngx-action></ngx-action>
-      </div>
-    </mat-tab>
-  </mat-tab-group>
+  <p-tabView>
+    <p-tabPanel [header]="item.nameAr" *ngFor="let item of allPages; let i = index" [selected]="i == 0">
+      <ngx-action></ngx-action>
+    </p-tabPanel>
+  </p-tabView>
 </div>
 
