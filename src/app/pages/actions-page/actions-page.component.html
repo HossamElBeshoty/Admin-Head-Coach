@@ -10,7 +10,7 @@
               [style]="{width: '350px', minWidth: '200px'}" [minY]="70" appendTo="body"
               [baseZIndex]="10000">
       <form action="" style="width: 99%;" #pagesForm="ngForm" autocomplete="off" (submit)="onSubmit(pagesForm)">
-        <input type="hidden" name="id" [(ngModel)]="groupService.group.id">
+        <input type="hidden" name="id" [value]="groupService.group.id">
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
@@ -49,7 +49,7 @@
             </button>
           </div>
           <div class="col-md-6">
-            <button class="btn btn-outline-danger float-right" (click)="resetForm()"><i
+            <button class="btn btn-outline-danger float-right" (click)="displayAddNewPage = false"><i
               class="far fa-window-close"></i> Cancel
             </button>
           </div>

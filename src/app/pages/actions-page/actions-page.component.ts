@@ -44,7 +44,9 @@ export class ActionsPageComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     this.groupService.postAllGroupPages(form.value).subscribe(res => {
-      // console.log(res);
+      this.resetForm(form);
+    }, error => {
+      console.log(error);
     });
   }
 }
