@@ -46,7 +46,7 @@ export class ActionsPageComponent implements OnInit {
     this.groupService.postAllGroupPages(form.value).subscribe(res => {
       this.resetForm(form);
     }, error => {
-      console.log(error);
+      // console.log(error);
     });
   }
 }
