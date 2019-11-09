@@ -14,6 +14,7 @@ export class ActionsPageComponent implements OnInit {
   displayAddNewPage: boolean = false;
   displayDeletePage: boolean = false;
   deleteId;
+
   constructor(public groupService: GroupService) {
   }
 
@@ -25,10 +26,12 @@ export class ActionsPageComponent implements OnInit {
   showAddNewPageDialog() {
     this.displayAddNewPage = true;
   }
-    showDeletePageDialog(id) {
+
+  showDeletePageDialog(id) {
     this.deleteId = id;
     this.displayDeletePage = true;
   }
+
   getAllPages() {
     this.groupService.getAllGroupPages().subscribe(res => {
       this.allPages = res as IGroup[];
@@ -62,7 +65,7 @@ export class ActionsPageComponent implements OnInit {
     }
   }
 
-  postNewPage() {
+  private postNewPage() {
     this.groupService.postAllGroupPages().subscribe(res => {
     }, error => {
     }, () => {
@@ -71,7 +74,7 @@ export class ActionsPageComponent implements OnInit {
     });
   }
 
-  updateNewPage() {
+  private updateNewPage() {
     this.groupService.putAllGroupPages().subscribe(res => {
       // this.resetForm(form);
       this.getAllPages();

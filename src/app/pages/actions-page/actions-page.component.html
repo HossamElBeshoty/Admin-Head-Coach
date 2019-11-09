@@ -9,7 +9,7 @@
     <p-dialog header="New Action Page" [(visible)]="displayAddNewPage" [modal]="true" [responsive]="true"
               [style]="{width: '350px', minWidth: '200px'}" [minY]="70" appendTo="body"
               [baseZIndex]="10000">
-      <form action="" style="width: 99%;" #pagesForm="ngForm" autocomplete="off" (submit)="onSubmit(pagesForm)">
+      <form action="" style="width: 99%;" #pagesForm="ngForm" autocomplete="off" (submit)="onSubmit()">
         <input type="hidden" name="id" [value]="groupService.group.id">
         <div class="row">
           <div class="col-md-12">
@@ -44,7 +44,7 @@
           </div>
           <hr>
           <div class="col-md-12">
-            <button class="btn btn-outline-primary btn-block btn-sm" type="submit" [disabled]="pagesForm.invalid"><i
+            <button class="btn btn-outline-success btn-block btn-sm" type="submit" [disabled]="pagesForm.invalid"><i
               class="far fa-check-square"></i> Submit
             </button>
           </div>
@@ -69,7 +69,7 @@
           </button>
         </div>
       </div>
-      <ngx-action [pageName]="item.nameAr"></ngx-action>
+      <ngx-action [pageName]="item.nameAr" [groupId]="item.id"></ngx-action>
     </p-tabPanel>
   </p-tabView>
 </div>

@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MenuItem} from 'primeng/api';
+import {CategoryService} from '../../../Service/category.service';
+import {ICategory} from '../../../Models/i-category';
 
 @Component({
   selector: 'ngx-action',
@@ -16,10 +18,14 @@ export class ActionComponent implements OnInit {
   displayUpdateButton: boolean = false;
   displayDeleteButton: boolean = false;
   @Input() pageName: string;
-  constructor() {
+  @Input() groupId: string;
+  categories: ICategory[] = [];
+
+  constructor(public categoryService: CategoryService) {
   }
 
   ngOnInit() {
+    this.getPageCategory(this.groupId);
     this.actionsTypeFunctionality = [
       {
         label: 'Update Action', icon: 'pi pi-refresh', command: () => {
@@ -68,5 +74,25 @@ export class ActionComponent implements OnInit {
 
   deleteButton() {
     this.displayDeleteButton = true;
+  }
+
+  getPageCategory(id) {
+    this.categoryService.getCategories(id).subscribe(res => {
+      this.categories = res as ICategory[];
+    });
+  }
+
+  onSubmit() {
+    this.postCategory();
+  }
+
+  postCategory() {
+    this.categoryService.category.groupId = this.groupId;
+    this.categoryService.postCategory().subscribe(res => {
+    }, err => {
+    }, () => {
+      this.categories.push(this.categoryService.category);
+      this.displayCategory = false;
+    });
   }
 }
