@@ -25,6 +25,7 @@ export class ActionsPageComponent implements OnInit {
 
   showAddNewPageDialog() {
     this.displayAddNewPage = true;
+    this.groupService.group = {} as IGroup;
   }
 
   showDeletePageDialog(id) {
@@ -56,17 +57,17 @@ export class ActionsPageComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.groupService.group.id === null) {
-      // Post
+    if (!this.groupService.group.id) {
       this.postNewPage();
     } else {
-      //  Update
       this.updateNewPage();
     }
   }
 
   private postNewPage() {
+
     this.groupService.postAllGroupPages().subscribe(res => {
+      this.groupService.group.id = res as string;
     }, error => {
     }, () => {
       this.allPages.push(this.groupService.group);
@@ -76,27 +77,20 @@ export class ActionsPageComponent implements OnInit {
 
   private updateNewPage() {
     this.groupService.putAllGroupPages().subscribe(res => {
-      // this.resetForm(form);
-      this.getAllPages();
     }, error => {
     }, () => {
       const index = this.allPages.findIndex(c => c.id === this.groupService.group.id);
-      if (index) {
-        this.allPages[index] = this.groupService.group;
-      }
+      this.allPages[index] = this.groupService.group;
       this.displayAddNewPage = false;
     });
   }
 
   onDelete() {
     this.groupService.deleteGroupPage(this.deleteId).subscribe(res => {
-      this.getAllPages();
     }, () => {
     }, () => {
       const index = this.allPages.findIndex(c => c.id === this.deleteId);
-      if (index) {
-        this.allPages.slice(index, 1);
-      }
+      this.allPages.splice(index, 1);
       this.displayDeletePage = false;
     });
   }

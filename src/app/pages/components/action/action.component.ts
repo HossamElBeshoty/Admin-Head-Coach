@@ -9,8 +9,6 @@ import {ICategory} from '../../../Models/i-category';
   styleUrls: ['./action.component.scss'],
 })
 export class ActionComponent implements OnInit {
-  actionsFunctionality: MenuItem[];
-  actionsTypeFunctionality: MenuItem[];
   buttonsItems: MenuItem[];
   displayCategory: boolean = false;
   displayAddUpdateCategory: boolean = false;
@@ -20,24 +18,15 @@ export class ActionComponent implements OnInit {
   @Input() pageName: string;
   @Input() groupId: string;
   categories: ICategory[] = [];
+  deleteId;
 
   constructor(public categoryService: CategoryService) {
   }
 
   ngOnInit() {
-    this.getPageCategory(this.groupId);
-    this.actionsTypeFunctionality = [
-      {
-        label: 'Update Action', icon: 'pi pi-refresh', command: () => {
-          this.updateNewCategoryActionDialog();
-        },
-      },
-      {
-        label: 'Delete Action', icon: 'pi pi-times', command: () => {
-          this.deleteCategoryActionDialog();
-        },
-      },
-    ];
+    if (this.groupId !== null) {
+      this.getPageCategory(this.groupId);
+    }
     this.buttonsItems = [
       {
         label: 'Update Button', icon: 'pi pi-refresh', command: () => {
@@ -54,21 +43,24 @@ export class ActionComponent implements OnInit {
 
   showCategoryDialog() {
     this.displayCategory = true;
+    this.categoryService.category = {groupId: this.groupId} as ICategory;
   }
 
   addNewCategoryActionDialog() {
     this.displayAddUpdateCategory = true;
   }
 
-  updateNewCategoryActionDialog() {
-    this.displayAddUpdateCategory = true;
+  updateNewCategoryActionDialog(category: ICategory) {
+    this.displayCategory = true;
+    this.categoryService.category = Object.assign({}, category);
   }
 
   updateButton() {
     this.displayUpdateButton = true;
   }
 
-  deleteCategoryActionDialog() {
+  deleteCategoryActionDialog(id) {
+    this.deleteId = id;
     this.displayDeleteCategoryAction = true;
   }
 
@@ -83,16 +75,41 @@ export class ActionComponent implements OnInit {
   }
 
   onSubmit() {
-    this.postCategory();
+    if (!this.categoryService.category.id) {
+      this.postCategory();
+    } else {
+      this.updateCategory();
+    }
   }
 
-  postCategory() {
+  private postCategory() {
     this.categoryService.category.groupId = this.groupId;
     this.categoryService.postCategory().subscribe(res => {
+      this.categoryService.category.id = res as string;
     }, err => {
     }, () => {
       this.categories.push(this.categoryService.category);
       this.displayCategory = false;
+    });
+  }
+
+  private updateCategory() {
+    this.categoryService.updateCategory().subscribe(res => {
+    }, err => {
+    }, () => {
+      const updateCategoryIndex = this.categories.findIndex(z => z.id === this.categoryService.category.id);
+      this.categories[updateCategoryIndex] = this.categoryService.category;
+      this.displayCategory = false;
+    });
+  }
+
+  deleteCategory() {
+    this.categoryService.deleteCategory(this.deleteId).subscribe(res => {
+    }, () => {
+    }, () => {
+      const categoryIndex = this.categories.findIndex(x => x.id === this.deleteId);
+      this.categories.splice(categoryIndex, 1);
+      this.displayDeleteCategoryAction = false;
     });
   }
 }

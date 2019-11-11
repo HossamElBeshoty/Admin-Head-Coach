@@ -6,7 +6,7 @@
         <div class="ui-helper-clearfix">
           <span class="ui-panel-title"
                 style="font-size:16px; display:inline-block; margin-top:2px;">{{pageName}}</span>
-          <button class="btn btn-outline-primary btn-sm float-right" (click)="showCategoryDialog()"><i
+          <button class="btn btn-outline-primary btn-sm float-right" (click)="showCategoryDialog();categoriesForm.resetForm()"><i
             class="fa fa-plus"></i> Add New Category
           </button>
         </div>
@@ -18,18 +18,21 @@
               <div class="ui-helper-clearfix">
           <span class="ui-panel-title"
                 style="font-size:16px; display:inline-block; margin-top:2px;">{{item.nameAr}}</span>
-                <p-splitButton [style]="{'float':'right'}" label="Add New Action" icon="pi pi-plus"
-                               [model]="actionsTypeFunctionality" (onClick)="addNewCategoryActionDialog()"
-                               appendTo="body"></p-splitButton>
+                <button class="btn btn-outline-danger btn-sm float-right mr-1 ml-1"
+                        (click)="deleteCategoryActionDialog(item.id)"><i
+                  class="fas fa-ban"></i></button>
+                <button class="btn btn-outline-secondary btn-sm float-right mr-1 ml-1"
+                        (click)="updateNewCategoryActionDialog(item)"><i class="fas fa-pen"></i></button>
+                <button class="btn btn-outline-primary btn-sm float-right mr-1 ml-1"
+                        (click)="addNewCategoryActionDialog()"><i
+                  class="fas fa-plus"></i></button>
               </div>
             </p-header>
             <div class="row">
               <div class="col-md-3 mb-2">
                 <p-splitButton label="Kick Off" [model]="buttonsItems"
                                styleClass="ui-button-secondary" appendTo="body"></p-splitButton>
-
               </div>
-
               <div class="col-md-3">
                 <p-splitButton label="Corner" [model]="buttonsItems"
                                styleClass="ui-button-secondary" appendTo="body"></p-splitButton>
@@ -133,7 +136,8 @@
     Are You Sure To Delete This Category?!
   </h6>
   <br>
-  <button class="btn btn-outline-danger btn-sm btn-block" type="submit"><i class="fas fa-bomb"></i>
+  <button class="btn btn-outline-danger btn-sm btn-block" type="submit" (click)="deleteCategory()"><i
+    class="fas fa-bomb"></i>
     Delete
   </button>
 </p-dialog>

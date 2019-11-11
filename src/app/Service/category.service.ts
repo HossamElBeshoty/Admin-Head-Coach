@@ -19,7 +19,11 @@ export class CategoryService {
     return this.dataService.add('api/Category', this.category);
   }
 
+  updateCategory() {
+    return this.dataService.edit('api/Category', this.category);
+  }
+
   deleteCategory(id) {
-    return this.dataService.delete('api/Category/', id);
+    return this.dataService.delete('api/Category', id);
   }
 }
