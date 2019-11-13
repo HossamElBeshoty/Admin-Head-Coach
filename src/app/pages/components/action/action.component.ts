@@ -16,17 +16,14 @@ export class ActionComponent implements OnInit {
   displayUpdateButton: boolean = false;
   displayDeleteButton: boolean = false;
   @Input() pageName: string;
-  @Input() groupId: string;
-  categories: ICategory[] = [];
+  @Input() categories: ICategory[];
   deleteId;
+  @Input() groupId;
 
   constructor(public categoryService: CategoryService) {
   }
 
   ngOnInit() {
-    if (this.groupId !== null) {
-      this.getPageCategory(this.groupId);
-    }
     this.buttonsItems = [
       {
         label: 'Update Button', icon: 'pi pi-refresh', command: () => {
@@ -66,12 +63,6 @@ export class ActionComponent implements OnInit {
 
   deleteButton() {
     this.displayDeleteButton = true;
-  }
-
-  getPageCategory(id) {
-    this.categoryService.getCategories(id).subscribe(res => {
-      this.categories = res as ICategory[];
-    });
   }
 
   onSubmit() {

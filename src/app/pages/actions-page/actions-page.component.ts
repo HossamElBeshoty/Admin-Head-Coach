@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {GroupService} from '../../Service/group.service';
 import {NgForm} from '@angular/forms';
 import {IGroup} from '../../Models/i-group';
+import {CategoryService} from '../../Service/category.service';
+import {ICategory} from '../../Models/i-category';
 
 @Component({
   selector: 'ngx-actions-page',
@@ -14,13 +16,26 @@ export class ActionsPageComponent implements OnInit {
   displayAddNewPage: boolean = false;
   displayDeletePage: boolean = false;
   deleteId;
+  categories: ICategory[] = [];
+  tabIndex= 0;
 
-  constructor(public groupService: GroupService) {
+  constructor(public groupService: GroupService, public categoryService: CategoryService) {
   }
 
   ngOnInit() {
     this.getAllPages();
     this.resetForm();
+  }
+
+  onChangeTab(e) {
+    this.tabIndex = e.index;
+    this.getPageCategory(this.allPages[this.tabIndex].id);
+  }
+
+  getPageCategory(id) {
+    this.categoryService.getCategories(id).subscribe(res => {
+      this.categories = res as ICategory[];
+    });
   }
 
   showAddNewPageDialog() {
@@ -36,6 +51,9 @@ export class ActionsPageComponent implements OnInit {
   getAllPages() {
     this.groupService.getAllGroupPages().subscribe(res => {
       this.allPages = res as IGroup[];
+      this.getPageCategory(this.allPages[0].id);
+    }, () => {
+    }, () => {
     });
   }
 

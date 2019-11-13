@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {ICategory} from '../../../Models/i-category';
+import {CategoryService} from '../../../Service/category.service';
 
 
 @Component({
@@ -22,11 +24,13 @@ export class AnalysisMatchPageComponent implements OnInit {
     score: '1:0',
   }];
   cols: any[];
+  public categories: ICategory[];
 
-  constructor() {
+  constructor(public categoryService: CategoryService) {
   }
 
   ngOnInit() {
+    this.getPageCategory('4b10d76e-3b04-ea11-bfaf-180373b9b532');
     this.cols = [
       {field: 'name', header: 'Name', width: '20%'},
       {field: 'position', header: 'Position', width: '20%'},
@@ -43,5 +47,10 @@ export class AnalysisMatchPageComponent implements OnInit {
     ];
   }
 
+  getPageCategory(id) {
+    this.categoryService.getCategories(id).subscribe(res => {
+      this.categories = res as ICategory[];
+    });
+  }
 
 }

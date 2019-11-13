@@ -1,7 +1,8 @@
 <div class="animated slow fadeInDown">
   <div class="container">
     <button type="button"
-            class="btn btn-outline-primary animated slow fadeInDown btn-block m-4" (click)="showAddNewPageDialog();pagesForm.resetForm()"><i
+            class="btn btn-outline-primary animated slow fadeInDown btn-block m-4"
+            (click)="showAddNewPageDialog();pagesForm.resetForm()"><i
       class="fa fa-plus"></i> Add New
       Action Group Page
     </button>
@@ -55,22 +56,26 @@
 </div>
 
 <div class="animated slow fadeInUp">
-  <p-tabView>
-    <p-tabPanel [header]="item.nameAr" *ngFor="let item of allPages;let i = index" [selected]="i == 0">
-      <div class="row">
-        <div class="col-md-6">
-          <button class="btn btn-outline-secondary btn-block btn-sm" (click)="populateForm(item)"><i
-            class="far fa-edit"></i> Update Page
-          </button>
+  <p-tabView (onChange)="onChangeTab($event)">
+    <ng-container *ngFor="let item of allPages;let i = index;">
+      <p-tabPanel [header]="item.nameAr" [selected]="i == tabIndex">
+        <div class="row">
+          <div class="col-md-6">
+            <button class="btn btn-outline-secondary btn-block btn-sm" (click)="populateForm(item)"><i
+              class="far fa-edit"></i> Update Page
+            </button>
+          </div>
+          <div class="col-md-6">
+            <button class="btn btn-outline-danger btn-block btn-sm" (click)="showDeletePageDialog(item.id)"><i
+              class="fas fa-ban"></i> Delete Page
+            </button>
+          </div>
         </div>
-        <div class="col-md-6">
-          <button class="btn btn-outline-danger btn-block btn-sm" (click)="showDeletePageDialog(item.id)"><i
-            class="fas fa-ban"></i> Delete Page
-          </button>
-        </div>
-      </div>
-      <ngx-action [pageName]="item.nameAr" [groupId]="i==0? item.id: null"></ngx-action>
-    </p-tabPanel>
+        <ngx-action *ngIf="i === tabIndex" [pageName]="item.nameAr" [groupId]="item.id"
+                    [categories]="categories"></ngx-action>
+      </p-tabPanel>
+    </ng-container>
+
   </p-tabView>
 </div>
 
