@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {IAction} from '../Models/i-action';
+import {DataService} from './data.service';
 
 @Injectable({
   providedIn: 'root',
@@ -7,6 +8,14 @@ import {IAction} from '../Models/i-action';
 export class ActionService {
   action = {} as IAction;
 
-  constructor() {
+  constructor(private dataService: DataService) {
+  }
+
+  postAction() {
+    return this.dataService.add('api/Action', this.action);
+  }
+
+  getActions(categoryId) {
+    return this.dataService.get('api/Action/GetByCategoryId/' + categoryId);
   }
 }

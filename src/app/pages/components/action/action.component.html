@@ -6,7 +6,8 @@
         <div class="ui-helper-clearfix">
           <span class="ui-panel-title"
                 style="font-size:16px; display:inline-block; margin-top:2px;">{{pageName}}</span>
-          <button class="btn btn-outline-primary btn-sm float-right" (click)="showCategoryDialog();categoriesForm.resetForm()"><i
+          <button class="btn btn-outline-primary btn-sm float-right"
+                  (click)="showCategoryDialog();categoriesForm.resetForm()"><i
             class="fa fa-plus"></i> Add New Category
           </button>
         </div>
@@ -24,33 +25,13 @@
                 <button class="btn btn-outline-secondary btn-sm float-right mr-1 ml-1"
                         (click)="updateNewCategoryActionDialog(item)"><i class="fas fa-pen"></i></button>
                 <button class="btn btn-outline-primary btn-sm float-right mr-1 ml-1"
-                        (click)="addNewCategoryActionDialog()"><i
+                        (click)="addNewCategoryActionDialog(item.id);actionForm.resetForm();"><i
                   class="fas fa-plus"></i></button>
               </div>
             </p-header>
             <div class="row">
-              <div class="col-md-3 mb-2">
-                <p-splitButton label="Kick Off" [model]="buttonsItems"
-                               styleClass="ui-button-secondary" appendTo="body"></p-splitButton>
-              </div>
-              <div class="col-md-3">
-                <p-splitButton label="Corner" [model]="buttonsItems"
-                               styleClass="ui-button-secondary" appendTo="body"></p-splitButton>
-              </div>
-              <div class="col-md-3">
-                <p-splitButton label="Throw In" [model]="buttonsItems"
-                               styleClass="ui-button-secondary" appendTo="body"></p-splitButton>
-              </div>
-              <div class="col-md-3">
-                <p-splitButton label="Penalty" [model]="buttonsItems"
-                               styleClass="ui-button-secondary" appendTo="body"></p-splitButton>
-              </div>
-              <div class="col-md-3">
-                <p-splitButton label="Free Kick" [model]="buttonsItems"
-                               styleClass="ui-button-secondary" appendTo="body"></p-splitButton>
-              </div>
-              <div class="col-md-3">
-                <p-splitButton label="Goal Kick" [model]="buttonsItems"
+              <div class="col-md-3 mb-2" *ngFor="let x of item.actions">
+                <p-splitButton label="{{x.nameAr}}" [model]="buttonsItems"
                                styleClass="ui-button-secondary" appendTo="body"></p-splitButton>
               </div>
             </div>
@@ -114,15 +95,64 @@
 </p-dialog>
 
 <!--Add & Update Category Action-->
-<p-dialog header="Category Action" [(visible)]="displayAddUpdateCategory" [modal]="true" [responsive]="true"
-          [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
-          [maximizable]="true" [baseZIndex]="10000" appendTo="body">
-  <p>Add & Update Category Action</p>
-  <p-footer>
-    <button type="button" pButton icon="pi pi-check" (click)="displayAddUpdateCategory=false" label="Yes"></button>
-    <button type="button" pButton icon="pi pi-close" (click)="displayAddUpdateCategory=false" label="No"
-            class="ui-button-secondary"></button>
-  </p-footer>
+<p-dialog header="Action" [(visible)]="displayAddUpdateCategory" [modal]="true" [responsive]="true"
+          [style]="{width: '650px', minWidth: '200px'}" [minY]="70"
+          [baseZIndex]="10000" appendTo="body">
+  <form action="" style="width: 99%;" #actionForm="ngForm">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white">
+                <i class="fas fa-file-import" [class.green-icon]="ActionNameEn.valid"
+                   [class.red-icon]="ActionNameEn.invalid && ActionNameEn.touched"></i>
+              </div>
+            </div>
+            <input id="ActionNameEn" name="nameEn" [(ngModel)]="actionService.action.nameEn" #ActionNameEn="ngModel"
+                   type="text" class="form-control" placeholder="Insert Action Name In English" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white">
+                <i class="fas fa-file-import" [class.green-icon]="ActionNameAr.valid"
+                   [class.red-icon]="ActionNameAr.invalid && ActionNameAr.touched"></i>
+              </div>
+            </div>
+            <input id="ActionNameAr" name="nameAr" [(ngModel)]="actionService.action.nameAr" #ActionNameAr="ngModel"
+                   type="text" class="form-control" placeholder="Insert Action Name In Arabic" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text bg-white">
+              <i class="fas fa-swatchbook" [class.green-icon]="type.valid"
+                 [class.red-icon]="type.invalid && type.touched"></i>
+            </div>
+          </div>
+          <select class="custom-select" name="type" [(ngModel)]="actionService.action.type" required #type="ngModel"
+                  id="inputGroupSelect01">
+            <option disabled selected>Choose The Action Type</option>
+            <option value="1">Start</option>
+            <option value="2">End</option>
+            <option value="3">End With Action</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <button class="btn btn-outline-success btn-block btn-sm" type="submit" [disabled]="!actionForm.valid" (click)="onActionSubmit()">
+          <i
+            class="far fa-check-square"></i> Submit
+        </button>
+      </div>
+    </div>
+  </form>
 </p-dialog>
 <!--Delete Category Action-->
 <p-dialog header="Category Action" [(visible)]="displayDeleteCategoryAction" [modal]="true" [responsive]="true"

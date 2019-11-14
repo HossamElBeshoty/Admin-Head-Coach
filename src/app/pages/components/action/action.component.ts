@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {MenuItem} from 'primeng/api';
 import {CategoryService} from '../../../Service/category.service';
 import {ICategory} from '../../../Models/i-category';
+import {ActionService} from '../../../Service/action.service';
+import {IAction} from '../../../Models/i-action';
 
 @Component({
   selector: 'ngx-action',
@@ -17,13 +19,15 @@ export class ActionComponent implements OnInit {
   displayDeleteButton: boolean = false;
   @Input() pageName: string;
   @Input() categories: ICategory[];
+  actions: IAction[] = [];
   deleteId;
   @Input() groupId;
 
-  constructor(public categoryService: CategoryService) {
+  constructor(public categoryService: CategoryService, public actionService: ActionService) {
   }
 
   ngOnInit() {
+    this.getActions();
     this.buttonsItems = [
       {
         label: 'Update Button', icon: 'pi pi-refresh', command: () => {
@@ -43,7 +47,8 @@ export class ActionComponent implements OnInit {
     this.categoryService.category = {groupId: this.groupId} as ICategory;
   }
 
-  addNewCategoryActionDialog() {
+  addNewCategoryActionDialog(categoryId: string) {
+    this.actionService.action = {categoryId: categoryId} as IAction;
     this.displayAddUpdateCategory = true;
   }
 
@@ -101,6 +106,27 @@ export class ActionComponent implements OnInit {
       const categoryIndex = this.categories.findIndex(x => x.id === this.deleteId);
       this.categories.splice(categoryIndex, 1);
       this.displayDeleteCategoryAction = false;
+    });
+  }
+
+  onActionSubmit() {
+    this.postNewAction();
+  }
+
+  postNewAction() {
+    this.actionService.postAction().subscribe(res => {
+      // this.actionService.action.id = res as string;
+    }, error => {
+    }, () => {
+      const category = this.categories.find(c => c.id === this.actionService.action.categoryId);
+      category.actions.push(this.actionService.action);
+      this.displayAddUpdateCategory = false;
+    });
+  }
+
+  getActions() {
+    this.actionService.getActions('c596df6f-4b04-ea11-bfaf-180373b9b532').subscribe(res => {
+      this.actions = res as IAction[];
     });
   }
 }
