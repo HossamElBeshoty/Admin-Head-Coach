@@ -17,7 +17,7 @@ export class ActionsPageComponent implements OnInit {
   displayDeletePage: boolean = false;
   deleteId;
   categories: ICategory[] = [];
-  tabIndex= 0;
+  tabIndex = 0;
 
   constructor(public groupService: GroupService, public categoryService: CategoryService) {
   }

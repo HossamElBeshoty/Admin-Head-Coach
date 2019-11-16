@@ -12,10 +12,12 @@ import {UsersPageComponent} from './users-page/users-page.component';
 import {ComparisonPageComponent} from './comparison-page/comparison-page.component';
 import {PersonalPageComponent} from './personal-page/personal-page.component';
 import {AnalysisMatchPageComponent} from './analysis-page/analysis-match-page/analysis-match-page.component';
+import {AuthGuard} from '../auth/auth.guard';
 
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
+  canActivate: [AuthGuard],
   children: [
     {
       path: 'home',
@@ -57,6 +59,7 @@ const routes: Routes = [{
       path: '',
       redirectTo: 'home',
       pathMatch: 'full',
+
     },
     {
       path: '**',

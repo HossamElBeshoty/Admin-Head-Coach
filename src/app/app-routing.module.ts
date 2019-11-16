@@ -1,11 +1,8 @@
-import { ExtraOptions, RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
-import {
-  NbAuthComponent,
-
-} from '@nebular/auth';
-import { LoginPageComponent } from './Page/login-page/login-page.component';
-import { RegistrationPageComponent } from './Page/registration-page/registration-page.component';
+import {ExtraOptions, RouterModule, Routes} from '@angular/router';
+import {NgModule} from '@angular/core';
+import {NbAuthComponent} from '@nebular/auth';
+import {LoginPageComponent} from './Page/login-page/login-page.component';
+import {RegistrationPageComponent} from './Page/registration-page/registration-page.component';
 
 const routes: Routes = [
   // {
@@ -46,8 +43,8 @@ const routes: Routes = [
       // },
     ],
   },
-  { path: '', redirectTo: 'pages', pathMatch: 'full' },
-  { path: '**', redirectTo: 'pages' },
+  {path: '', redirectTo: 'pages', pathMatch: 'full'},
+  {path: '**', redirectTo: 'pages'},
 ];
 
 const config: ExtraOptions = {

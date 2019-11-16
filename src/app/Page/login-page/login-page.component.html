@@ -5,20 +5,45 @@
   <div class="card-body">
     <form #loginForm="ngForm" autocomplete="off" (submit)="onLogin(loginForm)">
       <div class="form-group">
-        <label for="userName">User Name</label>
-        <input type="text" class="form-control" id="userName" #UserName="ngModel" [(ngModel)]="loginFormModel.username"
-               name="userName"
-               placeholder="Enter Your User Name" required>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text bg-white">
+              <i class="far fa-user" [class.green-icon]="UserName.valid"
+                 [class.red-icon]="UserName.invalid && UserName.touched"></i>
+            </div>
+          </div>
+          <input id="UserName" name="userName" [(ngModel)]="loginFormModel.username" #UserName="ngModel"
+                 type="text" class="form-control" placeholder="Enter Your User Name" required>
+        </div>
       </div>
       <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Your Password"
-               #Password="ngModel" name="password" [(ngModel)]="loginFormModel.password" required>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text bg-white">
+              <i class="fas fa-user-lock" [class.green-icon]="Password.valid"
+                 [class.red-icon]="Password.invalid && Password.touched"></i>
+            </div>
+          </div>
+          <input type="password" class="form-control" placeholder="Enter Your Password"
+                 #Password="ngModel" name="password" [(ngModel)]="loginFormModel.password" required>
+        </div>
       </div>
-<!--      <div class="form-group form-check">-->
-<!--        <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
-<!--        <label class="form-check-label" for="exampleCheck1">Remember Me</label>-->
-<!--      </div>-->
+      <!--      <div class="form-group">-->
+      <!--        <label for="userName">User Name</label>-->
+      <!--        <input type="text" class="form-control" id="userName" #UserName="ngModel" [(ngModel)]="loginFormModel.username"-->
+      <!--               name="userName"-->
+      <!--               placeholder="Enter Your User Name" required>-->
+      <!--      </div>-->
+      <!--      <div class="form-group form-check">-->
+      <!--        <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
+      <!--        <label class="form-check-label" for="exampleCheck1">Remember Me</label>-->
+      <!--      </div>-->
+      <div class="row" *ngIf="errorMessage">
+        <div class="col-md-12 text-center">
+          <i class="fas fa-bomb text-warning"></i>
+          <p class="text-danger">{{errorMessage}}</p>
+        </div>
+      </div>
       <div class="row">
         <div class="col-md-12">
           <button type="submit" class="btn btn-block btn-outline-primary" [disabled]="loginForm.invalid"><i

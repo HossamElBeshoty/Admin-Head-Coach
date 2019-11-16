@@ -13,7 +13,7 @@ export class ActionComponent implements OnInit {
   displayCategory: boolean = false;
   displayAddUpdateCategory: boolean = false;
   displayDeleteCategoryAction: boolean = false;
-  displayUpdateButton: boolean = false;
+  displayChildActions: boolean = false;
   displayDeleteButton: boolean = false;
   @Input() pageName: string;
   @Input() categories: ICategory[];
@@ -111,6 +111,9 @@ export class ActionComponent implements OnInit {
       // this.actionService.action.id = res as string;
     }, error => {
     }, () => {
+      if (this.actionService.action.type === '3') {
+        this.displayChildActions = true;
+      }
       const category = this.categories.find(c => c.id === this.actionService.action.categoryId);
       category.actions.push(this.actionService.action);
       this.displayAddUpdateCategory = false;

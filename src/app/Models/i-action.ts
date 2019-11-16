@@ -3,5 +3,5 @@ export interface IAction {
   nameAr: string;
   nameEn: string;
   categoryId: string;
-  type: number;
+  type: string;
 }

@@ -14,6 +14,7 @@ export class LoginPageComponent implements OnInit {
     username: '',
     password: '',
   };
+  errorMessage: string;
 
   constructor(private loginService: LoginService, private router: Router, private  cookieService: CookieService) {
   }
@@ -29,7 +30,8 @@ export class LoginPageComponent implements OnInit {
       this.cookieService.set('access_token', result.access_token);
       this.router.navigateByUrl('/pages/home');
     }, error => {
-      if (error.status === 404) {
+      if (error.status === 400) {
+        this.errorMessage = 'User Name Or Password Are Not Correct';
         // console.log(error);
       }
     });
