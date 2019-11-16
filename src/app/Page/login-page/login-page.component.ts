@@ -22,7 +22,7 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {
   }
 
-  onLogin(form: NgForm) {
+  onLogin() {
     const loginObj = 'grant_type=password' + '&username='
       + this.loginFormModel.username + '&password=' + this.loginFormModel.password;
 
@@ -32,7 +32,6 @@ export class LoginPageComponent implements OnInit {
     }, error => {
       if (error.status === 400) {
         this.errorMessage = 'User Name Or Password Are Not Correct';
-        // console.log(error);
       }
     });
   }

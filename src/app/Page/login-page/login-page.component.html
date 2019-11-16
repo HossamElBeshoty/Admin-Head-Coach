@@ -1,14 +1,16 @@
-<div class="card text-center">
+<div class="card text-center shadow-lg animated fadeInDownBig slower">
   <div class="card-header">
-    Welcome Back To Head Coach
+    <h3 class="linear-wipe">
+      Welcome To Head Coach
+    </h3>
   </div>
   <div class="card-body">
-    <form #loginForm="ngForm" autocomplete="off" (submit)="onLogin(loginForm)">
+    <form #loginForm="ngForm" autocomplete="off" (submit)="onLogin()">
       <div class="form-group">
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text bg-white">
-              <i class="far fa-user" [class.green-icon]="UserName.valid"
+              <i class="fas fa-user-tag" [class.green-icon]="UserName.valid"
                  [class.red-icon]="UserName.invalid && UserName.touched"></i>
             </div>
           </div>
@@ -28,16 +30,6 @@
                  #Password="ngModel" name="password" [(ngModel)]="loginFormModel.password" required>
         </div>
       </div>
-      <!--      <div class="form-group">-->
-      <!--        <label for="userName">User Name</label>-->
-      <!--        <input type="text" class="form-control" id="userName" #UserName="ngModel" [(ngModel)]="loginFormModel.username"-->
-      <!--               name="userName"-->
-      <!--               placeholder="Enter Your User Name" required>-->
-      <!--      </div>-->
-      <!--      <div class="form-group form-check">-->
-      <!--        <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
-      <!--        <label class="form-check-label" for="exampleCheck1">Remember Me</label>-->
-      <!--      </div>-->
       <div class="row" *ngIf="errorMessage">
         <div class="col-md-12 text-center">
           <i class="fas fa-bomb text-warning"></i>
