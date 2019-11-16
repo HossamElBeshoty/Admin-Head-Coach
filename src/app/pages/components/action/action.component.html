@@ -30,9 +30,23 @@
               </div>
             </p-header>
             <div class="row">
-              <div class="col-md-3 mb-2" *ngFor="let x of item.actions">
-                <p-splitButton label="{{x.nameAr}}" [model]="buttonsItems"
-                               styleClass="ui-button-secondary" appendTo="body"></p-splitButton>
+              <div class="col-md-2 text-center mb-2" *ngFor="let x of item.actions">
+                <!--                <p-splitButton label="{{x.nameAr}}" [model]="buttonsItems"-->
+                <!--                               styleClass="ui-button-secondary" appendTo="body"></p-splitButton>-->
+                <div class="btn-group dropright">
+                  <button type="button" class="btn btn-light">
+                    {{x.nameAr}}
+                  </button>
+                  <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropright</span>
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item text-dark" (click)="updateButton(x)"><i class="far fa-edit"></i> Update</a>
+                    <a class="dropdown-item text-danger" (click)="deleteButton(x.id)"> <i class="fas fa-ban"></i> Delete</a>
+                  </div>
+                </div>
+
               </div>
             </div>
           </p-panel>
@@ -105,12 +119,12 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text bg-white">
-                <i class="fas fa-file-import" [class.green-icon]="ActionNameEn.valid"
-                   [class.red-icon]="ActionNameEn.invalid && ActionNameEn.touched"></i>
+                <i class="fas fa-file-import" [class.green-icon]="ActionNameAr.valid"
+                   [class.red-icon]="ActionNameAr.invalid && ActionNameAr.touched"></i>
               </div>
             </div>
-            <input id="ActionNameEn" name="nameEn" [(ngModel)]="actionService.action.nameEn" #ActionNameEn="ngModel"
-                   type="text" class="form-control" placeholder="Insert Action Name In English" required>
+            <input id="ActionNameAr" name="nameAr" [(ngModel)]="actionService.action.nameAr" #ActionNameAr="ngModel"
+                   type="text" class="form-control" placeholder="Insert Action Name In Arabic" required>
           </div>
         </div>
       </div>
@@ -119,12 +133,12 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text bg-white">
-                <i class="fas fa-file-import" [class.green-icon]="ActionNameAr.valid"
-                   [class.red-icon]="ActionNameAr.invalid && ActionNameAr.touched"></i>
+                <i class="fas fa-file-import" [class.green-icon]="ActionNameEn.valid"
+                   [class.red-icon]="ActionNameEn.invalid && ActionNameEn.touched"></i>
               </div>
             </div>
-            <input id="ActionNameAr" name="nameAr" [(ngModel)]="actionService.action.nameAr" #ActionNameAr="ngModel"
-                   type="text" class="form-control" placeholder="Insert Action Name In Arabic" required>
+            <input id="ActionNameEn" name="nameEn" [(ngModel)]="actionService.action.nameEn" #ActionNameEn="ngModel"
+                   type="text" class="form-control" placeholder="Insert Action Name In English" required>
           </div>
         </div>
       </div>
@@ -146,9 +160,9 @@
         </div>
       </div>
       <div class="col-md-12">
-        <button class="btn btn-outline-success btn-block btn-sm" type="submit" [disabled]="!actionForm.valid" (click)="onActionSubmit()">
-          <i
-            class="far fa-check-square"></i> Submit
+        <button class="btn btn-outline-success btn-block btn-sm" type="submit" [disabled]="!actionForm.valid"
+                (click)="onActionSubmit()">
+          <i class="far fa-check-square"></i> Submit
         </button>
       </div>
     </div>
@@ -171,25 +185,21 @@
     Delete
   </button>
 </p-dialog>
-<!--Update Button-->
-<p-dialog header="Button Action" [(visible)]="displayUpdateButton" [modal]="true" [responsive]="true"
-          [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
-          [maximizable]="true" [baseZIndex]="10000" appendTo="body">
-  <p>Update Button</p>
-  <p-footer>
-    <button type="button" pButton icon="pi pi-check" (click)="displayUpdateButton=false" label="Yes"></button>
-    <button type="button" pButton icon="pi pi-close" (click)="displayUpdateButton=false" label="No"
-            class="ui-button-secondary"></button>
-  </p-footer>
-</p-dialog>
+
 <!--Delete Button-->
 <p-dialog header="Button Action" [(visible)]="displayDeleteButton" [modal]="true" [responsive]="true"
           [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
-          [maximizable]="true" [baseZIndex]="10000" appendTo="body">
-  <p>Delete Button</p>
-  <p-footer>
-    <button type="button" pButton icon="pi pi-check" (click)="displayDeleteButton=false" label="Yes"></button>
-    <button type="button" pButton icon="pi pi-close" (click)="displayDeleteButton=false" label="No"
-            class="ui-button-secondary"></button>
-  </p-footer>
+          [baseZIndex]="10000" appendTo="body">
+  <div class="text-center">
+    <i class="fas fa-exclamation-circle fa-4x text-danger "></i>
+  </div>
+  <br>
+  <h6 class="text-center">
+    Are You Sure To Delete This Button?!
+  </h6>
+  <br>
+  <button class="btn btn-outline-danger btn-sm btn-block" type="submit" (click)="onActionDelete()"><i
+    class="fas fa-bomb"></i>
+    Delete
+  </button>
 </p-dialog>

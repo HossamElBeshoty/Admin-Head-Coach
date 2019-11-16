@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {MenuItem} from 'primeng/api';
 import {CategoryService} from '../../../Service/category.service';
 import {ICategory} from '../../../Models/i-category';
 import {ActionService} from '../../../Service/action.service';
@@ -11,7 +10,6 @@ import {IAction} from '../../../Models/i-action';
   styleUrls: ['./action.component.scss'],
 })
 export class ActionComponent implements OnInit {
-  buttonsItems: MenuItem[];
   displayCategory: boolean = false;
   displayAddUpdateCategory: boolean = false;
   displayDeleteCategoryAction: boolean = false;
@@ -21,6 +19,7 @@ export class ActionComponent implements OnInit {
   @Input() categories: ICategory[];
   actions: IAction[] = [];
   deleteId;
+  actionDeleteId;
   @Input() groupId;
 
   constructor(public categoryService: CategoryService, public actionService: ActionService) {
@@ -28,18 +27,6 @@ export class ActionComponent implements OnInit {
 
   ngOnInit() {
     this.getActions();
-    this.buttonsItems = [
-      {
-        label: 'Update Button', icon: 'pi pi-refresh', command: () => {
-          this.updateButton();
-        },
-      },
-      {
-        label: 'Delete Button', icon: 'pi pi-times', command: () => {
-          this.deleteButton();
-        },
-      },
-    ];
   }
 
   showCategoryDialog() {
@@ -57,8 +44,9 @@ export class ActionComponent implements OnInit {
     this.categoryService.category = Object.assign({}, category);
   }
 
-  updateButton() {
-    this.displayUpdateButton = true;
+  updateButton(action: IAction) {
+    this.displayAddUpdateCategory = true;
+    this.actionService.action = Object.assign({}, action);
   }
 
   deleteCategoryActionDialog(id) {
@@ -66,7 +54,8 @@ export class ActionComponent implements OnInit {
     this.displayDeleteCategoryAction = true;
   }
 
-  deleteButton() {
+  deleteButton(id) {
+    this.actionDeleteId = id;
     this.displayDeleteButton = true;
   }
 
@@ -110,7 +99,11 @@ export class ActionComponent implements OnInit {
   }
 
   onActionSubmit() {
-    this.postNewAction();
+    if (!this.actionService.action.id) {
+      this.postNewAction();
+    } else {
+      this.updateAction();
+    }
   }
 
   postNewAction() {
@@ -121,6 +114,26 @@ export class ActionComponent implements OnInit {
       const category = this.categories.find(c => c.id === this.actionService.action.categoryId);
       category.actions.push(this.actionService.action);
       this.displayAddUpdateCategory = false;
+    });
+  }
+
+  private updateAction() {
+    this.actionService.updateAction().subscribe(res => {
+    }, error => {
+    }, () => {
+      const actionIndex = this.actions.findIndex(c => c.id === this.actionService.action.id);
+      this.actions[actionIndex] = this.actionService.action;
+      this.displayAddUpdateCategory = false;
+    });
+  }
+
+  onActionDelete() {
+    this.actionService.deleteAction(this.actionDeleteId).subscribe(res => {
+    }, error => {
+    }, () => {
+      const i = this.actions.findIndex(c => c.id === this.actionDeleteId);
+      this.actions.splice(i, 1);
+      this.displayDeleteButton = false;
     });
   }
 
