@@ -4,11 +4,10 @@ import {throwError, Observable, BehaviorSubject, of} from 'rxjs';
 import {catchError, filter, finalize, take, switchMap} from 'rxjs/operators';
 import {CookieService} from 'ngx-cookie-service';
 import {environment} from '../../environments/environment';
-import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private cookieService: CookieService, private router: Router) {
+  constructor(private cookieService: CookieService) {
   }
 
   private AUTH_HEADER = 'Authorization';
