@@ -1,8 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {NgForm} from '@angular/forms';
-import {LoginService} from '../../Service/login.service';
-import {Router} from '@angular/router';
-import {CookieService} from 'ngx-cookie-service';
+import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../../Service/login.service';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'ngx-login-page',
@@ -16,7 +15,7 @@ export class LoginPageComponent implements OnInit {
   };
   errorMessage: string;
 
-  constructor(private loginService: LoginService, private router: Router, private  cookieService: CookieService) {
+  constructor(private loginService: LoginService, private router: Router, private cookieService: CookieService) {
   }
 
   ngOnInit() {
