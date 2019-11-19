@@ -27,8 +27,8 @@ export class ActionsPageComponent implements OnInit {
     this.resetForm();
   }
 
-  onChangeTab(e) {
-    this.tabIndex = e.index;
+  onChangeTab(index) {
+    this.tabIndex = index;
     this.getPageCategory(this.allPages[this.tabIndex].id);
   }
 
@@ -43,8 +43,8 @@ export class ActionsPageComponent implements OnInit {
     this.groupService.group = {} as IGroup;
   }
 
-  showDeletePageDialog(id) {
-    this.deleteId = id;
+  showDeletePageDialog(group: IGroup) {
+    this.deleteId = group.id;
     this.displayDeletePage = true;
   }
 
@@ -109,6 +109,7 @@ export class ActionsPageComponent implements OnInit {
     }, () => {
       const index = this.allPages.findIndex(c => c.id === this.deleteId);
       this.allPages.splice(index, 1);
+      this.onChangeTab(0);
       this.displayDeletePage = false;
     });
   }

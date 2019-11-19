@@ -3,6 +3,8 @@ import {CategoryService} from '../../../Service/category.service';
 import {ICategory} from '../../../Models/i-category';
 import {ActionService} from '../../../Service/action.service';
 import {IAction} from '../../../Models/i-action';
+import {ChildActionService} from '../../../Service/child-action.service';
+import {IChildAction} from '../../../Models/i-child-action';
 
 @Component({
   selector: 'ngx-action',
@@ -10,23 +12,29 @@ import {IAction} from '../../../Models/i-action';
   styleUrls: ['./action.component.scss'],
 })
 export class ActionComponent implements OnInit {
+  @Input() pageName: string;
+  @Input() categories: ICategory[];
+  @Input() groupId;
   displayCategory: boolean = false;
   displayAddUpdateCategory: boolean = false;
   displayDeleteCategoryAction: boolean = false;
   displayChildActions: boolean = false;
   displayDeleteButton: boolean = false;
-  @Input() pageName: string;
-  @Input() categories: ICategory[];
-  actions: IAction[] = [];
   deleteId;
   actionDeleteId;
-  @Input() groupId;
+  childAction: IChildAction[] = [];
+  cols: any[];
 
-  constructor(public categoryService: CategoryService, public actionService: ActionService) {
+  constructor(public categoryService: CategoryService,
+              public actionService: ActionService,
+              public childActionService: ChildActionService) {
   }
 
   ngOnInit() {
-    this.getActions();
+    this.cols = [
+      {field: 'nameAr', header: 'Arabic Name'},
+      {field: 'nameEn', header: 'English Name'},
+    ];
   }
 
   showCategoryDialog() {
@@ -37,6 +45,7 @@ export class ActionComponent implements OnInit {
   addNewCategoryActionDialog(categoryId: string) {
     this.actionService.action = {categoryId: categoryId} as IAction;
     this.displayAddUpdateCategory = true;
+    this.childAction = [];
   }
 
   updateNewCategoryActionDialog(category: ICategory) {
@@ -54,8 +63,9 @@ export class ActionComponent implements OnInit {
     this.displayDeleteCategoryAction = true;
   }
 
-  deleteButton(id) {
-    this.actionDeleteId = id;
+  deleteButton(action: IAction) {
+    this.actionDeleteId = action.id;
+    this.actionService.action.categoryId = action.categoryId;
     this.displayDeleteButton = true;
   }
 
@@ -108,7 +118,7 @@ export class ActionComponent implements OnInit {
 
   postNewAction() {
     this.actionService.postAction().subscribe(res => {
-      // this.actionService.action.id = res as string;
+      this.actionService.action.id = res as string;
     }, error => {
     }, () => {
       if (this.actionService.action.type === '3') {
@@ -124,8 +134,9 @@ export class ActionComponent implements OnInit {
     this.actionService.updateAction().subscribe(res => {
     }, error => {
     }, () => {
-      const actionIndex = this.actions.findIndex(c => c.id === this.actionService.action.id);
-      this.actions[actionIndex] = this.actionService.action;
+      const category = this.categories.find(c => c.id === this.actionService.action.categoryId);
+      const actionIndex = category.actions.findIndex(c => c.id === this.actionService.action.id);
+      category.actions[actionIndex] = this.actionService.action;
       this.displayAddUpdateCategory = false;
     });
   }
@@ -134,15 +145,30 @@ export class ActionComponent implements OnInit {
     this.actionService.deleteAction(this.actionDeleteId).subscribe(res => {
     }, error => {
     }, () => {
-      const i = this.actions.findIndex(c => c.id === this.actionDeleteId);
-      this.actions.splice(i, 1);
+      const category = this.categories.find(c => c.id === this.actionService.action.categoryId);
+      const i = category.actions.findIndex(c => c.id === this.actionDeleteId);
+      category.actions.splice(i, 1);
       this.displayDeleteButton = false;
     });
   }
 
-  getActions() {
-    this.actionService.getActions('c596df6f-4b04-ea11-bfaf-180373b9b532').subscribe(res => {
-      this.actions = res as IAction[];
+  onSubmitChildAction() {
+    this.postChildAction();
+  }
+
+  postChildAction() {
+    this.childActionService.childAction.actionId = this.actionService.action.id;
+    this.childActionService.postChildAction().subscribe(res => {
+      this.childActionService.childAction.id = res as string;
+      this.childAction.push(this.childActionService.childAction);
+    });
+  }
+
+  showChildActions(actionId: string) {
+    this.actionService.action.id = actionId;
+    this.displayChildActions = true;
+    this.childActionService.getAllByActionId(actionId).subscribe(res => {
+      this.childAction = res as IChildAction[];
     });
   }
 }

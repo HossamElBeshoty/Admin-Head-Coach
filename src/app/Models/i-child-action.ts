@@ -3,5 +3,4 @@ export interface IChildAction {
   nameAr: string;
   nameEn: string;
   actionId: string;
-  isDetected: boolean;
 }

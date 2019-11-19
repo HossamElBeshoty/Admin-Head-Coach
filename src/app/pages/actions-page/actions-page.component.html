@@ -56,7 +56,7 @@
 </div>
 
 <div class="animated slow fadeInUp">
-  <p-tabView (onChange)="onChangeTab($event)">
+  <p-tabView (onChange)="onChangeTab($event.index)">
     <ng-container *ngFor="let item of allPages;let i = index;">
       <p-tabPanel [header]="item.nameAr" [selected]="i == tabIndex">
         <div class="row">
@@ -66,7 +66,7 @@
             </button>
           </div>
           <div class="col-md-6">
-            <button class="btn btn-outline-danger btn-block btn-sm" (click)="showDeletePageDialog(item.id)"><i
+            <button class="btn btn-outline-danger btn-block btn-sm" (click)="showDeletePageDialog(item)"><i
               class="fas fa-ban"></i> Delete Page
             </button>
           </div>
