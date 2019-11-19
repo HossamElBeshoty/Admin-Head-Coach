@@ -28,6 +28,7 @@ import {NgxYoutubePlayerModule} from 'ngx-youtube-player';
 import { ActionComponent } from './components/action/action.component';
 import { PlayersBoxTeamComponent } from './components/players-box-team/players-box-team.component';
 import { YoutubePlayerComponent } from './components/youtube-player/youtube-player.component';
+import { PlayerCardComponent } from './widgets/player-card/player-card.component';
 
 @NgModule({
   imports: [
@@ -62,6 +63,7 @@ import { YoutubePlayerComponent } from './components/youtube-player/youtube-play
     ActionComponent,
     PlayersBoxTeamComponent,
     YoutubePlayerComponent,
+    PlayerCardComponent,
   ],
 })
 export class PagesModule {
