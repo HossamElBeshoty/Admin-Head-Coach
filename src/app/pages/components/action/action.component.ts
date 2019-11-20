@@ -5,6 +5,7 @@ import {ActionService} from '../../../Service/action.service';
 import {IAction} from '../../../Models/i-action';
 import {ChildActionService} from '../../../Service/child-action.service';
 import {IChildAction} from '../../../Models/i-child-action';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'ngx-action',
@@ -24,6 +25,7 @@ export class ActionComponent implements OnInit {
   actionDeleteId;
   childAction: IChildAction[] = [];
   cols: any[];
+  childActionName;
 
   constructor(public categoryService: CategoryService,
               public actionService: ActionService,
@@ -108,6 +110,7 @@ export class ActionComponent implements OnInit {
     });
   }
 
+
   onActionSubmit() {
     if (!this.actionService.action.id) {
       this.postNewAction();
@@ -152,23 +155,57 @@ export class ActionComponent implements OnInit {
     });
   }
 
-  onSubmitChildAction() {
-    this.postChildAction();
+
+  onSubmitChildAction(form: NgForm) {
+    if (!this.childActionService.childAction.id) {
+      this.postChildAction(form);
+    } else {
+      this.editChildAction(form);
+    }
   }
 
-  postChildAction() {
+  // ToDo
+  postChildAction(form: NgForm) {
     this.childActionService.childAction.actionId = this.actionService.action.id;
     this.childActionService.postChildAction().subscribe(res => {
       this.childActionService.childAction.id = res as string;
+    }, () => {
+    }, () => {
       this.childAction.push(this.childActionService.childAction);
+      form.resetForm();
     });
   }
 
-  showChildActions(actionId: string) {
+  showChildActions(actionId: string, childActionName) {
     this.actionService.action.id = actionId;
+    this.childActionName = childActionName;
     this.displayChildActions = true;
     this.childActionService.getAllByActionId(actionId).subscribe(res => {
       this.childAction = res as IChildAction[];
+    });
+  }
+
+  populateChildActionForm(childActions: IChildAction) {
+    this.childActionService.childAction = Object.assign({}, childActions);
+  }
+
+  editChildAction(form: NgForm) {
+    this.childActionService.updateChildAction().subscribe(res => {
+    }, () => {
+    }, () => {
+      const updateChildActionIndex = this.childAction.findIndex(z => z.id === this.childActionService.childAction.id);
+      this.childAction[updateChildActionIndex] = this.childActionService.childAction;
+      this.childActionService.childAction = {} as IChildAction;
+      form.resetForm();
+    });
+  }
+
+  onChildActionDelete(childActionId) {
+    this.childActionService.deleteChildAction(childActionId).subscribe(res => {
+    }, () => {
+    }, () => {
+      const child = this.childAction.findIndex(x => x.id === childActionId);
+      this.childAction.splice(child, 1);
     });
   }
 }

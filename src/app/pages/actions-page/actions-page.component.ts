@@ -83,7 +83,6 @@ export class ActionsPageComponent implements OnInit {
   }
 
   private postNewPage() {
-
     this.groupService.postAllGroupPages().subscribe(res => {
       this.groupService.group.id = res as string;
     }, error => {

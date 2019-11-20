@@ -18,4 +18,12 @@ export class ChildActionService {
   getAllByActionId(actionId: string) {
     return this.dataService.get('api/childAction/getAllByActionId/' + actionId);
   }
+
+  updateChildAction() {
+    return this.dataService.edit('api/childAction', this.childAction);
+  }
+
+  deleteChildAction(id) {
+    return this.dataService.delete('api/ChildAction/', id);
+  }
 }
