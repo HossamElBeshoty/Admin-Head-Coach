@@ -12,7 +12,7 @@ export class ChildActionService {
   }
 
   postChildAction() {
-    return this.dataService.add('api/ChildAction', this.childAction);
+    return this.dataService.add('api/childAction', this.childAction);
   }
 
   getAllByActionId(actionId: string) {

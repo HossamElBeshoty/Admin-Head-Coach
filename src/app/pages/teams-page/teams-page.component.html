@@ -1,216 +1,386 @@
-<div class="row">
+<div class="row container">
   <div class="col-md-12">
-    <button class="btn btn-outline-primary animated slow  fadeInDown btn-block m-4"><i class="fas fa-medal"></i> Add New
+    <button class="btn btn-outline-primary animated slow  fadeInDown btn-block m-4" (click)="showClubDialog()"><i
+      class="fa fa-plus"></i> Add New
       Club
     </button>
   </div>
 </div>
 
 <div class="animated slower fadeInUp">
-  <p-tabView>
-    <p-tabPanel header="El Zamalik FC">
-      <p-accordion>
-        <p-accordionTab header="Under 18">
-          <div class="row">
-            <div class="col-md-2 text-center">
-              <div class="card shadow" style="width: 15rem;">
-                <img src="../../../assets/images/alan.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Player Name</h5>
-                  <button class="btn btn-outline-secondary"><i class="fas fa-pen"></i></button>
-                  <button class="btn ml-1 btn-outline-danger"><i class="fas fa-trash"></i></button>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-2 text-center">
-              <div class="card shadow" style="width: 15rem;">
-                <img src="../../../assets/images/alan.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Player Name</h5>
-                  <button class="btn btn-outline-secondary"><i class="fas fa-pen"></i></button>
-                  <button class="btn ml-1 btn-outline-danger"><i class="fas fa-trash"></i></button>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-2 text-center">
-              <div class="card shadow" style="width: 15rem;">
-                <img src="../../../assets/images/alan.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Player Name</h5>
-                  <button class="btn btn-outline-secondary"><i class="fas fa-pen"></i></button>
-                  <button class="btn ml-1 btn-outline-danger"><i class="fas fa-trash"></i></button>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-2 text-center">
-              <div class="card shadow" style="width: 15rem;">
-                <img src="../../../assets/images/alan.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Player Name</h5>
-                  <button class="btn btn-outline-secondary"><i class="fas fa-pen"></i></button>
-                  <button class="btn ml-1 btn-outline-danger"><i class="fas fa-trash"></i></button>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-2 text-center">
-              <div class="card shadow" style="width: 15rem;">
-                <img src="../../../assets/images/alan.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Player Name</h5>
-                  <button class="btn btn-outline-secondary"><i class="fas fa-pen"></i></button>
-                  <button class="btn ml-1 btn-outline-danger"><i class="fas fa-trash"></i></button>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-2 text-center">
-              <div class="card shadow" style="width: 15rem;">
-                <img src="../../../assets/images/alan.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Player Name</h5>
-                  <button class="btn btn-outline-secondary"><i class="fas fa-pen"></i></button>
-                  <button class="btn ml-1 btn-outline-danger"><i class="fas fa-trash"></i></button>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-2 text-center">
-              <div class="card shadow" style="width: 15rem;">
-                <img src="../../../assets/images/alan.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Player Name</h5>
-                  <button class="btn btn-outline-secondary"><i class="fas fa-pen"></i></button>
-                  <button class="btn ml-1 btn-outline-danger"><i class="fas fa-trash"></i></button>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-2 text-center">
-              <div class="card shadow" style="width: 15rem;">
-                <img src="../../../assets/images/alan.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Player Name</h5>
-                  <button class="btn btn-outline-secondary"><i class="fas fa-pen"></i></button>
-                  <button class="btn ml-1 btn-outline-danger"><i class="fas fa-trash"></i></button>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-2 text-center">
-              <div class="card shadow" style="width: 15rem;">
-                <img src="../../../assets/images/alan.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Player Name</h5>
-                  <button class="btn btn-outline-secondary"><i class="fas fa-pen"></i></button>
-                  <button class="btn ml-1 btn-outline-danger"><i class="fas fa-trash"></i></button>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-2 text-center">
-              <div class="card shadow" style="width: 15rem;">
-                <img src="../../../assets/images/alan.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Player Name</h5>
-                  <button class="btn btn-outline-secondary"><i class="fas fa-pen"></i></button>
-                  <button class="btn ml-1 btn-outline-danger"><i class="fas fa-trash"></i></button>
-                </div>
-              </div>
-            </div>
+  <p-tabView (onChange)="onChangeTab($event.index)">
+    <ng-container *ngFor="let item of allClubs;let i = index;">
+      <p-tabPanel header="{{item.nameAr}}" [selected]="i == tabIndex">
+        <div class="row">
+          <div class="col-md-4">
+            <button class="btn btn-outline-primary btn-block btn-sm" (click)="showTeamDialog()"><i
+              class="fa fa-plus"></i> Add Team
+            </button>
           </div>
-        </p-accordionTab>
-        <p-accordionTab header="Under 16">
-          <div class="row">
-            <div class="col-md-2 text-center">
-              <div class="card shadow" style="width: 15rem;">
-                <img src="../../../assets/images/alan.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Player Name</h5>
-                  <button class="btn btn-outline-secondary"><i class="fas fa-pen"></i></button>
-                  <button class="btn ml-1 btn-outline-danger"><i class="fas fa-trash"></i></button>
+          <div class="col-md-4">
+            <button class="btn btn-outline-secondary btn-block btn-sm" (click)="updateClub(item)"><i
+              class="far fa-edit"></i> Update Club
+            </button>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-outline-danger btn-block btn-sm" (click)="showClubDeleteDialog(item.id)"><i
+              class="fas fa-ban"></i> Delete Club
+            </button>
+          </div>
+        </div>
+        <br>
+        <p-accordion *ngFor="let team of allTeams">
+          <p-accordionTab header="{{team.nameAr}}">
+            <div class="row">
+              <div class="col-md-4">
+                <button class="btn btn-outline-primary btn-block btn-sm" (click)="showPlayerDialog()"><i
+                  class="fa fa-plus"></i> Add Player
+                </button>
+              </div>
+              <div class="col-md-4">
+                <button class="btn btn-outline-secondary btn-block btn-sm" (click)="updateTeam(team)"><i
+                  class="far fa-edit"></i> Update Team
+                </button>
+              </div>
+              <div class="col-md-4">
+                <button class="btn btn-outline-danger btn-block btn-sm" (click)="showTeamDeleteDialog(team.id)"><i
+                  class="fas fa-ban"></i> Delete Team
+                </button>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-2 text-center">
+                <div class="card m-2 shadow" style="width: 15rem;">
+                  <img src="../../../assets/images/alan.png" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Player Name</h5>
+                    <button class="btn btn-outline-secondary"><i class="fas fa-pen"></i></button>
+                    <button class="btn ml-1 btn-outline-danger"><i class="fas fa-trash"></i></button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </p-accordionTab>
-      </p-accordion>
-    </p-tabPanel>
-    <p-tabPanel header="Liverpool F.C.">
-      <p-accordion>
-        <p-accordionTab header="Under 18">
-          <div class="row">
-            <div class="col-md-2 text-center">
-              <div class="card shadow" style="width: 15rem;">
-                <img src="../../../assets/images/alan.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Player Name</h5>
-                  <button class="btn btn-outline-secondary"><i class="fas fa-pen"></i></button>
-                  <button class="btn ml-1 btn-outline-danger"><i class="fas fa-trash"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </p-accordionTab>
-        <p-accordionTab header="Under 16">
-          <div class="row">
-            <div class="col-md-2 text-center">
-              <div class="card shadow" style="width: 15rem;">
-                <img src="../../../assets/images/alan.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Player Name</h5>
-                  <button class="btn btn-outline-secondary"><i class="fas fa-pen"></i></button>
-                  <button class="btn ml-1 btn-outline-danger"><i class="fas fa-trash"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </p-accordionTab>
-      </p-accordion>
-    </p-tabPanel>
+          </p-accordionTab>
+        </p-accordion>
+      </p-tabPanel>
+    </ng-container>
+
   </p-tabView>
 </div>
 
-<!--<p-treeTable [value]="clubs" [columns]="cols">-->
-<!--  <ng-template pTemplate="header" let-columns>-->
-<!--    <tr [ttRow]="rowNode">-->
-<!--      <th *ngFor="let col of columns">-->
-<!--        {{col.header}}-->
-<!--      </th>-->
-<!--      <th>Actions</th>-->
-<!--    </tr>-->
-<!--  </ng-template>-->
-<!--  <ng-template pTemplate="body" let-rowNode let-rowData="rowData" let-columns="columns">-->
-<!--    <tr>-->
-<!--      <td *ngFor="let col of columns; let i = index">-->
-<!--        <p-treeTableToggler [rowNode]="rowNode" *ngIf="i == 0"></p-treeTableToggler>-->
-<!--        {{rowData[col.field]}}-->
-<!--      </td>-->
-<!--      <td>-->
-<!--        <div class="row text-center">-->
-<!--          <div class="col-md-4">-->
-<!--            <button type="button" class="btn btn-outline-success" [routerLink]="['../personal/' , rowData.id]"><i-->
-<!--              class="far fa-user"></i></button>-->
 
-<!--          </div>-->
-<!--          <div class="col-md-4">-->
-<!--            <ngx-modal [header]="'Edit User'" [buttonCss]="'btn btn-outline-secondary'"-->
-<!--                       [iconClass]="'fas fa-users-cog'">-->
-<!--              <div forms>Forms</div>-->
-<!--              <div buttons>-->
-<!--                <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>-->
-<!--                <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No"-->
-<!--                        class="ui-button-secondary"></button>-->
-<!--              </div>-->
-<!--            </ngx-modal>-->
-<!--          </div>-->
-<!--          <div class="col-md-4">-->
-<!--            <ngx-modal [header]="'Delete User'" [buttonCss]="'btn btn-outline-danger'"-->
-<!--                       [iconClass]="'fas fa-user-times'">-->
-<!--              <div forms>Forms</div>-->
-<!--              <div buttons>-->
-<!--                <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>-->
-<!--                <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No"-->
-<!--                        class="ui-button-secondary"></button>-->
-<!--              </div>-->
-<!--            </ngx-modal>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </td>-->
-<!--    </tr>-->
-<!--  </ng-template>-->
-<!--</p-treeTable>-->
+<!--Add New Club-->
+<p-dialog header="Club" [(visible)]="displayClubDialog" [modal]="true" [responsive]="true"
+          [minY]="70" appendTo="body" [style]="{width: '750px', minWidth: '200px'}"
+          [baseZIndex]="10000">
+  <form #clubForm="ngForm" style="width: 99%;" autocomplete="off">
+    <input type="hidden" name="id" [value]="clubService.club.id">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white">
+                <i class="fas fa-medal" [class.green-icon]="nameAr.valid"
+                   [class.red-icon]="nameAr.invalid && nameAr.touched"></i>
+              </div>
+            </div>
+            <input id="nameAr" type="text" class="form-control" name="nameAr"
+                   [(ngModel)]="clubService.club.nameAr"
+                   #nameAr="ngModel" placeholder="Insert Name In Arabic" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white">
+                <i class="fas fa-medal" [class.green-icon]="nameEn.valid"
+                   [class.red-icon]="nameEn.invalid && nameEn.touched"></i>
+              </div>
+            </div>
+            <input id="nameEn" type="text" class="form-control" name="nameEn"
+                   [(ngModel)]="clubService.club.nameEn"
+                   #nameEn="ngModel" placeholder="Insert Name In English" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <button class="btn btn-outline-success btn-block btn-sm" (click)="onClubSubmit()"
+                [disabled]="clubForm.invalid">
+          <i
+            class="far fa-check-square"></i> Submit
+        </button>
+      </div>
+    </div>
+  </form>
+</p-dialog>
+
+<!--Add New Team-->
+<p-dialog header="Team" [(visible)]="displayTeamDialog" [modal]="true" [responsive]="true"
+          [minY]="70" appendTo="body" [style]="{width: '550px', minWidth: '200px'}"
+          [baseZIndex]="10000">
+  <form action="" #teamForm="ngForm" style="width: 99%;" autocomplete="off">
+    <input type="hidden" name="id" [value]="teamService.team.id">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white">
+                <i class="fab fa-shirtsinbulk" [class.green-icon]="teamNameAr.valid"
+                   [class.red-icon]="teamNameAr.invalid && teamNameAr.touched"></i>
+              </div>
+            </div>
+            <input id="teamNameAr" type="text" class="form-control" name="nameAr"
+                   [(ngModel)]="teamService.team.nameAr"
+                   #teamNameAr="ngModel" placeholder="Insert Name In Arabic" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white">
+                <i class="fab fa-shirtsinbulk" [class.green-icon]="teamNameEn.valid"
+                   [class.red-icon]="teamNameEn.invalid && teamNameEn.touched"></i>
+              </div>
+            </div>
+            <input id="teamNameEn" type="text" class="form-control" name="nameEn"
+                   [(ngModel)]="teamService.team.nameEn"
+                   #teamNameEn="ngModel" placeholder="Insert Name In English" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <button class="btn btn-outline-success btn-block btn-sm" (click)="onTeamSubmit()" [disabled]="teamForm.invalid">
+          <i
+            class="far fa-check-square"></i> Submit
+        </button>
+      </div>
+    </div>
+  </form>
+</p-dialog>
+
+<!--Add New Player-->
+<p-dialog header="Player" [(visible)]="displayPlayerDialog" [modal]="true" [responsive]="true"
+          [minY]="70" appendTo="body" [style]="{width: '850px', minWidth: '200px'}"
+          [baseZIndex]="10000">
+  <form action="" #playerForm="ngForm" style="width: 99%;" autocomplete="off">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white">
+                <i class="far fa-address-card" [class.green-icon]="playerNameAr.valid"
+                   [class.red-icon]="playerNameAr.invalid && playerNameAr.touched"></i>
+              </div>
+            </div>
+            <input id="playerNameAr" type="text" class="form-control" name="nameAr"
+                   [(ngModel)]="playerService.player.nameAr"
+                   #playerNameAr="ngModel" placeholder="Insert Name In Arabic" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white">
+                <i class="far fa-address-card" [class.green-icon]="playerEn.valid"
+                   [class.red-icon]="playerEn.invalid && playerEn.touched"></i>
+              </div>
+            </div>
+            <input id="playerNameEn" type="text" class="form-control" name="nameEn"
+                   [(ngModel)]="playerService.player.nameEn"
+                   #playerEn="ngModel" placeholder="Insert Name In English" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white">
+                <i class="fas fa-signature" [class.green-icon]="playerNickNameAr.valid"
+                   [class.red-icon]="playerNickNameAr.invalid && playerNickNameAr.touched"></i>
+              </div>
+            </div>
+            <input id="playerNickNameAr" type="text" class="form-control" name="nickNameAr"
+                   [(ngModel)]="playerService.player.nickNameAr"
+                   #playerNickNameAr="ngModel" placeholder="Insert Nick Name In Arabic" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white">
+                <i class="fas fa-signature" [class.green-icon]="playerNickNameEn.valid"
+                   [class.red-icon]="playerNickNameEn.invalid && playerNickNameEn.touched"></i>
+              </div>
+            </div>
+            <input id="playerNickNameEn" type="text" class="form-control" name="nickNameEn"
+                   [(ngModel)]="playerService.player.nickNameEn"
+                   #playerNickNameEn="ngModel" placeholder="Insert Nick Name In English" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white">
+                <i class="far fa-flag" [class.green-icon]="playerNationality.valid"
+                   [class.red-icon]="playerNationality.invalid && playerNationality.touched"></i>
+              </div>
+            </div>
+            <select class="form-control" id="playerNationality" name="nationalityId"
+                    [(ngModel)]="playerService.player.nationalityId"
+                    #playerNationality="ngModel" required>
+              <option>Select Nationality</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white">
+                <i class="fas fa-birthday-cake" [class.green-icon]="playerBirthDate.valid"
+                   [class.red-icon]="playerBirthDate.invalid && playerBirthDate.touched"></i>
+              </div>
+            </div>
+            <input id="playerBirthDate" type="date" class="form-control" name="birthDate"
+                   [(ngModel)]="playerService.player.birthDate"
+                   #playerBirthDate="ngModel" placeholder="Insert Nick Name In English" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white">
+                <i class="fas fa-arrows-alt-v" [class.green-icon]="playerHeight.valid"
+                   [class.red-icon]="playerHeight.invalid && playerHeight.touched"></i>
+              </div>
+            </div>
+            <input id="playerHeight" type="text" class="form-control" name="height"
+                   [(ngModel)]="playerService.player.height"
+                   #playerHeight="ngModel" placeholder="Insert Height" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white">
+                <i class="fas fa-map-marker-alt" [class.green-icon]="playerPostions.valid"
+                   [class.red-icon]="playerPostions.invalid && playerPostions.touched"></i>
+              </div>
+            </div>
+            <select class="form-control" id="playerPostions" name="postions"
+                    [(ngModel)]="playerService.player.postions"
+                    #playerPostions="ngModel" required>
+              <option>Select Postions</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white">
+                <i class="fas fa-arrows-alt-h" [class.green-icon]="playerPreferred.valid"
+                   [class.red-icon]="playerPreferred.invalid && playerPreferred.touched"></i>
+              </div>
+            </div>
+            <select class="form-control" id="playerPreferred" name="preferred"
+                    [(ngModel)]="playerService.player.preferred"
+                    #playerPreferred="ngModel" required>
+              <option>Select Preferred</option>
+              <option>Right</option>
+              <option>Left</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white">
+                <i class="fas fa-venus-mars" [class.green-icon]="playerGender.valid"
+                   [class.red-icon]="playerGender.invalid && playerGender.touched"></i>
+              </div>
+            </div>
+            <select class="form-control" id="playerGender" name="gender"
+                    [(ngModel)]="playerService.player.gender"
+                    #playerGender="ngModel" required>
+              <option>Select Preferred</option>
+              <option>Male</option>
+              <option>FeMale</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <button class="btn btn-outline-success btn-block btn-sm" [disabled]="playerForm.invalid">
+          <i
+            class="far fa-check-square"></i> Submit
+        </button>
+      </div>
+    </div>
+  </form>
+</p-dialog>
+<p-dialog header="Delete Club" [(visible)]="displayDeleteClubDialog" [modal]="true" [responsive]="true"
+          [minY]="70" appendTo="body" [style]="{width: '350px', minWidth: '200px'}"
+          [baseZIndex]="10000">
+  <div class="text-center">
+    <i class="fas fa-exclamation-circle fa-4x text-danger "></i>
+  </div>
+  <br>
+  <h6 class="text-center">
+    Are You Sure To Delete This Club?!
+  </h6>
+  <br>
+  <button class="btn btn-outline-danger btn-sm btn-block" type="submit" (click)="onClubDelete()"><i
+    class="fas fa-bomb"></i>
+    Delete
+  </button>
+</p-dialog>
+<p-dialog header="Delete Team" [(visible)]="displayDeleteTeamDialog" [modal]="true" [responsive]="true"
+          [minY]="70" appendTo="body" [style]="{width: '350px', minWidth: '200px'}"
+          [baseZIndex]="10000">
+  <div class="text-center">
+    <i class="fas fa-exclamation-circle fa-4x text-danger "></i>
+  </div>
+  <br>
+  <h6 class="text-center">
+    Are You Sure To Delete This Team?!
+  </h6>
+  <br>
+  <button class="btn btn-outline-danger btn-sm btn-block" type="submit" (click)="onTeamDelete()"><i
+    class="fas fa-bomb"></i>
+    Delete
+  </button>
+</p-dialog>

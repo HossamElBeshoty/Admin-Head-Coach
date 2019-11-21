@@ -164,14 +164,13 @@ export class ActionComponent implements OnInit {
     }
   }
 
-  // ToDo
   postChildAction(form: NgForm) {
     this.childActionService.childAction.actionId = this.actionService.action.id;
     this.childActionService.postChildAction().subscribe(res => {
       this.childActionService.childAction.id = res as string;
     }, () => {
     }, () => {
-      this.childAction.push(this.childActionService.childAction);
+      this.childAction.push(Object.assign({}, this.childActionService.childAction));
       form.resetForm();
     });
   }

@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { TreeNode } from 'primeng/api';
+import {Component, OnInit} from '@angular/core';
+import {ClubService} from '../../Service/club.service';
+import {TeamService} from '../../Service/team.service';
+import {PlayerService} from '../../Service/player.service';
+import {IClub} from '../../Models/i-club';
+import {ITeam} from '../../Models/i-team';
 
 @Component({
   selector: 'ngx-teams-page',
@@ -7,156 +11,152 @@ import { TreeNode } from 'primeng/api';
   styleUrls: ['./teams-page.component.scss'],
 })
 export class TeamsPageComponent implements OnInit {
-  // cols: any[];
-  // display = false;
-  // allTeams = [{
-  //   id: 1,
-  //   club: 'Zamalik Sports Club',
-  //   player: 'Amr Mossad',
-  //   position: 'Back Left',
-  //   team: 'Under 16',
-  // }, {
-  //   id: 2,
-  //   club: 'Zamalik Sports Club',
-  //   player: 'Hazzem Hamed',
-  //   position: 'Back Left',
-  //   team: 'Under 16',
-  // }, {
-  //   id: 3,
-  //   club: 'Zamalik Sports Club',
-  //   player: 'Hossam Hamed',
-  //   position: 'Back Left',
-  //   team: 'Under 16',
-  // }, {
-  //   id: 4,
-  //   club: 'Ahly Sports Club',
-  //   player: 'Ahmed Mossad',
-  //   position: 'Back Left',
-  //   team: 'Under 16',
-  // }, {
-  //   id: 5,
-  //   club: 'Ahly Sports Club',
-  //   player: 'Hossam El Beshoty',
-  //   position: 'Back Left',
-  //   team: 'Under 16',
-  // }];
+  displayClubDialog: boolean = false;
+  displayDeleteClubDialog: boolean = false;
+  displayTeamDialog: boolean = false;
+  displayDeleteTeamDialog: boolean = false;
+  displayPlayerDialog: boolean = false;
+  allClubs: IClub[] = [];
+  allTeams: ITeam[] = [];
+  tabIndex = 0;
+  clubDeleteId;
+  teamDeleteId;
 
-  // rowGroupMetadata: any;
-  clubs: TreeNode[];
-  cols: any[];
-  constructor() { }
+  constructor(public clubService: ClubService, public teamService: TeamService, public playerService: PlayerService) {
+  }
 
   ngOnInit() {
-
-    // this.cols = [
-    //   { field: 'club', header: 'Club' },
-    //   { field: 'player', header: 'Player' },
-    //   { field: 'position', header: 'Position' },
-    //   { field: 'team', header: 'Team' },
-    // ];
-    // this.updateRowGroupMetaData();
-    this.cols = [
-      { field: 'clubName', header: 'Club Name' },
-      { field: 'teamName', header: 'Club Name' },
-      { field: 'player', header: 'Player' },
-      { field: 'position', header: 'Position' },
-    ];
-    this.clubs = [
-      {
-        'data': {
-          'clubName': 'El Zamalik Sports Club',
-        },
-        'children': [
-          {
-            'data': {
-              'teamName': 'Under 16 Years Old',
-            }, 'children': [
-              {
-                'data': {
-                  'player': 'Amr Mossad',
-                  'position': 'BL',
-                },
-              },
-              {
-                'data': {
-                  'player': 'Ahmed Mossad',
-                  'position': 'BR',
-                },
-              },
-            ],
-          },
-          {
-            'data': {
-              'teamName': 'Under 18 Years Old',
-            }, 'children': [
-              {
-                'data': {
-                  'player': 'Hazem Hamed',
-                  'position': 'BL',
-                },
-              },
-            ],
-          },
-        ],
-      },
-      {
-        'data': {
-          'clubName': 'El Ahly Sports Club',
-        },
-        'children': [
-          {
-            'data': {
-              'teamName': 'Under 16 Years Old',
-            }, 'children': [
-              {
-                'data': {
-                  'player': 'Amr Mossad',
-                  'position': 'BL',
-                },
-              },
-              {
-                'data': {
-                  'player': 'Ahmed Mossad',
-                  'position': 'BR',
-                },
-              },
-            ],
-          },
-          {
-            'data': {
-              'teamName': 'Under 18 Years Old',
-            }, 'children': [
-              {
-                'data': {
-                  'player': 'Hazem Hamed',
-                  'position': 'BL',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    ];
+    this.getAllClubs();
   }
-  // updateRowGroupMetaData() {
-  //   this.rowGroupMetadata = {};
-  //   if (this.allTeams) {
-  //     for (let i = 0; i < this.allTeams.length; i++) {
-  //       const rowData = this.allTeams[i];
-  //       const brand = rowData.club;
-  //       if (i === 0) {
-  //         this.rowGroupMetadata[brand] = { index: 0, size: 1 };
-  //       }
-  //       // tslint:disable-next-line:one-line
-  //       else {
-  //         const previousRowData = this.allTeams[i - 1];
-  //         const previousRowGroup = previousRowData.club;
-  //         if (brand === previousRowGroup)
-  //           this.rowGroupMetadata[brand].size++;
-  //         else
-  //           this.rowGroupMetadata[brand] = { index: i, size: 1 };
-  //       }
-  //     }
-  //   }
-  // }
+
+  showClubDialog() {
+    this.displayClubDialog = true;
+  }
+
+  showClubDeleteDialog(id) {
+    this.clubDeleteId = id;
+    this.displayDeleteClubDialog = true;
+  }
+
+  showTeamDeleteDialog(id) {
+    this.teamDeleteId = id;
+    this.displayDeleteTeamDialog = true;
+  }
+
+  onClubSubmit() {
+    if (!this.clubService.club.id) {
+      this.postClub();
+    } else {
+      this.editClub();
+    }
+  }
+
+  getAllClubs() {
+    this.clubService.getAllClubs().subscribe(res => {
+      this.allClubs = res as IClub[];
+    }, error => {
+    }, () => {
+      this.getTeams();
+    });
+  }
+
+  private postClub() {
+    this.clubService.postClub().subscribe(res => {
+      this.clubService.club.id = res as string;
+    }, error => {
+    }, () => {
+      this.allClubs.push(this.clubService.club);
+      this.displayClubDialog = false;
+    });
+  }
+
+  private editClub() {
+    this.clubService.updateClub().subscribe(res => {
+    }, error => {
+    }, () => {
+      const clubIndex = this.allClubs.findIndex(x => x.id === this.clubService.club.id);
+      this.allClubs[clubIndex] = this.clubService.club;
+      this.displayClubDialog = false;
+    });
+  }
+
+
+  updateClub(club: IClub) {
+    this.displayClubDialog = true;
+    this.clubService.club = Object.assign({}, club);
+  }
+
+  onClubDelete() {
+    this.clubService.deleteClub(this.clubDeleteId).subscribe(res => {
+    }, error => {
+    }, () => {
+      const index = this.allClubs.findIndex(x => x.id === this.clubDeleteId);
+      this.allClubs.splice(index, 1);
+      this.displayDeleteClubDialog = false;
+    });
+  }
+
+
+  onChangeTab(index) {
+    this.tabIndex = index;
+    this.getTeams();
+  }
+
+  onTeamSubmit() {
+    if (!this.teamService.team.id) {
+      this.postTeam();
+    } else {
+      this.editTeam();
+    }
+  }
+
+  private postTeam() {
+    this.teamService.team.clubId = this.allClubs[this.tabIndex].id;
+    this.teamService.postTeam().subscribe(res => {
+    }, error => {
+    }, () => {
+      this.allTeams.push(this.teamService.team);
+      this.displayTeamDialog = false;
+    });
+  }
+
+  private editTeam() {
+    this.teamService.updateTeam().subscribe(res => {
+    }, error => {
+    }, () => {
+      const teamIndex = this.allTeams.findIndex(z => z.id === this.teamService.team.id);
+      this.allTeams[teamIndex] = this.teamService.team;
+      this.displayTeamDialog = false;
+    });
+  }
+
+  getTeams() {
+    const clubId = this.allClubs[this.tabIndex].id;
+    this.teamService.getAllTeams(clubId).subscribe(res => {
+      this.allTeams = res as ITeam[];
+    });
+  }
+
+  updateTeam(team: ITeam) {
+    this.displayTeamDialog = true;
+    this.teamService.team = Object.assign({}, team);
+  }
+
+  onTeamDelete() {
+    this.teamService.deleteTeam(this.teamDeleteId).subscribe(res => {
+    }, error => {
+    }, () => {
+      const i = this.allTeams.findIndex(x => x.id === this.teamDeleteId);
+      this.allTeams.splice(i, 1);
+      this.displayDeleteTeamDialog = false;
+    });
+  }
+
+  showTeamDialog() {
+    this.displayTeamDialog = true;
+  }
+
+  showPlayerDialog() {
+    this.displayPlayerDialog = true;
+  }
 }

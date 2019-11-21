@@ -27,6 +27,7 @@ export class LoginPageComponent implements OnInit {
 
     this.loginService.loginMember(loginObj).subscribe((result: any) => {
       this.cookieService.set('access_token', result.access_token);
+      this.cookieService.set('userName', result.userName);
       this.router.navigateByUrl('/pages/home');
     }, error => {
       if (error.status === 400) {
