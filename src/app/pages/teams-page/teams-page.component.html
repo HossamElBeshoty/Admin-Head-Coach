@@ -1,10 +1,8 @@
-<div class="row container">
-  <div class="col-md-12">
-    <button class="btn btn-outline-primary animated slow  fadeInDown btn-block m-4" (click)="showClubDialog()"><i
-      class="fa fa-plus"></i> Add New
-      Club
-    </button>
-  </div>
+<div class="container">
+  <button class="btn btn-outline-primary animated slow fadeInDown btn-block m-4" (click)="showClubDialog()"><i
+    class="fa fa-plus"></i> Add New
+    Club
+  </button>
 </div>
 
 <div class="animated slower fadeInUp">
@@ -65,19 +63,18 @@
         </p-accordion>
       </p-tabPanel>
     </ng-container>
-
   </p-tabView>
 </div>
 
 
 <!--Add New Club-->
 <p-dialog header="Club" [(visible)]="displayClubDialog" [modal]="true" [responsive]="true"
-          [minY]="70" appendTo="body" [style]="{width: '750px', minWidth: '200px'}"
+          [minY]="70" appendTo="body" [style]="{width: '350px', minWidth: '200px'}"
           [baseZIndex]="10000">
   <form #clubForm="ngForm" style="width: 99%;" autocomplete="off">
     <input type="hidden" name="id" [value]="clubService.club.id">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-12">
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-prepend">
@@ -92,7 +89,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-12">
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-prepend">
@@ -344,7 +341,7 @@
         </div>
       </div>
       <div class="col-md-12">
-        <button class="btn btn-outline-success btn-block btn-sm" [disabled]="playerForm.invalid">
+        <button class="btn btn-outline-success btn-block btn-sm" (click)="onPlayerSubmit()" [disabled]="playerForm.invalid">
           <i
             class="far fa-check-square"></i> Submit
         </button>

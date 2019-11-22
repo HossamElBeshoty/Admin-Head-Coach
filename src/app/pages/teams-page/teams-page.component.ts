@@ -4,6 +4,7 @@ import {TeamService} from '../../Service/team.service';
 import {PlayerService} from '../../Service/player.service';
 import {IClub} from '../../Models/i-club';
 import {ITeam} from '../../Models/i-team';
+import {IPlayer} from '../../Models/i-player';
 
 @Component({
   selector: 'ngx-teams-page',
@@ -18,6 +19,7 @@ export class TeamsPageComponent implements OnInit {
   displayPlayerDialog: boolean = false;
   allClubs: IClub[] = [];
   allTeams: ITeam[] = [];
+  allPlayers: IPlayer[] = [];
   tabIndex = 0;
   clubDeleteId;
   teamDeleteId;
@@ -92,6 +94,7 @@ export class TeamsPageComponent implements OnInit {
     }, () => {
       const index = this.allClubs.findIndex(x => x.id === this.clubDeleteId);
       this.allClubs.splice(index, 1);
+      this.onChangeTab(0);
       this.displayDeleteClubDialog = false;
     });
   }
@@ -119,6 +122,7 @@ export class TeamsPageComponent implements OnInit {
       this.displayTeamDialog = false;
     });
   }
+
 
   private editTeam() {
     this.teamService.updateTeam().subscribe(res => {
@@ -159,4 +163,25 @@ export class TeamsPageComponent implements OnInit {
   showPlayerDialog() {
     this.displayPlayerDialog = true;
   }
+
+  onPlayerSubmit() {
+    this.postPlayer();
+  }
+
+  postPlayer() {
+    this.playerService.player.teamId = this.allTeams[this.tabIndex].id;
+    this.playerService.postPlayer().subscribe(res => {
+    }, error => {
+    }, () => {
+      this.allPlayers.push(this.playerService.player);
+      this.displayPlayerDialog = false;
+    });
+  }
+
+  getAllPlayers(id) {
+    this.playerService.getPlayers(id).subscribe(res => {
+      this.allPlayers = res as IPlayer[];
+    });
+  }
+
 }
