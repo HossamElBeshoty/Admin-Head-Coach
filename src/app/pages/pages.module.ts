@@ -25,10 +25,16 @@ import {TablePrimeNgComponent} from './widgets/table-prime-ng/table-prime-ng.com
 import {AngularMaterialModule} from './angular-material.module';
 import {AnalysisMatchPageComponent} from './analysis-page/analysis-match-page/analysis-match-page.component';
 import {NgxYoutubePlayerModule} from 'ngx-youtube-player';
-import { ActionComponent } from './components/action/action.component';
-import { PlayersBoxTeamComponent } from './components/players-box-team/players-box-team.component';
-import { YoutubePlayerComponent } from './components/youtube-player/youtube-player.component';
-import { PlayerCardComponent } from './widgets/player-card/player-card.component';
+import {ActionComponent} from './components/action/action.component';
+import {PlayersBoxTeamComponent} from './components/players-box-team/players-box-team.component';
+import {YoutubePlayerComponent} from './components/youtube-player/youtube-player.component';
+import {PlayerCardComponent} from './widgets/player-card/player-card.component';
+import {ImageCropperComponent} from './widgets/image-cropper/image-cropper.component';
+import {LyThemeModule, LY_THEME} from '@alyle/ui';
+import {MinimaLight} from '@alyle/ui/themes/minima';
+import {LyButtonModule} from '@alyle/ui/button';
+import {LyToolbarModule} from '@alyle/ui/toolbar';
+import {LyResizingCroppingImageModule} from '@alyle/ui/resizing-cropping-images';
 
 @NgModule({
   imports: [
@@ -41,8 +47,12 @@ import { PlayerCardComponent } from './widgets/player-card/player-card.component
     NgxYoutubePlayerModule.forRoot(),
     PrimengModule,
     FormsModule,
+    LyButtonModule,
+    LyToolbarModule,
+    LyResizingCroppingImageModule,
     AngularMaterialModule,
     ReactiveFormsModule,
+    LyThemeModule.setTheme('minima-light'),
   ],
   declarations: [
     PagesComponent,
@@ -64,7 +74,10 @@ import { PlayerCardComponent } from './widgets/player-card/player-card.component
     PlayersBoxTeamComponent,
     YoutubePlayerComponent,
     PlayerCardComponent,
+    ImageCropperComponent,
   ],
+  providers: [{provide: LY_THEME, useClass: MinimaLight, multi: true}],
+
 })
 export class PagesModule {
 }

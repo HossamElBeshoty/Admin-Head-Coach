@@ -25,7 +25,11 @@ import { LoginPageComponent } from './Page/login-page/login-page.component';
 import { RegistrationPageComponent } from './Page/registration-page/registration-page.component';
 import {httpInterceptorProviders} from './Interceptor';
 import { CookieService } from 'ngx-cookie-service';
-
+import { LyThemeModule, LY_THEME } from '@alyle/ui';
+import { MinimaLight } from '@alyle/ui/themes/minima';
+import { LyButtonModule } from '@alyle/ui/button';
+import { LyToolbarModule } from '@alyle/ui/toolbar';
+import { LyResizingCroppingImageModule } from '@alyle/ui/resizing-cropping-images';
 
 
 @NgModule({
@@ -36,6 +40,9 @@ import { CookieService } from 'ngx-cookie-service';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    LyButtonModule,
+    LyToolbarModule,
+    LyResizingCroppingImageModule,
     FormsModule,
     ThemeModule.forRoot(),
     NbSidebarModule.forRoot(),
@@ -48,9 +55,12 @@ import { CookieService } from 'ngx-cookie-service';
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),
     CoreModule.forRoot(),
+    LyThemeModule.setTheme('minima-light'),
   ],
   bootstrap: [AppComponent],
-  providers: [httpInterceptorProviders, CookieService],
+  providers: [httpInterceptorProviders, CookieService, {provide: LY_THEME, useClass: MinimaLight, multi: true}],
+  exports: [
+  ],
 })
 export class AppModule {
 }
