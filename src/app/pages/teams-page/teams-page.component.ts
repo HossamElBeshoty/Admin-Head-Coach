@@ -17,12 +17,14 @@ export class TeamsPageComponent implements OnInit {
   displayTeamDialog: boolean = false;
   displayDeleteTeamDialog: boolean = false;
   displayPlayerDialog: boolean = false;
+  displayDeletePlayerDialog: boolean = false;
   allClubs: IClub[] = [];
   allTeams: ITeam[] = [];
   allPlayers: IPlayer[] = [];
   tabIndex = 0;
   clubDeleteId;
   teamDeleteId;
+  playerDeleteId;
 
   constructor(public clubService: ClubService, public teamService: TeamService, public playerService: PlayerService) {
   }
@@ -43,6 +45,11 @@ export class TeamsPageComponent implements OnInit {
   showTeamDeleteDialog(id) {
     this.teamDeleteId = id;
     this.displayDeleteTeamDialog = true;
+  }
+
+  showPlayerDeleteDialog(id) {
+    this.playerDeleteId = id;
+    this.displayDeletePlayerDialog = true;
   }
 
   onClubSubmit() {
@@ -87,6 +94,7 @@ export class TeamsPageComponent implements OnInit {
     this.displayClubDialog = true;
     this.clubService.club = Object.assign({}, club);
   }
+
 
   onClubDelete() {
     this.clubService.deleteClub(this.clubDeleteId).subscribe(res => {
@@ -134,6 +142,7 @@ export class TeamsPageComponent implements OnInit {
     });
   }
 
+
   getTeams() {
     const clubId = this.allClubs[this.tabIndex].id;
     this.teamService.getAllTeams(clubId).subscribe(res => {
@@ -156,6 +165,7 @@ export class TeamsPageComponent implements OnInit {
     });
   }
 
+
   showTeamDialog() {
     this.displayTeamDialog = true;
   }
@@ -165,10 +175,14 @@ export class TeamsPageComponent implements OnInit {
   }
 
   onPlayerSubmit() {
-    this.postPlayer();
+    if (!this.playerService.player.id) {
+      this.postPlayer();
+    } else {
+      this.editPlayer();
+    }
   }
 
-  postPlayer() {
+  private postPlayer() {
     this.playerService.player.teamId = this.allTeams[this.tabIndex].id;
     this.playerService.postPlayer().subscribe(res => {
     }, error => {
@@ -184,4 +198,28 @@ export class TeamsPageComponent implements OnInit {
     });
   }
 
+  updatePlayer(player: IPlayer) {
+    this.displayPlayerDialog = true;
+    this.playerService.player = Object.assign({}, player);
+  }
+
+  private editPlayer() {
+    this.playerService.putPlayer().subscribe(res => {
+    }, error => {
+    }, () => {
+      const playerIndex = this.allPlayers.findIndex(y => y.id === this.playerService.player.id);
+      this.allPlayers[playerIndex] = this.playerService.player;
+      this.displayPlayerDialog = false;
+    });
+  }
+
+  onPlayerDelete() {
+    this.playerService.deletePlayer(this.playerDeleteId).subscribe(res => {
+    }, error => {
+    }, () => {
+      const z = this.allPlayers.findIndex(x => x.id === this.playerDeleteId);
+      this.allPlayers.splice(z, 1);
+      this.displayDeletePlayerDialog = false;
+    });
+  }
 }

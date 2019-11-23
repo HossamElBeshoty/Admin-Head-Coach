@@ -16,6 +16,14 @@ export class PlayerService {
   }
 
   getPlayers(id) {
-    return this.dataService.get('api/Player/' + id);
+    return this.dataService.get('api/Player/getByTeamId/' + id);
+  }
+
+  putPlayer() {
+    return this.dataService.edit('api/Player', this.player);
+  }
+
+  deletePlayer(id) {
+    return this.dataService.delete('api/Player/', id);
   }
 }

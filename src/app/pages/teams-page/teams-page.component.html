@@ -27,39 +27,43 @@
           </div>
         </div>
         <br>
-        <p-accordion *ngFor="let team of allTeams">
-          <p-accordionTab header="{{team.nameAr}}">
-            <div class="row">
-              <div class="col-md-4">
-                <button class="btn btn-outline-primary btn-block btn-sm" (click)="showPlayerDialog()"><i
-                  class="fa fa-plus"></i> Add Player
-                </button>
+        <p-accordion>
+          <div *ngFor="let team of allTeams">
+            <p-accordionTab header="{{team.nameAr}}" (click)="getAllPlayers(team.id)">
+              <div class="row">
+                <div class="col-md-4">
+                  <button class="btn btn-outline-primary btn-block btn-sm" (click)="showPlayerDialog()"><i
+                    class="fa fa-plus"></i> Add Player
+                  </button>
+                </div>
+                <div class="col-md-4">
+                  <button class="btn btn-outline-secondary btn-block btn-sm" (click)="updateTeam(team)"><i
+                    class="far fa-edit"></i> Update Team
+                  </button>
+                </div>
+                <div class="col-md-4">
+                  <button class="btn btn-outline-danger btn-block btn-sm" (click)="showTeamDeleteDialog(team.id)"><i
+                    class="fas fa-ban"></i> Delete Team
+                  </button>
+                </div>
               </div>
-              <div class="col-md-4">
-                <button class="btn btn-outline-secondary btn-block btn-sm" (click)="updateTeam(team)"><i
-                  class="far fa-edit"></i> Update Team
-                </button>
-              </div>
-              <div class="col-md-4">
-                <button class="btn btn-outline-danger btn-block btn-sm" (click)="showTeamDeleteDialog(team.id)"><i
-                  class="fas fa-ban"></i> Delete Team
-                </button>
-              </div>
-            </div>
-            <br>
-            <div class="row">
-              <div class="col-md-2 text-center">
-                <div class="card m-2 shadow" style="width: 15rem;">
-                  <img src="../../../assets/images/alan.png" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Player Name</h5>
-                    <button class="btn btn-outline-secondary"><i class="fas fa-pen"></i></button>
-                    <button class="btn ml-1 btn-outline-danger"><i class="fas fa-trash"></i></button>
+              <br>
+              <div class="row">
+                <div class="col-md-2 text-center" *ngFor="let player of allPlayers">
+                  <div class="card m-2 shadow" style="width: 14rem;">
+                    <img src="../../../assets/images/alan.png" class="card-img-top" alt="{{player.nameAr}}">
+                    <div class="card-body">
+                      <h5 class="card-title">{{player.nameAr}}</h5>
+                      <button class="btn btn-outline-secondary" (click)="updatePlayer(player)"><i
+                        class="fas fa-pen"></i></button>
+                      <button class="btn ml-1 btn-outline-danger" (click)="showPlayerDeleteDialog(player.id)"><i
+                        class="fas fa-trash"></i></button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </p-accordionTab>
+            </p-accordionTab>
+          </div>
         </p-accordion>
       </p-tabPanel>
     </ng-container>
@@ -167,6 +171,7 @@
           [minY]="70" appendTo="body" [style]="{width: '850px', minWidth: '200px'}"
           [baseZIndex]="10000">
   <form action="" #playerForm="ngForm" style="width: 99%;" autocomplete="off">
+    <input type="hidden" name="id" [value]="playerService.player.id">
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
@@ -341,7 +346,8 @@
         </div>
       </div>
       <div class="col-md-12">
-        <button class="btn btn-outline-success btn-block btn-sm" (click)="onPlayerSubmit()" [disabled]="playerForm.invalid">
+        <button class="btn btn-outline-success btn-block btn-sm" (click)="onPlayerSubmit()"
+                [disabled]="playerForm.invalid">
           <i
             class="far fa-check-square"></i> Submit
         </button>
@@ -377,6 +383,23 @@
   </h6>
   <br>
   <button class="btn btn-outline-danger btn-sm btn-block" type="submit" (click)="onTeamDelete()"><i
+    class="fas fa-bomb"></i>
+    Delete
+  </button>
+</p-dialog>
+
+<p-dialog header="Delete Player" [(visible)]="displayDeletePlayerDialog" [modal]="true" [responsive]="true"
+          [minY]="70" appendTo="body" [style]="{width: '350px', minWidth: '200px'}"
+          [baseZIndex]="10000">
+  <div class="text-center">
+    <i class="fas fa-exclamation-circle fa-4x text-danger "></i>
+  </div>
+  <br>
+  <h6 class="text-center">
+    Are You Sure To Delete This Player?!
+  </h6>
+  <br>
+  <button class="btn btn-outline-danger btn-sm btn-block" type="submit" (click)="onPlayerDelete()"><i
     class="fas fa-bomb"></i>
     Delete
   </button>
