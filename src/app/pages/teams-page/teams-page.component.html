@@ -10,19 +10,15 @@
     <ng-container *ngFor="let item of allClubs;let i = index;">
       <p-tabPanel header="{{item.nameAr}}" [selected]="i == tabIndex">
         <div class="row">
-          <div class="col-md-4">
-            <button class="btn btn-outline-primary btn-block btn-sm" (click)="showTeamDialog()"><i
-              class="fa fa-plus"></i> Add Team
+          <div class="col-md-12 ">
+            <button class="btn btn-outline-danger float-right ml-2 btn-sm" (click)="showClubDeleteDialog(item.id)"><i
+              class="fas fa-ban"></i> Delete Club
             </button>
-          </div>
-          <div class="col-md-4">
-            <button class="btn btn-outline-secondary btn-block btn-sm" (click)="updateClub(item)"><i
+            <button class="btn btn-outline-secondary float-right ml-2 btn-sm" (click)="updateClub(item)"><i
               class="far fa-edit"></i> Update Club
             </button>
-          </div>
-          <div class="col-md-4">
-            <button class="btn btn-outline-danger btn-block btn-sm" (click)="showClubDeleteDialog(item.id)"><i
-              class="fas fa-ban"></i> Delete Club
+            <button class="btn btn-outline-primary float-right ml-2 btn-sm" (click)="showTeamDialog()"><i
+              class="fa fa-plus"></i> Add Team
             </button>
           </div>
         </div>
@@ -31,19 +27,16 @@
           <div *ngFor="let team of allTeams">
             <p-accordionTab header="{{team.nameAr}}" (click)="getAllPlayers(team.id)">
               <div class="row">
-                <div class="col-md-4">
-                  <button class="btn btn-outline-primary btn-block btn-sm" (click)="showPlayerDialog()"><i
-                    class="fa fa-plus"></i> Add Player
+                <div class="col-md-12">
+                  <button class="btn btn-outline-danger float-right ml-2 btn-sm"
+                          (click)="showTeamDeleteDialog(team.id)"><i
+                    class="fas fa-ban"></i> Delete Team
                   </button>
-                </div>
-                <div class="col-md-4">
-                  <button class="btn btn-outline-secondary btn-block btn-sm" (click)="updateTeam(team)"><i
+                  <button class="btn btn-outline-secondary float-right ml-2 btn-sm" (click)="updateTeam(team)"><i
                     class="far fa-edit"></i> Update Team
                   </button>
-                </div>
-                <div class="col-md-4">
-                  <button class="btn btn-outline-danger btn-block btn-sm" (click)="showTeamDeleteDialog(team.id)"><i
-                    class="fas fa-ban"></i> Delete Team
+                  <button class="btn btn-outline-primary float-right ml-2 btn-sm" (click)="showPlayerDialog()"><i
+                    class="fa fa-plus"></i> Add Player
                   </button>
                 </div>
               </div>

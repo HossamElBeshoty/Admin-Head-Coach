@@ -52,29 +52,27 @@
   <mat-horizontal-stepper labelPosition="bottom" #stepper>
     <mat-step>
       <form>
-        <ng-template matStepLabel>Youtube URL</ng-template>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label for="Youtube Link">Youtube Link</label>
-              <input type="text" class="form-control" id="Youtube Link" aria-describedby="emailHelp"
-                     placeholder="Please Enter Youtube Link">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <button type="submit" class="btn btn-outline-primary float-right" matStepperNext><i
-              class="far fa-hand-point-right"></i> Next Step
-            </button>
-          </div>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step>
-      <form>
         <ng-template matStepLabel>Teams</ng-template>
         <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="matchDate">Match Date</label>
+              <input type="date" class="form-control" id="matchDate">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="actionStatement">Select Your Action Statement</label>
+              <select class="form-control" id="actionStatement">
+                <option>Please Select Action Statement</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+          </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="clubA">Select Club A</label>
@@ -130,12 +128,7 @@
         </div>
 
         <div class="row">
-          <div class="col-md-6 float-left">
-            <button type="submit" class="btn btn-outline-secondary" matStepperPrevious><i
-              class="far fa-hand-point-left"></i> Previous Step
-            </button>
-          </div>
-          <div class="col-md-6 ">
+          <div class="col-md-12">
             <button type="submit" class="btn btn-outline-primary float-right" matStepperNext><i
               class="far fa-hand-point-right"></i> Next Step
             </button>
@@ -212,19 +205,13 @@
     </mat-step>
     <mat-step>
       <form>
-        <ng-template matStepLabel>Statement</ng-template>
+        <ng-template matStepLabel>Youtube URL</ng-template>
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <label for="actionStatement">Select Your Action Statement</label>
-              <select class="form-control" id="actionStatement">
-                <option>Please Select Action Statement</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
+              <label for="Youtube Link">Youtube Link</label>
+              <input type="text" class="form-control" id="Youtube Link" aria-describedby="emailHelp"
+                     placeholder="Please Enter Youtube Link">
             </div>
           </div>
         </div>
@@ -234,7 +221,7 @@
               class="far fa-hand-point-left"></i> Previous Step
             </button>
           </div>
-          <div class="col-md-6 ">
+          <div class="col-md-6">
             <button type="submit" class="btn btn-outline-primary float-right" matStepperNext><i
               class="far fa-hand-point-right"></i> Next Step
             </button>

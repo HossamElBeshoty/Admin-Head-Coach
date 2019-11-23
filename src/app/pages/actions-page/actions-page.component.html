@@ -63,12 +63,13 @@
       <p-tabPanel [header]="item.nameAr" [selected]="i == tabIndex">
         <div class="row">
           <div class="col-md-12 ">
-            <button class="btn btn-outline-secondary float-right btn-sm" (click)="populateForm(item)"><i
-              class="far fa-edit"></i> Update Page
-            </button>
             <button class="btn btn-outline-danger mr-2 float-right btn-sm" (click)="showDeletePageDialog(item)"><i
               class="fas fa-ban"></i> Delete Page
             </button>
+            <button class="btn btn-outline-secondary mr-2 float-right btn-sm" (click)="populateForm(item)"><i
+              class="far fa-edit"></i> Update Page
+            </button>
+
           </div>
 
         </div>
