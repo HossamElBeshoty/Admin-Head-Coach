@@ -10,7 +10,10 @@
     <ng-container *ngFor="let item of allClubs;let i = index;">
       <p-tabPanel header="{{item.nameAr}}" [selected]="i == tabIndex">
         <div class="row">
-          <div class="col-md-12 ">
+          <div class="col-md-6">
+            <img [src]="item.logoPath" class="img-fluid img-thumbnail" [alt]="item.nameAr">
+          </div>
+          <div class="col-md-6">
             <button class="btn btn-outline-danger float-right ml-2 btn-sm" (click)="showClubDeleteDialog(item.id)"><i
               class="fas fa-ban"></i> Delete Club
             </button>
@@ -35,7 +38,8 @@
                   <button class="btn btn-outline-secondary float-right ml-2 btn-sm" (click)="updateTeam(team)"><i
                     class="far fa-edit"></i> Update Team
                   </button>
-                  <button class="btn btn-outline-primary float-right ml-2 btn-sm" (click)="showPlayerDialog()"><i
+                  <button class="btn btn-outline-primary float-right ml-2 btn-sm"
+                          (click)="showPlayerDialog(team.id);playerForm.resetForm();"><i
                     class="fa fa-plus"></i> Add Player
                   </button>
                 </div>
@@ -100,6 +104,14 @@
                    #nameEn="ngModel" placeholder="Insert Name In English" required>
           </div>
         </div>
+      </div>
+      <div class="col-md-12 mb-2 text-center" *ngIf="clubService.club.logoPath">
+        <img [src]="clubService.club.logoPath" class="img-fluid" [alt]="clubService.club.nameAr">
+      </div>
+      <div class="col-md-12">
+        <button class="btn btn-outline-warning btn-block mb-2 btn-sm" (click)="showCropImageDialog()"><i
+          class="fas fa-expand"></i> Upload Image
+        </button>
       </div>
       <div class="col-md-12">
         <button class="btn btn-outline-success btn-block btn-sm" (click)="onClubSubmit()"
@@ -290,12 +302,14 @@
             <select class="form-control" id="playerPostions" name="postions"
                     [(ngModel)]="playerService.player.postions"
                     #playerPostions="ngModel" required>
-              <option>Select Postions</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+              <option>Select Positions</option>
+              <option value="1">LW</option>
+              <option value="2">LB</option>
+              <option value="3">CB</option>
+              <option value="4">RB</option>
+              <option value="5">RW</option>
+              <option value="6">PV</option>
+              <option value="7">GK</option>
             </select>
           </div>
         </div>
@@ -313,8 +327,8 @@
                     [(ngModel)]="playerService.player.preferred"
                     #playerPreferred="ngModel" required>
               <option>Select Preferred</option>
-              <option>Right</option>
-              <option>Left</option>
+              <option value="1">Right</option>
+              <option value="2">Left</option>
             </select>
           </div>
         </div>
@@ -332,8 +346,8 @@
                     [(ngModel)]="playerService.player.gender"
                     #playerGender="ngModel" required>
               <option>Select Preferred</option>
-              <option>Male</option>
-              <option>FeMale</option>
+              <option value="1">Male</option>
+              <option value="2">FeMale</option>
             </select>
           </div>
         </div>
@@ -395,5 +409,20 @@
   <button class="btn btn-outline-danger btn-sm btn-block" type="submit" (click)="onPlayerDelete()"><i
     class="fas fa-bomb"></i>
     Delete
+  </button>
+</p-dialog>
+
+<p-dialog header="Crop Image" [(visible)]="displayCropImageDialog" [modal]="true" [responsive]="true"
+          [minY]="70" appendTo="body" [style]="{width: '750px', minWidth: '200px'}"
+          [baseZIndex]="10000">
+  <div class="row" style="width: 99%;">
+    <div class="col-md-12">
+      <ngx-image-cropper [onCropperWidth]="100" [onCropperHeight]="100"
+                         (imgCropper)="displayImg($event)"></ngx-image-cropper>
+    </div>
+  </div>
+  <br>
+  <button class="btn btn-outline-success btn-block btn-sm" (click)="this.displayCropImageDialog = false;">
+    <i class="far fa-check-square"></i> Submit
   </button>
 </p-dialog>

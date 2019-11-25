@@ -11,16 +11,16 @@
 
     <div class="text-center" *ngIf="cropping.isLoaded">
       <button (click)="cropping.zoomIn()" ly-button appearance="icon">
-        <i class="glyphicon glyphicon-zoom-in"></i>
+        <i class="fas fa-search-plus"></i>
       </button>
       <button (click)="cropping.zoomOut()" ly-button appearance="icon">
-        <i class="glyphicon glyphicon-zoom-out"></i>
+        <i class="fas fa-search-minus"></i>
       </button>
       <button (click)="cropping.center()" ly-button appearance="icon">
         <i class="fa fa-align-center"></i>
       </button>
       <button (click)="cropping.rotate(-90)" ly-button appearance="icon">
-        <i class="fa fa-rotate-right"></i>
+        <i class="fas fa-sync-alt"></i>
       </button>
       <button (click)="cropping.fit()" ly-button appearance="icon">
         <i class="fa fa-expand"></i>
@@ -33,7 +33,7 @@
         <i class="fa fa-crop"></i>
       </button>
       <button (click)="cropping.clean()" ly-button appearance="icon">
-        <i class="glyphicon glyphicon-trash"></i>
+        <i class="fas fa-trash-alt"></i>
       </button>
     </div>
 

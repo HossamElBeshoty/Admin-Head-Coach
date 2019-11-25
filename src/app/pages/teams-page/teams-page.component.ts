@@ -18,6 +18,7 @@ export class TeamsPageComponent implements OnInit {
   displayDeleteTeamDialog: boolean = false;
   displayPlayerDialog: boolean = false;
   displayDeletePlayerDialog: boolean = false;
+  displayCropImageDialog: boolean = false;
   allClubs: IClub[] = [];
   allTeams: ITeam[] = [];
   allPlayers: IPlayer[] = [];
@@ -25,6 +26,7 @@ export class TeamsPageComponent implements OnInit {
   clubDeleteId;
   teamDeleteId;
   playerDeleteId;
+  imagePath;
 
   constructor(public clubService: ClubService, public teamService: TeamService, public playerService: PlayerService) {
   }
@@ -35,6 +37,15 @@ export class TeamsPageComponent implements OnInit {
 
   showClubDialog() {
     this.displayClubDialog = true;
+  }
+
+  showCropImageDialog() {
+    this.displayCropImageDialog = true;
+  }
+
+  displayImg(event: any) {
+    this.clubService.club.logoPath = event;
+    // this.imagePath = event;
   }
 
   showClubDeleteDialog(id) {
@@ -170,7 +181,8 @@ export class TeamsPageComponent implements OnInit {
     this.displayTeamDialog = true;
   }
 
-  showPlayerDialog() {
+  showPlayerDialog(teamId: string) {
+    this.playerService.player.teamId = teamId;
     this.displayPlayerDialog = true;
   }
 
@@ -183,7 +195,6 @@ export class TeamsPageComponent implements OnInit {
   }
 
   private postPlayer() {
-    this.playerService.player.teamId = this.allTeams[this.tabIndex].id;
     this.playerService.postPlayer().subscribe(res => {
     }, error => {
     }, () => {
