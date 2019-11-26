@@ -14,4 +14,8 @@ export class MatchService {
   postNewMatch() {
     return this.dataService.add('api/Match', this.match);
   }
+
+  getAllMatches() {
+    return this.dataService.get('api/Match/getAll/');
+  }
 }

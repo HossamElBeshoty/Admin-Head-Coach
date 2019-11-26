@@ -1,5 +1,5 @@
 export interface IMatchVideo {
   id?: string;
-  matchId: string;
+  matchId?: string;
   path: string;
 }
