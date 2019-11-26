@@ -5,6 +5,7 @@ import {PlayerService} from '../../Service/player.service';
 import {IClub} from '../../Models/i-club';
 import {ITeam} from '../../Models/i-team';
 import {IPlayer} from '../../Models/i-player';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'ngx-teams-page',
@@ -19,6 +20,7 @@ export class TeamsPageComponent implements OnInit {
   displayPlayerDialog: boolean = false;
   displayDeletePlayerDialog: boolean = false;
   displayCropImageDialog: boolean = false;
+  displayCropPlayerImageDialog: boolean = false;
   allClubs: IClub[] = [];
   allTeams: ITeam[] = [];
   allPlayers: IPlayer[] = [];
@@ -26,17 +28,23 @@ export class TeamsPageComponent implements OnInit {
   clubDeleteId;
   teamDeleteId;
   playerDeleteId;
-  imagePath;
+  allNationalities;
+  apiEndPoint = environment.apiEndPoint;
 
   constructor(public clubService: ClubService, public teamService: TeamService, public playerService: PlayerService) {
   }
 
   ngOnInit() {
     this.getAllClubs();
+    this.getNationality();
   }
 
   showClubDialog() {
     this.displayClubDialog = true;
+  }
+
+  showPlayerImageCropper() {
+    this.displayCropPlayerImageDialog = true;
   }
 
   showCropImageDialog() {
@@ -46,6 +54,10 @@ export class TeamsPageComponent implements OnInit {
   displayImg(event: any) {
     this.clubService.club.logoPath = event;
     // this.imagePath = event;
+  }
+
+  displayPlayerImg(event: any) {
+    this.playerService.player.imagePath = event;
   }
 
   showClubDeleteDialog(id) {
@@ -231,6 +243,12 @@ export class TeamsPageComponent implements OnInit {
       const z = this.allPlayers.findIndex(x => x.id === this.playerDeleteId);
       this.allPlayers.splice(z, 1);
       this.displayDeletePlayerDialog = false;
+    });
+  }
+
+  getNationality() {
+    this.playerService.getAllNationality().subscribe(res => {
+      this.allNationalities = res;
     });
   }
 }

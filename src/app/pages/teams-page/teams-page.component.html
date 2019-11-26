@@ -11,7 +11,10 @@
       <p-tabPanel header="{{item.nameAr}}" [selected]="i == tabIndex">
         <div class="row">
           <div class="col-md-6">
-            <img [src]="item.logoPath" class="img-fluid img-thumbnail" [alt]="item.nameAr">
+            <img
+              [src]="item.logoPath!= null ?  item.logoPath.includes('data:image')?item.logoPath:apiEndPoint + item.logoPath: null"
+              class="img-fluid img-thumbnail"
+              [alt]="item.nameAr">
           </div>
           <div class="col-md-6">
             <button class="btn btn-outline-danger float-right ml-2 btn-sm" (click)="showClubDeleteDialog(item.id)"><i
@@ -48,7 +51,7 @@
               <div class="row">
                 <div class="col-md-2 text-center" *ngFor="let player of allPlayers">
                   <div class="card m-2 shadow" style="width: 14rem;">
-                    <img src="../../../assets/images/alan.png" class="card-img-top" alt="{{player.nameAr}}">
+                    <img [src]="player.imagePath!= null ?  player.imagePath.includes('data:image')?player.imagePath:apiEndPoint + player.imagePath: null" class="card-img-top" [alt]="player.nameAr">
                     <div class="card-body">
                       <h5 class="card-title">{{player.nameAr}}</h5>
                       <button class="btn btn-outline-secondary" (click)="updatePlayer(player)"><i
@@ -106,7 +109,9 @@
         </div>
       </div>
       <div class="col-md-12 mb-2 text-center" *ngIf="clubService.club.logoPath">
-        <img [src]="clubService.club.logoPath" class="img-fluid" [alt]="clubService.club.nameAr">
+        <img
+          [src]="clubService.club.logoPath!= null ?  clubService.club.logoPath.includes('data:image')?clubService.club.logoPath:apiEndPoint + clubService.club.logoPath: null"
+          class="img-fluid img-thumbnail" [alt]="clubService.club.nameAr">
       </div>
       <div class="col-md-12">
         <button class="btn btn-outline-warning btn-block mb-2 btn-sm" (click)="showCropImageDialog()"><i
@@ -250,12 +255,8 @@
             <select class="form-control" id="playerNationality" name="nationalityId"
                     [(ngModel)]="playerService.player.nationalityId"
                     #playerNationality="ngModel" required>
-              <option>Select Nationality</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+              <option disabled>Select Nationality</option>
+              <option *ngFor="let x of allNationalities" [value]="x.id">{{x.nameAr}}</option>
             </select>
           </div>
         </div>
@@ -352,6 +353,14 @@
           </div>
         </div>
       </div>
+      <div class="col-md-12 mb-2 text-center" *ngIf="playerService.player.imagePath">
+        <img [src]="playerService.player.imagePath" [alt]="playerService.player.nameAr">
+      </div>
+      <div class="col-md-12">
+        <button class="btn btn-outline-warning btn-block mb-2 btn-sm" (click)="showPlayerImageCropper()"><i
+          class="fas fa-expand"></i> Upload Image
+        </button>
+      </div>
       <div class="col-md-12">
         <button class="btn btn-outline-success btn-block btn-sm" (click)="onPlayerSubmit()"
                 [disabled]="playerForm.invalid">
@@ -412,7 +421,7 @@
   </button>
 </p-dialog>
 
-<p-dialog header="Crop Image" [(visible)]="displayCropImageDialog" [modal]="true" [responsive]="true"
+<p-dialog header="Crop Club Image" [(visible)]="displayCropImageDialog" [modal]="true" [responsive]="true"
           [minY]="70" appendTo="body" [style]="{width: '750px', minWidth: '200px'}"
           [baseZIndex]="10000">
   <div class="row" style="width: 99%;">
@@ -423,6 +432,21 @@
   </div>
   <br>
   <button class="btn btn-outline-success btn-block btn-sm" (click)="this.displayCropImageDialog = false;">
+    <i class="far fa-check-square"></i> Submit
+  </button>
+</p-dialog>
+
+<p-dialog header="Crop Player Image" [(visible)]="displayCropPlayerImageDialog" [modal]="true" [responsive]="true"
+          [minY]="70" appendTo="body" [style]="{width: '750px', minWidth: '200px'}"
+          [baseZIndex]="10000">
+  <div class="row" style="width: 99%;">
+    <div class="col-md-12">
+      <ngx-image-cropper [onCropperWidth]="250" [onCropperHeight]="250"
+                         (imgCropper)="displayPlayerImg($event)"></ngx-image-cropper>
+    </div>
+  </div>
+  <br>
+  <button class="btn btn-outline-success btn-block btn-sm" (click)="this.displayCropPlayerImageDialog = false;">
     <i class="far fa-check-square"></i> Submit
   </button>
 </p-dialog>

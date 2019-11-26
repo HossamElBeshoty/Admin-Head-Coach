@@ -26,4 +26,8 @@ export class PlayerService {
   deletePlayer(id) {
     return this.dataService.delete('api/Player/', id);
   }
+
+  getAllNationality() {
+    return this.dataService.get('api/Nationality');
+  }
 }
