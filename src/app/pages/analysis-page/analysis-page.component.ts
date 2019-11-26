@@ -35,7 +35,6 @@ export class AnalysisPageComponent implements OnInit {
   allPlayersB: IPlayer[] = [];
   targetPlayerA: IPlayer[] = [];
   targetPlayerB: IPlayer[] = [];
-  youtubeInput = [1];
 
   constructor(public clubsService: ClubService,
               public teamsService: TeamService,
@@ -49,12 +48,13 @@ export class AnalysisPageComponent implements OnInit {
     this.matchesService.match.matchVideos = [];
     this.addNewYoutubeInput();
     this.cols = [
-      {field: 'date', header: 'Match Date'},
-      {field: 'teamA', header: 'Team A'},
-      {field: 'teamB', header: 'Team B'},
+      {field: 'matchDate', header: 'Match Date'},
+      {field: 'teamA', header: 'Team A', subfield: 'nameAr', subfieldName: 'teamA.nameAr'},
+      {field: 'teamB', header: 'Team B', subfield: 'nameAr', subfieldName: 'teamB.nameAr'},
     ];
     this.getAllClubs();
     this.getAllGroups();
+    this.getAllMatches();
   }
 
   update() {
@@ -140,6 +140,12 @@ export class AnalysisPageComponent implements OnInit {
     }, () => {
     });
     // console.log(this.matchesService.match)
+  }
+
+  getAllMatches() {
+    this.matchesService.getAllMatches().subscribe(res => {
+      this.allMatches = res as IMatch[];
+    });
   }
 }
 

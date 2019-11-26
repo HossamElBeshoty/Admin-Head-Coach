@@ -52,7 +52,7 @@ const routes: Routes = [{
       component: PersonalPageComponent,
     },
     {
-      path: 'analysis/matchAnalysis',
+      path: 'analysis/matchAnalysis/:id',
       component: AnalysisMatchPageComponent,
     },
     {

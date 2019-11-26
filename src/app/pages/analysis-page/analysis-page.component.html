@@ -5,23 +5,29 @@
   </button>
 </div>
 <div class="container-fluid">
-  <p-table #dt1 [columns]="cols" [value]="allMatches" [paginator]="true" [rows]="10" dataKey="id"
+  <p-table #dt1 [columns]="cols" [value]="allMatches" [paginator]="true" [rows]="10" dataKey="id" sortMode="multiple"
            [resizableColumns]="true"
            [reorderableColumns]="true"
            stateStorage="session" stateKey="statedemo-session">
     <ng-template pTemplate="header" let-columns>
       <tr>
-        <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn pReorderableColumn>
+        <th *ngFor="let col of columns" [pSortableColumn]="col.subfield?col.subfieldName:col.field" pResizableColumn
+            pReorderableColumn>
           {{col.header}}
-          <p-sortIcon [field]="col.field"></p-sortIcon>
+          <p-sortIcon [field]="col.subfield?col.subfieldName:col.field"></p-sortIcon>
         </th>
         <th>Actions</th>
       </tr>
       <tr>
-        <th *ngFor="let col of columns" [ngSwitch]="col.field" class="ui-fluid">
-          <input class="form-control" type="text"
-                 (input)="dt1.filter($event.target.value, col.field, col.filterMatchMode)"
-                 [value]="dt1.filters[col.field]?.value">
+        <th *ngFor="let col of columns">
+          <div *ngIf="col.subfield;then nested_object_content else normal_content"></div>
+          <ng-template #nested_object_content>
+            <input type="text" class="form-control" (input)="dt1.filter($event.target.value, col.subfieldName)">
+          </ng-template>
+          <ng-template #normal_content>
+            <input [type]="col.field=='matchDate'?'date':'text'" class="form-control"
+                   (input)="dt1.filter($event.target.value, col.field)">
+          </ng-template>
         </th>
         <th></th>
       </tr>
@@ -29,7 +35,13 @@
     <ng-template pTemplate="body" let-rowData let-columns="columns">
       <tr>
         <td *ngFor="let col of columns">
-          {{rowData[col.field]}}
+          <div *ngIf="col.subfield;then nested_object_content else normal_content"></div>
+          <ng-template #nested_object_content>
+            {{rowData[col.field][col.subfield]}}
+          </ng-template>
+          <ng-template #normal_content>
+            {{rowData[col.field] | date: 'dd-MM-yyyy'}}
+          </ng-template>
         </td>
         <td>
           <div class="row">
@@ -52,7 +64,7 @@
           [baseZIndex]="10000" [style]="{width: '900px', minWidth: '800px'}">
   <mat-horizontal-stepper labelPosition="bottom" #stepper>
     <mat-step>
-      <form>
+      <form #matchDataForm="ngForm">
         <ng-template matStepLabel>Match Data</ng-template>
         <div class="row">
           <div class="col-md-6">
@@ -64,9 +76,9 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="actionStatement">Select Your Action Statement</label>
-              <select class="form-control" id="actionStatement" [(ngModel)]="matchesService.match.groupId"
-                      #groupId="ngModel"
+              <label for="groupId">Select Your Action Statement</label>
+              <select class="form-control" id="groupId" [(ngModel)]="matchesService.match.groupId"
+                      #groupId="ngModel" required
                       name="groupId">
                 <option disabled>Please Select Action Statement</option>
                 <option *ngFor="let group of allGroups" [value]="group.id">{{group.nameAr}}</option>
@@ -85,7 +97,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="clubATeam">Select Club A Team</label>
-              <select class="form-control" id="clubATeam" [(ngModel)]="matchesService.match.teamAId"
+              <select class="form-control" id="clubATeam" [(ngModel)]="matchesService.match.teamAId" required
                       #teamAId="ngModel"
                       name="teamAId">
                 <option>Please Select Club A Team</option>
@@ -105,7 +117,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="clubBTeam">Select Club B Team</label>
-              <select class="form-control" id="clubBTeam" [(ngModel)]="matchesService.match.teamBId"
+              <select class="form-control" id="clubBTeam" [(ngModel)]="matchesService.match.teamBId" required
                       #teamBId="ngModel"
                       name="teamBId">
                 <option>Please Select Club B Team</option>
@@ -116,7 +128,8 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <button type="submit" class="btn btn-outline-primary float-right" (click)="getAllPlayers()" matStepperNext>
+            <button type="submit" class="btn btn-outline-primary float-right" [disabled]="!matchDataForm.valid"
+                    (click)="getAllPlayers()" matStepperNext>
               <i
                 class="far fa-hand-point-right"></i> Next Step
             </button>
@@ -125,14 +138,14 @@
       </form>
     </mat-step>
     <mat-step>
-      <form>
+      <form #teamAPlayersForm="ngForm">
         <ng-template matStepLabel>Team A Players</ng-template>
         <div class="form-group">
           <p-pickList [source]="allPlayersA" [target]="targetPlayerA" sourceHeader="Team A"
                       targetHeader="Selected Players"
                       [responsive]="true" filterBy="nameAr"
-                      dragdrop="true" sourceFilterPlaceholder="Search by name"
-                      targetFilterPlaceholder="Search by brand" [sourceStyle]="{'height':'300px'}"
+                      dragdrop="true" sourceFilterPlaceholder="Search By Player Name"
+                      targetFilterPlaceholder="Search By Player Name" [sourceStyle]="{'height':'300px'}"
                       [targetStyle]="{'height':'300px'}">
             <ng-template let-playersA pTemplate="item">
               <div class="ui-helper-clearfix">
@@ -150,7 +163,8 @@
             </button>
           </div>
           <div class="col-md-6 ">
-            <button type="submit" class="btn btn-outline-primary float-right" (click)="addFormation(true)"
+            <button type="submit" class="btn btn-outline-primary float-right" [disabled]="targetPlayerA.length === 0"
+                    (click)="addFormation(true)"
                     matStepperNext><i
               class="far fa-hand-point-right"></i> Next Step
             </button>
@@ -165,8 +179,8 @@
           <p-pickList [source]="allPlayersB" [target]="targetPlayerB" sourceHeader="Team B"
                       targetHeader="Selected Players"
                       [responsive]="true" filterBy="nameAr"
-                      dragdrop="true" sourceFilterPlaceholder="Search by name"
-                      targetFilterPlaceholder="Search by brand" [sourceStyle]="{'height':'300px'}"
+                      dragdrop="true" sourceFilterPlaceholder="Search By Player Name"
+                      targetFilterPlaceholder="Search By Player Name" [sourceStyle]="{'height':'300px'}"
                       [targetStyle]="{'height':'300px'}">
             <ng-template let-playerB pTemplate="item">
               <div class="ui-helper-clearfix">
@@ -184,7 +198,8 @@
             </button>
           </div>
           <div class="col-md-6 ">
-            <button type="submit" class="btn btn-outline-primary float-right" (click)="addFormation(false)"
+            <button type="submit" class="btn btn-outline-primary float-right" [disabled]="targetPlayerB.length === 0"
+                    (click)="addFormation(false)"
                     matStepperNext><i
               class="far fa-hand-point-right"></i> Next Step
             </button>
@@ -193,11 +208,13 @@
       </form>
     </mat-step>
     <mat-step>
-      <form>
+      <form #youtubeURLForm="ngForm">
         <ng-template matStepLabel>Youtube URL</ng-template>
         <div class="row">
           <div class="col-md-12">
-            <button class="btn btn-outline-primary" (click)="addNewYoutubeInput()"> Add</button>
+            <button class="btn btn-outline-primary float-right btn-block mb-3 btn-sm" (click)="addNewYoutubeInput()"><i
+              class="fas fa-plus"></i> Add New Video
+            </button>
           </div>
           <div class="col-md-12" *ngFor="let x of matchesService.match.matchVideos; let i = index">
             <div class="row">
@@ -212,7 +229,9 @@
                 </div>
               </div>
               <div class="col-md-2">
-                <button class="btn btn-outline-danger" (click)="deleteYoutubeInput(i)"> Delete</button>
+                <br>
+                <button class="btn btn-outline-danger mt-2" (click)="deleteYoutubeInput(i)"><i class="fas fa-minus"></i>
+                </button>
               </div>
             </div>
 
@@ -225,7 +244,8 @@
             </button>
           </div>
           <div class="col-md-6">
-            <button type="submit" class="btn btn-outline-primary float-right" matStepperNext><i
+            <button type="submit" class="btn btn-outline-primary float-right" [disabled]="!youtubeURLForm.valid"
+                    matStepperNext><i
               class="far fa-hand-point-right"></i> Next Step
             </button>
           </div>
@@ -251,7 +271,7 @@
         </div>
         <div class="col-md-4 text-center">
           <button class="btn btn-outline-success " (click)="onSubmit(); this.displayNewAnalysis = false"
-                  ><i
+          ><i
             class="far fa-hand-peace"></i> Lets Start
           </button>
         </div>
