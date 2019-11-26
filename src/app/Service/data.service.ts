@@ -7,7 +7,7 @@ import {environment} from '../../environments/environment';
 })
 export class DataService {
 
-  constructor(private httpClient: HttpClient) {
+  constructor(public httpClient: HttpClient) {
   }
 
   get(APIPath) {
