@@ -19,6 +19,10 @@ export class PlayerService {
     return this.dataService.get('api/Player/getByTeamId/' + id);
   }
 
+  getFormulationPlayers(teamId: string, matchId: string) {
+    return this.dataService.get('api/Player/getByMatch/' + teamId + '/' + matchId);
+  }
+
   putPlayer() {
     return this.dataService.edit('api/Player', this.player);
   }

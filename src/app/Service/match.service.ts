@@ -18,4 +18,8 @@ export class MatchService {
   getAllMatches() {
     return this.dataService.get('api/Match/getAll/');
   }
+
+  getMatchById(matchId) {
+    return this.dataService.get('api/Match/' + matchId);
+  }
 }

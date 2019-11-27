@@ -12,6 +12,7 @@ import {PlayerService} from '../../Service/player.service';
 import {IPlayer} from '../../Models/i-player';
 import {IFormation} from '../../Models/i-formation';
 import {IMatchVideo} from '../../Models/i-match-video';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'ngx-analysis-page',
@@ -22,10 +23,6 @@ export class AnalysisPageComponent implements OnInit {
   items: MenuItem[];
   displayNewAnalysis = false;
   cols: any[];
-  matchs = [
-    {id: 1, date: '12/4/2018', teamA: 'Al Ahly SC', teamB: 'Zamalek SC'},
-    {id: 2, date: '19/4/2018', teamA: 'FC Barcelona', teamB: 'Liverpool F.C.'},
-  ];
   allMatches: IMatch[] = [];
   allClubs: IClub[] = [];
   allGroups: IGroup[] = [];
@@ -35,10 +32,12 @@ export class AnalysisPageComponent implements OnInit {
   allPlayersB: IPlayer[] = [];
   targetPlayerA: IPlayer[] = [];
   targetPlayerB: IPlayer[] = [];
+  matchId;
 
   constructor(public clubsService: ClubService,
               public teamsService: TeamService,
               public groupService: GroupService,
+              public router: Router,
               public playerService: PlayerService,
               public matchesService: MatchService) {
   }
@@ -136,10 +135,11 @@ export class AnalysisPageComponent implements OnInit {
 
   onSubmit() {
     this.matchesService.postNewMatch().subscribe(res => {
+      this.matchId = res;
     }, error => {
     }, () => {
+      this.router.navigateByUrl('pages/analysis/matchAnalysis/' + this.matchId);
     });
-    // console.log(this.matchesService.match)
   }
 
   getAllMatches() {

@@ -1,6 +1,5 @@
 <div class="embed-responsive embed-responsive-21by9">
   <youtube-player
-    [videoId]="id"
     (ready)="savePlayer($event)"
     (change)="onStateChange($event)"
     [playerVars]="playerVars">

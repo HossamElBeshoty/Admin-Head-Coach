@@ -40,7 +40,7 @@
                     <span class="sr-only">Toggle Dropright</span>
                   </button>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item text-primary" *ngIf="x.childActions.length > 0"
+                    <a class="dropdown-item text-primary" *ngIf="x?.childActions?.length > 0"
                        (click)="showChildActions(x.id , x.nameAr);childActionForm.resetForm()">
                       <i class="far fa-eye"></i>
                       Show Child Actions</a>

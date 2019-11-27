@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MenuItem} from 'primeng/api';
+import {IPlayer} from '../../../Models/i-player';
 
 @Component({
   selector: 'ngx-players-box-team',
@@ -9,6 +10,8 @@ import {MenuItem} from 'primeng/api';
 export class PlayersBoxTeamComponent implements OnInit {
   player: MenuItem[];
   displayChangePlayer = false;
+  @Input() teamName: string;
+  @Input() teamData: IPlayer[];
 
   constructor() {
   }

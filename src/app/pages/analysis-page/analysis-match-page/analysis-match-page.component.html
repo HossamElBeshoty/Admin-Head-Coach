@@ -1,17 +1,30 @@
 <div class="row">
   <div class="col-md-3 animated fadeInLeft slow">
-    <ngx-players-box-team></ngx-players-box-team>
+    <ngx-players-box-team [teamName]="this.matchService.match.teamA?.nameAr"
+                          [teamData]="playersTeamA"></ngx-players-box-team>
   </div>
   <div class="col-md-6 animated fadeInDown slow">
-    <ngx-youtube-player></ngx-youtube-player>
+    <div class="row">
+      <div class="col-md-2">
+        <label for="exampleFormControlSelect1">Youtube Link</label>
+      </div>
+      <div class="col-md-10">
+        <select class="form-control" id="exampleFormControlSelect1" #path (change)="changeYoutubeLink(path.value)">
+          <option *ngFor="let x of allVideos" [value]="x.path">{{x.path}}</option>
+        </select>
+      </div>
+    </div>
+    <br>
+    <ngx-youtube-player [youtubeUrl]="youtubePath"></ngx-youtube-player>
   </div>
   <div class="col-md-3 animated fadeInRight slow">
-    <ngx-players-box-team></ngx-players-box-team>
+    <ngx-players-box-team [teamName]="this.matchService.match.teamB?.nameAr"
+                          [teamData]="playersTeamB"></ngx-players-box-team>
   </div>
 </div>
 <br>
 <div class="animated fadeInUpBig slow">
-  <ngx-action [groupId]="'4b10d76e-3b04-ea11-bfaf-180373b9b532'" [categories]="categories"></ngx-action>
+  <ngx-action [groupId]="this.matchService.match.groupId" [categories]="categories"></ngx-action>
 </div>
 <br>
 <div class="row">

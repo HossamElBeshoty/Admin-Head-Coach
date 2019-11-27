@@ -137,6 +137,9 @@ export class ActionComponent implements OnInit {
     this.actionService.updateAction().subscribe(res => {
     }, error => {
     }, () => {
+      if (this.actionService.action.type === '3') {
+        this.displayChildActions = true;
+      }
       const category = this.categories.find(c => c.id === this.actionService.action.categoryId);
       const actionIndex = category.actions.findIndex(c => c.id === this.actionService.action.id);
       category.actions[actionIndex] = this.actionService.action;
@@ -171,6 +174,8 @@ export class ActionComponent implements OnInit {
     }, () => {
     }, () => {
       this.childAction.push(Object.assign({}, this.childActionService.childAction));
+      this.actionService.action.childActions = [] as IChildAction [];
+      this.actionService.action.childActions.push(Object.assign({}, this.childActionService.childAction));
       form.resetForm();
     });
   }

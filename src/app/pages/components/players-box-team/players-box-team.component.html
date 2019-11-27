@@ -1,28 +1,27 @@
 <p-panel>
   <p-header>
     <div class="ui-helper-clearfix">
-      <span class="ui-panel-title" style="font-size:16px; display:inline-block; margin-top:2px;">Team A</span>
+      <span class="ui-panel-title" style="font-size:16px; display:inline-block; margin-top:2px;">{{teamName}}</span>
     </div>
   </p-header>
+  <div class="row">
+    <div class="col-md-6 text-center" *ngFor="let x of teamData">
+      <div class="btn-group dropright">
+        <button type="button" class="btn btn-light">
+          {{x.nameAr}}
+        </button>
+        <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="sr-only">Toggle Dropright</span>
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item text-warning" (click)="changePlayer()"> <i class="fas fa-exchange-alt"></i>
+            Change Player</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <p-splitButton label="Mahmoud Abdel Rahim" [model]="player" styleClass="ui-button-secondary"
-                 appendTo="body"></p-splitButton>
-  <p-splitButton label="Shikabala" [model]="player" styleClass="ui-button-secondary"
-                 appendTo="body"></p-splitButton>
-  <p-splitButton label="Ferjani Sassi" [model]="player" styleClass="ui-button-secondary"
-                 appendTo="body"></p-splitButton>
-  <p-splitButton label="Tarek Hamed" [model]="player" styleClass="ui-button-secondary"
-                 appendTo="body"></p-splitButton>
-  <p-splitButton label="Mostafa Fathi" [model]="player" styleClass="ui-button-secondary"
-                 appendTo="body"></p-splitButton>
-  <p-splitButton label="Hamdi Nagguez" [model]="player" styleClass="ui-button-secondary"
-                 appendTo="body"></p-splitButton>
-  <p-splitButton label="Mahmoud Alaa" [model]="player" styleClass="ui-button-secondary"
-                 appendTo="body"></p-splitButton>
-  <p-splitButton label="Ayman Hefny" [model]="player" styleClass="ui-button-secondary"
-                 appendTo="body"></p-splitButton>
-  <p-splitButton label="Ayman Hefny" [model]="player" styleClass="ui-button-secondary"
-                 appendTo="body"></p-splitButton>
 </p-panel>
 <p-dialog header="Change Player" [(visible)]="displayChangePlayer" [modal]="true" [responsive]="true" appendTo="body"
           [minY]="70" [baseZIndex]="10000">

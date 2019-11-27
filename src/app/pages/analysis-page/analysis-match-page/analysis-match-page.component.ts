@@ -1,6 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {ICategory} from '../../../Models/i-category';
 import {CategoryService} from '../../../Service/category.service';
+import {MatchService} from '../../../Service/match.service';
+import {ActivatedRoute} from '@angular/router';
+import {IMatch} from '../../../Models/i-match';
+import {PlayerService} from '../../../Service/player.service';
+import {IPlayer} from '../../../Models/i-player';
+import {MatchVideoService} from '../../../Service/match-video.service';
+import {IMatchVideo} from '../../../Models/i-match-video';
 
 
 @Component({
@@ -25,12 +32,21 @@ export class AnalysisMatchPageComponent implements OnInit {
   }];
   cols: any[];
   public categories: ICategory[];
+  public playersTeamA: IPlayer[];
+  public playersTeamB: IPlayer[];
+  public allVideos: IMatchVideo[] = [];
+  youtubePath: string;
 
-  constructor(public categoryService: CategoryService) {
+  constructor(public categoryService: CategoryService,
+              public matchService: MatchService,
+              public matchVideoService: MatchVideoService,
+              public activatedRoute: ActivatedRoute,
+              public playerService: PlayerService) {
   }
 
   ngOnInit() {
-    this.getPageCategory('4b10d76e-3b04-ea11-bfaf-180373b9b532');
+    this.matchService.match.id = this.activatedRoute.snapshot.params.id;
+    this.getMatch();
     this.cols = [
       {field: 'name', header: 'Name', width: '20%'},
       {field: 'position', header: 'Position', width: '20%'},
@@ -53,4 +69,36 @@ export class AnalysisMatchPageComponent implements OnInit {
     });
   }
 
+  getTeamPlayers(teamId: string, isTeamA: boolean) {
+    this.playerService.getFormulationPlayers(teamId, this.matchService.match.id).subscribe(res => {
+      if (isTeamA) {
+        this.playersTeamA = res as IPlayer[];
+      } else {
+        this.playersTeamB = res as IPlayer[];
+      }
+    });
+  }
+
+  getVideos() {
+    this.matchVideoService.getMatchVideos(this.matchService.match.id).subscribe(res => {
+      this.allVideos = res as IMatchVideo[];
+      this.youtubePath = this.allVideos[0].path;
+    });
+  }
+
+  changeYoutubeLink(path: string) {
+    this.youtubePath = path;
+  }
+
+  getMatch() {
+    this.matchService.getMatchById(this.matchService.match.id).subscribe(res => {
+      this.matchService.match = res as IMatch;
+    }, error => {
+    }, () => {
+      this.getPageCategory(this.matchService.match.groupId);
+      this.getTeamPlayers(this.matchService.match.teamAId, true);
+      this.getTeamPlayers(this.matchService.match.teamBId, false);
+      this.getVideos();
+    });
+  }
 }
