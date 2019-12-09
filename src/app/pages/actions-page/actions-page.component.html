@@ -69,12 +69,11 @@
             <button class="btn btn-outline-secondary mr-2 float-right btn-sm" (click)="populateForm(item)"><i
               class="far fa-edit"></i> Update Page
             </button>
-
           </div>
 
         </div>
         <ngx-action *ngIf="i === tabIndex" [pageName]="item.nameAr" [groupId]="item.id"
-                    [categories]="categories"></ngx-action>
+                    [categories]="categories" [hasDefault]="hasDefault"></ngx-action>
       </p-tabPanel>
     </ng-container>
 

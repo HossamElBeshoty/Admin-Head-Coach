@@ -16,6 +16,7 @@ export class ActionComponent implements OnInit {
   @Input() pageName: string;
   @Input() categories: ICategory[];
   @Input() groupId;
+  @Input() hasDefault;
   displayCategory: boolean = false;
   displayAddUpdateCategory: boolean = false;
   displayDeleteCategoryAction: boolean = false;
@@ -26,6 +27,8 @@ export class ActionComponent implements OnInit {
   childAction: IChildAction[] = [];
   cols: any[];
   childActionName;
+  defaultCategories = ['Start', 'End', 'End WIth Action', 'Penalties'];
+
 
   constructor(public categoryService: CategoryService,
               public actionService: ActionService,
@@ -33,6 +36,8 @@ export class ActionComponent implements OnInit {
   }
 
   ngOnInit() {
+
+
     this.cols = [
       {field: 'nameAr', header: 'Arabic Name'},
       {field: 'nameEn', header: 'English Name'},
@@ -212,4 +217,25 @@ export class ActionComponent implements OnInit {
       this.childAction.splice(child, 1);
     });
   }
+
+  addDefaultCategories() {
+    for (let i = 0; i < this.defaultCategories.length; i++) {
+      const startCategory: ICategory = {
+        nameAr: this.defaultCategories[i],
+        nameEn: this.defaultCategories[i],
+        actions: [],
+        groupId: this.groupId,
+        isDetected: false,
+      };
+      this.categoryService.category = startCategory;
+      this.categoryService.postCategory().subscribe(res => {
+        this.categoryService.category.id = res as string;
+        this.categories.push(startCategory);
+      }, err => {
+      }, () => {
+        this.hasDefault = 1;
+      });
+    }
+  }
+
 }

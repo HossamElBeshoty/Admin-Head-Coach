@@ -10,6 +10,11 @@
                   (click)="showCategoryDialog();categoriesForm.resetForm()"><i
             class="fa fa-plus"></i> Add New Category
           </button>
+          <button *ngIf="hasDefault === -1" (click)="addDefaultCategories()"
+                  class="btn btn-outline-success mr-2 float-right btn-sm" data-toggle="tooltip" data-placement="top"
+                  title="(Start , End , End With Action , Penalties)"><i
+            class="fa fa-plus"></i> Default Categories
+          </button>
         </div>
       </p-header>
       <div class="row">
@@ -18,7 +23,7 @@
             <p-header>
               <div class="ui-helper-clearfix">
           <span class="ui-panel-title"
-                style="font-size:16px; display:inline-block; margin-top:2px;">{{item.nameAr}}</span>
+                style="font-size:16px; display:inline-block; margin-top:2px;" [innerText]="item.nameAr"></span>
                 <button class="btn btn-outline-danger btn-sm float-right mr-1 ml-1"
                         (click)="deleteCategoryActionDialog(item.id)"><i
                   class="fas fa-ban"></i></button>
