@@ -1,10 +1,14 @@
-<div class="container">
-  <button type="button" (click)="showNewAnalysisDialog()"
-          class="btn btn-outline-primary animated slow fadeInDown btn-block m-4"><i class="fa fa-plus"></i> Add New
-    Analysis
-  </button>
+<div class="row">
+  <div class="col-md-12">
+    <button type="button" (click)="showNewAnalysisDialog()"
+            class="btn btn-warning animated slow fadeInDown float-right"><i class="fa fa-plus"></i> Add New
+      Analysis
+    </button>
+  </div>
+
 </div>
-<div class="container-fluid">
+<br>
+<div class="">
   <p-table #dt1 [columns]="cols" [value]="allMatches" [paginator]="true" [rows]="10" dataKey="id" sortMode="multiple"
            [resizableColumns]="true"
            [reorderableColumns]="true"

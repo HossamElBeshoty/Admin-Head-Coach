@@ -1,8 +1,10 @@
-<div class="container">
-  <button class="btn btn-outline-primary animated slow fadeInDown btn-block m-4" (click)="showClubDialog()"><i
-    class="fa fa-plus"></i> Add New
-    Club
-  </button>
+<div class="row">
+  <div class="col-md-12">
+    <button class="btn btn-warning animated slow fadeInDown float-right " (click)="showClubDialog()"><i
+      class="fa fa-plus"></i> Add New
+      Club
+    </button>
+  </div>
 </div>
 
 <div class="animated slower fadeInUp">
@@ -11,10 +13,10 @@
       <p-tabPanel header="{{item.nameAr}}" [selected]="i == tabIndex">
         <div class="row">
           <div class="col-md-6">
-            <img
-              [src]="item.logoPath!= null ?  item.logoPath.includes('data:image')?item.logoPath:apiEndPoint + item.logoPath: null"
-              class="img-fluid img-thumbnail"
-              [alt]="item.nameAr">
+            <img style="height: 100px; width: 100px;"
+                 [src]="item.logoPath!= null ?  item.logoPath.includes('data:image')?item.logoPath:apiEndPoint + item.logoPath: '../assets/images/default-avatar-png-5.png'"
+                 class="img-fluid img-thumbnail"
+                 [alt]="item.nameAr">
           </div>
           <div class="col-md-6">
             <button class="btn btn-outline-danger float-right ml-2 btn-sm" (click)="showClubDeleteDialog(item.id)"><i
@@ -51,7 +53,9 @@
               <div class="row">
                 <div class="col-md-2 text-center" *ngFor="let player of allPlayers">
                   <div class="card m-2 shadow" style="width: 14rem;">
-                    <img [src]="player.imagePath!= null ?  player.imagePath.includes('data:image')?player.imagePath:apiEndPoint + player.imagePath: null" class="card-img-top" [alt]="player.nameAr">
+                    <img
+                      [src]="player.imagePath!= null ?  player.imagePath.includes('data:image')?player.imagePath:apiEndPoint + player.imagePath: '../assets/images/default-avatar-png-5.png'"
+                      class="card-img-top" [alt]="player.nameAr">
                     <div class="card-body">
                       <h5 class="card-title">{{player.nameAr}}</h5>
                       <button class="btn btn-outline-secondary" (click)="updatePlayer(player)"><i

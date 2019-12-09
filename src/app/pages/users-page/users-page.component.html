@@ -1,18 +1,19 @@
 <div class="container">
 
-    <div class="col-md-12">
-      <ngx-modal [buttonName]="'Add New User'" [width]="1000" [header]="'Head Coach Users'" [buttonCss]="'btn btn-outline-primary animated slow fadeInDown btn-block m-4'"
-        [iconClass]="'fas fa-user-plus'">
-        <div forms>
-          <ngx-user-form></ngx-user-form>
-        </div>
-        <div buttons>
-          <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
-          <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No"
-            class="ui-button-secondary"></button>
-        </div>
-      </ngx-modal>
-    </div>
+  <div class="col-md-12">
+    <ngx-modal [buttonName]="'Add New User'" [width]="1000" [header]="'UpStrike Users'"
+               [buttonCss]="'btn btn-outline-primary animated slow fadeInDown btn-block m-4'"
+               [iconClass]="'fas fa-user-plus'">
+      <div forms>
+        <ngx-user-form></ngx-user-form>
+      </div>
+      <div buttons>
+        <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
+        <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No"
+                class="ui-button-secondary"></button>
+      </div>
+    </ngx-modal>
+  </div>
 
 </div>
 
@@ -20,9 +21,11 @@
   <ng-template pTemplate="caption">
     <div class="ui-helper-clearfix">
       <button type="button" (click)="dt.exportCSV()" class="btn btn-outline-primary float-left"><i
-          class="fas fa-file-download"></i> All Data</button>
+        class="fas fa-file-download"></i> All Data
+      </button>
       <button type="button" (click)="dt.exportCSV({selectionOnly:true})" class="btn btn-outline-primary float-right"><i
-          class="fas fa-file-download"></i> Selection Only</button>
+        class="fas fa-file-download"></i> Selection Only
+      </button>
     </div>
   </ng-template>
   <ng-template pTemplate="header" let-columns>
@@ -53,26 +56,29 @@
       <td>
         <div class="row text-center">
           <div class="col-md-4">
-            <button type="button" class="btn btn-outline-success" [routerLink]="['../personal/' , rowData.id]"><i class="far fa-user"></i> </button>
+            <button type="button" class="btn btn-outline-success" [routerLink]="['../personal/' , rowData.id]"><i
+              class="far fa-user"></i></button>
 
           </div>
           <div class="col-md-4">
-            <ngx-modal [header]="'Edit User'" [buttonCss]="'btn btn-outline-secondary'" [iconClass]="'fas fa-users-cog'">
+            <ngx-modal [header]="'Edit User'" [buttonCss]="'btn btn-outline-secondary'"
+                       [iconClass]="'fas fa-users-cog'">
               <div forms>Forms</div>
               <div buttons>
                 <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
                 <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No"
-                  class="ui-button-secondary"></button>
+                        class="ui-button-secondary"></button>
               </div>
             </ngx-modal>
           </div>
           <div class="col-md-4">
-            <ngx-modal [header]="'Delete User'" [buttonCss]="'btn btn-outline-danger'" [iconClass]="'fas fa-user-times'">
+            <ngx-modal [header]="'Delete User'" [buttonCss]="'btn btn-outline-danger'"
+                       [iconClass]="'fas fa-user-times'">
               <div forms>Forms</div>
               <div buttons>
                 <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
                 <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No"
-                  class="ui-button-secondary"></button>
+                        class="ui-button-secondary"></button>
               </div>
             </ngx-modal>
           </div>
@@ -88,7 +94,7 @@
         <div class="ui-g ui-fluid" style="font-size:16px;padding:20px">
           <div class="ui-g-12 ui-md-3" style="text-align:center">
             <img [attr.alt]="rowData.name" style="width: 100px; height: 100px;"
-              src="../../../assets/images/WebSite Images/Logo/index.png">
+                 src="../../../assets/images/WebSite Images/Logo/index.png">
           </div>
           <div class="ui-g-12 ui-md-9">
             <div class="ui-g">

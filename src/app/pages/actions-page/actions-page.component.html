@@ -1,15 +1,15 @@
 <div class="animated slow fadeInDown">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <button type="button"
-                class="btn btn-outline-primary animated slow fadeInDown btn-block float-right m-4"
-                (click)="showAddNewPageDialog();pagesForm.resetForm()"><i
-          class="fa fa-plus"></i> Add New
-          Action Group Page
-        </button>
-      </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <button type="button"
+              class="btn btn-warning animated slow fadeInDown  float-right"
+              (click)="showAddNewPageDialog();pagesForm.resetForm()"><i
+        class="fa fa-plus"></i> Add New
+        Action Group Page
+      </button>
     </div>
+
     <p-dialog header="New Action Page" [(visible)]="displayAddNewPage" [modal]="true" [responsive]="true"
               [style]="{width: '350px', minWidth: '200px'}" [minY]="70" appendTo="body"
               [baseZIndex]="10000">

@@ -18,7 +18,7 @@ export class ActionsPageComponent implements OnInit {
   deleteId;
   categories: ICategory[] = [];
   tabIndex = 0;
-
+  defaultCategories = ['Start' , 'End' , 'End WIth Action' , 'Penalties'];
   constructor(public groupService: GroupService, public categoryService: CategoryService) {
   }
 
