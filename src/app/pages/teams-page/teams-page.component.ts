@@ -30,6 +30,7 @@ export class TeamsPageComponent implements OnInit {
   playerDeleteId;
   allNationalities;
   apiEndPoint = environment.apiEndPoint;
+  defaultTeam = ['LW', 'LB', 'CB', 'RB', 'RW', 'PV', 'GK'];
 
   constructor(public clubService: ClubService, public teamService: TeamService, public playerService: PlayerService) {
   }
@@ -250,5 +251,23 @@ export class TeamsPageComponent implements OnInit {
     this.playerService.getAllNationality().subscribe(res => {
       this.allNationalities = res;
     });
+  }
+
+  addDefaultPlayers(teamId) {
+    for (let x = 0; x < this.defaultTeam.length; x++) {
+      const startPlayer: IPlayer = {
+        nameAr: this.defaultTeam[x],
+        nameEn: this.defaultTeam[x],
+        nickNameEn: this.defaultTeam[x],
+        nickNameAr: this.defaultTeam[x],
+        teamId: teamId,
+      };
+      this.playerService.player = startPlayer;
+      this.playerService.postPlayer().subscribe(res => {
+      }, error => {
+      }, () => {
+        this.allPlayers.push(startPlayer);
+      });
+    }
   }
 }
