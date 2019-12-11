@@ -18,7 +18,7 @@
         </div>
       </p-header>
       <div class="row">
-        <div class="col-md-6" *ngFor="let item of categories">
+        <div class="col-md-4" *ngFor="let item of categories">
           <p-panel>
             <p-header>
               <div class="ui-helper-clearfix">
@@ -35,7 +35,7 @@
               </div>
             </p-header>
             <div class="row">
-              <div class="col-md-2 text-center mb-2" *ngFor="let x of item.actions">
+              <div class=" text-center m-2" *ngFor="let x of item.actions">
                 <div class="btn-group dropright">
                   <button type="button" class="btn btn-light">
                     {{x.nameAr}}
@@ -104,6 +104,25 @@
           </div>
         </div>
       </div>
+      <div class="col-md-12">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text bg-white">
+              <i class="fas fa-swatchbook" [class.green-icon]="type.valid"
+                 [class.red-icon]="type.invalid && type.touched"></i>
+            </div>
+          </div>
+          <select class="custom-select" name="type" [(ngModel)]="categoryService.category.type" required #type="ngModel"
+                  id="inputGroupsSelect01">
+            <option disabled selected>Choose The Action Type</option>
+            <option value="1">Start</option>
+            <option value="2">End</option>
+            <option value="3">End With Action</option>
+            <option value="4">Penalties</option>
+            <option value="5">Tactics</option>
+          </select>
+        </div>
+      </div>
       <br>
       <div class="col-md-12">
         <button class="btn btn-outline-success btn-block btn-sm" type="submit" [disabled]="categoriesForm.invalid"><i
@@ -150,23 +169,23 @@
           </div>
         </div>
       </div>
-      <div class="col-md-12">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <div class="input-group-text bg-white">
-              <i class="fas fa-swatchbook" [class.green-icon]="type.valid"
-                 [class.red-icon]="type.invalid && type.touched"></i>
-            </div>
-          </div>
-          <select class="custom-select" name="type" [(ngModel)]="actionService.action.type" required #type="ngModel"
-                  id="inputGroupSelect01">
-            <option disabled selected>Choose The Action Type</option>
-            <option value="1">Start</option>
-            <option value="2">End</option>
-            <option value="3">End With Action</option>
-          </select>
-        </div>
-      </div>
+<!--      <div class="col-md-12">-->
+<!--        <div class="input-group mb-3">-->
+<!--          <div class="input-group-prepend">-->
+<!--            <div class="input-group-text bg-white">-->
+<!--              <i class="fas fa-swatchbook" [class.green-icon]="type.valid"-->
+<!--                 [class.red-icon]="type.invalid && type.touched"></i>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <select class="custom-select" name="type" [(ngModel)]="actionService.action.type" required #type="ngModel"-->
+<!--                  id="inputGroupSelect01">-->
+<!--            <option disabled selected>Choose The Action Type</option>-->
+<!--            <option value="1">Start</option>-->
+<!--            <option value="2">End</option>-->
+<!--            <option value="3">End With Action</option>-->
+<!--          </select>-->
+<!--        </div>-->
+<!--      </div>-->
       <div class="col-md-12">
         <button class="btn btn-outline-success btn-block btn-sm" type="submit" [disabled]="!actionForm.valid"
                 (click)="onActionSubmit()">

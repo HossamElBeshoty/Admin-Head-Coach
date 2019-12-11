@@ -148,6 +148,7 @@ export class TeamsPageComponent implements OnInit {
   private postTeam() {
     this.teamService.team.clubId = this.allClubs[this.tabIndex].id;
     this.teamService.postTeam().subscribe(res => {
+      this.teamService.team.id = res as string;
     }, error => {
     }, () => {
       this.allTeams.push(this.teamService.team);
@@ -191,10 +192,12 @@ export class TeamsPageComponent implements OnInit {
 
 
   showTeamDialog() {
+    this.teamService.team = {} as ITeam;
     this.displayTeamDialog = true;
   }
 
   showPlayerDialog(teamId: string) {
+    this.playerService.player = {} as IPlayer;
     this.playerService.player.teamId = teamId;
     this.displayPlayerDialog = true;
   }

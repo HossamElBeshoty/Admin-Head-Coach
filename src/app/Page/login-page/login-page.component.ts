@@ -14,6 +14,7 @@ export class LoginPageComponent implements OnInit {
     password: '',
   };
   errorMessage: string;
+  spinner = false;
 
   constructor(private loginService: LoginService, private router: Router, private cookieService: CookieService) {
   }
@@ -22,6 +23,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   onLogin() {
+    this.spinner = true;
     const loginObj = 'grant_type=password' + '&username='
       + this.loginFormModel.username + '&password=' + this.loginFormModel.password;
 

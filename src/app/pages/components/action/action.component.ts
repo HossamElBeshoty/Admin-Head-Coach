@@ -27,7 +27,24 @@ export class ActionComponent implements OnInit {
   childAction: IChildAction[] = [];
   cols: any[];
   childActionName;
-  defaultCategories = ['Start', 'End', 'End WIth Action', 'Penalties'];
+  defaultCategories = [
+    {
+      id: 1,
+      name: 'Start',
+    }, {
+      id: 2,
+      name: 'End',
+    }, {
+      id: 3,
+      name: 'End WIth Action',
+    }, {
+      id: 4,
+      name: 'Tactics',
+    }, {
+      id: 5,
+      name: 'Penalties',
+    },
+  ];
 
 
   constructor(public categoryService: CategoryService,
@@ -117,6 +134,7 @@ export class ActionComponent implements OnInit {
 
 
   onActionSubmit() {
+    this.actionService.action.type = this.categoryService.category.type;
     if (!this.actionService.action.id) {
       this.postNewAction();
     } else {
@@ -129,7 +147,7 @@ export class ActionComponent implements OnInit {
       this.actionService.action.id = res as string;
     }, error => {
     }, () => {
-      if (this.actionService.action.type === '3') {
+      if (this.actionService.action.type === 3) {
         this.displayChildActions = true;
       }
       const category = this.categories.find(c => c.id === this.actionService.action.categoryId);
@@ -142,7 +160,7 @@ export class ActionComponent implements OnInit {
     this.actionService.updateAction().subscribe(res => {
     }, error => {
     }, () => {
-      if (this.actionService.action.type === '3') {
+      if (this.actionService.action.type === 3) {
         this.displayChildActions = true;
       }
       const category = this.categories.find(c => c.id === this.actionService.action.categoryId);
@@ -221,11 +239,12 @@ export class ActionComponent implements OnInit {
   addDefaultCategories() {
     for (let i = 0; i < this.defaultCategories.length; i++) {
       const startCategory: ICategory = {
-        nameAr: this.defaultCategories[i],
-        nameEn: this.defaultCategories[i],
+        nameAr: this.defaultCategories[i].name,
+        nameEn: this.defaultCategories[i].name,
         actions: [],
         groupId: this.groupId,
         isDetected: false,
+        type: this.defaultCategories[i].id,
       };
       this.categoryService.category = startCategory;
       this.categoryService.postCategory().subscribe(res => {

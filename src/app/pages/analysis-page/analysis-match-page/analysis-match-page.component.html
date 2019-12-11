@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row sticky-top">
   <div class="col-md-3 animated fadeInLeft slow">
     <ngx-players-box-team [teamName]="this.matchService.match.teamA?.nameAr"
                           [teamData]="playersTeamA"></ngx-players-box-team>
@@ -30,19 +30,55 @@
 <div class="row">
   <div class="col-md-12 animated fadeInUp slow">
     <p-panel header="Events" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
-      <p-table [columns]="cols" [value]="cars">
-        <ng-template pTemplate="header" let-columns>
+      <!--      <p-table [columns]="cols" [value]="cars">-->
+      <!--        <ng-template pTemplate="header" let-columns>-->
+      <!--          <tr>-->
+      <!--            <th [ngStyle]="{'width': col.width}" *ngFor="let col of columns">-->
+      <!--              {{col.header}}-->
+      <!--            </th>-->
+      <!--          </tr>-->
+      <!--        </ng-template>-->
+      <!--        <ng-template pTemplate="body" let-rowData let-columns="columns">-->
+      <!--          <tr>-->
+      <!--            <td *ngFor="let col of columns">-->
+      <!--              {{rowData[col.field]}}-->
+      <!--            </td>-->
+      <!--          </tr>-->
+      <!--        </ng-template>-->
+      <!--      </p-table>-->
+      <p-table [value]="attacks" sortField="duration" [scrollable]="true" scrollHeight="200px" sortMode="single"
+               (onSort)="onSort()">
+        <ng-template pTemplate="header">
           <tr>
-            <th [ngStyle]="{'width': col.width}" *ngFor="let col of columns">
-              {{col.header}}
-            </th>
+            <th>Duration</th>
+            <th>Team A</th>
+            <th>Action</th>
+            <th>Player Name</th>
+            <th>Minute</th>
+            <th>Taktik</th>
+            <th>Team B</th>
+            <th>Action</th>
+            <th>Player Name</th>
+            <th>Taktik</th>
+            <th></th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
           <tr>
-            <td *ngFor="let col of columns">
-              {{rowData[col.field]}}
+            <td *ngIf="rowGroupMetadata[rowData.duration].index === rowIndex"
+                [attr.rowspan]="rowGroupMetadata[rowData.duration].size">
+              {{rowData.duration}}
             </td>
+            <td>{{rowData.teamA}}</td>
+            <td>{{rowData.actionOFTeamA}}</td>
+            <td>{{rowData.playerAName}}</td>
+            <td>{{rowData.timeInVideo}}</td>
+            <td>{{rowData.taktikOfTeamA}}</td>
+            <td>{{rowData.teamB}}</td>
+            <td>{{rowData.playerBName}}</td>
+            <td>{{rowData.actionOFTeamB}}</td>
+            <td>{{rowData.taktikOfTeamB}}</td>
+            <td></td>
           </tr>
         </ng-template>
       </p-table>
