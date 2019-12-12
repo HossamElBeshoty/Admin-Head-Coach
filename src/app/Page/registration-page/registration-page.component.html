@@ -1,32 +1,64 @@
-<div class="card text-center">
+<div class="card text-center animated fadeIn">
   <div class="card-header">
-    Welcome To UpStrike
+    <h3 class="linear-wipe">
+      Welcome To UpStrike
+    </h3>
   </div>
   <div class="card-body">
-    <form>
-      <div class="form-group">
-        <label for="userName">User Name</label>
-        <input type="text" class="form-control" id="userName" placeholder="Enter email">
-      </div>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-               placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-      </div>
-      <div class="form-group">
-        <label for="confirmPassword">Confirm Password</label>
-        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <button type="submit" class="btn btn-block btn-outline-info" routerLink="/register"><i
-            class="far fa-hand-peace"></i> Register Now
-          </button>
+    <form [formGroup]="userAccountService.formModel" autocomplete="off">
+      <div class="">
+        <div class="">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" class="form-control" formControlName="Name" required>
+            <label class="text-danger"
+                   *ngIf="userAccountService.formModel.get('Name').touched && userAccountService.formModel.get('Name').errors?.required">Please
+              Insert Your Name</label>
+          </div>
+        </div>
+        <div class="">
+          <div class="form-group">
+            <label for="Email">Email</label>
+            <input id="Email" class="form-control" formControlName="Email" required>
+            <label class="text-danger"
+                   *ngIf="userAccountService.formModel.get('Email').touched && userAccountService.formModel.get('Email').errors?.email">Invalid
+              Email Address</label>
+          </div>
+        </div>
+        <div class="">
+          <div class="form-group">
+            <label for="PhoneNumber">PhoneNumber</label>
+            <input type="text" id="PhoneNumber" class="form-control" formControlName="PhoneNumber" required>
+            <label class="text-danger"
+                   *ngIf="userAccountService.formModel.get('PhoneNumber').touched && userAccountService.formModel.get('PhoneNumber').errors?.required">Please
+              Insert Your Phone Number</label>
+          </div>
+        </div>
+        <div formGroupName="Passwords">
+            <div class="form-group">
+              <label for="Password">Password</label>
+              <input type="text" id="Password" class="form-control" formControlName="Password" required>
+              <label class="text-danger"
+                     *ngIf="userAccountService.formModel.get('Passwords.Password').touched && userAccountService.formModel.get('Passwords.Password').errors?.required">Please
+                Insert Your Password</label>
+              <label class="text-danger"
+                     *ngIf="userAccountService.formModel.get('Passwords.Password').touched && userAccountService.formModel.get('Passwords.Password').errors?.minlength">Your Password Must Be More Than 6 Characters</label>
+            </div>
+            <div class="form-group">
+              <label for="ConfirmPassword">Confirm Password</label>
+              <input type="text" id="ConfirmPassword" class="form-control" formControlName="ConfirmPassword" required>
+              <label class="text-danger"
+                     *ngIf="userAccountService.formModel.get('Passwords.ConfirmPassword').touched && userAccountService.formModel.get('Passwords.ConfirmPassword').errors?.required">Please
+                Confirm Your Password</label>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-block btn-outline-info"><i
+              class="far fa-hand-peace"></i> Register Now
+            </button>
+          </div>
         </div>
       </div>
     </form>

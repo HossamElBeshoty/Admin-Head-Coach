@@ -6,20 +6,30 @@
   </youtube-player>
 </div>
 <p-toolbar>
-  <div class="text-center">
-    <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary" (click)="playVideo()"><i
-      class="fas fa-play"></i> Play
-    </button>
-    <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger" (click)="pauseVideo()"><i
-      class="fas fa-pause"></i> Pause
-    </button>
-    <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success" (click)="setSlowMotion()"><i
-      class="fas fa-tachometer-alt"></i> Speed
-    </button>
-    <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-warning"
-            (click)="getCurrentTimeFromYoutubeVideo()"><i
-      class="fas fa-stopwatch"></i> Current
-      Time
-    </button>
+  <div class="row">
+    <div class="col-md-8">
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-primary" (click)="playVideo()"><i
+        class="fas fa-play"></i> Play
+      </button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger" (click)="pauseVideo()"><i
+        class="fas fa-pause"></i> Pause
+      </button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success" (click)="setSlowMotion()"><i
+        class="fas fa-tachometer-alt"></i> Speed
+      </button>
+      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-warning"
+              (click)="getCurrentTimeFromYoutubeVideo()"><i
+        class="fas fa-stopwatch"></i> Current
+        Time
+      </button>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <select class="form-control" id="exampleFormControlSelect1"  #path  (change)="changeYoutubeLink(path.value)">
+          <option *ngFor="let x of allVideoURL" [value]="x.path">{{x.name}}</option>
+        </select>
+      </div>
+    </div>
   </div>
+
 </p-toolbar>

@@ -1,8 +1,3 @@
-/**
- * @license
- * Copyright Akveo. All Rights Reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- */
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -20,7 +15,7 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { LoginPageComponent } from './Page/login-page/login-page.component';
 import { RegistrationPageComponent } from './Page/registration-page/registration-page.component';
 import {httpInterceptorProviders} from './Interceptor';
@@ -44,6 +39,7 @@ import { LyResizingCroppingImageModule } from '@alyle/ui/resizing-cropping-image
     LyToolbarModule,
     LyResizingCroppingImageModule,
     FormsModule,
+    ReactiveFormsModule,
     ThemeModule.forRoot(),
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),

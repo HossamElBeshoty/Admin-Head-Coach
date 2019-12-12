@@ -1,27 +1,19 @@
-<div class="row sticky-top">
-  <div class="col-md-3 animated fadeInLeft slow">
-    <ngx-players-box-team [teamName]="this.matchService.match.teamA?.nameAr"
-                          [teamData]="playersTeamA"></ngx-players-box-team>
-  </div>
-  <div class="col-md-6 animated fadeInDown slow">
-    <div class="row">
-      <div class="col-md-2">
-        <label for="exampleFormControlSelect1">Youtube Link</label>
-      </div>
-      <div class="col-md-10">
-        <select class="form-control" id="exampleFormControlSelect1" #path (change)="changeYoutubeLink(path.value)">
-          <option *ngFor="let x of allVideos" [value]="x.path">{{x.path}}</option>
-        </select>
-      </div>
+<div class="">
+  <div class="row">
+    <div class="col-md-3 animated fadeInLeft slow">
+      <ngx-players-box-team [teamName]="this.matchService.match.teamA?.nameAr"
+                            [teamData]="playersTeamA"></ngx-players-box-team>
     </div>
-    <br>
-    <ngx-youtube-player [youtubeUrl]="youtubePath"></ngx-youtube-player>
-  </div>
-  <div class="col-md-3 animated fadeInRight slow">
-    <ngx-players-box-team [teamName]="this.matchService.match.teamB?.nameAr"
-                          [teamData]="playersTeamB"></ngx-players-box-team>
+    <div class="col-md-6 animated fadeInDown slow">
+      <ngx-youtube-player [allVideoURL]="allVideos"></ngx-youtube-player>
+    </div>
+    <div class="col-md-3 animated fadeInRight slow">
+      <ngx-players-box-team [teamName]="this.matchService.match.teamB?.nameAr"
+                            [teamData]="playersTeamB"></ngx-players-box-team>
+    </div>
   </div>
 </div>
+
 <br>
 <div class="animated fadeInUpBig slow">
   <ngx-action [groupId]="this.matchService.match.groupId" [categories]="categories"></ngx-action>

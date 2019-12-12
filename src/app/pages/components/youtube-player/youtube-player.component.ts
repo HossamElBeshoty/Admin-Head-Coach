@@ -1,4 +1,5 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {IMatchVideo} from '../../../Models/i-match-video';
 
 @Component({
   selector: 'ngx-youtube-player',
@@ -12,24 +13,19 @@ export class YoutubePlayerComponent implements OnInit, OnChanges {
   playerVars = {
     cc_lang_pref: 'en',
   };
-  @Input() youtubeUrl: string;
+  youtubeUrl: string;
+  @Input() allVideoURL: IMatchVideo[];
 
   constructor() {
   }
 
   ngOnInit() {
-    if (this.youtubeUrl) {
-      this.convertURLToId(this.youtubeUrl);
-      this.player.loadVideoById(this.id);
-    }
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
 
-    if (this.youtubeUrl) {
-      this.convertURLToId(this.youtubeUrl);
-      this.player.loadVideoById(this.id);
-    }
+
   }
 
   onStateChange(event) {
@@ -38,6 +34,11 @@ export class YoutubePlayerComponent implements OnInit, OnChanges {
 
   savePlayer(player) {
     this.player = player;
+    if (this.allVideoURL.length > 0) {
+      const firstMatch = this.allVideoURL[0].path;
+      this.convertURLToId(firstMatch);
+    }
+    this.player.loadVideoById(this.id);
   }
 
   playVideo() {
@@ -54,6 +55,14 @@ export class YoutubePlayerComponent implements OnInit, OnChanges {
 
   getCurrentTimeFromYoutubeVideo() {
     this.player.getCurrentTime();
+  }
+
+  changeYoutubeLink(path: string) {
+    this.youtubeUrl = path;
+    if (this.youtubeUrl) {
+      this.convertURLToId(this.youtubeUrl);
+      this.player.loadVideoById(this.id);
+    }
   }
 
   convertURLToId(url) {

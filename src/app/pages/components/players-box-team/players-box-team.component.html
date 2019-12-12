@@ -4,10 +4,10 @@
       <span class="ui-panel-title" style="font-size:16px; display:inline-block; margin-top:2px;">{{teamName}}</span>
     </div>
   </p-header>
-  <div class="row">
-    <div class="col-md-6 text-center" *ngFor="let x of teamData">
-      <div class="btn-group dropright">
-        <button type="button" class="btn btn-light">
+  <div>
+    <div  >
+      <div *ngFor="let x of teamData" class="btn-group m-2 dropright">
+        <button type="button" class="btn  btn-light">
           {{x.nameAr}}
         </button>
         <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"

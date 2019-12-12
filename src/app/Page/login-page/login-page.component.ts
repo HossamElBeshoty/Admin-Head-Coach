@@ -15,11 +15,13 @@ export class LoginPageComponent implements OnInit {
   };
   errorMessage: string;
   spinner = false;
+  userId;
 
   constructor(private loginService: LoginService, private router: Router, private cookieService: CookieService) {
   }
 
   ngOnInit() {
+    this.userId = this.cookieService.get('userId');
   }
 
   onLogin() {
@@ -30,6 +32,8 @@ export class LoginPageComponent implements OnInit {
     this.loginService.loginMember(loginObj).subscribe((result: any) => {
       this.cookieService.set('access_token', result.access_token);
       this.cookieService.set('userName', result.userName);
+      this.cookieService.set('userId', result.userId);
+
       this.router.navigateByUrl('/pages/home');
     }, error => {
       if (error.status === 400) {

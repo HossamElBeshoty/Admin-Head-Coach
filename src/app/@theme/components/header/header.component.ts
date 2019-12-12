@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userPictureOnly: boolean = false;
   user: any;
   userName;
+  userId;
   themes = [
     {
       value: 'default',
@@ -55,6 +56,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
     this.userName = this.cookieService.get('userName');
+    this.userId = this.cookieService.get('userId');
     this.userService.getUsers()
       .pipe(takeUntil(this.destroy$))
       .subscribe((users: any) => this.user = users.nick);
@@ -99,6 +101,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   logOut() {
     this.cookieService.delete('access_token', '/');
     this.cookieService.delete('userName', '/');
+    this.cookieService.delete('userId', '/');
     this.router.navigate(['']);
+  }
+
+  profileAccount() {
+    this.router.navigate(['/pages/user/' + this.userId]);
   }
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UserAccountService} from '../../Service/user-account.service';
 
 @Component({
   selector: 'ngx-registration-page',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public userAccountService: UserAccountService) {
+  }
 
   ngOnInit() {
   }
