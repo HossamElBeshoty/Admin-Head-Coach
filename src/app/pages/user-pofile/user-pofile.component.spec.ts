@@ -8,7 +8,7 @@ describe('UserPofileComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserPofileComponent ]
+      declarations: [ UserPofileComponent ],
     })
     .compileComponents();
   }));
