@@ -1,21 +1,3 @@
-<!--<div class="container">-->
-
-<!--  <div class="col-md-12">-->
-<!--    <ngx-modal [buttonName]="'Add New User'" [width]="1000" [header]="'UpStrike Users'"-->
-<!--               [buttonCss]="'btn btn-outline-primary animated slow fadeInDown btn-block m-4'"-->
-<!--               [iconClass]="'fas fa-user-plus'">-->
-<!--      <div forms>-->
-<!--        <ngx-user-form></ngx-user-form>-->
-<!--      </div>-->
-<!--      <div buttons>-->
-<!--        <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>-->
-<!--        <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No"-->
-<!--                class="ui-button-secondary"></button>-->
-<!--      </div>-->
-<!--    </ngx-modal>-->
-<!--  </div>-->
-
-<!--</div>-->
 <p-table #dt [columns]="cols" [value]="allUsers" [paginator]="true" [rows]="10" dataKey="id">
   <ng-template pTemplate="caption">
     <div class="ui-helper-clearfix">
@@ -47,7 +29,8 @@
               class="far fa-user"></i></button>
           </div>
           <div class="col-md-4">
-            <button type="button" class="btn btn-outline-secondary"><i class="fas fa-table"></i></button>
+            <button type="button" class="btn btn-outline-secondary" (click)="getUserSubscriptions(rowData.id)"><i
+              class="fas fa-table"></i></button>
           </div>
           <div class="col-md-4">
             <button type="button" class="btn btn-outline-danger"><i class="fas fa-user-times"></i></button>
@@ -61,3 +44,35 @@
   </ng-template>
 </p-table>
 
+
+<p-dialog header="All Subscriptions" [(visible)]="displayAllUserSubscriptions" [modal]="true" [responsive]="true"
+          [style]="{width: '750px', minWidth: '650px'}" [minY]="70"
+          [baseZIndex]="10000" appendTo="body">
+  <p-table #dt [columns]="colsUserSubscriptions" [value]="allUserSubscriptions" [paginator]="true" [rows]="10"
+           dataKey="id">
+    <ng-template pTemplate="caption">
+      <div class="ui-helper-clearfix">
+        <button type="button" class="btn btn-warning btn-sm float-right"><i
+          class="fas fa-user-plus"></i> Add New Subscription
+        </button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns">
+          {{col.header}}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-expanded="expanded" let-rowData let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns">
+          {{rowData[col.field]}}
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      There are {{allUserSubscriptions?.length}} Subscriptions
+    </ng-template>
+  </p-table>
+</p-dialog>
