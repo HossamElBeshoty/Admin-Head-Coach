@@ -127,7 +127,7 @@
           </button>
         </div>
         <img
-          [src]="userData?.profilePath!= null ?  userData?.profilePath.includes('data:image')?userData.profilePath:apiEndPoint + userData?.profilePath: '../assets/images/default-avatar-png-5.png'"
+          [src]="userAccountService.userAccount?.profilePath!= null ?  userAccountService.userAccount?.profilePath.includes('data:image')?userAccountService.userAccount.profilePath:apiEndPoint + userAccountService.userAccount?.profilePath: '../assets/images/default-avatar-png-5.png'"
           class="img-thumbnail m-4" alt="{{userData?.name}}">
       </div>
       <div class="col-md-6">
