@@ -62,4 +62,8 @@ export class UserAccountService {
   checkVerificationCode(verifyCode: string, userId: string) {
     return this.dataService.get(`api/Account/VerifyCode?verifyCode=${verifyCode}&userId=${userId}`);
   }
+
+  getUserById(userId) {
+    return this.dataService.get(`api/UserSubscription/getAllByUserId/${userId}`);
+  }
 }

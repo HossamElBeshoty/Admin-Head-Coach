@@ -19,6 +19,12 @@
                  placeholder="Enter Your Verification Code" required>
         </div>
       </div>
+      <div class="row" *ngIf="errorMessage">
+        <div class="col-md-12 text-center">
+          <i class="fas fa-bomb text-warning"></i>
+          <p class="text-danger">{{errorMessage}}</p>
+        </div>
+      </div>
       <div class="form-row text-center">
         <p>Please Contact Us To Send You The Verification Code 01002021454</p>
       </div>

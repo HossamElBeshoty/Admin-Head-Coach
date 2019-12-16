@@ -13,6 +13,8 @@ export class VerificationCodePageComponent implements OnInit {
   verifyCode = '';
   userId: string;
   spinner = false;
+  errorMessage;
+
   constructor(public userAccountService: UserAccountService,
               private activatedRouter: ActivatedRoute,
               private loginService: LoginService,
@@ -37,11 +39,13 @@ export class VerificationCodePageComponent implements OnInit {
           this.cookieService.set('userId', result.userId);
           this.router.navigateByUrl('/pages/home');
         }, error => {
-
         }, () => {
           this.spinner = false;
           localStorage.clear();
         });
+      } else {
+        this.spinner = false;
+        this.errorMessage = 'InValid Validation Code';
       }
     });
   }

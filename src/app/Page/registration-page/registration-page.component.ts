@@ -28,7 +28,6 @@ export class RegistrationPageComponent implements OnInit {
     this.userAccountService.registerUserInfo(this.matchCount).subscribe(res => {
       this.spinner = true;
     }, error => {
-      // console.log('err');
     }, () => {
       this.router.navigateByUrl('');
     });
