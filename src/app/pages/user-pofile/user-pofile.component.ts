@@ -34,7 +34,20 @@ export class UserPofileComponent implements OnInit {
     this.displayUserAccountProfileImage = true;
   }
 
-  showUserAccountDialog() {
+  showUserAccountDialog(userAccount: IUserAccount) {
+    this.userAccountService.userAccount = userAccount;
     this.displayUserAccountProfile = true;
+  }
+
+  displayImg(event: any) {
+    this.userAccountService.userAccount.profilePath = event;
+  }
+
+  updateUser() {
+    this.userAccountService.editUser().subscribe(res => {
+    }, error => {
+    }, () => {
+      this.displayUserAccountProfile = false;
+    });
   }
 }

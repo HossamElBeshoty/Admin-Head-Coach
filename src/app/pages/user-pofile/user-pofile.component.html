@@ -32,7 +32,8 @@
         </div>
       </div>
       <div class="col-md-2">
-        <button class="btn btn-outline-secondary btn-sm" (click)="showUserAccountDialog()"><i class="far fa-edit"></i>
+        <button class="btn btn-outline-secondary btn-sm" (click)="showUserAccountDialog(userData)"><i
+          class="far fa-edit"></i>
           Edit Profile
         </button>
       </div>
@@ -125,17 +126,22 @@
             class="fas fa-camera-retro"></i> Upload Image
           </button>
         </div>
-        <img src="../assets/images/default-avatar-png-5.png" class="img-thumbnail m-4" alt="{{userData?.name}}">
+        <img
+          [src]="userData?.profilePath!= null ?  userData?.profilePath.includes('data:image')?userData.profilePath:apiEndPoint + userData?.profilePath: '../assets/images/default-avatar-png-5.png'"
+          class="img-thumbnail m-4" alt="{{userData?.name}}">
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text bg-white">
-                <i class="fas fa-signature"></i>
+                <i class="fas fa-signature" [class.green-icon]="name.valid"
+                   [class.red-icon]="name.invalid && name.touched"></i>
               </div>
             </div>
-            <input id="nameAr" type="text" class="form-control" placeholder="Insert Your Name" required>
+            <input id="nameAr" type="text" class="form-control" name="name"
+                   [(ngModel)]="userAccountService.userAccount.name"
+                   #name="ngModel" placeholder="Insert Your Name" required>
           </div>
         </div>
       </div>
@@ -144,10 +150,13 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text bg-white">
-                <i class="far fa-envelope"></i>
+                <i class="far fa-envelope" [class.green-icon]="email.valid"
+                   [class.red-icon]="email.invalid && email.touched"></i>
               </div>
             </div>
-            <input id="email" type="text" class="form-control" placeholder="Insert Your Email" required>
+            <input id="email" type="text" class="form-control" name="email"
+                   [(ngModel)]="userAccountService.userAccount.email"
+                   #email="ngModel" placeholder="Insert Your Email" required>
           </div>
         </div>
       </div>
@@ -156,15 +165,18 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text bg-white">
-                <i class="fas fa-phone-volume"></i>
+                <i class="fas fa-phone-volume" [class.green-icon]="phoneNumber.valid"
+                   [class.red-icon]="phoneNumber.invalid && phoneNumber.touched"></i>
               </div>
             </div>
-            <input id="phone" type="text" class="form-control" placeholder="Insert Your Phone" required>
+            <input id="phone" type="text" class="form-control" name="phoneNumber"
+                   [(ngModel)]="userAccountService.userAccount.phoneNumber"
+                   #phoneNumber="ngModel" placeholder="Insert Your Phone" required>
           </div>
         </div>
       </div>
       <div class="col-md-12">
-        <button class="btn btn-outline-success btn-block btn-sm" (click)="this.displayUserAccountProfile = false;">
+        <button class="btn btn-outline-success btn-block btn-sm" (click)="updateUser()">
           <i class="far fa-check-square"></i> Submit
         </button>
       </div>
@@ -179,7 +191,8 @@
           [baseZIndex]="10000">
   <div class="row" style="width: 99%;">
     <div class="col-md-12">
-      <ngx-image-cropper [onCropperWidth]="100" [onCropperHeight]="100"></ngx-image-cropper>
+      <ngx-image-cropper [onCropperWidth]="150" [onCropperHeight]="150"
+                         (imgCropper)="displayImg($event)"></ngx-image-cropper>
     </div>
   </div>
   <br>
