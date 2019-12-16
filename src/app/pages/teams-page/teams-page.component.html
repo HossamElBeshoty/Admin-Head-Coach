@@ -7,8 +7,8 @@
   </div>
 </div>
 
-<div class="animated slower fadeInUp">
-  <p-tabView (onChange)="onChangeTab($event.index)">
+<div class="animated slower fadeInUp" *ngIf="allClubs.length !== 0">
+  <p-tabView  (onChange)="onChangeTab($event.index)">
     <ng-container *ngFor="let item of allClubs;let i = index;">
       <p-tabPanel header="{{item.nameAr}}" [selected]="i == tabIndex">
         <div class="row">

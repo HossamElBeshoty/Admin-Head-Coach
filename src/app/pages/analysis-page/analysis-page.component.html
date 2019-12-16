@@ -8,7 +8,7 @@
 
 </div>
 <br>
-<div class="">
+<div *ngIf="allMatches.length !== 0">
   <p-table #dt1 [columns]="cols" [value]="allMatches" [paginator]="true" [rows]="10" dataKey="id" sortMode="multiple"
            [resizableColumns]="true"
            [reorderableColumns]="true"
