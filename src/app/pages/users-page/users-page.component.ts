@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserAccountService} from '../../Service/user-account.service';
+import {ISubscription} from '../../Models/i-subscription';
+import {SubscriptionService} from '../../Service/subscription.service';
 
 @Component({
   selector: 'ngx-users-page',
@@ -17,12 +19,14 @@ export class UsersPageComponent implements OnInit {
   userId;
   userName;
   spinner = false;
+  allSubscriptions: ISubscription[] = [];
 
-  constructor(private  userAccountService: UserAccountService) {
+  constructor(private  userAccountService: UserAccountService, public subscriptionService: SubscriptionService) {
   }
 
   ngOnInit() {
     this.getUsers();
+    this.getAllSubscriptions();
     this.cols = [
       {field: 'name', header: 'Name'},
       {field: 'creationDate', header: 'Date'},
@@ -31,9 +35,8 @@ export class UsersPageComponent implements OnInit {
       {field: 'lockoutEnabled', header: 'Activation'},
     ];
     this.colsUserSubscriptions = [
-      {field: 'nameAr', header: 'Name'},
       {field: 'subscriptionsDate', header: 'Date'},
-      {field: 'subscription', header: 'Subscription'},
+      {field: 'subscription', header: 'Subscription', subfield: 'nameAr', subfieldName: 'subscription.nameAr'},
     ];
   }
 
@@ -44,7 +47,8 @@ export class UsersPageComponent implements OnInit {
   }
 
   getUserSubscriptions(id) {
-    this.userAccountService.getUserSubscriptions(id).subscribe(res => {
+    this.userId = id;
+    this.userAccountService.getUserSubscriptions(this.userId).subscribe(res => {
       this.allUserSubscriptions = res;
     }, error => {
     }, () => {
@@ -65,6 +69,21 @@ export class UsersPageComponent implements OnInit {
     }, () => {
       this.displayActivationCode = false;
       this.spinner = false;
+    });
+  }
+
+  getAllSubscriptions() {
+    this.subscriptionService.getAllSubscriptions().subscribe(res => {
+      this.allSubscriptions = res as ISubscription[];
+    });
+  }
+
+  addSubscriptionToUser() {
+    this.userAccountService.userSubscription.userId = this.userId;
+    this.userAccountService.addUserSubscription().subscribe(res => {
+    }, error => {
+    }, () => {
+      this.allUserSubscriptions.push(this.userAccountService.userSubscription);
     });
   }
 }

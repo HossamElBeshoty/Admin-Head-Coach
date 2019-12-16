@@ -264,7 +264,7 @@
             <select class="form-control" id="playerNationality" name="nationalityId"
                     [(ngModel)]="playerService.player.nationalityId"
                     #playerNationality="ngModel" required>
-              <option disabled>Select Nationality</option>
+              <option selected disabled>Select Nationality</option>
               <option *ngFor="let x of allNationalities" [value]="x.id">{{x.nameAr}}</option>
             </select>
           </div>

@@ -1,11 +1,13 @@
 import {Injectable} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DataService} from './data.service';
+import {IUserSubscription} from '../Models/i-user-subscription';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserAccountService {
+  userSubscription = {} as IUserSubscription;
 
   constructor(private fb: FormBuilder, private dataService: DataService) {
   }
@@ -65,5 +67,9 @@ export class UserAccountService {
 
   getUserById(userId) {
     return this.dataService.get(`api/Account/Users/${userId}`);
+  }
+
+  addUserSubscription() {
+    return this.dataService.add('api/UserSubscription', this.userSubscription);
   }
 }

@@ -36,7 +36,8 @@
               class="far fa-user"></i></button>
           </div>
           <div class="col-md-3">
-            <button type="button" class="btn btn-outline-secondary" (click)="getUserSubscriptions(rowData.id)"><i
+            <button type="button" class="btn btn-outline-secondary"
+                    (click)="getUserSubscriptions(rowData.id);"><i
               class="fas fa-table"></i></button>
           </div>
           <div class="col-md-3">
@@ -64,9 +65,49 @@
            dataKey="id">
     <ng-template pTemplate="caption">
       <div class="ui-helper-clearfix">
-        <button type="button" class="btn btn-warning btn-sm float-right"><i
-          class="fas fa-user-plus"></i> Add New Subscription
-        </button>
+        <form action="" #hossam="ngForm">
+          <div class="row">
+            <div class="col-md-5">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text bg-white">
+                      <i class="fab fa-audible" [class.green-icon]="nameAr.valid"
+                         [class.red-icon]="nameAr.invalid && nameAr.touched"></i>
+                    </div>
+                  </div>
+                  <select class="form-control" id="exampleFormControlSelect1" name="nameAr"
+                          [(ngModel)]="userAccountService.userSubscription.subscriptionsId"
+                          #nameAr="ngModel">
+                    <option disabled selected>Choose Subscription</option>
+                    <option *ngFor="let subscription of allSubscriptions"
+                            [value]="subscription.id">{{subscription.nameAr}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text bg-white">
+                      <i class="fas fa-calendar-alt" [class.green-icon]="subscriptionsDate.valid"
+                         [class.red-icon]="subscriptionsDate.invalid && subscriptionsDate.touched"></i>
+                    </div>
+                  </div>
+                  <input id="nameAr" type="date" class="form-control" name="subscriptionsDate"
+                         [(ngModel)]="userAccountService.userSubscription.subscriptionsDate"
+                         #subscriptionsDate="ngModel" required>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <button type="button" class="btn btn-warning text-center" (click)="addSubscriptionToUser()"><i
+                class="fas fa-user-plus"></i>
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </ng-template>
     <ng-template pTemplate="header" let-columns>
@@ -79,7 +120,13 @@
     <ng-template pTemplate="body" let-expanded="expanded" let-rowData let-columns="columns">
       <tr>
         <td *ngFor="let col of columns">
-          {{rowData[col.field]}}
+          <div *ngIf="col.subfield;then nested_object_content else normal_content"></div>
+          <ng-template #nested_object_content>
+            {{rowData[col.field][col.subfield]}}
+          </ng-template>
+          <ng-template #normal_content>
+            {{rowData[col.field] | date: 'dd-MM-yyyy'}}
+          </ng-template>
         </td>
       </tr>
     </ng-template>
