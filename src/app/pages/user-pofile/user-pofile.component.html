@@ -130,7 +130,7 @@
           [src]="userData?.profilePath!= null ?  userData?.profilePath.includes('data:image')?userData.profilePath:apiEndPoint + userData?.profilePath: '../assets/images/default-avatar-png-5.png'"
           class="img-thumbnail m-4" alt="{{userData?.name}}">
       </div>
-      <div class="col-md-4">
+      <div class="col-md-6">
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-prepend">
@@ -145,22 +145,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text bg-white">
-                <i class="far fa-envelope" [class.green-icon]="email.valid"
-                   [class.red-icon]="email.invalid && email.touched"></i>
-              </div>
-            </div>
-            <input id="email" type="text" class="form-control" name="email"
-                   [(ngModel)]="userAccountService.userAccount.email"
-                   #email="ngModel" placeholder="Insert Your Email" required>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
+      <div class="col-md-6">
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-prepend">
