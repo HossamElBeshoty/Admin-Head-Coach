@@ -14,6 +14,7 @@ export class RegistrationPageComponent implements OnInit {
   displayRegistration: boolean = false;
   allSubscriptions: ISubscription[];
   matchCount = 0;
+  errorMessages = [];
 
   constructor(public userAccountService: UserAccountService,
               private router: Router,
@@ -25,10 +26,14 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   onUserRegistration() {
+    this.spinner = true;
     this.userAccountService.registerUserInfo(this.matchCount).subscribe(res => {
-      this.spinner = true;
+
     }, error => {
+      this.spinner = false;
+      this.errorMessages = error.error.modelState.errors;
     }, () => {
+      this.spinner = false;
       this.router.navigateByUrl('');
     });
   }

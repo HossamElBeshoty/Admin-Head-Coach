@@ -64,6 +64,6 @@ export class UserAccountService {
   }
 
   getUserById(userId) {
-    return this.dataService.get(`api/UserSubscription/getAllByUserId/${userId}`);
+    return this.dataService.get(`api/Account/Users/${userId}`);
   }
 }

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {UserAccountService} from '../../Service/user-account.service';
 import {ActivatedRoute} from '@angular/router';
+import {IUserAccount} from '../../Models/i-user-account';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'ngx-user-pofile',
@@ -9,7 +11,8 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class UserPofileComponent implements OnInit {
   userId: string;
-
+  userData: IUserAccount;
+  apiEndPoint = environment.apiEndPoint;
   constructor(public userAccountService: UserAccountService, private activatedRouter: ActivatedRoute) {
   }
 
@@ -20,7 +23,7 @@ export class UserPofileComponent implements OnInit {
 
   getUser() {
     this.userAccountService.getUserById(this.userId).subscribe(res => {
-      console.log(res);
+      this.userData = res as IUserAccount;
     });
   }
 }

@@ -3,18 +3,23 @@
     <div class="row animated fadeInDown slower">
       <div class="col-md-4">
         <div class="profile-img">
-          <img class="img-thumbnail" src="../assets/images/default-avatar-png-5.png" alt=""/>
+          <img class="img-thumbnail"
+               [src]="userData?.profilePath!= null ?  userData?.profilePath.includes('data:image')?userData.profilePath:apiEndPoint + userData?.profilePath: '../assets/images/default-avatar-png-5.png'"
+               alt=""/>
         </div>
       </div>
       <div class="col-md-6">
         <div class="profile-head">
           <h5>
-            Hazem Hammed
+            {{userData?.name}}
           </h5>
           <h6>
-            Elite
+
+            {{userData?.userSubscriptions[0].subscription.nameAr}}
           </h6>
-          <p class="proile-rating">Matches : <span>8/10</span></p>
+          <p class="proile-rating">Matches : <span> {{userData?.matchesCount}}
+            /{{userData?.userSubscriptions[0].subscription.matchesCount}}</span>
+          </p>
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
               <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
@@ -29,23 +34,10 @@
       </div>
       <div class="col-md-2">
         <button class="btn btn-outline-secondary btn-sm"><i class="far fa-edit"></i> Edit Profile</button>
-        <!--        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>-->
       </div>
     </div>
     <div class="row animated fadeInUp slower">
       <div class="col-md-4">
-        <!--        <div class="profile-work">-->
-        <!--          <p>WORK LINK</p>-->
-        <!--          <a href="">Website Link</a><br/>-->
-        <!--          <a href="">Bootsnipp Profile</a><br/>-->
-        <!--          <a href="">Bootply Profile</a>-->
-        <!--          <p>SKILLS</p>-->
-        <!--          <a href="">Web Designer</a><br/>-->
-        <!--          <a href="">Web Developer</a><br/>-->
-        <!--          <a href="">WordPress</a><br/>-->
-        <!--          <a href="">WooCommerce</a><br/>-->
-        <!--          <a href="">PHP, .Net</a><br/>-->
-        <!--        </div>-->
       </div>
       <div class="col-md-8">
         <div class="tab-content profile-tab" id="myTabContent">
@@ -55,7 +47,7 @@
                 <label>User Name</label>
               </div>
               <div class="col-md-6">
-                <p>Zooma</p>
+                <p>{{userData?.userName}}</p>
               </div>
             </div>
             <div class="row">
@@ -63,7 +55,7 @@
                 <label>Name</label>
               </div>
               <div class="col-md-6">
-                <p>Hazzem Hammed</p>
+                <p>{{userData?.name}}</p>
               </div>
             </div>
             <div class="row">
@@ -71,7 +63,7 @@
                 <label>Email</label>
               </div>
               <div class="col-md-6">
-                <p>Zooma@gmail.com</p>
+                <p>{{userData?.email}}</p>
               </div>
             </div>
             <div class="row">
@@ -79,17 +71,9 @@
                 <label>Phone</label>
               </div>
               <div class="col-md-6">
-                <p>01099049044</p>
+                <p>{{userData?.phoneNumber}}</p>
               </div>
             </div>
-            <!--            <div class="row">-->
-            <!--              <div class="col-md-6">-->
-            <!--                <label>Profession</label>-->
-            <!--              </div>-->
-            <!--              <div class="col-md-6">-->
-            <!--                <p>HandBall Coach </p>-->
-            <!--              </div>-->
-            <!--            </div>-->
           </div>
           <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
             <div class="row">
@@ -97,7 +81,7 @@
                 <label>Package Name</label>
               </div>
               <div class="col-md-6">
-                <p>Elite</p>
+                <p>{{userData?.userSubscriptions[0].subscription.nameAr}}</p>
               </div>
             </div>
             <div class="row">
@@ -105,7 +89,7 @@
                 <label>Total Matches</label>
               </div>
               <div class="col-md-6">
-                <p>230</p>
+                <p>{{userData?.userSubscriptions[0].subscription.matchesCount}} Matchs</p>
               </div>
             </div>
             <div class="row">
@@ -113,7 +97,7 @@
                 <label>Number Of Matches</label>
               </div>
               <div class="col-md-6">
-                <p>100 Match</p>
+                <p>{{userData?.matchesCount}} Matchs</p>
               </div>
             </div>
             <div class="row">

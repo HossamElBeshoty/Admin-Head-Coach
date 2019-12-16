@@ -4,6 +4,9 @@
       Welcome To UpStrike Registration
     </h3>
   </div>
+  <div *ngFor="let x of errorMessages" class="alert alert-danger" role="alert">
+    {{x}}
+  </div>
   <div class="card-body">
     <form [formGroup]="userAccountService.formModel" autocomplete="off" (submit)="onUserRegistration()">
       <div class="form-group">
