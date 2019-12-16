@@ -13,6 +13,9 @@ export class UserPofileComponent implements OnInit {
   userId: string;
   userData: IUserAccount;
   apiEndPoint = environment.apiEndPoint;
+  displayUserAccountProfile: boolean = false;
+  displayUserAccountProfileImage: boolean = false;
+
   constructor(public userAccountService: UserAccountService, private activatedRouter: ActivatedRoute) {
   }
 
@@ -25,5 +28,13 @@ export class UserPofileComponent implements OnInit {
     this.userAccountService.getUserById(this.userId).subscribe(res => {
       this.userData = res as IUserAccount;
     });
+  }
+
+  showUserAccountImageDialog() {
+    this.displayUserAccountProfileImage = true;
+  }
+
+  showUserAccountDialog() {
+    this.displayUserAccountProfile = true;
   }
 }

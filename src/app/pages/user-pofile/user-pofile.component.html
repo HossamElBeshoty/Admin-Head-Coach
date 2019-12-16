@@ -14,7 +14,6 @@
             {{userData?.name}}
           </h5>
           <h6>
-
             {{userData?.userSubscriptions[0].subscription.nameAr}}
           </h6>
           <p class="proile-rating">Matches : <span> {{userData?.matchesCount}}
@@ -33,7 +32,9 @@
         </div>
       </div>
       <div class="col-md-2">
-        <button class="btn btn-outline-secondary btn-sm"><i class="far fa-edit"></i> Edit Profile</button>
+        <button class="btn btn-outline-secondary btn-sm" (click)="showUserAccountDialog()"><i class="far fa-edit"></i>
+          Edit Profile
+        </button>
       </div>
     </div>
     <div class="row animated fadeInUp slower">
@@ -111,3 +112,78 @@
     </div>
   </form>
 </div>
+
+
+<p-dialog header="{{userData?.name}}" [(visible)]="displayUserAccountProfile" [modal]="true" [responsive]="true"
+          [minY]="70" appendTo="body" [style]="{width: '750px', minWidth: '600px'}"
+          [baseZIndex]="10000">
+  <form action="" style="width: 99%;">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <div class="float-right">
+          <button class="btn btn-outline-success btn-sm" (click)="showUserAccountImageDialog()"><i
+            class="fas fa-camera-retro"></i> Upload Image
+          </button>
+        </div>
+        <img src="../assets/images/default-avatar-png-5.png" class="img-thumbnail m-4" alt="{{userData?.name}}">
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white">
+                <i class="fas fa-signature"></i>
+              </div>
+            </div>
+            <input id="nameAr" type="text" class="form-control" placeholder="Insert Your Name" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white">
+                <i class="far fa-envelope"></i>
+              </div>
+            </div>
+            <input id="email" type="text" class="form-control" placeholder="Insert Your Email" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white">
+                <i class="fas fa-phone-volume"></i>
+              </div>
+            </div>
+            <input id="phone" type="text" class="form-control" placeholder="Insert Your Phone" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <button class="btn btn-outline-success btn-block btn-sm" (click)="this.displayUserAccountProfile = false;">
+          <i class="far fa-check-square"></i> Submit
+        </button>
+      </div>
+    </div>
+  </form>
+</p-dialog>
+
+
+<p-dialog header="{{userData?.name}} Image" [(visible)]="displayUserAccountProfileImage" [modal]="true"
+          [responsive]="true"
+          [minY]="70" appendTo="body" [style]="{width: '850px', minWidth: '700px'}"
+          [baseZIndex]="10000">
+  <div class="row" style="width: 99%;">
+    <div class="col-md-12">
+      <ngx-image-cropper [onCropperWidth]="100" [onCropperHeight]="100"></ngx-image-cropper>
+    </div>
+  </div>
+  <br>
+  <button class="btn btn-outline-success btn-block btn-sm" (click)="this.displayUserAccountProfileImage = false;">
+    <i class="far fa-check-square"></i> Submit
+  </button>
+</p-dialog>
