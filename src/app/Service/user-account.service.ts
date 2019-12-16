@@ -15,7 +15,7 @@ export class UserAccountService {
     Name: ['', Validators.required],
     UserName: ['', Validators.required],
     PhoneNumber: ['', Validators.required],
-    MatchesCount: ['', Validators.required],
+    subscriptionsId: ['', Validators.required],
     Passwords: this.fb.group({
       Password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
       ConfirmPassword: ['', Validators.required],
@@ -33,7 +33,7 @@ export class UserAccountService {
     }
   }
 
-  registerUserInfo() {
+  registerUserInfo(matchCount) {
     const data = {
       email: this.formModel.value.Email,
       password: this.formModel.value.Passwords.Password,
@@ -41,7 +41,8 @@ export class UserAccountService {
       name: this.formModel.value.Name,
       phoneNumber: this.formModel.value.PhoneNumber,
       userName: this.formModel.value.UserName,
-      matchesCount: this.formModel.value.MatchesCount,
+      matchesCount: matchCount,
+      subscriptionsId: this.formModel.value.subscriptionsId,
     };
     return this.dataService.add('api/Account/Register', data);
   }
@@ -52,5 +53,13 @@ export class UserAccountService {
 
   getUserSubscriptions(id: string) {
     return this.dataService.get('api/UserSubscription/getAllByUserId/' + id);
+  }
+
+  getVerificationCode(userId: string) {
+    return this.dataService.get('api/Account/Activation/' + userId);
+  }
+
+  checkVerificationCode(verifyCode: string, userId: string) {
+    return this.dataService.get(`api/Account/VerifyCode?verifyCode=${verifyCode}&userId=${userId}`);
   }
 }

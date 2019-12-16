@@ -28,16 +28,21 @@ export class LoginPageComponent implements OnInit {
     this.spinner = true;
     const loginObj = 'grant_type=password' + '&username='
       + this.loginFormModel.username + '&password=' + this.loginFormModel.password;
-
     this.loginService.loginMember(loginObj).subscribe((result: any) => {
       this.cookieService.set('access_token', result.access_token);
       this.cookieService.set('userName', result.userName);
       this.cookieService.set('userId', result.userId);
-
       this.router.navigateByUrl('/pages/home');
     }, error => {
+      this.spinner = false;
       if (error.status === 400) {
-        this.errorMessage = 'User Name Or Password Are Not Correct';
+        if (error.error.error === 'User UnActive') {
+          localStorage.setItem('userName', this.loginFormModel.username);
+          localStorage.setItem('password', this.loginFormModel.password);
+          this.router.navigateByUrl('verificationCode/' + error.error.error_description);
+        } else {
+          this.errorMessage = 'User Name Or Password Are Not Correct';
+        }
       }
     });
   }

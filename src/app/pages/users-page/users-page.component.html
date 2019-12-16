@@ -20,19 +20,31 @@
   <ng-template pTemplate="body" let-expanded="expanded" let-rowData let-columns="columns">
     <tr>
       <td *ngFor="let col of columns">
-        {{rowData[col.field]}}
+        <div *ngIf="col.field === 'creationDate'; then nested_object_content  else normal_content "></div>
+        <ng-template #nested_object_content>
+          {{rowData[col.field] |  date: 'dd-MM-yyyy'}}
+        </ng-template>
+        <ng-template #normal_content>
+          {{rowData[col.field]}}
+        </ng-template>
+
       </td>
       <td>
         <div class="row text-center">
-          <div class="col-md-4">
+          <div class="col-md-3">
             <button type="button" class="btn btn-outline-success" [routerLink]="['../user/' , rowData.id]"><i
               class="far fa-user"></i></button>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <button type="button" class="btn btn-outline-secondary" (click)="getUserSubscriptions(rowData.id)"><i
               class="fas fa-table"></i></button>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
+            <button type="button" class="btn btn-outline-info" (click)="showActivationDialog(rowData.id, rowData.name)">
+              <i
+                class="fas fa-code"></i></button>
+          </div>
+          <div class="col-md-3">
             <button type="button" class="btn btn-outline-danger"><i class="fas fa-user-times"></i></button>
           </div>
         </div>
@@ -75,4 +87,24 @@
       There are {{allUserSubscriptions?.length}} Subscriptions
     </ng-template>
   </p-table>
+</p-dialog>
+
+<p-dialog header="Verification Code" [(visible)]="displayActivationCode" [modal]="true" [responsive]="true"
+          [style]="{width: '350px', minWidth: '350px'}" [minY]="70"
+          [baseZIndex]="10000" appendTo="body">
+  <div class="text-center">
+    <i class="fas fa-check-double fa-4x text-success"></i>
+  </div>
+  <br>
+  <h6 class="text-center">
+    Are You Sure To Activate {{userName}}?!
+  </h6>
+  <br>
+  <button class="btn btn-outline-success btn-sm btn-block" type="submit" (click)="sendVerificationCode()">
+                <span *ngIf="spinner === true" class="spinner-border spinner-border-sm" role="status"
+                      aria-hidden="true"></span>
+    <i *ngIf="spinner === false"
+       class="far fa-thumbs-up"></i>
+    Activate
+  </button>
 </p-dialog>

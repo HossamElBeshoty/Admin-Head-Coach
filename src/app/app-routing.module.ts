@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {NbAuthComponent} from '@nebular/auth';
 import {LoginPageComponent} from './Page/login-page/login-page.component';
 import {RegistrationPageComponent} from './Page/registration-page/registration-page.component';
+import {VerificationCodePageComponent} from './Page/verification-code-page/verification-code-page.component';
 
 const routes: Routes = [
   // {
@@ -28,6 +29,10 @@ const routes: Routes = [
       {
         path: 'register',
         component: RegistrationPageComponent,
+      },
+      {
+        path: 'verificationCode/:id',
+        component: VerificationCodePageComponent,
       },
       // {
       //   path: 'logout',

@@ -11,8 +11,12 @@ export class UsersPageComponent implements OnInit {
   colsUserSubscriptions: any[];
   display: boolean = false;
   displayAllUserSubscriptions: boolean = false;
+  displayActivationCode: boolean = false;
   allUsers;
   allUserSubscriptions;
+  userId;
+  userName;
+  spinner = false;
 
   constructor(private  userAccountService: UserAccountService) {
   }
@@ -45,6 +49,22 @@ export class UsersPageComponent implements OnInit {
     }, error => {
     }, () => {
       this.displayAllUserSubscriptions = true;
+    });
+  }
+
+  showActivationDialog(userId, userName) {
+    this.displayActivationCode = true;
+    this.userId = userId;
+    this.userName = userName;
+  }
+
+  sendVerificationCode() {
+    this.spinner = true;
+    this.userAccountService.getVerificationCode(this.userId).subscribe(res => {
+    }, error => {
+    }, () => {
+      this.displayActivationCode = false;
+      this.spinner = false;
     });
   }
 }
