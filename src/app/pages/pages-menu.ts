@@ -1,5 +1,5 @@
-import { NbMenuItem } from '@nebular/theme';
-
+import {NbMenuItem} from '@nebular/theme';
+const isAllow = localStorage.getItem('isAllow').toLowerCase() === 'true';
 export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Home',

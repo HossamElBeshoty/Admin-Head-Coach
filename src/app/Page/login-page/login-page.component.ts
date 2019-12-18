@@ -33,6 +33,7 @@ export class LoginPageComponent implements OnInit {
       this.cookieService.set('userName', result.userName, null, '/');
       this.cookieService.set('userId', result.userId, null, '/');
       this.cookieService.set('isAllow', result.isAllow, null, '/');
+      localStorage.setItem('isAllow', result.isAllow);
       this.router.navigateByUrl('/pages/home');
     }, error => {
       this.spinner = false;
