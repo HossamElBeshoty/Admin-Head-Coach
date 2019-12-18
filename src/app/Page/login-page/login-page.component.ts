@@ -29,10 +29,10 @@ export class LoginPageComponent implements OnInit {
     const loginObj = 'grant_type=password' + '&username='
       + this.loginFormModel.username + '&password=' + this.loginFormModel.password;
     this.loginService.loginMember(loginObj).subscribe((result: any) => {
-      this.cookieService.set('access_token', result.access_token);
-      this.cookieService.set('userName', result.userName);
-      this.cookieService.set('userId', result.userId);
-      this.cookieService.set('isAllow', result.isAllow);
+      this.cookieService.set('access_token', result.access_token, null, '/');
+      this.cookieService.set('userName', result.userName, null, '/');
+      this.cookieService.set('userId', result.userId, null, '/');
+      this.cookieService.set('isAllow', result.isAllow, null, '/');
       this.router.navigateByUrl('/pages/home');
     }, error => {
       this.spinner = false;

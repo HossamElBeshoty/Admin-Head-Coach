@@ -1,81 +1,39 @@
 import {Injectable} from '@angular/core';
-import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse} from '@angular/common/http';
-import {throwError, Observable, BehaviorSubject, of} from 'rxjs';
-import {catchError, filter, finalize, take, switchMap} from 'rxjs/operators';
+import {
+  HttpEvent,
+  HttpInterceptor,
+  HttpHandler,
+  HttpRequest,
+  HttpResponse,
+} from '@angular/common/http';
+import {Observable} from 'rxjs';
 import {CookieService} from 'ngx-cookie-service';
-import {environment} from '../../environments/environment';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private cookieService: CookieService) {
   }
 
-  private AUTH_HEADER = 'Authorization';
-  private token = this.cookieService.get('access_token');
-  private refreshTokenInProgress = false;
-  private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (req.url.includes('token')) {
-      req = req.clone({headers: req.headers.set('Content-Type', 'application/x-www-form-urlencoded')});
-      return next.handle(req);
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (request.url.includes('token')) {
+      request = request.clone({headers: request.headers.set('Content-Type', 'application/x-www-form-urlencoded')});
+      return next.handle(request);
     }
-    if (!req.headers.has('Content-Type') && !req.url.includes('upload')) {
-      req = req.clone({
-        headers: req.headers.set('Content-Type', 'application/json'),
-      });
+    const token: string = this.cookieService.get('access_token');
+    if (token) {
+      request = request.clone({headers: request.headers.set('Authorization', 'Bearer ' + token)});
     }
-    req = this.addAuthenticationToken(req);
-    return next.handle(req).pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (error && error.status === 401) {
-          // 401 errors are most likely going to be because we have an expired token that we need to refresh.
-          if (this.refreshTokenInProgress) {
-            // If refreshTokenInProgress is true, we will wait until refreshTokenSubject has a non-null value
-            // which means the new token is ready and we can retry the request again
-            return this.refreshTokenSubject.pipe(
-              filter(result => result !== null),
-              take(1),
-              switchMap(() => next.handle(this.addAuthenticationToken(req))),
-            );
-          } else {
-            this.refreshTokenInProgress = true;
-            // Set the refreshTokenSubject to null so that subsequent API calls will wait until the new token has been
-            // retrieved
-            this.refreshTokenSubject.next(null);
-            return this.refreshAccessToken().pipe(
-              switchMap((success: boolean) => {
-                this.refreshTokenSubject.next(success);
-                return next.handle(this.addAuthenticationToken(req));
-              }),
-              // When the call to refreshToken completes we reset the refreshTokenInProgress to false
-              // for the next time the token needs to be refreshed
-              finalize(() => (this.refreshTokenInProgress = false)),
-            );
-          }
-        } else {
-          return throwError(error);
+    if (!request.headers.has('Content-Type')) {
+      request = request.clone({headers: request.headers.set('Content-Type', 'application/json')});
+    }
+    request = request.clone({headers: request.headers.set('Accept', 'application/json')});
+    return next.handle(request).pipe(
+      map((event: HttpEvent<any>) => {
+        if (event instanceof HttpResponse) {
         }
-      }),
-    );
+        return event;
+      }));
   }
 
-  private refreshAccessToken(): Observable<any> {
-    return of(this.token);
-  }
-
-  private addAuthenticationToken(request: HttpRequest<any>): HttpRequest<any> {
-    // If we do not have a token yet then we should not set the header.
-    // Here we could first retrieve the token from where we store it.
-    if (!this.token) {
-      return request;
-    }
-    // If you are calling an outside domain then do not add the token.
-    if (!request.url.match(environment.apiEndPoint)) {
-      return request;
-    }
-    return request.clone({
-      headers: request.headers.set(this.AUTH_HEADER, 'Bearer ' + this.token),
-    });
-  }
 }
