@@ -32,6 +32,7 @@ export class LoginPageComponent implements OnInit {
       this.cookieService.set('access_token', result.access_token);
       this.cookieService.set('userName', result.userName);
       this.cookieService.set('userId', result.userId);
+      this.cookieService.set('isAllow', result.isAllow);
       this.router.navigateByUrl('/pages/home');
     }, error => {
       this.spinner = false;

@@ -3,6 +3,7 @@ import {UserAccountService} from '../../Service/user-account.service';
 import {ActivatedRoute} from '@angular/router';
 import {IUserAccount} from '../../Models/i-user-account';
 import {environment} from '../../../environments/environment';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'ngx-user-pofile',
@@ -16,7 +17,9 @@ export class UserPofileComponent implements OnInit {
   displayUserAccountProfile: boolean = false;
   displayUserAccountProfileImage: boolean = false;
 
-  constructor(public userAccountService: UserAccountService, private activatedRouter: ActivatedRoute) {
+  constructor(public userAccountService: UserAccountService,
+              private activatedRouter: ActivatedRoute,
+              private cookieService: CookieService) {
   }
 
   ngOnInit() {
