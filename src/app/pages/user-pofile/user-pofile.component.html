@@ -31,7 +31,7 @@
           </ul>
         </div>
       </div>
-      <div class="col-md-2" *ngIf="cookieService.get('isAllow') === 'False';">
+      <div class="col-md-2" *ngIf="isUser">
         <button class="btn btn-outline-secondary btn-sm" (click)="showUserAccountDialog(userData)"><i
           class="far fa-edit"></i>
           Edit Profile

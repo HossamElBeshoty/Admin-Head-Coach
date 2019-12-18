@@ -16,6 +16,7 @@ export class UserPofileComponent implements OnInit {
   apiEndPoint = environment.apiEndPoint;
   displayUserAccountProfile: boolean = false;
   displayUserAccountProfileImage: boolean = false;
+  isUser: boolean;
 
   constructor(public userAccountService: UserAccountService,
               private activatedRouter: ActivatedRoute,
@@ -24,6 +25,7 @@ export class UserPofileComponent implements OnInit {
 
   ngOnInit() {
     this.userId = this.activatedRouter.snapshot.params.id;
+    this.checkUser();
     this.getUser();
   }
 
@@ -52,5 +54,13 @@ export class UserPofileComponent implements OnInit {
     }, () => {
       this.displayUserAccountProfile = false;
     });
+  }
+
+  checkUser() {
+    if (this.cookieService.get('userId') === this.userId) {
+      this.isUser = true;
+    }else {
+      this.isUser = false;
+    }
   }
 }

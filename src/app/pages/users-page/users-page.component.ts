@@ -83,6 +83,16 @@ export class UsersPageComponent implements OnInit {
     this.userAccountService.addUserSubscription().subscribe(res => {
     }, error => {
     }, () => {
+      this.userAccountService.userSubscription.subscription = [];
+      this.userAccountService.userSubscription.subscription.push(
+        {
+          id: this.userAccountService.userSubscription.subscriptionsId,
+          nameAr: 'Abbas',
+          matchesCount: 0,
+          nameEn: 'Ans',
+          subscriptionPrice: 500,
+        },
+      );
       this.allUserSubscriptions.push(this.userAccountService.userSubscription);
     });
   }
