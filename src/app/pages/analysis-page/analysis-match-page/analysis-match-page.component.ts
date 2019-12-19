@@ -8,6 +8,9 @@ import {PlayerService} from '../../../Service/player.service';
 import {IPlayer} from '../../../Models/i-player';
 import {MatchVideoService} from '../../../Service/match-video.service';
 import {IMatchVideo} from '../../../Models/i-match-video';
+import {AnalysisService} from '../../../Service/analysis.service';
+import {IVideoAnalysis} from '../../../Models/i-video-analysis';
+import {SortEvent} from 'primeng/api';
 
 
 @Component({
@@ -16,122 +19,25 @@ import {IMatchVideo} from '../../../Models/i-match-video';
   styleUrls: ['./analysis-match-page.component.scss'],
 })
 export class AnalysisMatchPageComponent implements OnInit {
-  attacks = [{
-    duration: '15s',
-    teamA: 'El Zamalik',
-    actionOFTeamA: 'SHot',
-    playerAName: 'Amr Zaki',
-    timeInVideo: '23',
-    taktikOfTeamA: 'shot',
-    teamB: 'Ahly',
-    playerBName: 'Hadary',
-    actionOFTeamB: 'defence',
-    taktikOfTeamB: 'defence',
-  }, {
-    duration: '15s',
-    teamA: 'El Zamalik',
-    actionOFTeamA: 'SHot',
-    playerAName: 'Amr Zaki',
-    timeInVideo: '23',
-    taktikOfTeamA: 'shot',
-    teamB: 'Ahly',
-    playerBName: 'Hadary',
-    actionOFTeamB: 'defence',
-    taktikOfTeamB: 'defence',
-  }, {
-    duration: '25s',
-    teamA: 'El Zamalik',
-    actionOFTeamA: 'SHot',
-    playerAName: 'Amr Zaki',
-    timeInVideo: '23',
-    taktikOfTeamA: 'shot',
-    teamB: 'Ahly',
-    playerBName: 'Hadary',
-    actionOFTeamB: 'defence',
-    taktikOfTeamB: 'defence',
-  }, {
-    duration: '15s',
-    teamA: 'El Zamalik',
-    actionOFTeamA: 'SHot',
-    playerAName: 'Amr Zaki',
-    timeInVideo: '23',
-    taktikOfTeamA: 'shot',
-    teamB: 'Ahly',
-    playerBName: 'Hadary',
-    actionOFTeamB: 'defence',
-    taktikOfTeamB: 'defence',
-  }, {
-    duration: '25s',
-    teamA: 'El Zamalik',
-    actionOFTeamA: 'SHot',
-    playerAName: 'Amr Zaki',
-    timeInVideo: '23',
-    taktikOfTeamA: 'shot',
-    teamB: 'Ahly',
-    playerBName: 'Hadary',
-    actionOFTeamB: 'defence',
-    taktikOfTeamB: 'defence',
-  }, {
-    duration: '15s',
-    teamA: 'El Zamalik',
-    actionOFTeamA: 'SHot',
-    playerAName: 'Amr Zaki',
-    timeInVideo: '23',
-    taktikOfTeamA: 'shot',
-    teamB: 'Ahly',
-    playerBName: 'Hadary',
-    actionOFTeamB: 'defence',
-    taktikOfTeamB: 'defence',
-  }, {
-    duration: '25s',
-    teamA: 'El Zamalik',
-    actionOFTeamA: 'SHot',
-    playerAName: 'Amr Zaki',
-    timeInVideo: '23',
-    taktikOfTeamA: 'shot',
-    teamB: 'Ahly',
-    playerBName: 'Hadary',
-    actionOFTeamB: 'defence',
-    taktikOfTeamB: 'defence',
-  }, {
-    duration: '15s',
-    teamA: 'El Zamalik',
-    actionOFTeamA: 'SHot',
-    playerAName: 'Amr Zaki',
-    timeInVideo: '23',
-    taktikOfTeamA: 'shot',
-    teamB: 'Ahly',
-    playerBName: 'Hadary',
-    actionOFTeamB: 'defence',
-    taktikOfTeamB: 'defence',
-  }, {
-    duration: '25s',
-    teamA: 'El Zamalik',
-    actionOFTeamA: 'SHot',
-    playerAName: 'Amr Zaki',
-    timeInVideo: '23',
-    taktikOfTeamA: 'shot',
-    teamB: 'Ahly',
-    playerBName: 'Hadary',
-    actionOFTeamB: 'defence',
-    taktikOfTeamB: 'defence',
-  }];
+  attacks: IVideoAnalysis[] = [];
   rowGroupMetadata: any;
   public categories: ICategory[];
   public playersTeamA: IPlayer[];
   public playersTeamB: IPlayer[];
   public allVideos: IMatchVideo[] = [];
   youtubePath: string;
+  videoID;
 
   constructor(public categoryService: CategoryService,
               public matchService: MatchService,
               public matchVideoService: MatchVideoService,
               public activatedRoute: ActivatedRoute,
+              public analysisService: AnalysisService,
               public playerService: PlayerService) {
   }
 
   ngOnInit() {
-    this.updateRowGroupMetaData();
+
     this.matchService.match.id = this.activatedRoute.snapshot.params.id;
     this.getMatch();
     // this.cols = [
@@ -148,10 +54,72 @@ export class AnalysisMatchPageComponent implements OnInit {
     //   {field: 'penalty', header: 'Penalty', width: '20%'},
     //   {field: 'score', header: 'Score', width: '15%'},
     // ];
+
+
+  }
+
+  getVideoMatchId(event) {
+    this.videoID = event;
+    this.getAllVideoAnalysis();
   }
 
   onSort() {
-    this.updateRowGroupMetaData();
+     this.updateRowGroupMetaData();
+  }
+
+  onFilter(event) {
+    this.updateRowGroupMetaData2(event.filteredValue);
+  }
+  customSort(event: SortEvent) {
+     this.sort(event.data, 'ai', event.order);
+    // this.sort(event.data, 'ad', event.order);
+    this.sort(event.data, event.field, event.order);
+    this.updateRowGroupMetaData2(event.data);
+  }
+  sort(array, field, order) {
+    array.sort((data1, data2) => {
+      const value1 = data1[field];
+      const value2 = data2[field];
+      let result = null;
+
+      if (value1 == null && value2 != null) {
+        result = -1;
+      } else if (value1 != null && value2 == null) {
+        result = 1;
+      } else if (value1 == null && value2 == null) {
+        result = 0;
+      } else if (
+        typeof value1 === 'string' &&
+        typeof value2 === 'string'
+      ) {
+        result = value1.localeCompare(value2);
+      } else {
+        result = value1 < value2 ? -1 : value1 > value2 ? 1 : 0;
+      }
+
+      return order * result;
+    });
+
+  }
+  updateRowGroupMetaData2(data) {
+    this.rowGroupMetadata = {};
+    if (data) {
+      for (let i = 0; i < data.length; i++) {
+        const rowData = data[i];
+        const val = rowData.ai;
+        if (i === 0) {
+          this.rowGroupMetadata[val] = {index: 0, size: 1};
+        } else {
+          const previousRowData = this.attacks[i - 1];
+          const previousRowGroup = previousRowData.ai;
+          if (val === previousRowGroup)
+            this.rowGroupMetadata[val].size++;
+          else
+            this.rowGroupMetadata[val] = {index: i, size: 1};
+        }
+      }
+    }
+    // console.log(this.rowGroupMetadata);
   }
 
   updateRowGroupMetaData() {
@@ -159,12 +127,12 @@ export class AnalysisMatchPageComponent implements OnInit {
     if (this.attacks) {
       for (let i = 0; i < this.attacks.length; i++) {
         const rowData = this.attacks[i];
-        const duration = rowData.duration;
+        const duration = rowData.ai;
         if (i === 0) {
           this.rowGroupMetadata[duration] = {index: 0, size: 1};
         } else {
           const previousRowData = this.attacks[i - 1];
-          const previousRowGroup = previousRowData.duration;
+          const previousRowGroup = previousRowData.ai;
           if (duration === previousRowGroup)
             this.rowGroupMetadata[duration].size++;
           else
@@ -210,6 +178,13 @@ export class AnalysisMatchPageComponent implements OnInit {
       this.getTeamPlayers(this.matchService.match.teamAId, true);
       this.getTeamPlayers(this.matchService.match.teamBId, false);
       this.getVideos();
+    });
+  }
+
+  getAllVideoAnalysis() {
+    this.analysisService.getVideoAnalysis(this.videoID, 'en').subscribe(res => {
+      this.attacks = res as IVideoAnalysis[];
+      this.updateRowGroupMetaData();
     });
   }
 }

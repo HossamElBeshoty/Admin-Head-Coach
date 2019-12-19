@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {IMatchVideo} from '../../../Models/i-match-video';
 
 @Component({
@@ -14,7 +14,9 @@ export class YoutubePlayerComponent implements OnInit, OnChanges {
     cc_lang_pref: 'en',
   };
   youtubeUrl: string;
+  // videoMatchId;
   @Input() allVideoURL: IMatchVideo[];
+  @Output() videoMatchId: EventEmitter<any> = new EventEmitter();
 
   constructor() {
   }
@@ -36,6 +38,7 @@ export class YoutubePlayerComponent implements OnInit, OnChanges {
     this.player = player;
     if (this.allVideoURL.length > 0) {
       const firstMatch = this.allVideoURL[0].path;
+      this.videoMatchId.emit(this.allVideoURL[0].id);
       this.convertURLToId(firstMatch);
     }
     this.player.loadVideoById(this.id);
@@ -57,7 +60,8 @@ export class YoutubePlayerComponent implements OnInit, OnChanges {
     this.player.getCurrentTime();
   }
 
-  changeYoutubeLink(path: string) {
+  changeYoutubeLink(path: string, event) {
+    this.videoMatchId.emit(event.target.options[event.target.selectedIndex].getAttribute('data-id'));
     this.youtubeUrl = path;
     if (this.youtubeUrl) {
       this.convertURLToId(this.youtubeUrl);

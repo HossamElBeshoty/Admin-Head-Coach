@@ -5,7 +5,6 @@ import {DataService} from './data.service';
   providedIn: 'root',
 })
 export class AnalysisService {
-
   constructor(private dataService: DataService) {
   }
 

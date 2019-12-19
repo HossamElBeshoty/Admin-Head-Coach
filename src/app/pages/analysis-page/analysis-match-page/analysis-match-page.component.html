@@ -5,7 +5,7 @@
                             [teamData]="playersTeamA"></ngx-players-box-team>
     </div>
     <div class="col-md-6 animated fadeInDown slow">
-      <ngx-youtube-player [allVideoURL]="allVideos"></ngx-youtube-player>
+      <ngx-youtube-player [allVideoURL]="allVideos" (videoMatchId)="getVideoMatchId($event)"></ngx-youtube-player>
     </div>
     <div class="col-md-3 animated fadeInRight slow">
       <ngx-players-box-team [teamName]="this.matchService.match.teamB?.nameAr"
@@ -22,59 +22,59 @@
 <div class="row">
   <div class="col-md-12 animated fadeInUp slower">
     <p-panel header="Events" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
-      <p-table #dt [value]="attacks" sortField="duration" sortMode="single" (onSort)="onSort()">
+      <p-table #dt [value]="attacks" sortField="ai" sortMode="single" (onSort)="onSort()"  (onFilter)="onFilter($event)">
         <ng-template pTemplate="header" let-rowData>
           <tr>
-            <th [pSortableColumn]="'duration'">
+            <th [pSortableColumn]="'ad'">
               Duration
-              <p-sortIcon [field]="'duration'" ariaLabel="Activate to sort"
+              <p-sortIcon [field]="'ad'" ariaLabel="Activate to sort"
                           ariaLabelDesc="Activate to sort in descending order"
                           ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
             </th>
             <th>
               Team A
             </th>
-            <th [pSortableColumn]="'actionOFTeamA'">
+            <th [pSortableColumn]="'aa'">
               Action
-              <p-sortIcon [field]="'actionOFTeamA'" ariaLabel="Activate to sort"
+              <p-sortIcon [field]="'aa'" ariaLabel="Activate to sort"
                           ariaLabelDesc="Activate to sort in descending order"
                           ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
 
             </th>
-            <th [pSortableColumn]="'playerAName'">
+            <th [pSortableColumn]="'pa'">
               Player Name
-              <p-sortIcon [field]="'playerAName'" ariaLabel="Activate to sort"
+              <p-sortIcon [field]="'pa'" ariaLabel="Activate to sort"
                           ariaLabelDesc="Activate to sort in descending order"
                           ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
             </th>
-            <th [pSortableColumn]="'timeInVideo'">
+            <th [pSortableColumn]="'ti'">
               Minute
-              <p-sortIcon [field]="'timeInVideo'" ariaLabel="Activate to sort"
+              <p-sortIcon [field]="'ti'" ariaLabel="Activate to sort"
                           ariaLabelDesc="Activate to sort in descending order"
                           ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
             </th>
-            <th [pSortableColumn]="'taktikOfTeamA'">
+            <th [pSortableColumn]="'ca'">
               Taktik
-              <p-sortIcon [field]="'taktikOfTeamA'" ariaLabel="Activate to sort"
+              <p-sortIcon [field]="'ca'" ariaLabel="Activate to sort"
                           ariaLabelDesc="Activate to sort in descending order"
                           ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
             </th>
             <th>Team B</th>
-            <th [pSortableColumn]="'actionOFTeamB'">
+            <th [pSortableColumn]="'ab'">
               Action
-              <p-sortIcon [field]="'actionOFTeamB'" ariaLabel="Activate to sort"
+              <p-sortIcon [field]="'ab'" ariaLabel="Activate to sort"
                           ariaLabelDesc="Activate to sort in descending order"
                           ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
             </th>
-            <th [pSortableColumn]="'playerBName'">
+            <th [pSortableColumn]="'pb'">
               Player Name
-              <p-sortIcon [field]="'playerBName'" ariaLabel="Activate to sort"
+              <p-sortIcon [field]="'pb'" ariaLabel="Activate to sort"
                           ariaLabelDesc="Activate to sort in descending order"
                           ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
             </th>
-            <th [pSortableColumn]="'taktikOfTeamB'">
+            <th [pSortableColumn]="'cb'">
               Taktik
-              <p-sortIcon [field]="'taktikOfTeamB'" ariaLabel="Activate to sort"
+              <p-sortIcon [field]="'cb'" ariaLabel="Activate to sort"
                           ariaLabelDesc="Activate to sort in descending order"
                           ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
             </th>
@@ -85,58 +85,58 @@
           <tr>
             <th>
               <input class="form-control" type="text"
-                     (input)="dt.filter($event.target.value, 'duration', 'contains')">
+                     (input)="dt.filter($event.target.value, 'ad', 'contains')">
             </th>
             <th></th>
             <th>
               <input class="form-control" type="text"
-                     (input)="dt.filter($event.target.value, 'actionOFTeamA', 'contains')">
+                     (input)="dt.filter($event.target.value, 'aa', 'contains')">
             </th>
             <th>
               <input class="form-control" type="text"
-                     (input)="dt.filter($event.target.value, 'playerAName', 'contains')">
+                     (input)="dt.filter($event.target.value, 'pa', 'contains')">
             </th>
             <th>
               <input class="form-control" type="text"
-                     (input)="dt.filter($event.target.value, 'timeInVideo', 'contains')">
+                     (input)="dt.filter($event.target.value, 'ti', 'contains')">
             </th>
             <th>
               <input class="form-control" type="text"
-                     (input)="dt.filter($event.target.value, 'taktikOfTeamA', 'contains')">
+                     (input)="dt.filter($event.target.value, 'ca', 'contains')">
             </th>
             <th></th>
             <th>
               <input class="form-control" type="text"
-                     (input)="dt.filter($event.target.value, 'actionOFTeamB', 'contains')">
+                     (input)="dt.filter($event.target.value, 'ab', 'contains')">
             </th>
             <th>
               <input class="form-control" type="text"
-                     (input)="dt.filter($event.target.value, 'playerBName', 'contains')">
+                     (input)="dt.filter($event.target.value, 'pb', 'contains')">
             </th>
             <th>
               <input class="form-control" type="text"
-                     (input)="dt.filter($event.target.value, 'taktikOfTeamB', 'contains')">
+                     (input)="dt.filter($event.target.value, 'cb', 'contains')">
             </th>
             <th></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
           <tr>
-            <td *ngIf="rowGroupMetadata[rowData.duration].index === rowIndex"
-                [attr.rowspan]="rowGroupMetadata[rowData.duration].size">
-              {{rowData.duration}}
+            <td *ngIf="rowGroupMetadata[rowData.ai].index === rowIndex"
+                [attr.rowspan]="rowGroupMetadata[rowData.ai].size">
+              {{rowData.ad}}
             </td>
-            <td>{{rowData.teamA}}</td>
-            <td>{{rowData.actionOFTeamA}}</td>
-            <td>{{rowData.playerAName}}</td>
-            <td>{{rowData.timeInVideo}}</td>
-            <td>{{rowData.taktikOfTeamA}}</td>
-            <td>{{rowData.teamB}}</td>
-            <td>{{rowData.playerBName}}</td>
-            <td>{{rowData.actionOFTeamB}}</td>
-            <td>{{rowData.taktikOfTeamB}}</td>
-            <td *ngIf="rowGroupMetadata[rowData.duration].index === rowIndex"
-                [attr.rowspan]="rowGroupMetadata[rowData.duration].size">
+            <td>{{rowData.ta}}</td>
+            <td>{{rowData.aa}}</td>
+            <td>{{rowData.pa}}</td>
+            <td>{{rowData.ti}}</td>
+            <td>{{rowData.ca}}</td>
+            <td>{{rowData.tb}}</td>
+            <td>{{rowData.ab}}</td>
+            <td>{{rowData.pb}}</td>
+            <td>{{rowData.cb}}</td>
+            <td *ngIf="rowGroupMetadata[rowData.ai].index === rowIndex"
+                [attr.rowspan]="rowGroupMetadata[rowData.ai].size">
               <button class="btn btn-outline-primary btn-sm m-2"><i class="fas fa-play"></i></button>
               <button class="btn btn-outline-danger btn-sm m-2"><i class="fas fa-ban"></i></button>
             </td>
