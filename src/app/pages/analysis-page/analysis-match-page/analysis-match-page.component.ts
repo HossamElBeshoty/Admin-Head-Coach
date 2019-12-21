@@ -66,7 +66,7 @@ export class AnalysisMatchPageComponent implements OnInit {
   }
 
   onSort() {
-    this.updateRowGroupMetaData();
+    this.updateRowGroupMetaData2(this.attacks);
   }
 
   onFilter(event) {
@@ -75,7 +75,6 @@ export class AnalysisMatchPageComponent implements OnInit {
 
   customSort(event: SortEvent) {
     this.sort(event.data, 'ai', event.order);
-    // this.sort(event.data, 'ad', event.order);
     this.sort(event.data, event.field, event.order);
     this.updateRowGroupMetaData2(event.data);
   }
@@ -107,26 +106,23 @@ export class AnalysisMatchPageComponent implements OnInit {
   }
 
   updateRowGroupMetaData2(data) {
-
     this.rowGroupMetadata = {};
     if (data) {
       for (let i = 0; i < data.length; i++) {
         const rowData = data[i];
-        const val = rowData.ai;
+        const duration = rowData.ai;
         if (i === 0) {
-          this.rowGroupMetadata[val] = {index: 0, size: 1};
+          this.rowGroupMetadata[duration] = {index: 0, size: 1};
         } else {
-          const previousRowData = this.attacks[i - 1];
+          const previousRowData = data[i - 1];
           const previousRowGroup = previousRowData.ai;
-          if (val === previousRowGroup)
-            this.rowGroupMetadata[val].size++;
+          if (duration === previousRowGroup)
+            this.rowGroupMetadata[duration].size++;
           else
-            this.rowGroupMetadata[val] = {index: i, size: 1};
+            this.rowGroupMetadata[duration] = {index: i, size: 1};
         }
       }
     }
-    this.attacks = data;
-    this.updateRowGroupMetaData();
   }
 
   updateRowGroupMetaData() {
@@ -191,7 +187,7 @@ export class AnalysisMatchPageComponent implements OnInit {
   getAllVideoAnalysis() {
     this.analysisService.getVideoAnalysis(this.videoID, 'en').subscribe(res => {
       this.attacks = res as IVideoAnalysis[];
-      this.updateRowGroupMetaData();
+      this.updateRowGroupMetaData2(this.attacks);
     });
   }
 }

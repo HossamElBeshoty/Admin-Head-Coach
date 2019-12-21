@@ -22,7 +22,7 @@
 <div class="row">
   <div class="col-md-12 animated fadeInUp slower">
     <p-panel header="Events" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
-      <p-table #dt [value]="attacks" sortField="ai" sortMode="single" (onSort)="onSort()" (onFilter)="onFilter($event)">
+      <p-table #dt [value]="attacks"   (sortFunction)="customSort($event)" [customSort]="true" (onFilter)="onFilter($event)">
         <ng-template pTemplate="header" let-rowData>
           <tr>
             <th [pSortableColumn]="'fd'">
