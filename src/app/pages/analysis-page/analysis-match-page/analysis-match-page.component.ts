@@ -10,7 +10,7 @@ import {MatchVideoService} from '../../../Service/match-video.service';
 import {IMatchVideo} from '../../../Models/i-match-video';
 import {AnalysisService} from '../../../Service/analysis.service';
 import {IVideoAnalysis} from '../../../Models/i-video-analysis';
-import {SortEvent} from 'primeng/api';
+import {AttackService} from '../../../Service/attack.service';
 
 
 @Component({
@@ -34,6 +34,7 @@ export class AnalysisMatchPageComponent implements OnInit {
               public matchVideoService: MatchVideoService,
               public activatedRoute: ActivatedRoute,
               public analysisService: AnalysisService,
+              public attackService: AttackService,
               public playerService: PlayerService) {
   }
 
@@ -193,6 +194,12 @@ export class AnalysisMatchPageComponent implements OnInit {
     this.analysisService.getVideoAnalysis(this.videoID, 'en').subscribe(res => {
       this.attacks = res as IVideoAnalysis[];
       this.updateRowGroupMetaData2(this.attacks);
+    });
+  }
+
+  addNewAttack() {
+    this.attackService.postAttack().subscribe(res => {
+      // console.log(res);
     });
   }
 }
