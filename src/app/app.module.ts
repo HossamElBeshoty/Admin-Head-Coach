@@ -37,6 +37,7 @@ import { VerificationCodePageComponent } from './Page/verification-code-page/ver
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    PrimengModule,
     LyButtonModule,
     PrimengModule,
     LyToolbarModule,

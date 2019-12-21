@@ -1,6 +1,7 @@
 export interface IVideoAnalysis {
   id: string;
   ai: string;
+  fd: string;
   ad: string;
   tf: string;
   tt: string;

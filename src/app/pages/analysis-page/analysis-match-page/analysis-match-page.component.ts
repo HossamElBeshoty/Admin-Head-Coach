@@ -27,6 +27,7 @@ export class AnalysisMatchPageComponent implements OnInit {
   public allVideos: IMatchVideo[] = [];
   youtubePath: string;
   videoID;
+  expandedRows: number[];
 
   constructor(public categoryService: CategoryService,
               public matchService: MatchService,
@@ -48,6 +49,7 @@ export class AnalysisMatchPageComponent implements OnInit {
     //   {field: 'possession', header: 'Poss.', width: '20%'},
     //   {field: 'gameSet', header: 'Game Set', width: '20%'},
     //   {field: 'crossDiscription', header: 'Cross Dis.', width: '20%'},
+    //   {field: 'crossDiscription', header: 'Cross Dis.', width: '20%'},
     //   {field: 'shotOutCome', header: 'Shot Out.', width: '20%'},
     //   {field: 'goalPosition', header: 'Goal Pos.', width: '20%'},
     //   {field: 'player', header: 'Player', width: '20%'},
@@ -64,18 +66,20 @@ export class AnalysisMatchPageComponent implements OnInit {
   }
 
   onSort() {
-     this.updateRowGroupMetaData();
+    this.updateRowGroupMetaData();
   }
 
   onFilter(event) {
     this.updateRowGroupMetaData2(event.filteredValue);
   }
+
   customSort(event: SortEvent) {
-     this.sort(event.data, 'ai', event.order);
+    this.sort(event.data, 'ai', event.order);
     // this.sort(event.data, 'ad', event.order);
     this.sort(event.data, event.field, event.order);
     this.updateRowGroupMetaData2(event.data);
   }
+
   sort(array, field, order) {
     array.sort((data1, data2) => {
       const value1 = data1[field];
@@ -101,7 +105,9 @@ export class AnalysisMatchPageComponent implements OnInit {
     });
 
   }
+
   updateRowGroupMetaData2(data) {
+
     this.rowGroupMetadata = {};
     if (data) {
       for (let i = 0; i < data.length; i++) {
@@ -119,7 +125,8 @@ export class AnalysisMatchPageComponent implements OnInit {
         }
       }
     }
-    // console.log(this.rowGroupMetadata);
+    this.attacks = data;
+    this.updateRowGroupMetaData();
   }
 
   updateRowGroupMetaData() {
