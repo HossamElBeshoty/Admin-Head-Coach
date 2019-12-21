@@ -27,6 +27,7 @@ export class AnalysisMatchPageComponent implements OnInit {
   public allVideos: IMatchVideo[] = [];
   youtubePath: string;
   videoID;
+  videoOptions;
 
   constructor(public categoryService: CategoryService,
               public matchService: MatchService,
@@ -62,6 +63,11 @@ export class AnalysisMatchPageComponent implements OnInit {
   getVideoMatchId(event) {
     this.videoID = event;
     this.getAllVideoAnalysis();
+  }
+
+  getVideoPlayer(event) {
+    this.videoOptions = event;
+    // console.log(this.videoOptions);
   }
 
   onSort() {

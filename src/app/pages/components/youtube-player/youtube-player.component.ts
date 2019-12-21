@@ -9,11 +9,13 @@ import {IMatchVideo} from '../../../Models/i-match-video';
 export class YoutubePlayerComponent implements OnInit, OnChanges {
   id;
   private player;
+  @Output() playerVideo: EventEmitter<any> = new EventEmitter();
   public ytEvent;
   playerVars = {
     cc_lang_pref: 'en',
   };
   youtubeUrl: string;
+  // videoMatchId;
   @Input() allVideoURL: IMatchVideo[];
   @Output() videoMatchId: EventEmitter<any> = new EventEmitter();
 
@@ -40,6 +42,7 @@ export class YoutubePlayerComponent implements OnInit, OnChanges {
       this.videoMatchId.emit(this.allVideoURL[0].id);
       this.convertURLToId(firstMatch);
     }
+    this.playerVideo.emit(this.player);
     this.player.loadVideoById(this.id);
   }
 
