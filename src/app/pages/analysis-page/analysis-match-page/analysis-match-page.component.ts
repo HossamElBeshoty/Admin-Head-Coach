@@ -27,7 +27,6 @@ export class AnalysisMatchPageComponent implements OnInit {
   public allVideos: IMatchVideo[] = [];
   youtubePath: string;
   videoID;
-  expandedRows: number[];
 
   constructor(public categoryService: CategoryService,
               public matchService: MatchService,
@@ -73,11 +72,11 @@ export class AnalysisMatchPageComponent implements OnInit {
     this.updateRowGroupMetaData2(event.filteredValue);
   }
 
-  customSort(event: SortEvent) {
-    this.sort(event.data, 'ai', event.order);
-    this.sort(event.data, event.field, event.order);
-    this.updateRowGroupMetaData2(event.data);
-  }
+  // customSort(event: SortEvent) {
+  //   /*this.sort(event.data, 'ai', event.order);
+  //   this.sort(event.data, event.field, event.order);*/
+  //   this.updateRowGroupMetaData2(this.attacks);
+  // }
 
   sort(array, field, order) {
     array.sort((data1, data2) => {
@@ -125,25 +124,25 @@ export class AnalysisMatchPageComponent implements OnInit {
     }
   }
 
-  updateRowGroupMetaData() {
-    this.rowGroupMetadata = {};
-    if (this.attacks) {
-      for (let i = 0; i < this.attacks.length; i++) {
-        const rowData = this.attacks[i];
-        const duration = rowData.ai;
-        if (i === 0) {
-          this.rowGroupMetadata[duration] = {index: 0, size: 1};
-        } else {
-          const previousRowData = this.attacks[i - 1];
-          const previousRowGroup = previousRowData.ai;
-          if (duration === previousRowGroup)
-            this.rowGroupMetadata[duration].size++;
-          else
-            this.rowGroupMetadata[duration] = {index: i, size: 1};
-        }
-      }
-    }
-  }
+  // updateRowGroupMetaData() {
+  //   this.rowGroupMetadata = {};
+  //   if (this.attacks) {
+  //     for (let i = 0; i < this.attacks.length; i++) {
+  //       const rowData = this.attacks[i];
+  //       const duration = rowData.ai;
+  //       if (i === 0) {
+  //         this.rowGroupMetadata[duration] = {index: 0, size: 1};
+  //       } else {
+  //         const previousRowData = this.attacks[i - 1];
+  //         const previousRowGroup = previousRowData.ai;
+  //         if (duration === previousRowGroup)
+  //           this.rowGroupMetadata[duration].size++;
+  //         else
+  //           this.rowGroupMetadata[duration] = {index: i, size: 1};
+  //       }
+  //     }
+  //   }
+  // }
 
   getPageCategory(id) {
     this.categoryService.getCategories(id).subscribe(res => {
@@ -168,9 +167,9 @@ export class AnalysisMatchPageComponent implements OnInit {
     });
   }
 
-  changeYoutubeLink(path: string) {
-    this.youtubePath = path;
-  }
+  // changeYoutubeLink(path: string) {
+  //   this.youtubePath = path;
+  // }
 
   getMatch() {
     this.matchService.getMatchById(this.matchService.match.id).subscribe(res => {

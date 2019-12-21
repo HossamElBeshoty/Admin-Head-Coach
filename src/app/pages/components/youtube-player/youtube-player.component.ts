@@ -14,7 +14,6 @@ export class YoutubePlayerComponent implements OnInit, OnChanges {
     cc_lang_pref: 'en',
   };
   youtubeUrl: string;
-  // videoMatchId;
   @Input() allVideoURL: IMatchVideo[];
   @Output() videoMatchId: EventEmitter<any> = new EventEmitter();
 

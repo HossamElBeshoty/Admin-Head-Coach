@@ -22,61 +22,36 @@
 <div class="row">
   <div class="col-md-12 animated fadeInUp slower">
     <p-panel header="Events" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
-      <p-table #dt [value]="attacks"   (sortFunction)="customSort($event)" [customSort]="true" (onFilter)="onFilter($event)">
+      <p-table #dt [value]="attacks" sortField="ai" sortMode="single" (onSort)="onSort()" (onFilter)="onFilter($event)">
         <ng-template pTemplate="header" let-rowData>
           <tr>
-            <th [pSortableColumn]="'fd'">
+            <th>
               Duration
-              <p-sortIcon [field]="'fd'" ariaLabel="Activate to sort"
-                          ariaLabelDesc="Activate to sort in descending order"
-                          ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
             </th>
             <th>
               Team A
             </th>
-            <th [pSortableColumn]="'aa'">
+            <th>
               Action
-              <p-sortIcon [field]="'aa'" ariaLabel="Activate to sort"
-                          ariaLabelDesc="Activate to sort in descending order"
-                          ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
-
             </th>
-            <th [pSortableColumn]="'pa'">
+            <th>
               Player Name
-              <p-sortIcon [field]="'pa'" ariaLabel="Activate to sort"
-                          ariaLabelDesc="Activate to sort in descending order"
-                          ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
             </th>
-            <th [pSortableColumn]="'ti'">
+            <th>
               Minute
-              <p-sortIcon [field]="'ti'" ariaLabel="Activate to sort"
-                          ariaLabelDesc="Activate to sort in descending order"
-                          ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
             </th>
-            <th [pSortableColumn]="'ca'">
+            <th>
               Taktik
-              <p-sortIcon [field]="'ca'" ariaLabel="Activate to sort"
-                          ariaLabelDesc="Activate to sort in descending order"
-                          ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
             </th>
             <th>Team B</th>
-            <th [pSortableColumn]="'ab'">
+            <th>
               Action
-              <p-sortIcon [field]="'ab'" ariaLabel="Activate to sort"
-                          ariaLabelDesc="Activate to sort in descending order"
-                          ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
             </th>
-            <th [pSortableColumn]="'pb'">
+            <th>
               Player Name
-              <p-sortIcon [field]="'pb'" ariaLabel="Activate to sort"
-                          ariaLabelDesc="Activate to sort in descending order"
-                          ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
             </th>
-            <th [pSortableColumn]="'cb'">
+            <th>
               Taktik
-              <p-sortIcon [field]="'cb'" ariaLabel="Activate to sort"
-                          ariaLabelDesc="Activate to sort in descending order"
-                          ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
             </th>
             <th>
               <i class="fas fa-toolbox fa-2x text-warning"></i>
