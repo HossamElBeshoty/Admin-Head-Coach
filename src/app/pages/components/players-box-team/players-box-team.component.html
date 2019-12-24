@@ -7,7 +7,7 @@
   <div>
     <div>
       <div *ngFor="let x of teamData" class="btn-group m-2 dropright">
-        <button type="button" class="btn  btn-light">
+        <button type="button" class="btn  btn-light" (click)="onPlayerClick(x)">
           {{x.nameAr}}
         </button>
         <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"

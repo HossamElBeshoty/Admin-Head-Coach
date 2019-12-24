@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CategoryService} from '../../../Service/category.service';
 import {ICategory} from '../../../Models/i-category';
 import {ActionService} from '../../../Service/action.service';
@@ -14,9 +14,12 @@ import {NgForm} from '@angular/forms';
 })
 export class ActionComponent implements OnInit {
   @Input() pageName: string;
-  @Input() categories: ICategory[]= [];
+  @Input() categories: ICategory[] = [];
   @Input() groupId;
   @Input() hasDefault;
+  @Output() actionData: EventEmitter<any> = new EventEmitter();
+  @Output() index: EventEmitter<any> = new EventEmitter();
+  clickIndexNumber: number = 1;
   displayCategory: boolean = false;
   displayAddUpdateCategory: boolean = false;
   displayDeleteCategoryAction: boolean = false;
@@ -53,12 +56,15 @@ export class ActionComponent implements OnInit {
   }
 
   ngOnInit() {
-
-
     this.cols = [
       {field: 'nameAr', header: 'Arabic Name'},
       {field: 'nameEn', header: 'English Name'},
     ];
+  }
+
+  onActionClick(actionData) {
+    this.actionData.emit(actionData);
+    this.index.emit(this.clickIndexNumber++);
   }
 
   showCategoryDialog() {
@@ -110,7 +116,7 @@ export class ActionComponent implements OnInit {
     }, err => {
     }, () => {
       this.categories.push(this.categoryService.category);
-         this.displayCategory = false;
+      this.displayCategory = false;
     });
   }
 
@@ -136,7 +142,7 @@ export class ActionComponent implements OnInit {
 
 
   onActionSubmit() {
-   /* this.actionService.action.type = this.categoryService.category.type;*/
+    /* this.actionService.action.type = this.categoryService.category.type;*/
     if (!this.actionService.action.id) {
       this.postNewAction();
     } else {

@@ -1,7 +1,7 @@
 <div class="">
   <div class="row">
     <div class="col-md-3 animated fadeInLeft slow">
-      <ngx-players-box-team [teamName]="this.matchService.match.teamA?.nameAr"
+      <ngx-players-box-team [teamName]="this.matchService.match.teamA?.nameAr" (teamPlayer)="getPlayersData($event)"
                             [teamData]="playersTeamA"></ngx-players-box-team>
     </div>
     <div class="col-md-6 animated fadeInDown slow">
@@ -9,7 +9,7 @@
                           (playerVideo)="getVideoPlayer($event)"></ngx-youtube-player>
     </div>
     <div class="col-md-3 animated fadeInRight slow">
-      <ngx-players-box-team [teamName]="this.matchService.match.teamB?.nameAr"
+      <ngx-players-box-team [teamName]="this.matchService.match.teamB?.nameAr" (teamPlayer)="getPlayersData($event)"
                             [teamData]="playersTeamB"></ngx-players-box-team>
     </div>
   </div>
@@ -17,7 +17,8 @@
 
 <br>
 <div class="animated fadeInUpBig slow">
-  <ngx-action [groupId]="this.matchService.match.groupId" [categories]="categories"></ngx-action>
+  <ngx-action [groupId]="this.matchService.match.groupId" [categories]="categories"
+              (actionData)="getActionsData($event)" (index)="getActionIndex($event)"></ngx-action>
 </div>
 <br>
 <div class="row">
