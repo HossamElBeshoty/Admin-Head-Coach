@@ -211,6 +211,7 @@ export class ActionComponent implements OnInit {
       this.actionService.action.childActions = [] as IChildAction [];
       this.actionService.action.childActions.push(Object.assign({}, this.childActionService.childAction));
       form.resetForm();
+      this.childActionService.childAction = {} as IChildAction;
     });
   }
 
