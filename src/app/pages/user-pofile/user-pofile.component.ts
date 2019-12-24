@@ -63,10 +63,6 @@ export class UserPofileComponent implements OnInit {
   }
 
   checkUser() {
-    if (this.cookieService.get('userId') === this.userId) {
-      this.isUser = true;
-    } else {
-      this.isUser = false;
-    }
+    this.isUser = this.cookieService.get('userId') === this.userId;
   }
 }

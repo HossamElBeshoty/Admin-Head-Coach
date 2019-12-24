@@ -14,7 +14,7 @@ import {NgForm} from '@angular/forms';
 })
 export class ActionComponent implements OnInit {
   @Input() pageName: string;
-  @Input() categories: ICategory[];
+  @Input() categories: ICategory[]= [];
   @Input() groupId;
   @Input() hasDefault;
   displayCategory: boolean = false;
@@ -66,8 +66,10 @@ export class ActionComponent implements OnInit {
     this.categoryService.category = {groupId: this.groupId} as ICategory;
   }
 
-  addNewCategoryActionDialog(categoryId: string) {
-    this.actionService.action = {categoryId: categoryId} as IAction;
+  addNewCategoryActionDialog(categoryId: string, type: number) {
+    this.actionService.action = {} as IAction;
+    this.actionService.action.categoryId = categoryId;
+    this.actionService.action.type = type;
     this.displayAddUpdateCategory = true;
     this.childAction = [];
   }
@@ -108,7 +110,7 @@ export class ActionComponent implements OnInit {
     }, err => {
     }, () => {
       this.categories.push(this.categoryService.category);
-      this.displayCategory = false;
+         this.displayCategory = false;
     });
   }
 
@@ -134,7 +136,7 @@ export class ActionComponent implements OnInit {
 
 
   onActionSubmit() {
-    this.actionService.action.type = this.categoryService.category.type;
+   /* this.actionService.action.type = this.categoryService.category.type;*/
     if (!this.actionService.action.id) {
       this.postNewAction();
     } else {
@@ -151,6 +153,9 @@ export class ActionComponent implements OnInit {
         this.displayChildActions = true;
       }
       const category = this.categories.find(c => c.id === this.actionService.action.categoryId);
+      if (!category.actions) {
+        category.actions = [];
+      }
       category.actions.push(this.actionService.action);
       this.displayAddUpdateCategory = false;
     });
@@ -249,6 +254,8 @@ export class ActionComponent implements OnInit {
       this.categoryService.category = startCategory;
       this.categoryService.postCategory().subscribe(res => {
         this.categoryService.category.id = res as string;
+        startCategory.id = res as string;
+        this.categoryService.category.actions = [];
         this.categories.push(startCategory);
       }, err => {
       }, () => {
