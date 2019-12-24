@@ -21,14 +21,22 @@
       </div>
     </div>
   </div>
-
 </p-panel>
 <p-dialog header="Change Player" [(visible)]="displayChangePlayer" [modal]="true" [responsive]="true" appendTo="body"
+          [style]="{width: '350px', minWidth: '300px'}"
           [minY]="70" [baseZIndex]="10000">
-
-  <p-footer>
-    <button type="button" pButton icon="pi pi-check" (click)="displayChangePlayer=false" label="Yes"></button>
-    <button type="button" pButton icon="pi pi-close" (click)="displayChangePlayer=false" label="No"
-            class="ui-button-secondary"></button>
-  </p-footer>
+  <div class="list-group">
+    <button type="button" (click)="displayChangePlayer=false" class="list-group-item list-group-item-action">
+      Cras justo odio
+    </button>
+    <button type="button" (click)="displayChangePlayer=false" class="list-group-item list-group-item-action">Dapibus ac
+      facilisis in
+    </button>
+    <button type="button" (click)="displayChangePlayer=false" class="list-group-item list-group-item-action">Morbi leo
+      risus
+    </button>
+    <button type="button" (click)="displayChangePlayer=false" class="list-group-item list-group-item-action">Porta ac
+      consectetur ac
+    </button>
+  </div>
 </p-dialog>
