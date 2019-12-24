@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MenuItem} from 'primeng/api';
 import {IPlayer} from '../../../Models/i-player';
 
 @Component({

@@ -31,7 +31,7 @@ export class AnalysisMatchPageComponent implements OnInit {
   videoOptions;
   playersData: IPlayer = {} as IPlayer;
   actionData: IAction = {} as IAction;
-  actionIndex: number;
+  actionIndex: number = 2;
 
   constructor(public categoryService: CategoryService,
               public matchService: MatchService,
@@ -52,6 +52,7 @@ export class AnalysisMatchPageComponent implements OnInit {
   }
 
   getActionsData(event) {
+    // console.log(this.actionIndex % 2);
     this.actionData = event;
   }
 
