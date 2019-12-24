@@ -40,7 +40,7 @@ export class UserPofileComponent implements OnInit {
   }
 
   showUserAccountDialog(userAccount: IUserAccount) {
-    this.userAccountService.userAccount = userAccount;
+    this.userAccountService.userAccount = Object.assign({}, userAccount);
     this.displayUserAccountProfile = true;
   }
 
@@ -49,17 +49,23 @@ export class UserPofileComponent implements OnInit {
   }
 
   updateUser() {
+    const img = this.userAccountService.userAccount.profilePath;
+    if (this.userAccountService.userAccount.profilePath.includes('assets')) {
+      this.userAccountService.userAccount.profilePath = null;
+    }
     this.userAccountService.editUser().subscribe(res => {
     }, error => {
     }, () => {
       this.displayUserAccountProfile = false;
+      this.userAccountService.userAccount.profilePath = img;
+      this.userData = this.userAccountService.userAccount;
     });
   }
 
   checkUser() {
     if (this.cookieService.get('userId') === this.userId) {
       this.isUser = true;
-    }else {
+    } else {
       this.isUser = false;
     }
   }

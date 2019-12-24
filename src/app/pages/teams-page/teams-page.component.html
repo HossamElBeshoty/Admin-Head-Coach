@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-md-12">
-    <button class="btn btn-warning animated slow fadeInDown float-right " (click)="showClubDialog();clubForm.resetForm()"><i
+    <button class="btn btn-warning animated slow fadeInDown float-right "
+            (click)="showClubDialog();clubForm.resetForm()"><i
       class="fa fa-plus"></i> Add New
       Club
     </button>
@@ -8,7 +9,7 @@
 </div>
 
 <div class="animated slower fadeInUp" *ngIf="allClubs.length !== 0">
-  <p-tabView  (onChange)="onChangeTab($event.index)">
+  <p-tabView (onChange)="onChangeTab($event.index)">
     <ng-container *ngFor="let item of allClubs;let i = index;">
       <p-tabPanel header="{{item.nameAr}}" [selected]="i == tabIndex">
         <div class="row">
@@ -379,7 +380,7 @@
       </div>
       <div class="col-md-12 mb-2 text-center">
         <img class="img-thumbnail"
-             [src]="playerService.player.imagePath!= null? this.apiEndPoint + playerService.player.imagePath : '../assets/images/default-avatar-png-5.png'"
+             [src]="playerService.player.imagePath!= null ?  playerService.player.imagePath.includes('data:image')? playerService.player.imagePath:apiEndPoint + playerService.player.imagePath: '../assets/images/default-avatar-png-5.png'"
              [alt]="playerService.player.nameAr">
       </div>
       <div class="col-md-12">

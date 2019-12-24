@@ -78,11 +78,16 @@ export class TeamsPageComponent implements OnInit {
   }
 
   onClubSubmit() {
+    const img = this.clubService.club.logoPath;
+    if (this.clubService.club.logoPath.includes('assets')) {
+      this.clubService.club.logoPath = null;
+    }
     if (!this.clubService.club.id) {
       this.postClub();
     } else {
       this.editClub();
     }
+     this.clubService.club.logoPath = img;
   }
 
   getAllClubs() {
@@ -204,15 +209,21 @@ export class TeamsPageComponent implements OnInit {
   }
 
   onPlayerSubmit() {
+    const img = this.playerService.player.imagePath;
+    if (this.playerService.player.imagePath.includes('assets')) {
+      this.playerService.player.imagePath = null;
+    }
     if (!this.playerService.player.id) {
       this.postPlayer();
     } else {
       this.editPlayer();
     }
+    this.playerService.player.imagePath  = img;
   }
 
   private postPlayer() {
     this.playerService.postPlayer().subscribe(res => {
+      this.playerService.player.id = res as string;
     }, error => {
     }, () => {
       this.allPlayers.push(this.playerService.player);
