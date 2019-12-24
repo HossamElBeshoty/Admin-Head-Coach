@@ -42,6 +42,7 @@ export class TeamsPageComponent implements OnInit {
 
   showClubDialog() {
     this.displayClubDialog = true;
+    this.clubService.club = {} as IClub;
   }
 
   showPlayerImageCropper() {
