@@ -1,7 +1,7 @@
 <div class="card text-center shadow-lg animated fadeInDownBig slower">
   <div class="card-header">
     <h3 class="linear-wipe">
-      Welcome To Head Coach
+      Welcome To UpStricke
     </h3>
   </div>
   <div class="card-body">
@@ -37,10 +37,21 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12">
-          <button type="submit" class="btn btn-block btn-outline-primary" [disabled]="loginForm.invalid"><i
-            class="fas fa-sign-in-alt"></i> Login
+        <div class="col-md-6">
+          <button type="submit" class="btn btn-block btn-outline-primary" [disabled]="loginForm.invalid">
+            <span *ngIf="spinner === true" class="spinner-border spinner-border-sm" role="status"
+                  aria-hidden="true"></span>
+            <i *ngIf="spinner === false" class="fas fa-sign-in-alt"></i> Login
           </button>
+        </div>
+        <div class="col-md-6">
+          <button type="submit" class="btn btn-block btn-outline-success" routerLink="/register"><i
+            class="fas fa-user-plus"></i> Registration
+          </button>
+        </div>
+        <div class="col-md-12 text-center">
+          <br>
+          <a href="#" class="text-danger stretched-link">Forget Password?</a>
         </div>
       </div>
     </form>

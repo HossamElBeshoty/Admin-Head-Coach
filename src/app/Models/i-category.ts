@@ -6,5 +6,6 @@ export interface ICategory {
   nameEn: string;
   groupId: string;
   isDetected: boolean;
+  type: number;
   actions: IAction[];
 }

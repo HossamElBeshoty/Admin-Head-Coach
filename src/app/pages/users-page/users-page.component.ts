@@ -1,62 +1,89 @@
-import { Component, OnInit } from '@angular/core';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import {Component, OnInit} from '@angular/core';
+import {UserAccountService} from '../../Service/user-account.service';
+import {ISubscription} from '../../Models/i-subscription';
+import {SubscriptionService} from '../../Service/subscription.service';
 
 @Component({
   selector: 'ngx-users-page',
   templateUrl: './users-page.component.html',
   styleUrls: ['./users-page.component.scss'],
-  animations: [
-    trigger('rowExpansionTrigger', [
-      state('void', style({
-        transform: 'translateX(-10%)',
-        opacity: 0,
-      })),
-      state('active', style({
-        transform: 'translateX(0)',
-        opacity: 1,
-      })),
-      transition('* <=> *', animate('400ms cubic-bezier(0.86, 0, 0.07, 1)')),
-    ]),
-  ],
 })
 export class UsersPageComponent implements OnInit {
   cols: any[];
+  colsUserSubscriptions: any[];
   display: boolean = false;
-  allUsers = [{
-    id: 1,
-    name: 'Amr Mossad',
-    sport: 'Basket Ball',
-    cerationDate: '12/4/2017',
-    club: 'Zamalik Sports Club',
-  }, {
-    id: 2,
-    name: 'Ahmed Mossad',
-    sport: 'Tinnes',
-    cerationDate: '12/4/2017',
-    club: 'Ahly Sports Club',
-  }, {
-    id: 3,
-    name: 'Hossam Hamed',
-    sport: 'Basket Ball',
-    cerationDate: '12/4/2017',
-    club: 'Zamalik Sports Club',
-  }, {
-    id: 4,
-    name: 'Hazem Hammed',
-    sport: 'Hand Ball',
-    cerationDate: '12/4/2017',
-    club: 'Zamalik Sports Club',
-  }];
-  // selectedUser: this.allUsers;
-  constructor() { }
+  displayAllUserSubscriptions: boolean = false;
+  displayActivationCode: boolean = false;
+  allUsers;
+  allUserSubscriptions;
+  userId;
+  userName;
+  spinner = false;
+  allSubscriptions: ISubscription[] = [];
+
+  constructor(private  userAccountService: UserAccountService, public subscriptionService: SubscriptionService) {
+  }
 
   ngOnInit() {
+    this.getUsers();
+    this.getAllSubscriptions();
     this.cols = [
-      { field: 'name', header: 'Name' },
-      { field: 'sport', header: 'Sport' },
-      { field: 'cerationDate', header: 'Ceration Date' },
-      { field: 'club', header: 'Club' },
+      {field: 'name', header: 'Name'},
+      {field: 'creationDate', header: 'Date'},
+      {field: 'matchesCount', header: 'MatchesCount'},
+      {field: 'email', header: 'Email'},
+      {field: 'lockoutEnabled', header: 'Activation'},
+    ];
+    this.colsUserSubscriptions = [
+      {field: 'subscriptionsDate', header: 'Date'},
+      {field: 'subscription', header: 'Subscription', subfield: 'nameAr', subfieldName: 'subscription.nameAr'},
     ];
   }
 
+  getUsers() {
+    this.userAccountService.getAllUsers().subscribe(res => {
+      this.allUsers = res;
+    });
+  }
+
+  getUserSubscriptions(id) {
+    this.userId = id;
+    this.userAccountService.getUserSubscriptions(this.userId).subscribe(res => {
+      this.allUserSubscriptions = res;
+    }, error => {
+    }, () => {
+      this.displayAllUserSubscriptions = true;
+    });
+  }
+
+  showActivationDialog(userId, userName) {
+    this.displayActivationCode = true;
+    this.userId = userId;
+    this.userName = userName;
+  }
+
+  sendVerificationCode() {
+    this.spinner = true;
+    this.userAccountService.getVerificationCode(this.userId).subscribe(res => {
+    }, error => {
+    }, () => {
+      this.displayActivationCode = false;
+      this.spinner = false;
+    });
+  }
+
+  getAllSubscriptions() {
+    this.subscriptionService.getAllSubscriptions().subscribe(res => {
+      this.allSubscriptions = res as ISubscription[];
+    });
+  }
+
+  addSubscriptionToUser() {
+    this.userAccountService.userSubscription.userId = this.userId;
+    this.userAccountService.addUserSubscription().subscribe(res => {
+    }, error => {
+    }, () => {
+      this.getUserSubscriptions(this.userId);
+    });
+  }
 }

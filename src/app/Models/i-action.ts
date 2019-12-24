@@ -5,6 +5,6 @@ export interface IAction {
   nameAr: string;
   nameEn: string;
   categoryId: string;
-  type: string;
+  type: number;
   childActions: IChildAction[];
 }

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CategoryService} from '../../../Service/category.service';
 import {ICategory} from '../../../Models/i-category';
 import {ActionService} from '../../../Service/action.service';
@@ -14,8 +14,12 @@ import {NgForm} from '@angular/forms';
 })
 export class ActionComponent implements OnInit {
   @Input() pageName: string;
-  @Input() categories: ICategory[];
+  @Input() categories: ICategory[] = [];
   @Input() groupId;
+  @Input() hasDefault;
+  @Output() actionData: EventEmitter<any> = new EventEmitter();
+  @Output() index: EventEmitter<any> = new EventEmitter();
+  clickIndexNumber: number = 1;
   displayCategory: boolean = false;
   displayAddUpdateCategory: boolean = false;
   displayDeleteCategoryAction: boolean = false;
@@ -26,6 +30,25 @@ export class ActionComponent implements OnInit {
   childAction: IChildAction[] = [];
   cols: any[];
   childActionName;
+  defaultCategories = [
+    {
+      id: 1,
+      name: 'Start',
+    }, {
+      id: 2,
+      name: 'End',
+    }, {
+      id: 3,
+      name: 'End WIth Action',
+    }, {
+      id: 4,
+      name: 'Tactics',
+    }, {
+      id: 5,
+      name: 'Penalties',
+    },
+  ];
+
 
   constructor(public categoryService: CategoryService,
               public actionService: ActionService,
@@ -39,13 +62,20 @@ export class ActionComponent implements OnInit {
     ];
   }
 
+  onActionClick(actionData) {
+    this.actionData.emit(actionData);
+    this.index.emit(this.clickIndexNumber++);
+  }
+
   showCategoryDialog() {
     this.displayCategory = true;
     this.categoryService.category = {groupId: this.groupId} as ICategory;
   }
 
-  addNewCategoryActionDialog(categoryId: string) {
-    this.actionService.action = {categoryId: categoryId} as IAction;
+  addNewCategoryActionDialog(categoryId: string, type: number) {
+    this.actionService.action = {} as IAction;
+    this.actionService.action.categoryId = categoryId;
+    this.actionService.action.type = type;
     this.displayAddUpdateCategory = true;
     this.childAction = [];
   }
@@ -112,6 +142,7 @@ export class ActionComponent implements OnInit {
 
 
   onActionSubmit() {
+    /* this.actionService.action.type = this.categoryService.category.type;*/
     if (!this.actionService.action.id) {
       this.postNewAction();
     } else {
@@ -124,10 +155,13 @@ export class ActionComponent implements OnInit {
       this.actionService.action.id = res as string;
     }, error => {
     }, () => {
-      if (this.actionService.action.type === '3') {
+      if (this.actionService.action.type === 3) {
         this.displayChildActions = true;
       }
       const category = this.categories.find(c => c.id === this.actionService.action.categoryId);
+      if (!category.actions) {
+        category.actions = [];
+      }
       category.actions.push(this.actionService.action);
       this.displayAddUpdateCategory = false;
     });
@@ -137,7 +171,7 @@ export class ActionComponent implements OnInit {
     this.actionService.updateAction().subscribe(res => {
     }, error => {
     }, () => {
-      if (this.actionService.action.type === '3') {
+      if (this.actionService.action.type === 3) {
         this.displayChildActions = true;
       }
       const category = this.categories.find(c => c.id === this.actionService.action.categoryId);
@@ -212,4 +246,28 @@ export class ActionComponent implements OnInit {
       this.childAction.splice(child, 1);
     });
   }
+
+  addDefaultCategories() {
+    for (let i = 0; i < this.defaultCategories.length; i++) {
+      const startCategory: ICategory = {
+        nameAr: this.defaultCategories[i].name,
+        nameEn: this.defaultCategories[i].name,
+        actions: [],
+        groupId: this.groupId,
+        isDetected: false,
+        type: this.defaultCategories[i].id,
+      };
+      this.categoryService.category = startCategory;
+      this.categoryService.postCategory().subscribe(res => {
+        this.categoryService.category.id = res as string;
+        startCategory.id = res as string;
+        this.categoryService.category.actions = [];
+        this.categories.push(startCategory);
+      }, err => {
+      }, () => {
+        this.hasDefault = 1;
+      });
+    }
+  }
+
 }

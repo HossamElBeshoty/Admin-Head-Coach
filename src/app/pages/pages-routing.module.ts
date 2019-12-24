@@ -13,6 +13,7 @@ import {ComparisonPageComponent} from './comparison-page/comparison-page.compone
 import {PersonalPageComponent} from './personal-page/personal-page.component';
 import {AnalysisMatchPageComponent} from './analysis-page/analysis-match-page/analysis-match-page.component';
 import {AuthGuard} from '../auth/auth.guard';
+import {UserPofileComponent} from './user-pofile/user-pofile.component';
 
 const routes: Routes = [{
   path: '',
@@ -50,6 +51,10 @@ const routes: Routes = [{
     {
       path: 'personal/:id',
       component: PersonalPageComponent,
+    },
+    {
+      path: 'user/:id',
+      component: UserPofileComponent,
     },
     {
       path: 'analysis/matchAnalysis/:id',

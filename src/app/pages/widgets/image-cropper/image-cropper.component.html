@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-md-8">
     <div [className]="classes.actions">
-      <button class="btn btn-default" (click)="_fileInput.click()">
-        <i class="fa fa-folder-open-o"></i> <span>Select File</span>
+      <button class="btn btn-outline-secondary" (click)="_fileInput.click()">
+        <i class="fas fa-camera-retro"></i> <span> Select File</span>
       </button>
       <span [className]="classes.flex"></span>
       <input #_fileInput type="file" style="display: none;" (change)="cropping.selectInputEvent($event)"
@@ -37,9 +37,9 @@
       </button>
     </div>
 
-    <ly-img-cropper style="width: 100%" [withClass]="classes.cropping" #cropping [config]="myConfig"
+    <ly-img-cropper style="width: 100%;" [withClass]="classes.cropping" #cropping [config]="myConfig"
                     (cropped)="onCropped($event)">
-      <span>Drag and drop image</span>
+      <i class="fas fa-file-import text-success mr-1"></i> <span class="text-success">  Drag and drop image</span>
     </ly-img-cropper>
   </div>
   <div class="col-md-4" style="margin-top: 70px;">

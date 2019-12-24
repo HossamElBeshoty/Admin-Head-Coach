@@ -1,16 +1,11 @@
-/**
- * @license
- * Copyright Akveo. All Rights Reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- */
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { CoreModule } from './@core/core.module';
-import { ThemeModule } from './@theme/theme.module';
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgModule} from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
+import {CoreModule} from './@core/core.module';
+import {ThemeModule} from './@theme/theme.module';
+import {AppComponent} from './app.component';
+import {AppRoutingModule} from './app-routing.module';
 import {
   NbChatModule,
   NbDatepickerModule,
@@ -20,30 +15,35 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
-import { FormsModule } from '@angular/forms';
-import { LoginPageComponent } from './Page/login-page/login-page.component';
-import { RegistrationPageComponent } from './Page/registration-page/registration-page.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {LoginPageComponent} from './Page/login-page/login-page.component';
+import {RegistrationPageComponent} from './Page/registration-page/registration-page.component';
 import {httpInterceptorProviders} from './Interceptor';
-import { CookieService } from 'ngx-cookie-service';
-import { LyThemeModule, LY_THEME } from '@alyle/ui';
-import { MinimaLight } from '@alyle/ui/themes/minima';
-import { LyButtonModule } from '@alyle/ui/button';
-import { LyToolbarModule } from '@alyle/ui/toolbar';
-import { LyResizingCroppingImageModule } from '@alyle/ui/resizing-cropping-images';
+import {CookieService} from 'ngx-cookie-service';
+import {LyThemeModule, LY_THEME} from '@alyle/ui';
+import {MinimaLight} from '@alyle/ui/themes/minima';
+import {LyButtonModule} from '@alyle/ui/button';
+import {LyToolbarModule} from '@alyle/ui/toolbar';
+import {LyResizingCroppingImageModule} from '@alyle/ui/resizing-cropping-images';
+import {PrimengModule} from './pages/primeng.module';
+import { VerificationCodePageComponent } from './Page/verification-code-page/verification-code-page.component';
 
 
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent, RegistrationPageComponent],
+  declarations: [AppComponent, LoginPageComponent, RegistrationPageComponent, VerificationCodePageComponent],
 
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    PrimengModule,
     LyButtonModule,
+    PrimengModule,
     LyToolbarModule,
     LyResizingCroppingImageModule,
     FormsModule,
+    ReactiveFormsModule,
     ThemeModule.forRoot(),
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
@@ -59,8 +59,7 @@ import { LyResizingCroppingImageModule } from '@alyle/ui/resizing-cropping-image
   ],
   bootstrap: [AppComponent],
   providers: [httpInterceptorProviders, CookieService, {provide: LY_THEME, useClass: MinimaLight, multi: true}],
-  exports: [
-  ],
+  exports: [],
 })
 export class AppModule {
 }

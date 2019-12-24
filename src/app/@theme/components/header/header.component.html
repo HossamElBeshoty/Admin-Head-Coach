@@ -3,8 +3,8 @@
     <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
       <nb-icon icon="menu-2-outline"></nb-icon>
     </a>
-    <a routerLink="/" style="width: 50px; height: 50px;" (click)="navigateHome()"><img
-      src="../assets/images/WebSite%20Images/Logo/index.png" style="width: 50px; height: 50px;" alt=""></a>
+    <a routerLink="/" (click)="navigateHome()"><img
+      src="../assets/images/logo.png" style="width: 50px; height: 50px;" alt=""></a>
   </div>
   <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
     <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
@@ -12,7 +12,9 @@
 </div>
 
 <div class="text-center">
-  Upstrike
+  <h3 class="linear-wipe">
+    UpStricke
+  </h3>
 </div>
 
 <div class="header-container">
@@ -24,7 +26,7 @@
     <!--    <nb-action class="control-item" icon="email-outline"></nb-action>-->
     <!--    <nb-action class="control-item" icon="bell-outline"></nb-action>-->
     <nb-action class="user-action" *nbIsGranted="['view', 'user']">
-      <nb-user [name]="userName">
+      <nb-user [name]="userName" (click)="profileAccount()">
       </nb-user>
     </nb-action>
   </nb-actions>

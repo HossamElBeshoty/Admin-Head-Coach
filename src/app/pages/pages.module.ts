@@ -35,6 +35,7 @@ import {MinimaLight} from '@alyle/ui/themes/minima';
 import {LyButtonModule} from '@alyle/ui/button';
 import {LyToolbarModule} from '@alyle/ui/toolbar';
 import {LyResizingCroppingImageModule} from '@alyle/ui/resizing-cropping-images';
+import { UserPofileComponent } from './user-pofile/user-pofile.component';
 
 @NgModule({
   imports: [
@@ -75,6 +76,7 @@ import {LyResizingCroppingImageModule} from '@alyle/ui/resizing-cropping-images'
     YoutubePlayerComponent,
     PlayerCardComponent,
     ImageCropperComponent,
+    UserPofileComponent,
   ],
   providers: [{provide: LY_THEME, useClass: MinimaLight, multi: true}],
 

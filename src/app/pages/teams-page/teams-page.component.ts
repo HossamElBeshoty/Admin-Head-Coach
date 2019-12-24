@@ -30,6 +30,7 @@ export class TeamsPageComponent implements OnInit {
   playerDeleteId;
   allNationalities;
   apiEndPoint = environment.apiEndPoint;
+  defaultTeam = ['LW', 'LB', 'CB', 'RB', 'RW', 'PV', 'GK'];
 
   constructor(public clubService: ClubService, public teamService: TeamService, public playerService: PlayerService) {
   }
@@ -41,6 +42,7 @@ export class TeamsPageComponent implements OnInit {
 
   showClubDialog() {
     this.displayClubDialog = true;
+    this.clubService.club = {} as IClub;
   }
 
   showPlayerImageCropper() {
@@ -76,11 +78,16 @@ export class TeamsPageComponent implements OnInit {
   }
 
   onClubSubmit() {
+    const img = this.clubService.club.logoPath;
+    if (this.clubService.club.logoPath.includes('assets')) {
+      this.clubService.club.logoPath = null;
+    }
     if (!this.clubService.club.id) {
       this.postClub();
     } else {
       this.editClub();
     }
+     this.clubService.club.logoPath = img;
   }
 
   getAllClubs() {
@@ -147,6 +154,7 @@ export class TeamsPageComponent implements OnInit {
   private postTeam() {
     this.teamService.team.clubId = this.allClubs[this.tabIndex].id;
     this.teamService.postTeam().subscribe(res => {
+      this.teamService.team.id = res as string;
     }, error => {
     }, () => {
       this.allTeams.push(this.teamService.team);
@@ -190,24 +198,32 @@ export class TeamsPageComponent implements OnInit {
 
 
   showTeamDialog() {
+    this.teamService.team = {} as ITeam;
     this.displayTeamDialog = true;
   }
 
   showPlayerDialog(teamId: string) {
+    this.playerService.player = {} as IPlayer;
     this.playerService.player.teamId = teamId;
     this.displayPlayerDialog = true;
   }
 
   onPlayerSubmit() {
+    const img = this.playerService.player.imagePath;
+    if (this.playerService.player.imagePath.includes('assets')) {
+      this.playerService.player.imagePath = null;
+    }
     if (!this.playerService.player.id) {
       this.postPlayer();
     } else {
       this.editPlayer();
     }
+    this.playerService.player.imagePath  = img;
   }
 
   private postPlayer() {
     this.playerService.postPlayer().subscribe(res => {
+      this.playerService.player.id = res as string;
     }, error => {
     }, () => {
       this.allPlayers.push(this.playerService.player);
@@ -250,5 +266,23 @@ export class TeamsPageComponent implements OnInit {
     this.playerService.getAllNationality().subscribe(res => {
       this.allNationalities = res;
     });
+  }
+
+  addDefaultPlayers(teamId) {
+    for (let x = 0; x < this.defaultTeam.length; x++) {
+      const startPlayer: IPlayer = {
+        nameAr: this.defaultTeam[x],
+        nameEn: this.defaultTeam[x],
+        nickNameEn: this.defaultTeam[x],
+        nickNameAr: this.defaultTeam[x],
+        teamId: teamId,
+      };
+      this.playerService.player = startPlayer;
+      this.playerService.postPlayer().subscribe(res => {
+      }, error => {
+      }, () => {
+        this.allPlayers.push(startPlayer);
+      });
+    }
   }
 }

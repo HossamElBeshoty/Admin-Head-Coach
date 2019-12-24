@@ -1,4 +1,5 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {IMatchVideo} from '../../../Models/i-match-video';
 
 @Component({
   selector: 'ngx-youtube-player',
@@ -8,28 +9,26 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 export class YoutubePlayerComponent implements OnInit, OnChanges {
   id;
   private player;
+  @Output() playerVideo: EventEmitter<any> = new EventEmitter();
   public ytEvent;
   playerVars = {
     cc_lang_pref: 'en',
   };
-  @Input() youtubeUrl: string;
+  youtubeUrl: string;
+  // videoMatchId;
+  @Input() allVideoURL: IMatchVideo[];
+  @Output() videoMatchId: EventEmitter<any> = new EventEmitter();
 
   constructor() {
   }
 
   ngOnInit() {
-    if (this.youtubeUrl) {
-      this.convertURLToId(this.youtubeUrl);
-      this.player.loadVideoById(this.id);
-    }
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
 
-    if (this.youtubeUrl) {
-      this.convertURLToId(this.youtubeUrl);
-      this.player.loadVideoById(this.id);
-    }
+
   }
 
   onStateChange(event) {
@@ -38,6 +37,13 @@ export class YoutubePlayerComponent implements OnInit, OnChanges {
 
   savePlayer(player) {
     this.player = player;
+    if (this.allVideoURL.length > 0) {
+      const firstMatch = this.allVideoURL[0].path;
+      this.videoMatchId.emit(this.allVideoURL[0].id);
+      this.convertURLToId(firstMatch);
+    }
+    this.playerVideo.emit(this.player);
+    this.player.loadVideoById(this.id);
   }
 
   playVideo() {
@@ -54,6 +60,15 @@ export class YoutubePlayerComponent implements OnInit, OnChanges {
 
   getCurrentTimeFromYoutubeVideo() {
     this.player.getCurrentTime();
+  }
+
+  changeYoutubeLink(path: string, event) {
+    this.videoMatchId.emit(event.target.options[event.target.selectedIndex].getAttribute('data-id'));
+    this.youtubeUrl = path;
+    if (this.youtubeUrl) {
+      this.convertURLToId(this.youtubeUrl);
+      this.player.loadVideoById(this.id);
+    }
   }
 
   convertURLToId(url) {

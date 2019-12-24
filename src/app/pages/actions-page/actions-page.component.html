@@ -1,15 +1,15 @@
 <div class="animated slow fadeInDown">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <button type="button"
-                class="btn btn-outline-primary animated slow fadeInDown btn-block float-right m-4"
-                (click)="showAddNewPageDialog();pagesForm.resetForm()"><i
-          class="fa fa-plus"></i> Add New
-          Action Group Page
-        </button>
-      </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <button type="button"
+              class="btn btn-warning animated slow fadeInDown  float-right"
+              (click)="showAddNewPageDialog();pagesForm.resetForm()"><i
+        class="fa fa-plus"></i> Add New
+        Action Group Page
+      </button>
     </div>
+
     <p-dialog header="New Action Page" [(visible)]="displayAddNewPage" [modal]="true" [responsive]="true"
               [style]="{width: '350px', minWidth: '200px'}" [minY]="70" appendTo="body"
               [baseZIndex]="10000">
@@ -57,7 +57,7 @@
     </p-dialog>
   </div>
 </div>
-<div class="animated slower fadeInUp">
+<div class="animated slower fadeInUp" *ngIf="allPages.length !== 0">
   <p-tabView (onChange)="onChangeTab($event.index)">
     <ng-container *ngFor="let item of allPages;let i = index;">
       <p-tabPanel [header]="item.nameAr" [selected]="i == tabIndex">
@@ -69,12 +69,11 @@
             <button class="btn btn-outline-secondary mr-2 float-right btn-sm" (click)="populateForm(item)"><i
               class="far fa-edit"></i> Update Page
             </button>
-
           </div>
 
         </div>
         <ngx-action *ngIf="i === tabIndex" [pageName]="item.nameAr" [groupId]="item.id"
-                    [categories]="categories"></ngx-action>
+                    [categories]="categories" [hasDefault]="hasDefault"></ngx-action>
       </p-tabPanel>
     </ng-container>
 
