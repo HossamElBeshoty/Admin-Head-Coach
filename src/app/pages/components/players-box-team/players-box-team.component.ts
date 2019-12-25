@@ -10,10 +10,13 @@ export class PlayersBoxTeamComponent implements OnInit {
 
   displayChangePlayer = false;
   @Input() teamName: string;
+  @Input() isTeamA: boolean;
   @Input() teamData: IPlayer[];
   @Output() teamPlayer: EventEmitter<any> = new EventEmitter();
 
-
+  selectedIndex;
+  toggle = true;
+  status = 'Enable';
   constructor() {
   }
 
@@ -24,7 +27,8 @@ export class PlayersBoxTeamComponent implements OnInit {
     this.displayChangePlayer = true;
   }
 
-  onPlayerClick(playerData) {
+  onPlayerClick(playerData: IPlayer) {
+    this.selectedIndex = playerData.id;
     this.teamPlayer.emit(playerData);
   }
 }

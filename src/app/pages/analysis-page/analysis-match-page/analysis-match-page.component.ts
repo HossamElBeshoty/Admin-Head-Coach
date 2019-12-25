@@ -9,9 +9,10 @@ import {IPlayer} from '../../../Models/i-player';
 import {MatchVideoService} from '../../../Service/match-video.service';
 import {IMatchVideo} from '../../../Models/i-match-video';
 import {AnalysisService} from '../../../Service/analysis.service';
-import {IVideoAnalysis} from '../../../Models/i-video-analysis';
+import {IPostAnalyze, IVideoAnalysis} from '../../../Models/i-video-analysis';
 import {AttackService} from '../../../Service/attack.service';
 import {IAction} from '../../../Models/i-action';
+import {IAttackAnalysis} from '../../../Models/i-attack-analysis';
 
 
 @Component({
@@ -31,7 +32,12 @@ export class AnalysisMatchPageComponent implements OnInit {
   videoOptions;
   playersData: IPlayer = {} as IPlayer;
   actionData: IAction = {} as IAction;
-  actionIndex: number = 2;
+  actionIndex: boolean;
+  attack = {} as IAttackAnalysis;
+  isTeamAButton: boolean;
+  isTeamBButton: boolean;
+  timeFrom: number;
+  timeTo: number;
 
   constructor(public categoryService: CategoryService,
               public matchService: MatchService,
@@ -49,11 +55,60 @@ export class AnalysisMatchPageComponent implements OnInit {
 
   getPlayersData(event) {
     this.playersData = event;
+    if (!this.attack.analyzes) {
+      this.attack.analyzes = [{} as IPostAnalyze];
+    }
+    if (this.isTeamA(this.playersData.teamId)) {
+      this.attack.analyzes[0].playerAId = this.playersData.id;
+      this.attack.analyzes[0].teamAId = this.playersData.teamId;
+      this.isTeamAButton = true;
+      this.isTeamBButton = false;
+    } else {
+      this.attack.analyzes[0].playerBId = this.playersData.id;
+      this.attack.analyzes[0].teamBId = this.playersData.teamId;
+      this.isTeamAButton = false;
+      this.isTeamBButton = true;
+    }
   }
 
   getActionsData(event) {
-    // console.log(this.actionIndex % 2);
     this.actionData = event;
+    if (!this.attack.analyzes) {
+      this.attack.analyzes = [{} as IPostAnalyze];
+    }
+    if (this.isTeamA(this.playersData.teamId)) {
+      this.attack.analyzes[0].actionOfTeamA = this.actionData.id;
+      if (this.actionData.type === 4) {
+        this.attack.analyzes[0].tacticOfTeamA = this.actionData.id;
+      }
+    } else {
+      this.attack.analyzes[0].actionOfTeamB = this.actionData.id;
+      if (this.actionData.type === 4) {
+        this.attack.analyzes[0].tacticOfTeamB = this.actionData.id;
+        this.attack.analyzes[0].tacticOfTeamB = this.actionData.id;
+      }
+    }
+    if (!this.actionIndex) {
+      this.timeFrom = this.videoOptions.getCurrentTime();
+      this.attack.timeFrom = new Date(
+        this.videoOptions.getCurrentTime() * 1000).toISOString().substr(11, 8);
+      this.attack.analyzes[0].timeInVideo = Math.round(this.videoOptions.getCurrentTime());
+      this.attack.analyzes[0].timeFrom = new Date(
+        this.videoOptions.getCurrentTime() * 1000).toISOString().substr(11, 8);
+      this.attack.videoId = this.videoID;
+    } else {
+      this.timeTo = this.videoOptions.getCurrentTime();
+      this.attack.timeTo = new Date(this.videoOptions.getCurrentTime() * 1000).toISOString().substr(11, 8);
+      this.attack.analyzes[0].timeTo = new Date(this.videoOptions.getCurrentTime() * 1000).toISOString().substr(11, 8);
+      this.attack.duration = this.getDurationTime(this.timeTo, this.timeFrom);
+      this.attack.analyzes[0].duration = this.attack.duration;
+      // console.log(this.attack);
+      this.attackService.postAttack(this.attack).subscribe(res => {
+      }, error => {
+      }, () => {
+        this.attack = {} as IAttackAnalysis;
+      });
+    }
   }
 
   getActionIndex(event) {
@@ -67,7 +122,14 @@ export class AnalysisMatchPageComponent implements OnInit {
 
   getVideoPlayer(event) {
     this.videoOptions = event;
-    // console.log(this.videoOptions);
+  }
+
+  getDurationTime(to, from) {
+    return Math.round(to - from);
+  }
+
+  isTeamA(id: string) {
+    return this.matchService.match.teamA.id === id;
   }
 
   onSort() {
@@ -104,7 +166,6 @@ export class AnalysisMatchPageComponent implements OnInit {
       } else {
         result = value1 < value2 ? -1 : value1 > value2 ? 1 : 0;
       }
-
       return order * result;
     });
 
@@ -193,12 +254,6 @@ export class AnalysisMatchPageComponent implements OnInit {
     this.analysisService.getVideoAnalysis(this.videoID, 'en').subscribe(res => {
       this.attacks = res as IVideoAnalysis[];
       this.updateRowGroupMetaData2(this.attacks);
-    });
-  }
-
-  addNewAttack() {
-    this.attackService.postAttack().subscribe(res => {
-      // console.log(res);
     });
   }
 }

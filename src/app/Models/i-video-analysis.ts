@@ -18,3 +18,20 @@ export interface IVideoAnalysis {
   ha?: string;
   hb?: string;
 }
+
+export interface IPostAnalyze {
+  timeFrom?: string;
+  timeTo?: string;
+  duration?: number;
+  timeInVideo?: number;
+  teamAId?: string;
+  playerAId?: string;
+  actionOfTeamA?: string;
+  tacticOfTeamA?: string;
+  teamBId?: string;
+  playerBId?: string;
+  actionOfTeamB?: string;
+  tacticOfTeamB?: string;
+  childActionOfTeamA?: string;
+  childActionOfTeamB?: string;
+}

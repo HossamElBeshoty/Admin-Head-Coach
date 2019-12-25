@@ -1,7 +1,8 @@
 <div class="">
   <div class="row">
     <div class="col-md-3 animated fadeInLeft slow">
-      <ngx-players-box-team [teamName]="this.matchService.match.teamA?.nameAr" (teamPlayer)="getPlayersData($event)"
+      <ngx-players-box-team [teamName]="this.matchService.match.teamA?.nameAr" [isTeamA]="isTeamAButton"
+                            (teamPlayer)="getPlayersData($event)"
                             [teamData]="playersTeamA"></ngx-players-box-team>
     </div>
     <div class="col-md-6 animated fadeInDown slow">
@@ -9,7 +10,8 @@
                           (playerVideo)="getVideoPlayer($event)"></ngx-youtube-player>
     </div>
     <div class="col-md-3 animated fadeInRight slow">
-      <ngx-players-box-team [teamName]="this.matchService.match.teamB?.nameAr" (teamPlayer)="getPlayersData($event)"
+      <ngx-players-box-team [teamName]="this.matchService.match.teamB?.nameAr" [isTeamA]="isTeamBButton"
+                            (teamPlayer)="getPlayersData($event)"
                             [teamData]="playersTeamB"></ngx-players-box-team>
     </div>
   </div>
@@ -40,7 +42,7 @@
               Player Name
             </th>
             <th>
-              Minute
+              Seconds
             </th>
             <th>
               Taktik
@@ -115,7 +117,7 @@
             <td>{{rowData.cb}}</td>
             <td *ngIf="rowGroupMetadata[rowData.ai].index === rowIndex"
                 [attr.rowspan]="rowGroupMetadata[rowData.ai].size">
-              <button class="btn btn-outline-primary btn-sm m-2"><i class="fas fa-play"></i></button>
+              <button class="btn btn-outline-secondary btn-sm m-2"><i class="fas fa-play"></i></button>
               <button class="btn btn-outline-danger btn-sm m-2"><i class="fas fa-ban"></i></button>
             </td>
           </tr>

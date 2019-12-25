@@ -6,12 +6,11 @@ import {DataService} from './data.service';
   providedIn: 'root',
 })
 export class AttackService {
-  attack = {} as IAttackAnalysis;
 
   constructor(private dataService: DataService) {
   }
 
-  postAttack() {
-    return this.dataService.add('api/Attack', this.attack);
+  postAttack(attackData) {
+    return this.dataService.add('api/Attack', attackData);
   }
 }

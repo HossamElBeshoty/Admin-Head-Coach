@@ -37,7 +37,9 @@
             <div class="row">
               <div class=" text-center m-2" *ngFor="let x of item.actions">
                 <div class="btn-group dropright">
-                  <button type="button" class="btn btn-light" (click)="onActionClick(x)">
+                  <button type="button" class="btn btn-light"
+                          [ngClass]="{'btn-primary': selectedIndex === x.id, 'btn-light' : selectedIndex !== x.id}"
+                          (click)="onActionClick(x)">
                     {{x.nameAr}}
                   </button>
                   <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"
@@ -118,8 +120,8 @@
             <option value="1">Start</option>
             <option value="2">End</option>
             <option value="3">End With Action</option>
-            <option value="4">Penalties</option>
-            <option value="5">Tactics</option>
+            <option value="4">Tactics</option>
+            <option value="5">Penalties</option>
           </select>
         </div>
       </div>

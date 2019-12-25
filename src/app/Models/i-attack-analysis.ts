@@ -1,9 +1,10 @@
-import {IVideoAnalysis} from './i-video-analysis';
+import {IPostAnalyze} from './i-video-analysis';
 
 export interface IAttackAnalysis {
   id: string;
-  analyzes: IVideoAnalysis[];
+  analyzes: IPostAnalyze[];
   timeFrom: string;
+  videoId: string;
   timeTo: string;
-  duration: string;
+  duration: number;
 }
