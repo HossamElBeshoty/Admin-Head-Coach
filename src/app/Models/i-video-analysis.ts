@@ -1,22 +1,22 @@
 export interface IVideoAnalysis {
-  id: string;
-  ai: string;
-  fd: string;
-  ad: string;
-  tf: string;
-  tt: string;
-  d: string;
-  ti: string;
-  aa: string;
-  ab: string;
-  ca: string;
-  cb: string;
-  pa: string;
-  pb: string;
-  ta: string;
-  tb: string;
-  ha?: string;
-  hb?: string;
+  id?: string; // ID
+  ai?: string; // AttackId
+  fd?: string; // AttackDurationFliter
+  ad?: string; // AttackDuration
+  tf: string; // TimeFrom
+  tt: string; // TimeTo
+  d: string; // Duration
+  ti: string; // TimeInVideo
+  aa: string; // ActionsOfTeamA
+  ab: string; // ActionsOfTeamB
+  ca: string; // TacticsOfTeamA
+  cb: string; // TacticsOfTeamB
+  pa: string; // PlayersA
+  pb: string; // PlayersB
+  ta: string; // TeamA
+  tb: string; // TeamB
+  ha?: string; // ChildActionOfA
+  hb?: string; // ChildActionOfB
 }
 
 export interface IPostAnalyze {

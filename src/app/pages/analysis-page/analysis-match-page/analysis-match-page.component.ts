@@ -22,6 +22,7 @@ import {IAttackAnalysis} from '../../../Models/i-attack-analysis';
 })
 export class AnalysisMatchPageComponent implements OnInit {
   attacks: IVideoAnalysis[] = [];
+  watchAttack: IVideoAnalysis = {} as IVideoAnalysis;
   rowGroupMetadata: any;
   public categories: ICategory[];
   public playersTeamA: IPlayer[];
@@ -38,7 +39,7 @@ export class AnalysisMatchPageComponent implements OnInit {
   isTeamBButton: boolean;
   timeFrom: number;
   timeTo: number;
-
+  cols: any[];
   constructor(public categoryService: CategoryService,
               public matchService: MatchService,
               public matchVideoService: MatchVideoService,
@@ -51,6 +52,17 @@ export class AnalysisMatchPageComponent implements OnInit {
   ngOnInit() {
     this.matchService.match.id = this.activatedRoute.snapshot.params.id;
     this.getMatch();
+    this.cols = [
+      { field: 'ta', header: 'Team A' },
+      { field: 'aa', header: 'Action' },
+      { field: 'pa', header: 'Player Name' },
+      { field: 'ti', header: 'Seconds' },
+      { field: 'ca', header: 'Tactic' },
+      { field: 'tb', header: 'Team B' },
+      { field: 'ab', header: 'Action' },
+      { field: 'pb', header: 'Player Name' },
+      { field: 'cb', header: 'Tactic' },
+    ];
   }
 
   getPlayersData(event) {
@@ -60,12 +72,16 @@ export class AnalysisMatchPageComponent implements OnInit {
     }
     if (this.isTeamA(this.playersData.teamId)) {
       this.attack.analyzes[0].playerAId = this.playersData.id;
+      this.watchAttack.pa = this.playersData.nameAr;
       this.attack.analyzes[0].teamAId = this.playersData.teamId;
+      this.watchAttack.ta = this.playersData.teamNameAr;
       this.isTeamAButton = true;
       this.isTeamBButton = false;
     } else {
       this.attack.analyzes[0].playerBId = this.playersData.id;
+      this.watchAttack.pb = this.playersData.nameAr;
       this.attack.analyzes[0].teamBId = this.playersData.teamId;
+      this.watchAttack.tb = this.playersData.teamNameAr;
       this.isTeamAButton = false;
       this.isTeamBButton = true;
     }
@@ -76,16 +92,22 @@ export class AnalysisMatchPageComponent implements OnInit {
     if (!this.attack.analyzes) {
       this.attack.analyzes = [{} as IPostAnalyze];
     }
-    if (this.isTeamA(this.playersData.teamId)) {
-      this.attack.analyzes[0].actionOfTeamA = this.actionData.id;
+    if (this.isTeamA(this.playersData.teamId) || this.playersData.teamId === undefined) {
+
       if (this.actionData.type === 4) {
         this.attack.analyzes[0].tacticOfTeamA = this.actionData.id;
+        this.watchAttack.ca = this.actionData.nameAr;
+      } else {
+        this.attack.analyzes[0].actionOfTeamA = this.actionData.id;
+        this.watchAttack.aa = this.actionData.nameAr;
       }
     } else {
-      this.attack.analyzes[0].actionOfTeamB = this.actionData.id;
       if (this.actionData.type === 4) {
         this.attack.analyzes[0].tacticOfTeamB = this.actionData.id;
-        this.attack.analyzes[0].tacticOfTeamB = this.actionData.id;
+        this.watchAttack.cb = this.actionData.nameAr;
+      } else {
+        this.attack.analyzes[0].actionOfTeamB = this.actionData.id;
+        this.watchAttack.ab = this.actionData.nameAr;
       }
     }
     if (!this.actionIndex) {
@@ -93,6 +115,7 @@ export class AnalysisMatchPageComponent implements OnInit {
       this.attack.timeFrom = new Date(
         this.videoOptions.getCurrentTime() * 1000).toISOString().substr(11, 8);
       this.attack.analyzes[0].timeInVideo = Math.round(this.videoOptions.getCurrentTime());
+      this.watchAttack.ti = this.attack.analyzes[0].timeInVideo.toString();
       this.attack.analyzes[0].timeFrom = new Date(
         this.videoOptions.getCurrentTime() * 1000).toISOString().substr(11, 8);
       this.attack.videoId = this.videoID;
@@ -102,11 +125,14 @@ export class AnalysisMatchPageComponent implements OnInit {
       this.attack.analyzes[0].timeTo = new Date(this.videoOptions.getCurrentTime() * 1000).toISOString().substr(11, 8);
       this.attack.duration = this.getDurationTime(this.timeTo, this.timeFrom);
       this.attack.analyzes[0].duration = this.attack.duration;
+      this.watchAttack.d = this.attack.duration.toString();
       // console.log(this.attack);
       this.attackService.postAttack(this.attack).subscribe(res => {
       }, error => {
       }, () => {
         this.attack = {} as IAttackAnalysis;
+        this.watchAttack = {} as IVideoAnalysis;
+        this.attacks.push(this.watchAttack);
       });
     }
   }
@@ -254,6 +280,9 @@ export class AnalysisMatchPageComponent implements OnInit {
     this.analysisService.getVideoAnalysis(this.videoID, 'en').subscribe(res => {
       this.attacks = res as IVideoAnalysis[];
       this.updateRowGroupMetaData2(this.attacks);
+    }, error => {
+    }, () => {
+      this.attacks.push(this.watchAttack);
     });
   }
 }

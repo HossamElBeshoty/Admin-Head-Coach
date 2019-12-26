@@ -29,104 +29,119 @@
 <br>
 <div class="row">
   <div class="col-md-12 animated fadeInUp slower">
-    <p-panel header="Events" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
-      <p-table #dt [value]="attacks" sortField="ai" sortMode="single" (onSort)="onSort()" (onFilter)="onFilter($event)">
-        <ng-template pTemplate="header" let-rowData>
+    <p-panel header="Events" [toggleable]="true" >
+<!--      <p-table #dt [value]="attacks" sortField="ai" sortMode="single" (onSort)="onSort()" (onFilter)="onFilter($event)" [scrollable]="true" scrollHeight="100px">-->
+<!--        <ng-template pTemplate="header" let-rowData>-->
+<!--          <tr>-->
+<!--            <th>-->
+<!--              Team A-->
+<!--            </th>-->
+<!--            <th>-->
+<!--              Action-->
+<!--            </th>-->
+<!--            <th>-->
+<!--              Player Name-->
+<!--            </th>-->
+<!--            <th>-->
+<!--              Seconds-->
+<!--            </th>-->
+<!--            <th>-->
+<!--              Taktik-->
+<!--            </th>-->
+<!--            <th>Team B</th>-->
+<!--            <th>-->
+<!--              Action-->
+<!--            </th>-->
+<!--            <th>-->
+<!--              Player Name-->
+<!--            </th>-->
+<!--            <th>-->
+<!--              Taktik-->
+<!--            </th>-->
+<!--            <th>-->
+<!--              <i class="fas fa-toolbox fa-2x text-warning"></i>-->
+<!--            </th>-->
+<!--          </tr>-->
+<!--          <tr>-->
+<!--            <th></th>-->
+<!--            <th>-->
+<!--              <input class="form-control" type="text"-->
+<!--                     (input)="dt.filter($event.target.value, 'aa', 'contains')">-->
+<!--            </th>-->
+<!--            <th>-->
+<!--              <input class="form-control" type="text"-->
+<!--                     (input)="dt.filter($event.target.value, 'pa', 'contains')">-->
+<!--            </th>-->
+<!--            <th>-->
+<!--              <input class="form-control" type="text"-->
+<!--                     (input)="dt.filter($event.target.value, 'ti', 'contains')">-->
+<!--            </th>-->
+<!--            <th>-->
+<!--              <input class="form-control" type="text"-->
+<!--                     (input)="dt.filter($event.target.value, 'ca', 'contains')">-->
+<!--            </th>-->
+<!--            <th></th>-->
+<!--            <th>-->
+<!--              <input class="form-control" type="text"-->
+<!--                     (input)="dt.filter($event.target.value, 'ab', 'contains')">-->
+<!--            </th>-->
+<!--            <th>-->
+<!--              <input class="form-control" type="text"-->
+<!--                     (input)="dt.filter($event.target.value, 'pb', 'contains')">-->
+<!--            </th>-->
+<!--            <th>-->
+<!--              <input class="form-control" type="text"-->
+<!--                     (input)="dt.filter($event.target.value, 'cb', 'contains')">-->
+<!--            </th>-->
+<!--            <th></th>-->
+<!--          </tr>-->
+<!--        </ng-template>-->
+<!--        <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">-->
+<!--          <tr>-->
+
+<!--            <td>{{rowData.ta}}</td>-->
+<!--            <td>{{rowData.aa}}</td>-->
+<!--            <td>{{rowData.pa}}</td>-->
+<!--            <td>{{rowData.ti}}</td>-->
+<!--            <td>{{rowData.ca}}</td>-->
+<!--            <td>{{rowData.tb}}</td>-->
+<!--            <td>{{rowData.ab}}</td>-->
+<!--            <td>{{rowData.pb}}</td>-->
+<!--            <td>{{rowData.cb}}</td>-->
+<!--            <td>-->
+<!--              <i class="fas fa-play fa-1x m-1 text-primary"></i>-->
+<!--              <i class="fas fa-ban fa-1x m-1 text-danger"></i>-->
+<!--            </td>-->
+<!--          </tr>-->
+<!--        </ng-template>-->
+<!--      </p-table>-->
+      <p-table #dt1 [columns]="cols" [value]="attacks" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20]" dataKey="vin" [resizableColumns]="true" [reorderableColumns]="true"
+                stateStorage="session" stateKey="statedemo-session">
+        <ng-template pTemplate="header" let-columns>
           <tr>
-            <th>
-              Duration
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn pReorderableColumn>
+              {{col.header}}
+              <p-sortIcon [field]="col.field"></p-sortIcon>
             </th>
-            <th>
-              Team A
-            </th>
-            <th>
-              Action
-            </th>
-            <th>
-              Player Name
-            </th>
-            <th>
-              Seconds
-            </th>
-            <th>
-              Taktik
-            </th>
-            <th>Team B</th>
-            <th>
-              Action
-            </th>
-            <th>
-              Player Name
-            </th>
-            <th>
-              Taktik
-            </th>
-            <th>
-              <i class="fas fa-toolbox fa-2x text-warning"></i>
-            </th>
+            <th></th>
           </tr>
           <tr>
-            <th>
-              <input class="form-control" type="text"
-                     (input)="dt.filter($event.target.value, 'fd', 'contains')"
-                     [value]="dt.filters['fd'] ? dt.filters['fd'].value : ''">
-            </th>
-            <th></th>
-            <th>
-              <input class="form-control" type="text"
-                     (input)="dt.filter($event.target.value, 'aa', 'contains')">
-            </th>
-            <th>
-              <input class="form-control" type="text"
-                     (input)="dt.filter($event.target.value, 'pa', 'contains')">
-            </th>
-            <th>
-              <input class="form-control" type="text"
-                     (input)="dt.filter($event.target.value, 'ti', 'contains')">
-            </th>
-            <th>
-              <input class="form-control" type="text"
-                     (input)="dt.filter($event.target.value, 'ca', 'contains')">
-            </th>
-            <th></th>
-            <th>
-              <input class="form-control" type="text"
-                     (input)="dt.filter($event.target.value, 'ab', 'contains')">
-            </th>
-            <th>
-              <input class="form-control" type="text"
-                     (input)="dt.filter($event.target.value, 'pb', 'contains')">
-            </th>
-            <th>
-              <input class="form-control" type="text"
-                     (input)="dt.filter($event.target.value, 'cb', 'contains')">
+            <th *ngFor="let col of columns" [ngSwitch]="col.field" class="ui-fluid">
+              <input class="form-control" type="text" (input)="dt1.filter($event.target.value, col.field, col.filterMatchMode)" [value]="dt1.filters[col.field]?.value">
             </th>
             <th></th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
           <tr>
-            <td *ngIf="rowGroupMetadata[rowData.ai].index === rowIndex"
-                [attr.rowspan]="rowGroupMetadata[rowData.ai].size">
-              {{rowData.ad}}
+            <td *ngFor="let col of columns">
+              {{rowData[col.field]}}
             </td>
-            <td>{{rowData.ta}}</td>
-            <td>{{rowData.aa}}</td>
-            <td>{{rowData.pa}}</td>
-            <td>{{rowData.ti}}</td>
-            <td>{{rowData.ca}}</td>
-            <td>{{rowData.tb}}</td>
-            <td>{{rowData.ab}}</td>
-            <td>{{rowData.pb}}</td>
-            <td>{{rowData.cb}}</td>
-            <td *ngIf="rowGroupMetadata[rowData.ai].index === rowIndex"
-                [attr.rowspan]="rowGroupMetadata[rowData.ai].size">
-              <button class="btn btn-outline-secondary btn-sm m-2"><i class="fas fa-play"></i></button>
-              <button class="btn btn-outline-danger btn-sm m-2"><i class="fas fa-ban"></i></button>
-            </td>
+            <td>asd</td>
           </tr>
         </ng-template>
       </p-table>
+
     </p-panel>
   </div>
 </div>

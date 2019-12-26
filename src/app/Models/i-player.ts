@@ -9,6 +9,8 @@ export interface IPlayer {
   birthDate?: Date;
   height?: number;
   postions?: number;
+  teamNameAr?: string;
+  teamNameEn?: string;
   preferred?: number;
   gender?: number;
   playerNum?: number;
