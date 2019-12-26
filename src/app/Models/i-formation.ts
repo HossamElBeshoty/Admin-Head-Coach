@@ -4,5 +4,6 @@ export interface IFormation {
   matchId?: string;
   playerId: string;
   time: Date;
+  changedPlayerId?: string;
   status: number;
 }

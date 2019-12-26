@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {IFormation} from '../Models/i-formation';
+import {DataService} from './data.service';
 
 @Injectable({
   providedIn: 'root',
@@ -7,6 +8,10 @@ import {IFormation} from '../Models/i-formation';
 export class FormationService {
   formation = {} as IFormation;
 
-  constructor() {
+  constructor(private dateService: DataService) {
+  }
+
+  changeThePlayer() {
+    return this.dateService.add('api/Formation', this.formation);
   }
 }
