@@ -123,3 +123,17 @@ body .ui-table .ui-table-tbody > tr > td {
   border: 1px solid #c8c8c8;
   text-align: center;
 }
+.ui-table-scrollable-header-box {
+  margin-right: 17px !important;
+}
+
+.ui-table-scrollable-body {
+  margin-right: 17px !important;
+}
+///// this code below is for width of the scroll bar
+::-webkit-scrollbar {
+  width: 10px;
+}
+.ui-table-scrollable-header {
+  overflow-y: scroll;
+}

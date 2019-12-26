@@ -23,7 +23,6 @@ import {IAttackAnalysis} from '../../../Models/i-attack-analysis';
 export class AnalysisMatchPageComponent implements OnInit {
   attacks: IVideoAnalysis[] = [];
   watchAttack: IVideoAnalysis = {} as IVideoAnalysis;
-  rowGroupMetadata: any;
   public categories: ICategory[];
   public playersTeamA: IPlayer[];
   public playersTeamB: IPlayer[];
@@ -40,6 +39,7 @@ export class AnalysisMatchPageComponent implements OnInit {
   timeFrom: number;
   timeTo: number;
   cols: any[];
+
   constructor(public categoryService: CategoryService,
               public matchService: MatchService,
               public matchVideoService: MatchVideoService,
@@ -53,15 +53,15 @@ export class AnalysisMatchPageComponent implements OnInit {
     this.matchService.match.id = this.activatedRoute.snapshot.params.id;
     this.getMatch();
     this.cols = [
-      { field: 'ta', header: 'Team A' },
-      { field: 'aa', header: 'Action' },
-      { field: 'pa', header: 'Player Name' },
-      { field: 'ti', header: 'Seconds' },
-      { field: 'ca', header: 'Tactic' },
-      { field: 'tb', header: 'Team B' },
-      { field: 'ab', header: 'Action' },
-      { field: 'pb', header: 'Player Name' },
-      { field: 'cb', header: 'Tactic' },
+      {field: 'ta', header: 'Team A'},
+      {field: 'aa', header: 'Action'},
+      {field: 'pa', header: 'Player Name'},
+      {field: 'ti', header: 'Seconds'},
+      {field: 'ca', header: 'Tactic'},
+      {field: 'tb', header: 'Team B'},
+      {field: 'ab', header: 'Action'},
+      {field: 'pb', header: 'Player Name'},
+      {field: 'cb', header: 'Tactic'},
     ];
   }
 
@@ -158,84 +158,6 @@ export class AnalysisMatchPageComponent implements OnInit {
     return this.matchService.match.teamA.id === id;
   }
 
-  onSort() {
-    this.updateRowGroupMetaData2(this.attacks);
-  }
-
-  onFilter(event) {
-    this.updateRowGroupMetaData2(event.filteredValue);
-  }
-
-  // customSort(event: SortEvent) {
-  //   /*this.sort(event.data, 'ai', event.order);
-  //   this.sort(event.data, event.field, event.order);*/
-  //   this.updateRowGroupMetaData2(this.attacks);
-  // }
-
-  sort(array, field, order) {
-    array.sort((data1, data2) => {
-      const value1 = data1[field];
-      const value2 = data2[field];
-      let result = null;
-
-      if (value1 == null && value2 != null) {
-        result = -1;
-      } else if (value1 != null && value2 == null) {
-        result = 1;
-      } else if (value1 == null && value2 == null) {
-        result = 0;
-      } else if (
-        typeof value1 === 'string' &&
-        typeof value2 === 'string'
-      ) {
-        result = value1.localeCompare(value2);
-      } else {
-        result = value1 < value2 ? -1 : value1 > value2 ? 1 : 0;
-      }
-      return order * result;
-    });
-
-  }
-
-  updateRowGroupMetaData2(data) {
-    this.rowGroupMetadata = {};
-    if (data) {
-      for (let i = 0; i < data.length; i++) {
-        const rowData = data[i];
-        const duration = rowData.ai;
-        if (i === 0) {
-          this.rowGroupMetadata[duration] = {index: 0, size: 1};
-        } else {
-          const previousRowData = data[i - 1];
-          const previousRowGroup = previousRowData.ai;
-          if (duration === previousRowGroup)
-            this.rowGroupMetadata[duration].size++;
-          else
-            this.rowGroupMetadata[duration] = {index: i, size: 1};
-        }
-      }
-    }
-  }
-
-  // updateRowGroupMetaData() {
-  //   this.rowGroupMetadata = {};
-  //   if (this.attacks) {
-  //     for (let i = 0; i < this.attacks.length; i++) {
-  //       const rowData = this.attacks[i];
-  //       const duration = rowData.ai;
-  //       if (i === 0) {
-  //         this.rowGroupMetadata[duration] = {index: 0, size: 1};
-  //       } else {
-  //         const previousRowData = this.attacks[i - 1];
-  //         const previousRowGroup = previousRowData.ai;
-  //         if (duration === previousRowGroup)
-  //           this.rowGroupMetadata[duration].size++;
-  //         else
-  //           this.rowGroupMetadata[duration] = {index: i, size: 1};
-  //       }
-  //     }
-  //   }
-  // }
 
   getPageCategory(id) {
     this.categoryService.getCategories(id).subscribe(res => {
@@ -260,9 +182,6 @@ export class AnalysisMatchPageComponent implements OnInit {
     });
   }
 
-  // changeYoutubeLink(path: string) {
-  //   this.youtubePath = path;
-  // }
 
   getMatch() {
     this.matchService.getMatchById(this.matchService.match.id).subscribe(res => {
@@ -279,10 +198,23 @@ export class AnalysisMatchPageComponent implements OnInit {
   getAllVideoAnalysis() {
     this.analysisService.getVideoAnalysis(this.videoID, 'en').subscribe(res => {
       this.attacks = res as IVideoAnalysis[];
-      this.updateRowGroupMetaData2(this.attacks);
     }, error => {
     }, () => {
       this.attacks.push(this.watchAttack);
     });
+  }
+
+  convertTimeToSeconds(hms: string) {
+    const a = hms.split(':');
+    const seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
+    return seconds;
+  }
+
+  playVideoInTime(id) {
+    const playAttack = this.attacks.find(c => c.id === id);
+    const seconds = this.convertTimeToSeconds(playAttack.tf);
+    const vId = this.videoOptions.getVideoData().video_id;
+    this.videoOptions.cueVideoById(vId, seconds);
+    this.videoOptions.playVideo();
   }
 }
