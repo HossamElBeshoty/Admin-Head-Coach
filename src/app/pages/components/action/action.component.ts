@@ -1,11 +1,11 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {CategoryService} from '../../../Service/category.service';
-import {ICategory} from '../../../Models/i-category';
-import {ActionService} from '../../../Service/action.service';
-import {IAction} from '../../../Models/i-action';
-import {ChildActionService} from '../../../Service/child-action.service';
-import {IChildAction} from '../../../Models/i-child-action';
-import {NgForm} from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CategoryService } from '../../../Service/category.service';
+import { ICategory } from '../../../Models/i-category';
+import { ActionService } from '../../../Service/action.service';
+import { IAction } from '../../../Models/i-action';
+import { ChildActionService } from '../../../Service/child-action.service';
+import { IChildAction } from '../../../Models/i-child-action';
+import { NgForm } from '@angular/forms';
 
 @Component({
     selector: 'ngx-action',
@@ -52,14 +52,14 @@ export class ActionComponent implements OnInit {
 
 
     constructor(public categoryService: CategoryService,
-                public actionService: ActionService,
-                public childActionService: ChildActionService) {
+        public actionService: ActionService,
+        public childActionService: ChildActionService) {
     }
 
     ngOnInit() {
         this.cols = [
-            {field: 'nameAr', header: 'Arabic Name'},
-            {field: 'nameEn', header: 'English Name'},
+            { field: 'nameAr', header: 'Arabic Name' },
+            { field: 'nameEn', header: 'English Name' },
         ];
     }
 
@@ -75,7 +75,7 @@ export class ActionComponent implements OnInit {
 
     showCategoryDialog() {
         this.displayCategory = true;
-        this.categoryService.category = {groupId: this.groupId} as ICategory;
+        this.categoryService.category = { groupId: this.groupId } as ICategory;
     }
 
     addNewCategoryActionDialog(categoryId: string, type: number) {
@@ -214,7 +214,7 @@ export class ActionComponent implements OnInit {
         }, () => {
         }, () => {
             this.childAction.push(Object.assign({}, this.childActionService.childAction));
-            this.actionService.action.childActions = [] as IChildAction [];
+            this.actionService.action.childActions = [] as IChildAction[];
             this.actionService.action.childActions.push(Object.assign({}, this.childActionService.childAction));
             form.resetForm();
             this.childActionService.childAction = {} as IChildAction;

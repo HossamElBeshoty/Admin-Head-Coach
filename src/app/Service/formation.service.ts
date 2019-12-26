@@ -11,7 +11,7 @@ export class FormationService {
   constructor(private dateService: DataService) {
   }
 
-  changeThePlayer() {
-    return this.dateService.add('api/Formation', this.formation);
+  changeThePlayer(formation) {
+    return this.dateService.add('api/Formation', formation);
   }
 }

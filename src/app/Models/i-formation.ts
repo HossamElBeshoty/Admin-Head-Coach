@@ -3,7 +3,7 @@ export interface IFormation {
   teamId: string;
   matchId?: string;
   playerId: string;
-  time: Date;
+  time: string;
   changedPlayerId?: string;
   status: number;
 }

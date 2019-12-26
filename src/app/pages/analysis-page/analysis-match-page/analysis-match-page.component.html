@@ -5,7 +5,7 @@
                             [teamId]="this.matchService.match.teamA?.id"
                             [matchId]="this.matchService.match.id"
                             (teamPlayer)="getPlayersData($event)"
-                            [teamData]="playersTeamA"></ngx-players-box-team>
+                            [teamData]="playersTeamA" [youtubePlayer]="videoOptions"></ngx-players-box-team>
     </div>
     <div class="col-md-6 animated fadeInDown slow">
       <ngx-youtube-player [allVideoURL]="allVideos" (videoMatchId)="getVideoMatchId($event)"

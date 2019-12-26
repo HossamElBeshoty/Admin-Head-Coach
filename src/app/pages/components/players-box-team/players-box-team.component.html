@@ -15,7 +15,7 @@
       <span class="sr-only">Toggle Dropright</span>
     </button>
     <div class="dropdown-menu">
-      <a class="dropdown-item text-warning" style="cursor: pointer;" (click)="changePlayer()"> <i
+      <a class="dropdown-item text-warning" style="cursor: pointer;" (click)="changePlayer(x.id)"> <i
         class="fas fa-exchange-alt"></i>
         Change Player</a>
     </div>
@@ -25,7 +25,7 @@
           [style]="{width: '350px', minWidth: '300px'}"
           [minY]="70" [baseZIndex]="10000">
   <div class="list-group">
-    <button type="button" *ngFor="let x of changePlayerData" (click)="changePlayerOnMatch()"
+    <button type="button" *ngFor="let x of changePlayerData" (click)="changePlayerOnMatch(x)"
             class="list-group-item list-group-item-action">
       {{x.nameAr}}
     </button>

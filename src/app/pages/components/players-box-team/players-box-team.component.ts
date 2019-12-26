@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IPlayer} from '../../../Models/i-player';
 import {MatchService} from '../../../Service/match.service';
 import {FormationService} from '../../../Service/formation.service';
+import {IFormation} from '../../../Models/i-formation';
 
 @Component({
   selector: 'ngx-players-box-team',
@@ -14,6 +15,7 @@ export class PlayersBoxTeamComponent implements OnInit {
   @Input() teamName: string;
   @Input() isTeamA: boolean;
   @Input() matchId: string;
+  @Input() youtubePlayer: string;
   @Input() teamId: string;
   @Input() teamData: IPlayer[];
   @Output() teamPlayer: EventEmitter<any> = new EventEmitter();
@@ -21,6 +23,7 @@ export class PlayersBoxTeamComponent implements OnInit {
   selectedIndex;
   toggle = true;
   status = 'Enable';
+  willChangePlayer;
 
   constructor(public matchService: MatchService, public formationService: FormationService) {
   }
@@ -28,19 +31,29 @@ export class PlayersBoxTeamComponent implements OnInit {
   ngOnInit() {
   }
 
-  changePlayer() {
+  changePlayer(id) {
+    this.willChangePlayer = id;
     this.displayChangePlayer = true;
     this.matchService.getPlayersNotInMatch(this.teamId, this.matchId).subscribe(res => {
       this.changePlayerData = res as IPlayer[];
     });
   }
 
-  changePlayerOnMatch() {
-    this.formationService.changeThePlayer().subscribe(res => {
-      // console.log(res);
+  changePlayerOnMatch(data: IPlayer) {
+    const obj: IFormation = {
+      changedPlayerId: this.willChangePlayer,
+      matchId: this.matchId,
+      playerId: data.id,
+      status: 2,
+      teamId: this.teamId,
+      time: '00:00:00',
+    };
+    this.formationService.changeThePlayer(obj).subscribe(res => {
     }, error => {
     }, () => {
       this.displayChangePlayer = false;
+      const index = this.teamData.findIndex(c => c.id === this.willChangePlayer);
+      this.teamData.splice(index, 1, data);
     });
   }
 
