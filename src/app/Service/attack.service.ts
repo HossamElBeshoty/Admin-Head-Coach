@@ -12,4 +12,8 @@ export class AttackService {
   postAttack(attackData) {
     return this.dataService.add('api/Attack', attackData);
   }
+
+  deleteAttack(id) {
+    return this.dataService.delete('api/Attack', id);
+  }
 }

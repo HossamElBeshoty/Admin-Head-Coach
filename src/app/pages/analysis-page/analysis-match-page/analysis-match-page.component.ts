@@ -13,6 +13,8 @@ import {IPostAnalyze, IVideoAnalysis} from '../../../Models/i-video-analysis';
 import {AttackService} from '../../../Service/attack.service';
 import {IAction} from '../../../Models/i-action';
 import {IAttackAnalysis} from '../../../Models/i-attack-analysis';
+import {ChildActionService} from '../../../Service/child-action.service';
+import {IChildAction} from '../../../Models/i-child-action';
 
 
 @Component({
@@ -39,12 +41,17 @@ export class AnalysisMatchPageComponent implements OnInit {
   timeFrom: number;
   timeTo: number;
   cols: any[];
+  displayEndWithAction: boolean = false;
+  displayDeleteAttack: boolean = false;
+  childActionData: IChildAction[];
+  attackDeleteId;
 
   constructor(public categoryService: CategoryService,
               public matchService: MatchService,
               public matchVideoService: MatchVideoService,
               public activatedRoute: ActivatedRoute,
               public analysisService: AnalysisService,
+              public childActionService: ChildActionService,
               public attackService: AttackService,
               public playerService: PlayerService) {
   }
@@ -92,8 +99,13 @@ export class AnalysisMatchPageComponent implements OnInit {
     if (!this.attack.analyzes) {
       this.attack.analyzes = [{} as IPostAnalyze];
     }
+    if (this.actionData.type === 3) {
+      this.displayEndWithAction = true;
+      this.childActionService.getAllByActionId(this.actionData.id).subscribe(res => {
+        this.childActionData = res as IChildAction[];
+      });
+    }
     if (this.isTeamA(this.playersData.teamId) || this.playersData.teamId === undefined) {
-
       if (this.actionData.type === 4) {
         this.attack.analyzes[0].tacticOfTeamA = this.actionData.id;
         this.watchAttack.ca = this.actionData.nameAr;
@@ -127,14 +139,28 @@ export class AnalysisMatchPageComponent implements OnInit {
       this.attack.analyzes[0].duration = this.attack.duration;
       this.watchAttack.d = this.attack.duration.toString();
       // console.log(this.attack);
-      this.attackService.postAttack(this.attack).subscribe(res => {
-      }, error => {
-      }, () => {
-        this.attack = {} as IAttackAnalysis;
-        this.watchAttack = {} as IVideoAnalysis;
-        this.attacks.push(this.watchAttack);
-      });
+      this.postAttack(this.attack);
     }
+  }
+
+  postAttack(attack: IAttackAnalysis) {
+    this.attackService.postAttack(attack).subscribe(res => {
+    }, error => {
+    }, () => {
+      this.attack = {} as IAttackAnalysis;
+      this.watchAttack = {} as IVideoAnalysis;
+      this.attacks.push(this.watchAttack);
+    });
+  }
+
+  postChildActionInMatchAnalysis(childActionId) {
+    if (this.isTeamA(this.playersData.teamId) || this.playersData.teamId === undefined) {
+      this.attack.analyzes[0].childActionOfTeamA = childActionId;
+    } else {
+      this.attack.analyzes[0].childActionOfTeamB = childActionId;
+    }
+    this.postAttack(this.attack);
+    this.displayEndWithAction = false;
   }
 
   getActionIndex(event) {
@@ -216,5 +242,20 @@ export class AnalysisMatchPageComponent implements OnInit {
     const vId = this.videoOptions.getVideoData().video_id;
     this.videoOptions.cueVideoById(vId, seconds);
     this.videoOptions.playVideo();
+  }
+
+  displayAttackDelete(attackId) {
+    this.attackDeleteId = attackId;
+    this.displayDeleteAttack = true;
+  }
+
+  deleteOneAttack() {
+    this.attackService.deleteAttack(this.attackDeleteId).subscribe(res => {
+    }, error => {
+    }, () => {
+      const index = this.attacks.findIndex(c => c.ai === this.attackDeleteId);
+      this.attacks.splice(index, 1);
+      this.displayDeleteAttack = false;
+    });
   }
 }

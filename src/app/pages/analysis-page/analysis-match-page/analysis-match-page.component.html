@@ -60,8 +60,9 @@
               {{rowData[col.field]}}
             </td>
             <td>
-              <i class="fas fa-play fa-1x m-1 text-primary" (click)="playVideoInTime(rowData.id)"></i>
-              <i class="fas fa-ban fa-1x m-1 text-danger"></i>
+              <i class="fas fa-play fa-1x m-1 text-primary" style="cursor: pointer;"
+                 (click)="playVideoInTime(rowData.id)"></i>
+              <i class="fas fa-ban fa-1x m-1 text-danger" style="cursor: pointer;" (click)="displayAttackDelete(rowData.ai)"></i>
             </td>
           </tr>
         </ng-template>
@@ -69,3 +70,31 @@
     </p-panel>
   </div>
 </div>
+
+<p-dialog header="Choose" [(visible)]="displayEndWithAction" [modal]="true" [responsive]="true" appendTo="body"
+          [style]="{width: '350px', minWidth: '300px'}"
+          [minY]="70" [baseZIndex]="10000">
+  <div class="list-group">
+    <button type="button" *ngFor="let childAction of childActionData" (click)="postChildActionInMatchAnalysis(childAction.id)"
+            class="list-group-item list-group-item-action">
+      {{childAction.nameAr}}
+    </button>
+  </div>
+</p-dialog>
+
+
+<p-dialog header="Delete Attack" [(visible)]="displayDeleteAttack" [modal]="true" [responsive]="true"
+          [minY]="70" appendTo="body" [style]="{width: '350px', minWidth: '200px'}"
+          [baseZIndex]="10000">
+  <div class="text-center">
+    <i class="fas fa-exclamation-circle fa-4x text-danger "></i>
+  </div>
+  <br>
+  <h6 class="text-center">
+    Are You Sure To Delete This Attack?!
+  </h6>
+  <br>
+  <button class="btn btn-outline-danger btn-sm btn-block" type="submit" (click)="deleteOneAttack()"><i class="fas fa-bomb"></i>
+    Delete
+  </button>
+</p-dialog>
