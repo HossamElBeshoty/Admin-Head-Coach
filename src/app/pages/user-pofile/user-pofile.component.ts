@@ -4,6 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 import {IUserAccount} from '../../Models/i-user-account';
 import {environment} from '../../../environments/environment';
 import {CookieService} from 'ngx-cookie-service';
+import {ISubscription} from '../../Models/i-subscription';
 
 @Component({
   selector: 'ngx-user-pofile',
@@ -12,12 +13,12 @@ import {CookieService} from 'ngx-cookie-service';
 })
 export class UserPofileComponent implements OnInit {
   userId: string;
-  userData: IUserAccount;
+  userData: IUserAccount = {} as IUserAccount;
   apiEndPoint = environment.apiEndPoint;
   displayUserAccountProfile: boolean = false;
   displayUserAccountProfileImage: boolean = false;
   isUser: boolean;
-
+  subscription: ISubscription= {} as ISubscription;
   constructor(public userAccountService: UserAccountService,
               private activatedRouter: ActivatedRoute,
               private cookieService: CookieService) {
@@ -25,6 +26,9 @@ export class UserPofileComponent implements OnInit {
 
   ngOnInit() {
     this.userId = this.activatedRouter.snapshot.params.id;
+
+
+    // this.userData.userSubscriptions[0].subscription = [];
     this.checkUser();
     this.getUser();
   }
@@ -32,6 +36,8 @@ export class UserPofileComponent implements OnInit {
   getUser() {
     this.userAccountService.getUserById(this.userId).subscribe(res => {
       this.userData = res as IUserAccount;
+      this.subscription = this.userData.userSubscriptions[0].subscription;
+
     });
   }
 

@@ -11,5 +11,5 @@ export interface IUserAccount {
   creationDate: Date;
   matchesCount: number;
   profilePath: string;
-  userSubscriptions: IUserSubscription[];
+  userSubscriptions: IUserSubscription[] ;
 }

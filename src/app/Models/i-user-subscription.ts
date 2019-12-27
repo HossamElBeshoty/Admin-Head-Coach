@@ -4,7 +4,7 @@ export interface IUserSubscription {
   id?: string;
   userId: string;
   subscriptionsId: number;
-  subscription: ISubscription[];
+  subscription: ISubscription;
   subscriptionsDate: Date;
   matchesCount: number;
 }
