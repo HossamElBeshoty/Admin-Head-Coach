@@ -26,7 +26,8 @@ import {LyButtonModule} from '@alyle/ui/button';
 import {LyToolbarModule} from '@alyle/ui/toolbar';
 import {LyResizingCroppingImageModule} from '@alyle/ui/resizing-cropping-images';
 import {PrimengModule} from './pages/primeng.module';
-import { VerificationCodePageComponent } from './Page/verification-code-page/verification-code-page.component';
+import {VerificationCodePageComponent} from './Page/verification-code-page/verification-code-page.component';
+import {ToastrModule} from 'ngx-toastr';
 
 
 @NgModule({
@@ -56,6 +57,12 @@ import { VerificationCodePageComponent } from './Page/verification-code-page/ver
     }),
     CoreModule.forRoot(),
     LyThemeModule.setTheme('minima-light'),
+    ToastrModule.forRoot({
+      timeOut: 1500,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      progressBar: true,
+    }),
   ],
   bootstrap: [AppComponent],
   providers: [httpInterceptorProviders, CookieService, {provide: LY_THEME, useClass: MinimaLight, multi: true}],
