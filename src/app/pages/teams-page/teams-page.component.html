@@ -63,7 +63,8 @@
                       [src]="player.imagePath!= null ?  player.imagePath.includes('data:image')?player.imagePath:apiEndPoint + player.imagePath: '../assets/images/default-avatar-png-5.png'"
                       class="card-img-top" [alt]="player.nameAr">
                     <div class="card-body">
-                      <h5 class="card-title">{{player.nameAr}}</h5>
+                      <h5 class="card-title">{{player.nameAr}}  <span
+                        *ngIf="player.postions"> - {{player.postions}}</span></h5>
                       <button class="btn btn-outline-secondary" (click)="updatePlayer(player)"><i
                         class="fas fa-pen"></i></button>
                       <button class="btn ml-1 btn-outline-danger" (click)="showPlayerDeleteDialog(player.id)"><i
