@@ -17,15 +17,11 @@
       <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success" (click)="setSlowMotion()"><i
         class="fas fa-tachometer-alt"></i> Speed
       </button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-warning"
-              (click)="getCurrentTimeFromYoutubeVideo()"><i
-        class="fas fa-stopwatch"></i> Current
-        Time
-      </button>
     </div>
     <div class="col-md-4">
       <div class="form-group">
-        <select class="form-control" id="exampleFormControlSelect1"  #path  (change)="changeYoutubeLink(path.value, $event)">
+        <select class="form-control" id="exampleFormControlSelect1" #path
+                (change)="changeYoutubeLink(path.value, $event)">
           <option *ngFor="let x of allVideoURL" [attr.data-id]="x.id" [value]="x.path">{{x.name}}</option>
         </select>
       </div>

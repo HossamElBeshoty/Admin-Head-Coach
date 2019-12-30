@@ -23,12 +23,9 @@ export class YoutubePlayerComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-
-
   }
 
   onStateChange(event) {
@@ -56,10 +53,6 @@ export class YoutubePlayerComponent implements OnInit, OnChanges {
 
   setSlowMotion() {
     this.player.setPlaybackRate(.25);
-  }
-
-  getCurrentTimeFromYoutubeVideo() {
-    this.player.getCurrentTime();
   }
 
   changeYoutubeLink(path: string, event) {
