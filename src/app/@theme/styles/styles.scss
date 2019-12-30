@@ -106,6 +106,20 @@ select.ng-touched.ng-invalid {
   color: #28a745;
 }
 
+.nb-theme-default nb-user.size-medium .user-name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  color: #28a745;
+  text-transform: capitalize;
+}
+
+.nb-theme-default nb-user.shape-round .user-picture {
+  border-radius: 50%;
+  color: #28a745;
+  border-color: #28a745;
+}
+
 .layout-container .content .columns nb-layout-column {
   order: 1;
   flex: 1 0;
@@ -118,11 +132,13 @@ select.ng-touched.ng-invalid {
   background-size: auto;
   background-color: #fff;
 }
+
 body .ui-table .ui-table-tbody > tr > td {
   background-color: inherit;
   border: 1px solid #c8c8c8;
   text-align: center;
 }
+
 .ui-table-scrollable-header-box {
   margin-right: 17px !important;
 }
@@ -130,10 +146,12 @@ body .ui-table .ui-table-tbody > tr > td {
 .ui-table-scrollable-body {
   margin-right: 17px !important;
 }
+
 ///// this code below is for width of the scroll bar
 ::-webkit-scrollbar {
   width: 10px;
 }
+
 .ui-table-scrollable-header {
   overflow-y: scroll;
 }
