@@ -57,7 +57,7 @@
               </div>
               <br>
               <div class="row">
-                <div class="col-md-2 text-center" *ngFor="let player of allPlayers">
+                <div class="text-center" *ngFor="let player of allPlayers">
                   <div class="card m-2 shadow" style="width: 14rem;">
                     <img
                       [src]="player.imagePath!= null ?  player.imagePath.includes('data:image')?player.imagePath:apiEndPoint + player.imagePath: '../assets/images/default-avatar-png-5.png'"
