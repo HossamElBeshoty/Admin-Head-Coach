@@ -198,13 +198,12 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text bg-white">
-                <i class="far fa-address-card" [class.green-icon]="playerNameAr.valid"
-                   [class.red-icon]="playerNameAr.invalid && playerNameAr.touched"></i>
+                <i class="far fa-address-card"></i>
               </div>
             </div>
             <input id="playerNameAr" type="text" class="form-control" name="nameAr"
                    [(ngModel)]="playerService.player.nameAr"
-                   #playerNameAr="ngModel" placeholder="Insert Name In Arabic" required>
+                   #playerNameAr="ngModel" placeholder="Insert Name In Arabic">
           </div>
         </div>
       </div>
@@ -213,13 +212,12 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text bg-white">
-                <i class="far fa-address-card" [class.green-icon]="playerEn.valid"
-                   [class.red-icon]="playerEn.invalid && playerEn.touched"></i>
+                <i class="far fa-address-card"></i>
               </div>
             </div>
             <input id="playerNameEn" type="text" class="form-control" name="nameEn"
                    [(ngModel)]="playerService.player.nameEn"
-                   #playerEn="ngModel" placeholder="Insert Name In English" required>
+                   #playerEn="ngModel" placeholder="Insert Name In English">
           </div>
         </div>
       </div>
@@ -228,13 +226,12 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text bg-white">
-                <i class="fas fa-signature" [class.green-icon]="playerNickNameAr.valid"
-                   [class.red-icon]="playerNickNameAr.invalid && playerNickNameAr.touched"></i>
+                <i class="fas fa-signature"></i>
               </div>
             </div>
             <input id="playerNickNameAr" type="text" class="form-control" name="nickNameAr"
                    [(ngModel)]="playerService.player.nickNameAr"
-                   #playerNickNameAr="ngModel" placeholder="Insert Nick Name In Arabic" required>
+                   #playerNickNameAr="ngModel" placeholder="Insert Nick Name In Arabic">
           </div>
         </div>
       </div>
@@ -243,13 +240,12 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text bg-white">
-                <i class="fas fa-signature" [class.green-icon]="playerNickNameEn.valid"
-                   [class.red-icon]="playerNickNameEn.invalid && playerNickNameEn.touched"></i>
+                <i class="fas fa-signature"></i>
               </div>
             </div>
             <input id="playerNickNameEn" type="text" class="form-control" name="nickNameEn"
                    [(ngModel)]="playerService.player.nickNameEn"
-                   #playerNickNameEn="ngModel" placeholder="Insert Nick Name In English" required>
+                   #playerNickNameEn="ngModel" placeholder="Insert Nick Name In English">
           </div>
         </div>
       </div>
@@ -258,13 +254,12 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text bg-white">
-                <i class="far fa-flag" [class.green-icon]="playerNationality.valid"
-                   [class.red-icon]="playerNationality.invalid && playerNationality.touched"></i>
+                <i class="far fa-flag"></i>
               </div>
             </div>
             <select class="form-control" id="playerNationality" name="nationalityId"
                     [(ngModel)]="playerService.player.nationalityId"
-                    #playerNationality="ngModel" required>
+                    #playerNationality="ngModel">
               <option selected disabled>Select Nationality</option>
               <option *ngFor="let x of allNationalities" [value]="x.id">{{x.nameAr}}</option>
             </select>
@@ -276,13 +271,12 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text bg-white">
-                <i class="fas fa-birthday-cake" [class.green-icon]="playerBirthDate.valid"
-                   [class.red-icon]="playerBirthDate.invalid && playerBirthDate.touched"></i>
+                <i class="fas fa-birthday-cake"></i>
               </div>
             </div>
             <input id="playerBirthDate" type="date" class="form-control" name="birthDate"
                    [(ngModel)]="playerService.player.birthDate"
-                   #playerBirthDate="ngModel" placeholder="Insert Nick Name In English" required>
+                   #playerBirthDate="ngModel" placeholder="Insert Nick Name In English">
           </div>
         </div>
       </div>
@@ -291,13 +285,12 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text bg-white">
-                <i class="fas fa-arrows-alt-v" [class.green-icon]="playerHeight.valid"
-                   [class.red-icon]="playerHeight.invalid && playerHeight.touched"></i>
+                <i class="fas fa-arrows-alt-v"></i>
               </div>
             </div>
             <input id="playerHeight" type="text" class="form-control" name="height"
                    [(ngModel)]="playerService.player.height"
-                   #playerHeight="ngModel" placeholder="Insert Height" required>
+                   #playerHeight="ngModel" placeholder="Insert Height">
           </div>
         </div>
       </div>
@@ -330,13 +323,12 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text bg-white">
-                <i class="fas fa-arrows-alt-h" [class.green-icon]="playerPreferred.valid"
-                   [class.red-icon]="playerPreferred.invalid && playerPreferred.touched"></i>
+                <i class="fas fa-arrows-alt-h"></i>
               </div>
             </div>
             <select class="form-control" id="playerPreferred" name="preferred"
                     [(ngModel)]="playerService.player.preferred"
-                    #playerPreferred="ngModel" required>
+                    #playerPreferred="ngModel">
               <option>Select Preferred</option>
               <option value="1">Right</option>
               <option value="2">Left</option>
