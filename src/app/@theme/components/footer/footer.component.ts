@@ -6,7 +6,7 @@ import {Component} from '@angular/core';
   template: `
       <span class="created-by"
       ><i class="fas fa-code animated swing infinite"> </i> Copyright &copy;
-      2019 All Rights Reserved By
+      {{Year}} All Rights Reserved By
       <b>
         <a
                 href="https://wwwmasadevelopmentcom.000webhostapp.com/"
@@ -26,4 +26,5 @@ import {Component} from '@angular/core';
   `,
 })
 export class FooterComponent {
+  Year: number = new Date().getFullYear();
 }

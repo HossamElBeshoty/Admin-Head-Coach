@@ -1,4 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {PlayerService} from '../../Service/player.service';
+import {ActivatedRoute} from '@angular/router';
+import {IPlayer} from '../../Models/i-player';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'ngx-personal-page',
@@ -11,11 +15,15 @@ export class PersonalPageComponent implements OnInit {
     {date: '12/4/2019', teamA: 'Ahly', teamB: 'Zamalik'},
   ];
   indexAnalysis: number = -1;
-
-  constructor() {
+  playerId;
+  playerData: IPlayer;
+  apiEndPoint = environment.apiEndPoint;
+  constructor(public playerService: PlayerService, public activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.playerId = this.activatedRoute.snapshot.params.id;
+    this.getPlayer();
   }
 
   openNext() {
@@ -24,5 +32,11 @@ export class PersonalPageComponent implements OnInit {
 
   openPrev() {
     this.indexAnalysis = (this.indexAnalysis <= 0) ? 3 : this.indexAnalysis - 1;
+  }
+
+  getPlayer() {
+    this.playerService.getPlayerById(this.playerId).subscribe(res => {
+      this.playerData = res as IPlayer;
+    });
   }
 }

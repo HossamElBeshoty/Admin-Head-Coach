@@ -63,8 +63,11 @@
                       [src]="player.imagePath!= null ?  player.imagePath.includes('data:image')?player.imagePath:apiEndPoint + player.imagePath: '../assets/images/default-avatar-png-5.png'"
                       class="card-img-top" [alt]="player.nameAr">
                     <div class="card-body">
-                      <h5 class="card-title">{{player.nameAr}}  <span
-                        *ngIf="player.postions"> - {{player.postions}}</span></h5>
+                      <a routerLink="../player/{{player.id}}">
+                        <h5 class="card-title">{{player.nameAr}} <span
+                          *ngIf="player.postions"> - {{player.postions}}</span></h5>
+                      </a>
+
                       <button class="btn btn-outline-secondary" (click)="updatePlayer(player)"><i
                         class="fas fa-pen"></i></button>
                       <button class="btn ml-1 btn-outline-danger" (click)="showPlayerDeleteDialog(player.id)"><i
@@ -121,7 +124,7 @@
       </div>
       <div class="col-md-12 mb-2 text-center" *ngIf="clubService.club.logoPath">
         <img
-          [src]="clubService.club.logoPath!= null ?  clubService.club.logoPath.includes('data:image')?clubService.club.logoPath:apiEndPoint + clubService.club.logoPath: null"
+          [src]="clubService.club.logoPath!= null ?  clubService.club.logoPath.includes('data:image')?clubService.club.logoPath:apiEndPoint + clubService.club.logoPath: '../assets/images/default-avatar-png-5.png'"
           class="img-fluid img-thumbnail" [alt]="clubService.club.nameAr">
       </div>
       <div class="col-md-12">

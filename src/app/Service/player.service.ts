@@ -34,4 +34,8 @@ export class PlayerService {
   getAllNationality() {
     return this.dataService.get('api/Nationality');
   }
+
+  getPlayerById(playerId) {
+    return this.dataService.get('api/Player/' + playerId);
+  }
 }

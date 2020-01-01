@@ -1,27 +1,36 @@
 <div class="row">
   <div class="col-md-3 animated slow fadeInUp line-in-middle">
-    <ngx-user-card></ngx-user-card>
+    <!--    <ngx-user-card></ngx-user-card>-->
+    <div class="card shadow">
+      <img
+        [src]="playerData?.imagePath != null ? playerData?.imagePath.includes('data:image')?playerData?.imagePath: apiEndPoint+ playerData?.imagePath: '../assets/images/default-avatar-png-5.png'"
+        alt="Avatar">
+      <div class="container">
+        <h4><b>{{playerData?.nickNameAr}}</b></h4>
+        <p>{{playerData?.postions}}</p>
+      </div>
+    </div>
   </div>
   <div class="col-md-9 animated slow fadeInRight">
     <p-tabView>
       <p-tabPanel header="Data">
         <p-fieldset legend="Name" styleClass="myFieldset">
-          <span for="">Lionel Messi</span>
+          <span for="">{{playerData?.nameAr}}</span>
         </p-fieldset>
         <p-fieldset legend="Known As" styleClass="myFieldset">
-          <span for="">Messi</span>
+          <span for="">{{playerData?.nickNameAr}}</span>
         </p-fieldset>
         <p-fieldset legend="Date Of Birth" styleClass="myFieldset">
-          <span for="">12/4/1993</span>
+          <span for="">{{playerData?.birthDate | date}}</span>
         </p-fieldset>
         <p-fieldset legend="Height" styleClass="myFieldset">
-          <span for="">6'5''</span>
+          <span for="">{{playerData?.height}}</span>
         </p-fieldset>
         <p-fieldset legend="Player Work Rate (Attacking/Defensive)" styleClass="myFieldset">
           <span for="">Medium / High</span>
         </p-fieldset>
         <p-fieldset legend="Preferred Foot" styleClass="myFieldset">
-          <span for="">Right</span>
+          <span for="">{{playerData?.preferred}}</span>
         </p-fieldset>
         <!--        <p-fieldset legend="Week Feet" styleClass="myFieldset">-->
         <!--          <p-rating [ngModel]="val1" disabled="true" stars="10"></p-rating>-->
@@ -29,9 +38,6 @@
         <p-fieldset legend="Skill Moves" styleClass="myFieldset">
           <p-rating [ngModel]="val1" disabled="true" stars="10"></p-rating>
         </p-fieldset>
-      </p-tabPanel>
-      <p-tabPanel header="Pictures">
-        Content 2
       </p-tabPanel>
       <p-tabPanel header="Matches">
         <p-accordion>

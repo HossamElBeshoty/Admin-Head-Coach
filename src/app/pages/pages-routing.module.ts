@@ -49,7 +49,7 @@ const routes: Routes = [{
       component: ComparisonPageComponent,
     },
     {
-      path: 'personal/:id',
+      path: 'player/:id',
       component: PersonalPageComponent,
     },
     {
