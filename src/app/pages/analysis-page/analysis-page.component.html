@@ -5,7 +5,6 @@
       Analysis
     </button>
   </div>
-
 </div>
 <br>
 <div *ngIf="allMatches.length !== 0">
@@ -57,7 +56,8 @@
               <button class="btn btn-outline-secondary" title="Go To Report"><i class="fas fa-print"></i></button>
             </div>
             <div class="col-md-4 text-center">
-              <button class="btn btn-outline-danger" title="Delete"><i class="fas fa-trash-alt"></i></button>
+              <button class="btn btn-outline-danger" title="Delete" (click)="showDeleteMatchAnalysis(rowData.id)"><i
+                class="fas fa-trash-alt"></i></button>
             </div>
           </div>
         </td>
@@ -301,4 +301,21 @@
       </div>
     </mat-step>
   </mat-horizontal-stepper>
+</p-dialog>
+
+<p-dialog header="Delete Match" [(visible)]="displayDeleteMatchAnalysis" [modal]="true" [responsive]="true"
+          [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
+          [baseZIndex]="10000" appendTo="body">
+  <div class="text-center">
+    <i class="fas fa-exclamation-circle fa-4x text-danger"></i>
+  </div>
+  <br>
+  <h6 class="text-center">
+    Are You Sure To Delete This Match Analysis?!
+  </h6>
+  <br>
+  <button class="btn btn-outline-danger btn-sm btn-block" type="submit" (click)="deleteMatchById()"><i
+    class="fas fa-bomb"></i>
+    Delete
+  </button>
 </p-dialog>

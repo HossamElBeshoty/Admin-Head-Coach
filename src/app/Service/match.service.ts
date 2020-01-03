@@ -26,4 +26,8 @@ export class MatchService {
   getPlayersNotInMatch(teamId: string, matchId: string) {
     return this.dataService.get(`api/Player/getPlayersNotInFormation/${teamId}/${matchId}`);
   }
+
+  deleteMatch(matchId) {
+    return this.dataService.delete('api/Match/', matchId);
+  }
 }

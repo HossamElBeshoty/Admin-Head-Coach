@@ -22,6 +22,7 @@ import {Router} from '@angular/router';
 export class AnalysisPageComponent implements OnInit {
   items: MenuItem[];
   displayNewAnalysis = false;
+  displayDeleteMatchAnalysis = false;
   cols: any[];
   allMatches: IMatch[] = [];
   allClubs: IClub[] = [];
@@ -33,6 +34,7 @@ export class AnalysisPageComponent implements OnInit {
   targetPlayerA: IPlayer[] = [];
   targetPlayerB: IPlayer[] = [];
   matchId;
+  matchAnalysisId;
 
   constructor(public clubsService: ClubService,
               public teamsService: TeamService,
@@ -145,6 +147,21 @@ export class AnalysisPageComponent implements OnInit {
   getAllMatches() {
     this.matchesService.getAllMatches().subscribe(res => {
       this.allMatches = res as IMatch[];
+    });
+  }
+
+  showDeleteMatchAnalysis(matchId) {
+    this.matchAnalysisId = matchId;
+    this.displayDeleteMatchAnalysis = true;
+  }
+
+  deleteMatchById() {
+    this.matchesService.deleteMatch(this.matchAnalysisId).subscribe(res => {
+    }, error => {
+    }, () => {
+      const matchIndex = this.allMatches.findIndex(c => c.id = this.matchAnalysisId);
+      this.allMatches.splice(matchIndex, 1);
+      this.displayDeleteMatchAnalysis = false;
     });
   }
 }
