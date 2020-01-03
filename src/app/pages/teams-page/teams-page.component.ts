@@ -7,6 +7,7 @@ import {ITeam} from '../../Models/i-team';
 import {IPlayer} from '../../Models/i-player';
 import {environment} from '../../../environments/environment';
 import {PlayerPositions} from '../../Models/player-positions';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'ngx-teams-page',
@@ -57,7 +58,6 @@ export class TeamsPageComponent implements OnInit {
 
   displayImg(event: any) {
     this.clubService.club.logoPath = event;
-    // this.imagePath = event;
   }
 
   displayPlayerImg(event: any) {
@@ -79,11 +79,21 @@ export class TeamsPageComponent implements OnInit {
     this.displayDeletePlayerDialog = true;
   }
 
+  compareObjects(o1: any, o2: any): boolean {
+
+    return o1.id === '7c82ef1a-641b-ea11-b448-309c231f8290';
+
+
+  }
+
   onClubSubmit() {
     const img = this.clubService.club.logoPath;
-    if (this.clubService.club.logoPath.includes('assets')) {
-      this.clubService.club.logoPath = null;
+    if (this.clubService.club.logoPath) {
+      if (this.clubService.club.logoPath.includes('assets')) {
+        this.clubService.club.logoPath = null;
+      }
     }
+
     if (!this.clubService.club.id) {
       this.postClub();
     } else {
@@ -206,30 +216,39 @@ export class TeamsPageComponent implements OnInit {
 
   showPlayerDialog(teamId: string) {
     this.playerService.player = {} as IPlayer;
+    this.playerService.player.nationalityId = '7c82ef1a-641b-ea11-b448-309c231f8290';
     this.playerService.player.teamId = teamId;
     this.displayPlayerDialog = true;
   }
 
-  onPlayerSubmit() {
+  onPlayerSubmit(form: NgForm) {
     const img = this.playerService.player.imagePath;
-    if (this.playerService.player.imagePath.includes('assets')) {
-      this.playerService.player.imagePath = null;
+    if (this.playerService.player.imagePath) {
+      if (this.playerService.player.imagePath.includes('assets')) {
+        this.playerService.player.imagePath = null;
+      }
     }
+
     if (!this.playerService.player.id) {
-      this.postPlayer();
+      this.postPlayer(form);
     } else {
       this.editPlayer();
     }
     this.playerService.player.imagePath = img;
   }
 
-  private postPlayer() {
+  private postPlayer(form: NgForm) {
     this.playerService.postPlayer().subscribe(res => {
       this.playerService.player.id = res as string;
+      const pos = this.positionArray.find(x => x.id.toString() === this.playerService.player.postions.toString());
+      if (pos) {
+        this.playerService.player.positionName = pos.position;
+      }
     }, error => {
     }, () => {
       this.allPlayers.push(this.playerService.player);
       this.displayPlayerDialog = false;
+      form.resetForm();
     });
   }
 
@@ -255,6 +274,10 @@ export class TeamsPageComponent implements OnInit {
     }, error => {
     }, () => {
       const playerIndex = this.allPlayers.findIndex(y => y.id === this.playerService.player.id);
+      const pos = this.positionArray.find(x => x.id.toString() === this.playerService.player.postions.toString());
+      if (pos) {
+        this.playerService.player.positionName = pos.position;
+      }
       this.allPlayers[playerIndex] = this.playerService.player;
       this.displayPlayerDialog = false;
     });

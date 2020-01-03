@@ -6,7 +6,7 @@ import {DataService} from './data.service';
   providedIn: 'root',
 })
 export class PlayerService {
-  player = {} as IPlayer;
+  player = {nationalityId: '7c82ef1a-641b-ea11-b448-309c231f8290'} as IPlayer;
 
   constructor(private dataService: DataService) {
   }

@@ -46,7 +46,7 @@
                     class="far fa-edit"></i> Update Team
                   </button>
                   <button class="btn btn-outline-primary float-right ml-2 btn-sm"
-                          (click)="showPlayerDialog(team.id);playerForm.resetForm();"><i
+                          (click)="showPlayerDialog(team.id)"><i
                     class="fa fa-plus"></i> Add Player
                   </button>
                   <button *ngIf="allPlayers.length === 0" class="btn btn-outline-success float-right ml-2 btn-sm"
@@ -261,11 +261,10 @@
                 <i class="far fa-flag"></i>
               </div>
             </div>
-            <select class="form-control" id="playerNationality" name="nationalityId"
+            <select class="form-control"  id="playerNationality" name="nationalityId"
                     [(ngModel)]="playerService.player.nationalityId"
                     #playerNationality="ngModel">
-              <option selected disabled>Select Nationality</option>
-              <option *ngFor="let x of allNationalities" [value]="x.id">{{x.nameEn}}</option>
+              <option *ngFor="let x of allNationalities" [selected]="x.id.toString()==='7c82ef1a-641b-ea11-b448-309c231f8290'" [value]="x.id">{{x.nameEn}}</option>
             </select>
           </div>
         </div>
@@ -385,7 +384,7 @@
         </button>
       </div>
       <div class="col-md-12">
-        <button class="btn btn-outline-success btn-block btn-sm" (click)="onPlayerSubmit()"
+        <button class="btn btn-outline-success btn-block btn-sm" (click)="onPlayerSubmit(playerForm)"
                 [disabled]="playerForm.invalid">
           <i
             class="far fa-check-square"></i> Submit

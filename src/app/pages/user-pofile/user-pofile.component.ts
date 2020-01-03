@@ -18,7 +18,8 @@ export class UserPofileComponent implements OnInit {
   displayUserAccountProfile: boolean = false;
   displayUserAccountProfileImage: boolean = false;
   isUser: boolean;
-  subscription: ISubscription= {} as ISubscription;
+  subscription: ISubscription = {} as ISubscription;
+
   constructor(public userAccountService: UserAccountService,
               private activatedRouter: ActivatedRoute,
               private cookieService: CookieService) {
@@ -56,9 +57,12 @@ export class UserPofileComponent implements OnInit {
 
   updateUser() {
     const img = this.userAccountService.userAccount.profilePath;
-    if (this.userAccountService.userAccount.profilePath.includes('assets')) {
-      this.userAccountService.userAccount.profilePath = null;
+    if (this.userAccountService.userAccount.profilePath) {
+      if (this.userAccountService.userAccount.profilePath.includes('assets')) {
+        this.userAccountService.userAccount.profilePath = null;
+      }
     }
+
     this.userAccountService.editUser().subscribe(res => {
     }, error => {
     }, () => {
