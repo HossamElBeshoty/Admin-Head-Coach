@@ -15,4 +15,5 @@ export interface IPlayer {
   gender?: number;
   playerNum?: number;
   imagePath?: string;
+  positionName?: string;
 }

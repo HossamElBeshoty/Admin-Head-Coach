@@ -6,6 +6,7 @@ import {IClub} from '../../Models/i-club';
 import {ITeam} from '../../Models/i-team';
 import {IPlayer} from '../../Models/i-player';
 import {environment} from '../../../environments/environment';
+import {PlayerPositions} from '../../Models/player-positions';
 
 @Component({
   selector: 'ngx-teams-page',
@@ -31,6 +32,7 @@ export class TeamsPageComponent implements OnInit {
   allNationalities;
   apiEndPoint = environment.apiEndPoint;
   defaultTeam = ['LW', 'LB', 'CB', 'RB', 'RW', 'PV', 'GK'];
+  positionArray = PlayerPositions.positionArray;
 
   constructor(public clubService: ClubService, public teamService: TeamService, public playerService: PlayerService) {
   }
@@ -87,7 +89,7 @@ export class TeamsPageComponent implements OnInit {
     } else {
       this.editClub();
     }
-     this.clubService.club.logoPath = img;
+    this.clubService.club.logoPath = img;
   }
 
   getAllClubs() {
@@ -218,7 +220,7 @@ export class TeamsPageComponent implements OnInit {
     } else {
       this.editPlayer();
     }
-    this.playerService.player.imagePath  = img;
+    this.playerService.player.imagePath = img;
   }
 
   private postPlayer() {
@@ -232,8 +234,14 @@ export class TeamsPageComponent implements OnInit {
   }
 
   getAllPlayers(id) {
-    this.playerService.getPlayers(id).subscribe(res => {
-      this.allPlayers = res as IPlayer[];
+    this.playerService.getPlayers(id).subscribe((res: IPlayer[]) => {
+      this.allPlayers = res.map(c => {
+        const pos = this.positionArray.find(x => x.id === c.postions);
+        if (pos) {
+          c.positionName = pos.position;
+        }
+        return c;
+      });
     });
   }
 

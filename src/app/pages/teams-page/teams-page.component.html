@@ -65,7 +65,7 @@
                     <div class="card-body">
                       <a routerLink="../player/{{player.id}}">
                         <h5 class="card-title">{{player.nameEn}} <span
-                          *ngIf="player.postions"> - {{player.postions}}</span></h5>
+                          *ngIf="player.postions"> - {{player.positionName}}</span></h5>
                       </a>
 
                       <button class="btn btn-outline-secondary" (click)="updatePlayer(player)"><i

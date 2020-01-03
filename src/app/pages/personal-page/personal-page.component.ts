@@ -3,6 +3,7 @@ import {PlayerService} from '../../Service/player.service';
 import {ActivatedRoute} from '@angular/router';
 import {IPlayer} from '../../Models/i-player';
 import {environment} from '../../../environments/environment';
+import {PlayerPositions} from '../../Models/player-positions';
 
 @Component({
   selector: 'ngx-personal-page',
@@ -18,6 +19,7 @@ export class PersonalPageComponent implements OnInit {
   playerId;
   playerData: IPlayer;
   apiEndPoint = environment.apiEndPoint;
+  positionArray = PlayerPositions.positionArray;
   constructor(public playerService: PlayerService, public activatedRoute: ActivatedRoute) {
   }
 
@@ -37,6 +39,10 @@ export class PersonalPageComponent implements OnInit {
   getPlayer() {
     this.playerService.getPlayerById(this.playerId).subscribe(res => {
       this.playerData = res as IPlayer;
+      const pos = this.positionArray.find(x => x.id === this.playerData.postions);
+      if (pos) {
+        this.playerData.positionName = pos.position;
+      }
     });
   }
 }

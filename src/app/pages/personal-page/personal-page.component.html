@@ -7,7 +7,7 @@
         alt="Avatar">
       <div class="container">
         <h4><b>{{playerData?.nickNameAr}}</b></h4>
-        <p>{{playerData?.postions}}</p>
+        <p>{{playerData?.positionName}}</p>
       </div>
     </div>
   </div>
@@ -30,7 +30,8 @@
           <span for="">Medium / High</span>
         </p-fieldset>
         <p-fieldset legend="Preferred Foot" styleClass="myFieldset">
-          <span for="">{{playerData?.preferred}}</span>
+          <span *ngIf="playerData?.preferred === 1" for="">Right</span>
+          <span *ngIf="playerData?.preferred === 2" for="">Left</span>
         </p-fieldset>
         <!--        <p-fieldset legend="Week Feet" styleClass="myFieldset">-->
         <!--          <p-rating [ngModel]="val1" disabled="true" stars="10"></p-rating>-->
