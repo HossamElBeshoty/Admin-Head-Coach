@@ -24,6 +24,7 @@ export class PlayersBoxTeamComponent implements OnInit {
   toggle = true;
   status = 'Enable';
   willChangePlayer;
+  inMatchPlayer: IPlayer[] = [];
 
   constructor(public matchService: MatchService, public formationService: FormationService) {
   }
@@ -37,6 +38,18 @@ export class PlayersBoxTeamComponent implements OnInit {
     this.matchService.getPlayersNotInMatch(this.teamId, this.matchId).subscribe(res => {
       this.changePlayerData = res as IPlayer[];
     });
+  }
+
+  inMatch(player: IPlayer) {
+    const playerIndex = this.teamData.findIndex(c => c.id === player.id);
+    this.teamData.splice(playerIndex, 1);
+    this.inMatchPlayer.push(player);
+  }
+
+  outMatch(player: IPlayer) {
+    const playerIndex = this.teamData.findIndex(c => c.id === player.id);
+    this.inMatchPlayer.splice(playerIndex, 1);
+    this.teamData.push(player);
   }
 
   changePlayerOnMatch(data: IPlayer) {

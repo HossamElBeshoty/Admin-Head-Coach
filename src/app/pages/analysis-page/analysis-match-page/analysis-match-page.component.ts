@@ -138,7 +138,6 @@ export class AnalysisMatchPageComponent implements OnInit {
       this.attack.duration = this.getDurationTime(this.timeTo, this.timeFrom);
       this.attack.analyzes[0].duration = this.attack.duration;
       this.watchAttack.d = this.attack.duration.toString();
-      // console.log(this.attack);
       this.postAttack(this.attack);
     }
   }

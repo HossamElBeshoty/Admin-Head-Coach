@@ -8,25 +8,50 @@
 <!--</p-panel>-->
 <p-panel header="{{teamName}}" [toggleable]="true">
   <div class="panel">
-    <div *ngFor="let x of teamData;" class="btn-group m-1 dropdown">
-      <button type="button" class="btn "
-              [ngClass]="{'btn-success': selectedIndex === x.id ||isTeamA, 'btn-light' : selectedIndex !== x.id || !isTeamA}"
-              (click)="onPlayerClick(x)">
-        {{x.nameAr}}
+    <div *ngFor="let player of inMatchPlayer;" class="btn-group m-1 dropdown">
+      <button type="button" class="btn"
+              [ngClass]="{'btn-success': selectedIndex === player.id && isTeamA, 'btn-primary' : selectedIndex !== player.id || !isTeamA}"
+              (click)="onPlayerClick(player)">
+        {{player.nameAr}}
       </button>
       <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="sr-only">Toggle Dropright</span>
       </button>
       <div class="dropdown-menu">
-        <a class="dropdown-item text-warning" style="cursor: pointer;" (click)="changePlayer(x.id)"> <i
-          class="fas fa-exchange-alt"></i>
-          Change Player</a>
+        <!--        <a class="dropdown-item text-warning" style="cursor: pointer;" (click)="changePlayer(x.id)"> <i-->
+        <!--          class="fas fa-exchange-alt"></i>-->
+        <!--          Change Player</a>-->
+        <a class="dropdown-item text-danger" style="cursor: pointer;" (click)="outMatch(player)"> <i
+          class="fas fa-long-arrow-alt-left"></i>
+          Player Out</a>
       </div>
     </div>
   </div>
-
+  <br>
+  <p-panel header="Change Players" [toggleable]="true">
+    <div class="panel">
+      <div *ngFor="let x of teamData;" class="btn-group m-1 dropdown">
+        <button type="button" class="btn btn-default">
+          {{x.nameAr}}
+        </button>
+        <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="sr-only">Toggle Dropright</span>
+        </button>
+        <div class="dropdown-menu">
+          <!--        <a class="dropdown-item text-warning" style="cursor: pointer;" (click)="changePlayer(x.id)"> <i-->
+          <!--          class="fas fa-exchange-alt"></i>-->
+          <!--          Change Player</a>-->
+          <a class="dropdown-item text-primary" style="cursor: pointer;" (click)="inMatch(x)"> <i
+            class="fas fa-long-arrow-alt-right"></i>
+            Player In</a>
+        </div>
+      </div>
+    </div>
+  </p-panel>
 </p-panel>
+
 <p-dialog header="Change Player" [(visible)]="displayChangePlayer" [modal]="true" [responsive]="true" appendTo="body"
           [style]="{width: '350px', minWidth: '300px'}"
           [minY]="70" [baseZIndex]="10000">
