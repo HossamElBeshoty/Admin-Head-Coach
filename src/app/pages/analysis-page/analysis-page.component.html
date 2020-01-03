@@ -89,7 +89,7 @@
                       #groupId="ngModel" required
                       name="groupId">
                 <option disabled>Please Select Action Statement</option>
-                <option *ngFor="let group of allGroups" [value]="group.id">{{group.nameAr}}</option>
+                <option *ngFor="let group of allGroups" [value]="group.id">{{group.nameEn}}</option>
               </select>
             </div>
           </div>
@@ -98,7 +98,7 @@
               <label for="clubA">Select Club A</label>
               <select #selectedClubA class="form-control" id="clubA" (change)="getAllTeams(selectedClubA.value, true)">
                 <option disabled>Please Select Club A</option>
-                <option *ngFor="let club of allClubs" [value]="club.id">{{club.nameAr}}</option>
+                <option *ngFor="let club of allClubs" [value]="club.id">{{club.nameEn}}</option>
               </select>
             </div>
           </div>
@@ -109,7 +109,7 @@
                       #teamAId="ngModel"
                       name="teamAId">
                 <option>Please Select Club A Team</option>
-                <option *ngFor="let team of allTeamsA" [value]="team.id">{{team.nameAr}}</option>
+                <option *ngFor="let team of allTeamsA" [value]="team.id">{{team.nameEn}}</option>
               </select>
             </div>
           </div>
@@ -118,7 +118,7 @@
               <label for="clubB">Select Club B</label>
               <select class="form-control" id="clubB" #selectedClubB (change)="getAllTeams(selectedClubB.value, false)">
                 <option disabled>Please Select Club B</option>
-                <option *ngFor="let club of allClubs" [value]="club.id">{{club.nameAr}}</option>
+                <option *ngFor="let club of allClubs" [value]="club.id">{{club.nameEn}}</option>
               </select>
             </div>
           </div>
@@ -129,7 +129,7 @@
                       #teamBId="ngModel"
                       name="teamBId">
                 <option>Please Select Club B Team</option>
-                <option *ngFor="let team of allTeamsB" [value]="team.id">{{team.nameAr}}</option>
+                <option *ngFor="let team of allTeamsB" [value]="team.id">{{team.nameEn}}</option>
               </select>
             </div>
           </div>
@@ -151,7 +151,7 @@
         <div class="form-group">
           <p-pickList [source]="allPlayersA" [target]="targetPlayerA" sourceHeader="Team A"
                       targetHeader="Selected Players"
-                      [responsive]="true" filterBy="nameAr"
+                      [responsive]="true" filterBy="nameEn"
                       dragdrop="true" sourceFilterPlaceholder="Search By Player Name"
                       targetFilterPlaceholder="Search By Player Name" [sourceStyle]="{'height':'300px'}"
                       [targetStyle]="{'height':'300px'}">
@@ -159,7 +159,7 @@
               <div class="ui-helper-clearfix">
                 <!--                <img src="assets/showcase/images/demo/car/{{playersA.brand}}.png"-->
                 <!--                     style="display:inline-block;margin:2px 0 2px 2px" width="48">-->
-                <div style="font-size:14px; float:right; margin:15px 5px 0 0px;">{{playersA.nameAr}} </div>
+                <div style="font-size:14px; float:right; margin:15px 5px 0 0px;">{{playersA.nameEn}} </div>
               </div>
             </ng-template>
           </p-pickList>
@@ -186,7 +186,7 @@
         <div class="form-group">
           <p-pickList [source]="allPlayersB" [target]="targetPlayerB" sourceHeader="Team B"
                       targetHeader="Selected Players"
-                      [responsive]="true" filterBy="nameAr"
+                      [responsive]="true" filterBy="nameEn"
                       dragdrop="true" sourceFilterPlaceholder="Search By Player Name"
                       targetFilterPlaceholder="Search By Player Name" [sourceStyle]="{'height':'300px'}"
                       [targetStyle]="{'height':'300px'}">
@@ -194,7 +194,7 @@
               <div class="ui-helper-clearfix">
                 <!--                <img src="assets/showcase/images/demo/car/{{car.brand}}.png"-->
                 <!--                     style="display:inline-block; margin:2px 0 2px 2px;" width="48">-->
-                <div style="font-size:14px; float:right; margin:15px 5px 0 0;">{{playerB.nameAr}}</div>
+                <div style="font-size:14px; float:right; margin:15px 5px 0 0;">{{playerB.nameEn}}</div>
               </div>
             </ng-template>
           </p-pickList>

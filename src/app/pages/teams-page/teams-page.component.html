@@ -11,13 +11,13 @@
 <div class="animated slower fadeInUp" *ngIf="allClubs.length !== 0">
   <p-tabView (onChange)="onChangeTab($event.index)">
     <ng-container *ngFor="let item of allClubs;let i = index;">
-      <p-tabPanel header="{{item.nameAr}}" [selected]="i == tabIndex">
+      <p-tabPanel header="{{item.nameEn}}" [selected]="i == tabIndex">
         <div class="row">
           <div class="col-md-6">
             <img style="height: 100px; width: 100px;"
                  [src]="item.logoPath!= null ?  item.logoPath.includes('data:image')?item.logoPath:apiEndPoint + item.logoPath: '../assets/images/default-avatar-png-5.png'"
                  class="img-fluid img-thumbnail"
-                 [alt]="item.nameAr">
+                 [alt]="item.nameEn">
           </div>
           <div class="col-md-6">
             <button class="btn btn-outline-danger float-right ml-2 btn-sm" (click)="showClubDeleteDialog(item.id)"><i
@@ -35,7 +35,7 @@
         <br>
         <p-accordion>
           <div *ngFor="let team of allTeams">
-            <p-accordionTab header="{{team.nameAr}}" (click)="getAllPlayers(team.id)">
+            <p-accordionTab header="{{team.nameEn}}" (click)="getAllPlayers(team.id)">
               <div class="row">
                 <div class="col-md-12">
                   <button class="btn btn-outline-danger float-right ml-2 btn-sm"
@@ -61,10 +61,10 @@
                   <div class="card m-2 shadow" style="width: 14rem;">
                     <img
                       [src]="player.imagePath!= null ?  player.imagePath.includes('data:image')?player.imagePath:apiEndPoint + player.imagePath: '../assets/images/default-avatar-png-5.png'"
-                      class="card-img-top" [alt]="player.nameAr">
+                      class="card-img-top" [alt]="player.nameEn">
                     <div class="card-body">
                       <a routerLink="../player/{{player.id}}">
-                        <h5 class="card-title">{{player.nameAr}} <span
+                        <h5 class="card-title">{{player.nameEn}} <span
                           *ngIf="player.postions"> - {{player.postions}}</span></h5>
                       </a>
 
@@ -125,7 +125,7 @@
       <div class="col-md-12 mb-2 text-center" *ngIf="clubService.club.logoPath">
         <img
           [src]="clubService.club.logoPath!= null ?  clubService.club.logoPath.includes('data:image')?clubService.club.logoPath:apiEndPoint + clubService.club.logoPath: '../assets/images/default-avatar-png-5.png'"
-          class="img-fluid img-thumbnail" [alt]="clubService.club.nameAr">
+          class="img-fluid img-thumbnail" [alt]="clubService.club.nameEn">
       </div>
       <div class="col-md-12">
         <button class="btn btn-outline-warning btn-block mb-2 btn-sm" (click)="showCropImageDialog()"><i
@@ -265,7 +265,7 @@
                     [(ngModel)]="playerService.player.nationalityId"
                     #playerNationality="ngModel">
               <option selected disabled>Select Nationality</option>
-              <option *ngFor="let x of allNationalities" [value]="x.id">{{x.nameAr}}</option>
+              <option *ngFor="let x of allNationalities" [value]="x.id">{{x.nameEn}}</option>
             </select>
           </div>
         </div>
@@ -377,7 +377,7 @@
       <div class="col-md-12 mb-2 text-center">
         <img class="img-thumbnail"
              [src]="playerService.player.imagePath!= null ?  playerService.player.imagePath.includes('data:image')? playerService.player.imagePath:apiEndPoint + playerService.player.imagePath: '../assets/images/default-avatar-png-5.png'"
-             [alt]="playerService.player.nameAr">
+             [alt]="playerService.player.nameEn">
       </div>
       <div class="col-md-12">
         <button class="btn btn-outline-warning btn-block mb-2 btn-sm" (click)="showPlayerImageCropper()"><i

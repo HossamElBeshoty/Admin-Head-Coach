@@ -23,7 +23,7 @@
             <p-header>
               <div class="ui-helper-clearfix">
           <span class="ui-panel-title"
-                style="font-size:16px; display:inline-block; margin-top:2px;" [innerText]="item.nameAr"></span>
+                style="font-size:16px; display:inline-block; margin-top:2px;" [innerText]="item.nameEn"></span>
                 <button class="btn btn-outline-danger btn-sm float-right mr-1 ml-1"
                         (click)="deleteCategoryActionDialog(item.id)"><i
                   class="fas fa-ban"></i></button>
@@ -40,7 +40,7 @@
                   <button type="button" class="btn btn-light"
                           [ngClass]="{'btn-primary': selectedIndex === x.id, 'btn-light' : selectedIndex !== x.id}"
                           (click)="onActionClick(x)">
-                    {{x.nameAr}}
+                    {{x.nameEn}}
                   </button>
                   <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"
                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,7 +48,7 @@
                   </button>
                   <div class="dropdown-menu">
                     <a class="dropdown-item text-primary" *ngIf="x?.childActions?.length > 0"
-                       (click)="showChildActions(x.id , x.nameAr);childActionForm.resetForm()">
+                       (click)="showChildActions(x.id , x.nameEn);childActionForm.resetForm()">
                       <i class="far fa-eye"></i>
                       Show Zone</a>
                     <a class="dropdown-item text-dark" (click)="updateButton(x)"><i class="far fa-edit"></i> Update
