@@ -9,6 +9,7 @@ const routes: Routes = [
   // {
   //   path: 'login', component: LoginPageComponent,
   // },
+
   {
     path: 'pages',
     loadChildren: () => import('app/pages/pages.module')
