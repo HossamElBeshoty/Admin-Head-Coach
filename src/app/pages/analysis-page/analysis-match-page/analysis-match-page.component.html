@@ -1,4 +1,4 @@
-<div class="">
+<div style="height: 370px;">
   <div class="row">
     <div class="col-md-3 animated fadeInLeft slow">
       <ngx-players-box-team [teamName]="this.matchService.match.teamA?.nameAr" [isTeamA]="isTeamAButton"
@@ -22,6 +22,7 @@
     </div>
   </div>
 </div>
+<br>
 <br>
 <div class="animated fadeInUpBig slow">
   <ngx-action [groupId]="this.matchService.match.groupId" [categories]="categories"
@@ -64,7 +65,8 @@
             <td>
               <i class="fas fa-play fa-1x m-1 text-primary" style="cursor: pointer;"
                  (click)="playVideoInTime(rowData.id)"></i>
-              <i class="fas fa-ban fa-1x m-1 text-danger" style="cursor: pointer;" (click)="displayAttackDelete(rowData.ai)"></i>
+              <i class="fas fa-ban fa-1x m-1 text-danger" style="cursor: pointer;"
+                 (click)="displayAttackDelete(rowData.ai)"></i>
             </td>
           </tr>
         </ng-template>
@@ -77,7 +79,8 @@
           [style]="{width: '350px', minWidth: '300px'}"
           [minY]="70" [baseZIndex]="10000">
   <div class="list-group">
-    <button type="button" *ngFor="let childAction of childActionData" (click)="postChildActionInMatchAnalysis(childAction.id)"
+    <button type="button" *ngFor="let childAction of childActionData"
+            (click)="postChildActionInMatchAnalysis(childAction.id)"
             class="list-group-item list-group-item-action">
       {{childAction.nameAr}}
     </button>
@@ -96,7 +99,8 @@
     Are You Sure To Delete This Attack?!
   </h6>
   <br>
-  <button class="btn btn-outline-danger btn-sm btn-block" type="submit" (click)="deleteOneAttack()"><i class="fas fa-bomb"></i>
+  <button class="btn btn-outline-danger btn-sm btn-block" type="submit" (click)="deleteOneAttack()"><i
+    class="fas fa-bomb"></i>
     Delete
   </button>
 </p-dialog>

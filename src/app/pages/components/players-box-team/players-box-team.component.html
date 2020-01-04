@@ -27,29 +27,30 @@
           Player Out</a>
       </div>
     </div>
-  </div>
-  <br>
-  <p-panel header="Change Players" [toggleable]="true">
-    <div class="panel">
-      <div *ngFor="let x of teamData;" class="btn-group m-1 dropdown">
-        <button type="button" class="btn btn-default">
-          <span *ngIf="x.playerNum">({{x.playerNum}}) -</span>{{x.nickNameEn}}
-        </button>
-        <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="sr-only">Toggle Dropright</span>
-        </button>
-        <div class="dropdown-menu">
-          <!--        <a class="dropdown-item text-warning" style="cursor: pointer;" (click)="changePlayer(x.id)"> <i-->
-          <!--          class="fas fa-exchange-alt"></i>-->
-          <!--          Change Player</a>-->
-          <a class="dropdown-item text-primary" style="cursor: pointer;" (click)="inMatch(x)"> <i
-            class="fas fa-long-arrow-alt-right"></i>
-            Player In</a>
+    <br>
+    <p-panel header="Choose Players" [toggleable]="true" collapsed="true">
+      <div class="panel">
+        <div *ngFor="let x of teamData;" class="btn-group m-1 dropdown">
+          <button type="button" class="btn btn-default">
+            <span *ngIf="x.playerNum">({{x.playerNum}}) -</span>{{x.nickNameEn}}
+          </button>
+          <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropright</span>
+          </button>
+          <div class="dropdown-menu">
+            <!--        <a class="dropdown-item text-warning" style="cursor: pointer;" (click)="changePlayer(x.id)"> <i-->
+            <!--          class="fas fa-exchange-alt"></i>-->
+            <!--          Change Player</a>-->
+            <a class="dropdown-item text-primary" style="cursor: pointer;" (click)="inMatch(x)"> <i
+              class="fas fa-long-arrow-alt-right"></i>
+              Player In</a>
+          </div>
         </div>
       </div>
-    </div>
-  </p-panel>
+    </p-panel>
+  </div>
+
 </p-panel>
 
 <p-dialog header="Change Player" [(visible)]="displayChangePlayer" [modal]="true" [responsive]="true" appendTo="body"

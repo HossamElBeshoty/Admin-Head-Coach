@@ -14,9 +14,26 @@
       <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-danger" (click)="pauseVideo()"><i
         class="fas fa-pause"></i> Pause
       </button>
-      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success" (click)="setSlowMotion()"><i
-        class="fas fa-tachometer-alt"></i> Speed
-      </button>
+      <!--      <button type="button" class="btn btn-sm ml-2 mb-1 btn-outline-success" (click)="setSlowMotion()"><i-->
+      <!--        class="fas fa-tachometer-alt"></i> Speed-->
+      <!--      </button>-->
+      <div class="btn-group dropup">
+        <button class="btn btn-sm ml-2 mb-1 btn-outline-success dropdown-toggle" type="button" id="dropdownMenu2"
+                data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-tachometer-alt"></i> Speed
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <button class="dropdown-item" (click)="setSlowMotion1()" type="button">.25</button>
+          <button class="dropdown-item" (click)="setSlowMotion2()" type="button">.5</button>
+          <button class="dropdown-item" (click)="setSlowMotion3()" type="button">.75</button>
+          <button class="dropdown-item" (click)="setSlowMotion4()" type="button">Normal</button>
+          <button class="dropdown-item" (click)="setSlowMotion5()" type="button">1.25</button>
+          <button class="dropdown-item" (click)="setSlowMotion6()" type="button">1.50</button>
+          <button class="dropdown-item" (click)="setSlowMotion7()" type="button">1.75</button>
+          <button class="dropdown-item" (click)="setSlowMotion8()" type="button">2</button>
+        </div>
+      </div>
     </div>
     <div class="col-md-4">
       <div class="form-group">

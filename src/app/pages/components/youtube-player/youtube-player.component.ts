@@ -15,7 +15,6 @@ export class YoutubePlayerComponent implements OnInit, OnChanges {
     cc_lang_pref: 'en',
   };
   youtubeUrl: string;
-  // videoMatchId;
   @Input() allVideoURL: IMatchVideo[];
   @Output() videoMatchId: EventEmitter<any> = new EventEmitter();
 
@@ -51,8 +50,36 @@ export class YoutubePlayerComponent implements OnInit, OnChanges {
     this.player.pauseVideo();
   }
 
-  setSlowMotion() {
+  setSlowMotion1() {
     this.player.setPlaybackRate(.25);
+  }
+
+  setSlowMotion2() {
+    this.player.setPlaybackRate(.5);
+  }
+
+  setSlowMotion3() {
+    this.player.setPlaybackRate(.75);
+  }
+
+  setSlowMotion4() {
+    this.player.setPlaybackRate(1);
+  }
+
+  setSlowMotion5() {
+    this.player.setPlaybackRate(1.25);
+  }
+
+  setSlowMotion6() {
+    this.player.setPlaybackRate(1.5);
+  }
+
+  setSlowMotion7() {
+    this.player.setPlaybackRate(1.75);
+  }
+
+  setSlowMotion8() {
+    this.player.setPlaybackRate(2);
   }
 
   changeYoutubeLink(path: string, event) {
