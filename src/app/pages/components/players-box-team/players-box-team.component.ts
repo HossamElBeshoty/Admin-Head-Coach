@@ -33,13 +33,13 @@ export class PlayersBoxTeamComponent implements OnInit {
   ngOnInit() {
   }
 
-  changePlayer(id) {
-    this.willChangePlayer = id;
-    this.displayChangePlayer = true;
-    this.matchService.getPlayersNotInMatch(this.teamId, this.matchId).subscribe(res => {
-      this.changePlayerData = res as IPlayer[];
-    });
-  }
+  // changePlayer(id) {
+  //   this.willChangePlayer = id;
+  //   this.displayChangePlayer = true;
+  //   this.matchService.getPlayersNotInMatch(this.teamId, this.matchId).subscribe(res => {
+  //     this.changePlayerData = res as IPlayer[];
+  //   });
+  // }
 
   inMatch(player: IPlayer) {
     const playerIndex = this.teamData.findIndex(c => c.id === player.id);
