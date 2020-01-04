@@ -14,7 +14,7 @@
               (click)="onPlayerClick(player)">
         <span *ngIf="player.playerNum">({{player.playerNum}}) -</span>    {{player.nickNameEn}}
       </button>
-      <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"
+      <button type="button" class="btn btn-light btn-sm dropdown-toggle dropdown-toggle-split"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="sr-only">Toggle Dropright</span>
       </button>
@@ -31,10 +31,10 @@
     <p-panel header="Choose Players" [toggleable]="true" collapsed="true">
       <div class="panel">
         <div *ngFor="let x of teamData;" class="btn-group m-1 dropdown">
-          <button type="button" class="btn btn-default">
+          <button type="button" class="btn btn-default btn-sm">
             <span *ngIf="x.playerNum">({{x.playerNum}}) -</span>{{x.nickNameEn}}
           </button>
-          <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"
+          <button type="button" class="btn btn-light btn-sm dropdown-toggle dropdown-toggle-split"
                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only">Toggle Dropright</span>
           </button>
