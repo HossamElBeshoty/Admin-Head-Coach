@@ -6,13 +6,13 @@
 <!--  </p-header>-->
 <!--  -->
 <!--</p-panel>-->
-<p-panel header="{{teamName}}" [toggleable]="true">
+<p-panel header="{{clubName}} - {{teamName}}" [toggleable]="true">
   <div class="panel">
     <div *ngFor="let player of inMatchPlayer;" class="btn-group m-1 dropdown">
-      <button type="button" class="btn"
+      <button type="button" class="btn btn-sm"
               [ngClass]="{'btn-success': selectedIndex === player.id && isTeamA, 'btn-primary' : selectedIndex !== player.id || !isTeamA}"
               (click)="onPlayerClick(player)">
-        {{player.nameAr}}
+        <span *ngIf="player.playerNum">({{player.playerNum}}) -</span>    {{player.nickNameEn}}
       </button>
       <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -33,7 +33,7 @@
     <div class="panel">
       <div *ngFor="let x of teamData;" class="btn-group m-1 dropdown">
         <button type="button" class="btn btn-default">
-          {{x.nameAr}}
+          <span *ngIf="x.playerNum">({{x.playerNum}}) -</span>{{x.nickNameEn}}
         </button>
         <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

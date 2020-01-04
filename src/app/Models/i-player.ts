@@ -4,6 +4,8 @@ export interface IPlayer {
   nameEn: string;
   nickNameAr: string;
   nickNameEn: string;
+  clubNameAr?: string;
+  clubNameEn?: string;
   teamId: string;
   nationalityId?: string;
   birthDate?: Date;

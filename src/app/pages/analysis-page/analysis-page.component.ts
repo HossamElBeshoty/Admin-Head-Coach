@@ -50,8 +50,8 @@ export class AnalysisPageComponent implements OnInit {
     this.addNewYoutubeInput();
     this.cols = [
       {field: 'matchDate', header: 'Match Date'},
-      {field: 'teamA', header: 'Team A', subfield: 'nameAr', subfieldName: 'teamA.nameAr'},
-      {field: 'teamB', header: 'Team B', subfield: 'nameAr', subfieldName: 'teamB.nameAr'},
+      {field: 'teamA', header: 'Team A', subfield: 'clubNameEn', subfieldName: 'teamA.clubNameEn'},
+      {field: 'teamB', header: 'Team B', subfield: 'clubNameEn', subfieldName: 'teamB.clubNameEn'},
     ];
     this.getAllClubs();
     this.getAllGroups();

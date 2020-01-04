@@ -81,14 +81,14 @@ export class AnalysisMatchPageComponent implements OnInit {
       this.attack.analyzes[0].playerAId = this.playersData.id;
       this.watchAttack.pa = this.playersData.nameAr;
       this.attack.analyzes[0].teamAId = this.playersData.teamId;
-      this.watchAttack.ta = this.playersData.teamNameAr;
+      this.watchAttack.ta = this.playersData.clubNameEn;
       this.isTeamAButton = true;
       this.isTeamBButton = false;
     } else {
       this.attack.analyzes[0].playerBId = this.playersData.id;
-      this.watchAttack.pb = this.playersData.nameAr;
+      this.watchAttack.pb = this.playersData.nameEn;
       this.attack.analyzes[0].teamBId = this.playersData.teamId;
-      this.watchAttack.tb = this.playersData.teamNameAr;
+      this.watchAttack.tb = this.playersData.clubNameEn;
       this.isTeamAButton = false;
       this.isTeamBButton = true;
     }

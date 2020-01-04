@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md-3 animated fadeInLeft slow">
       <ngx-players-box-team [teamName]="this.matchService.match.teamA?.nameAr" [isTeamA]="isTeamAButton"
+                            [clubName]="this.matchService.match.teamA?.clubNameEn"
                             [teamId]="this.matchService.match.teamA?.id"
                             [matchId]="this.matchService.match.id"
                             (teamPlayer)="getPlayersData($event)"
@@ -13,6 +14,7 @@
     </div>
     <div class="col-md-3 animated fadeInRight slow">
       <ngx-players-box-team [teamName]="this.matchService.match.teamB?.nameAr" [isTeamA]="isTeamBButton"
+                            [clubName]="this.matchService.match.teamB?.clubNameEn"
                             [teamId]="this.matchService.match.teamB?.id"
                             [matchId]="this.matchService.match.id"
                             (teamPlayer)="getPlayersData($event)"

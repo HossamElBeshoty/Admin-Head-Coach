@@ -80,10 +80,7 @@ export class TeamsPageComponent implements OnInit {
   }
 
   compareObjects(o1: any, o2: any): boolean {
-
     return o1.id === '7c82ef1a-641b-ea11-b448-309c231f8290';
-
-
   }
 
   onClubSubmit() {

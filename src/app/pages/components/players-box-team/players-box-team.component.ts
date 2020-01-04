@@ -13,6 +13,7 @@ export class PlayersBoxTeamComponent implements OnInit {
 
   displayChangePlayer = false;
   @Input() teamName: string;
+  @Input() clubName: string;
   @Input() isTeamA: boolean;
   @Input() matchId: string;
   @Input() youtubePlayer: string;
