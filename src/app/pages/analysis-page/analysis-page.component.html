@@ -40,7 +40,7 @@
         <td *ngFor="let col of columns">
           <div *ngIf="col.subfield;then nested_object_content else normal_content"></div>
           <ng-template #nested_object_content>
-            {{rowData[col.field][col.subfield]}}
+            {{rowData[col.field][col.subfield]}} - {{rowData[col.field][col.subTeamFieldName]}}
           </ng-template>
           <ng-template #normal_content>
             {{rowData[col.field] | date: 'dd-MM-yyyy'}}
