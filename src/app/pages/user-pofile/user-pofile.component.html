@@ -157,12 +157,12 @@
                              [class.red-icon]="userAccountService.changePasswordFormModel.get('passwords.newPassword').touched && userAccountService.changePasswordFormModel.get('passwords.newPassword').errors?.required || userAccountService.changePasswordFormModel.get('passwords.newPassword').touched && userAccountService.changePasswordFormModel.get('passwords.newPassword').errors?.minlength"></i>
                         </div>
                       </div>
-                      <input [type]="show_button ? 'text' : 'password'" class="form-control"
+                      <input [type]="show_button2 ? 'text' : 'password'" class="form-control"
                              formControlName="newPassword"
                              placeholder="Insert Your New Password" required>
                       <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" (click)="showPassword()">
-                          <i [class]="show_eye ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
+                        <button class="btn btn-outline-secondary" type="button" (click)="showPassword2()">
+                          <i [class]="show_eye2 ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
                         </button>
                       </div>
                     </div>
@@ -185,13 +185,13 @@
                              [class.red-icon]="userAccountService.changePasswordFormModel.get('passwords.changePassword').touched && userAccountService.changePasswordFormModel.get('passwords.changePassword').errors?.required || userAccountService.changePasswordFormModel.get('passwords.changePassword').touched && userAccountService.changePasswordFormModel.get('passwords.changePassword').errors?.passwordMismatch"></i>
                         </div>
                       </div>
-                      <input [type]="show_button ? 'text' : 'password'" class="form-control"
+                      <input [type]="show_button3 ? 'text' : 'password'" class="form-control"
                              formControlName="changePassword"
                              placeholder="Confirm Your New Password" required>
                       <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" (click)="showPassword()"
+                        <button class="btn btn-outline-secondary" type="button" (click)="showPassword3()"
                                 id="button-addon2">
-                          <i [class]="show_eye ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
+                          <i [class]="show_eye3 ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
                         </button>
                       </div>
 
