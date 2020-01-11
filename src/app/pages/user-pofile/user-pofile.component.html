@@ -28,6 +28,11 @@
               <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
                  aria-selected="false">Subscription</a>
             </li>
+            <li class="nav-item" *ngIf="isUser">
+              <a class="nav-link" id="change-password-tab" data-toggle="tab" href="#change-password" role="tab"
+                 aria-controls="change-password"
+                 aria-selected="false">Change Password</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -107,6 +112,58 @@
                 <p>Your Details</p>
               </div>
             </div>
+          </div>
+          <div *ngIf="isUser" class="tab-pane fade" id="change-password" role="tabpanel"
+               aria-labelledby="change-password-tab">
+            <form action="">
+              <div class="row">
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text bg-white">
+                          <i class="fas fa-unlock-alt"></i>
+                        </div>
+                      </div>
+                      <input id="oldPassword" type="text" class="form-control"
+                             placeholder="Insert Old Password" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text bg-white">
+                          <i class="fas fa-lock-open"></i>
+                        </div>
+                      </div>
+                      <input id="newPassword" type="text" class="form-control"
+                             placeholder="Insert New Password" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text bg-white">
+                          <i class="fas fa-lock"></i>
+                        </div>
+                      </div>
+                      <input id="confirmPassword" type="text" class="form-control"
+                             placeholder="Confirm Password" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 text-center">
+                  <button class="btn btn-outline-success"><i class="far fa-check-square"></i> Submit</button>
+
+                </div>
+
+              </div>
+            </form>
           </div>
         </div>
       </div>
