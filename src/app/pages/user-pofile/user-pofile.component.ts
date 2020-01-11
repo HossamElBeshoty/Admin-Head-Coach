@@ -19,6 +19,8 @@ export class UserPofileComponent implements OnInit {
   displayUserAccountProfileImage: boolean = false;
   isUser: boolean;
   subscription: ISubscription = {} as ISubscription;
+  show_button: Boolean = false;
+  show_eye: Boolean = false;
 
   constructor(public userAccountService: UserAccountService,
               private activatedRouter: ActivatedRoute,
@@ -39,6 +41,18 @@ export class UserPofileComponent implements OnInit {
       this.userData = res as IUserAccount;
       this.subscription = this.userData.userSubscriptions[0].subscription;
 
+    });
+  }
+
+  showPassword() {
+    this.show_button = !this.show_button;
+    this.show_eye = !this.show_eye;
+  }
+
+  onChangePassword() {
+    this.userAccountService.changeUserPassword().subscribe(res => {
+    }, error => {
+    }, () => {
     });
   }
 

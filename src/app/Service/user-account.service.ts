@@ -25,11 +25,29 @@ export class UserAccountService {
       ConfirmPassword: ['', Validators.required],
     }, {validators: this.compareUserRegistrationPasswords}),
   });
+  changePasswordFormModel = this.fb.group({
+    oldPassword: ['', Validators.required],
+    passwords: this.fb.group({
+      newPassword: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+      changePassword: ['', Validators.required],
+    }, {validators: this.compareUserConfirmPassword}),
+  });
 
   compareUserRegistrationPasswords(fb: FormGroup) {
     const confirmPasswordControl = fb.get('ConfirmPassword');
     if (confirmPasswordControl.errors === null || 'passwordMismatch' in confirmPasswordControl.errors) {
       if (fb.get('Password').value !== confirmPasswordControl.value) {
+        confirmPasswordControl.setErrors({passwordMismatch: true});
+      } else {
+        confirmPasswordControl.setErrors(null);
+      }
+    }
+  }
+
+  compareUserConfirmPassword(fb: FormGroup) {
+    const confirmPasswordControl = fb.get('changePassword');
+    if (confirmPasswordControl.errors === null || 'passwordMismatch' in confirmPasswordControl.errors) {
+      if (fb.get('newPassword').value !== confirmPasswordControl.value) {
         confirmPasswordControl.setErrors({passwordMismatch: true});
       } else {
         confirmPasswordControl.setErrors(null);
@@ -49,6 +67,15 @@ export class UserAccountService {
       subscriptionsId: this.formModel.value.subscriptionsId,
     };
     return this.dataService.add('api/Account/Register', data);
+  }
+
+  changeUserPassword() {
+    const data = {
+      oldPassword: this.changePasswordFormModel.value.oldPassword,
+      newPassword: this.changePasswordFormModel.value.passwords.newPassword,
+      confirmPassword: this.changePasswordFormModel.value.passwords.changePassword,
+    };
+    return this.dataService.add('api/Account/ChangePassword', data);
   }
 
   getAllUsers() {
