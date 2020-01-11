@@ -118,6 +118,7 @@
             <form [formGroup]="userAccountService.changePasswordFormModel" class="container"
                   (submit)="onChangePassword()">
               <div class="col-md-12">
+                <label class="text-danger" *ngIf="inCorrectPassword"> {{inCorrectPassword}}</label>
                 <label class="text-danger"
                        *ngIf="userAccountService.changePasswordFormModel.get('oldPassword').touched && userAccountService.changePasswordFormModel.get('oldPassword').errors?.required">Please
                   Insert Your Old Password</label>
@@ -127,7 +128,7 @@
                       <div class="input-group-text bg-white">
                         <i class="far fa-file-alt"
                            [class.green-icon]="userAccountService.changePasswordFormModel.get('oldPassword').valid"
-                           [class.red-icon]="userAccountService.changePasswordFormModel.get('oldPassword').touched && userAccountService.changePasswordFormModel.get('oldPassword').errors?.required"></i>
+                           [class.red-icon]="userAccountService.changePasswordFormModel.get('oldPassword').touched && userAccountService.changePasswordFormModel.get('oldPassword').errors?.required || inCorrectPassword"></i>
                       </div>
                     </div>
                     <input formControlName="oldPassword" [type]="show_button ? 'text' : 'password'" class="form-control"

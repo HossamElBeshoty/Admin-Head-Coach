@@ -13,6 +13,7 @@ import {ISubscription} from '../../Models/i-subscription';
 })
 export class UserPofileComponent implements OnInit {
   userId: string;
+  inCorrectPassword: string;
   userData: IUserAccount = {} as IUserAccount;
   apiEndPoint = environment.apiEndPoint;
   displayUserAccountProfile: boolean = false;
@@ -66,6 +67,9 @@ export class UserPofileComponent implements OnInit {
   onChangePassword() {
     this.userAccountService.changeUserPassword().subscribe(res => {
     }, error => {
+      if (error.error.modelState.errors[0]) {
+        this.inCorrectPassword = error.error.modelState.errors[0];
+      }
     }, () => {
     });
   }
