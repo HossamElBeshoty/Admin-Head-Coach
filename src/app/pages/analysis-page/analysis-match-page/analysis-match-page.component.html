@@ -1,6 +1,30 @@
 <div style="height: 370px;">
+  <div class="row animated fadeInDown slower">
+    <div class="col-md-6">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-outline-secondary">{{matchService.match.teamA?.clubNameEn}}</button>
+        <button class="btn btn-outline-secondary"
+                (click)="showMyTeamAPlayers=!showMyTeamAPlayers">
+          <i class="fas" [ngClass]="{'fa-expand-arrows-alt': showMyTeamAPlayers === true , 'fa-expand' : showMyTeamAPlayers === false}"></i>
+        </button>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="btn-group float-right" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-outline-secondary">
+          {{matchService.match.teamB?.clubNameEn}}
+        </button>
+        <button class="btn btn-outline-secondary" (click)="showMyTeamBPlayers=!showMyTeamBPlayers">
+          <i class="fas" [ngClass]="{'fa-expand-arrows-alt': showMyTeamBPlayers === true , 'fa-expand' : showMyTeamBPlayers === false}"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <br>
+
   <div class="row">
-    <div class="col-md-3 animated fadeInLeft slow">
+    <div class=" animated fadeInLeft slow" *ngIf="showMyTeamAPlayers"
+         [ngClass]="{'col-md-3' : showMyTeamAPlayers === true, 'col-md-6' : showMyTeamBPlayers === false}">
       <ngx-players-box-team [teamName]="this.matchService.match.teamA?.nameAr" [isTeamA]="isTeamAButton"
                             [clubName]="this.matchService.match.teamA?.clubNameEn"
                             [teamId]="this.matchService.match.teamA?.id"
@@ -12,7 +36,8 @@
       <ngx-youtube-player [allVideoURL]="allVideos" (videoMatchId)="getVideoMatchId($event)"
                           (playerVideo)="getVideoPlayer($event)"></ngx-youtube-player>
     </div>
-    <div class="col-md-3 animated fadeInRight slow">
+    <div class=" animated fadeInRight slow" *ngIf="showMyTeamBPlayers"
+         [ngClass]="{'col-md-3' : showMyTeamBPlayers === true, 'col-md-6' : showMyTeamAPlayers === false}">
       <ngx-players-box-team [teamName]="this.matchService.match.teamB?.nameAr" [isTeamA]="isTeamBButton"
                             [clubName]="this.matchService.match.teamB?.clubNameEn"
                             [teamId]="this.matchService.match.teamB?.id"
@@ -22,6 +47,8 @@
     </div>
   </div>
 </div>
+<br>
+<br>
 <br>
 <br>
 <div class="animated fadeInUpBig slower">
