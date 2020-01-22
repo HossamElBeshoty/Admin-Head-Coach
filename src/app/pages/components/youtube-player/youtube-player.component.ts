@@ -42,6 +42,9 @@ export class YoutubePlayerComponent implements OnInit, OnChanges {
 
     savePlayer(player) {
         this.player = player;
+        if (this.allVideoURL.length > 0) {
+            this.player.loadVideoById(this.id);
+        }
         this.playerVideo.emit(this.player);
     }
 

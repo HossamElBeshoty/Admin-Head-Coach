@@ -239,11 +239,17 @@ export class AnalysisMatchPageComponent implements OnInit {
 
   playVideoInTime(id) {
     const playAttack = this.attacks.find(c => c.id === id);
-    const seconds = this.convertTimeToSeconds(playAttack.tf);
+    const startSeconds = this.convertTimeToSeconds(playAttack.tf) - 5;
+    const endSeconds = ((this.convertTimeToSeconds(playAttack.tt) - startSeconds) + 5) * 1000;
     const vId = this.videoOptions.getVideoData().video_id;
-    this.videoOptions.cueVideoById(vId, seconds);
+    this.videoOptions.cueVideoById(vId, startSeconds);
     this.videoOptions.playVideo();
+    setTimeout(() => {
+      this.videoOptions.pauseVideo();
+    }, endSeconds);
+
   }
+
 
   displayAttackDelete(attackId) {
     this.attackDeleteId = attackId;
