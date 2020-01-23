@@ -155,3 +155,19 @@ body .ui-table .ui-table-tbody > tr > td {
 .ui-table-scrollable-header {
   overflow-y: scroll;
 }
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  body .ui-table .ui-table-thead > tr > th {
+    padding: 0.1em 0.3em;
+    border: 1px solid #c8c8c8;
+    font-weight: 700;
+    color: #333333;
+    background-color: #f4f4f4;
+    text-align: center;
+    font-size: 11px;
+  }
+  body .ui-table .ui-table-tbody > tr > td {
+    padding: 2px;
+    font-size: 10px;
+  }
+}
+

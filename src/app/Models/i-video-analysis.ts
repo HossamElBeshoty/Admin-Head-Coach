@@ -17,6 +17,10 @@ export interface IVideoAnalysis {
   tb: string; // TeamB
   ha?: string; // ChildActionOfA
   hb?: string; // ChildActionOfB
+  sa?: string; // Start Action Of Team A
+  sb?: string; // Start Action Of Team B
+  ea?: string; // End Action Of Team A
+  eb?: string; // End Action Of Team B
 }
 
 export interface IPostAnalyze {
@@ -34,4 +38,8 @@ export interface IPostAnalyze {
   tacticOfTeamB?: string;
   childActionOfTeamA?: string;
   childActionOfTeamB?: string;
+  startActionOfTeamA?: string;
+  startActionOfTeamB?: string;
+  endActionOfTeamA?: string;
+  endActionOfTeamB?: string;
 }

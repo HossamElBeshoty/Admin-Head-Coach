@@ -62,15 +62,17 @@ export class AnalysisMatchPageComponent implements OnInit {
     this.matchService.match.id = this.activatedRoute.snapshot.params.id;
     this.getMatch();
     this.cols = [
-      {field: 'ta', header: 'Team A'},
+      {field: 'sa', header: 'Type'},
       {field: 'aa', header: 'Action'},
-      {field: 'pa', header: 'Player Name'},
-      {field: 'ti', header: 'Seconds'},
+      {field: 'pa', header: 'Player'},
       {field: 'ca', header: 'Tactic'},
-      {field: 'tb', header: 'Team B'},
+      {field: 'ea', header: 'Result'},
+      {field: 'ti', header: 'Seconds'},
+      {field: 'sb', header: 'Type'},
       {field: 'ab', header: 'Action'},
-      {field: 'pb', header: 'Player Name'},
+      {field: 'pb', header: 'Player'},
       {field: 'cb', header: 'Tactic'},
+      {field: 'eb', header: 'Result'},
     ];
   }
 
@@ -108,17 +110,29 @@ export class AnalysisMatchPageComponent implements OnInit {
       });
     }
     if (this.isTeamA(this.playersData.teamId) || this.playersData.teamId === undefined) {
-      if (this.actionData.type === 4) {
+      if (this.actionData.type.toString() === '4') {
         this.attack.analyzes[0].tacticOfTeamA = this.actionData.id;
         this.watchAttack.ca = this.actionData.nameAr;
+      } else if (this.actionData.type.toString() === '1') {
+        this.attack.analyzes[0].startActionOfTeamA = this.actionData.id;
+        this.watchAttack.sa = this.actionData.nameAr;
+      } else if (this.actionData.type.toString() === '2' || this.actionData.type.toString() === '3') {
+        this.attack.analyzes[0].endActionOfTeamA = this.actionData.id;
+        this.watchAttack.ea = this.actionData.nameAr;
       } else {
         this.attack.analyzes[0].actionOfTeamA = this.actionData.id;
         this.watchAttack.aa = this.actionData.nameAr;
       }
     } else {
-      if (this.actionData.type === 4) {
+      if (this.actionData.type.toString() === '4') {
         this.attack.analyzes[0].tacticOfTeamB = this.actionData.id;
         this.watchAttack.cb = this.actionData.nameAr;
+      } else if (this.actionData.type.toString() === '2' || this.actionData.type.toString() === '3') {
+        this.attack.analyzes[0].endActionOfTeamB = this.actionData.id;
+        this.watchAttack.eb = this.actionData.nameAr;
+      } else if (this.actionData.type.toString() === '1') {
+        this.attack.analyzes[0].startActionOfTeamB = this.actionData.id;
+        this.watchAttack.sb = this.actionData.nameAr;
       } else {
         this.attack.analyzes[0].actionOfTeamB = this.actionData.id;
         this.watchAttack.ab = this.actionData.nameAr;

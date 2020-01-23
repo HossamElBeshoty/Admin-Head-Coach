@@ -41,7 +41,7 @@
                   <div class="btn-group dropright">
                     <button type="button" class="btn btn-light btn-sm"
                             [ngClass]="{'btn-primary': selectedIndex === x.id, 'btn-light' : selectedIndex !== x.id}"
-                            (click)="onActionClick(x)">
+                            (click)="onActionClick(x, item.type)">
                       {{x.nameEn}}
                     </button>
                     <button type="button" class="btn btn-light btn-sm dropdown-toggle dropdown-toggle-split"

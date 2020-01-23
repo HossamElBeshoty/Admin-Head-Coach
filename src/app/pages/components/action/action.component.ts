@@ -62,7 +62,8 @@ export class ActionComponent implements OnInit {
     ];
   }
 
-  onActionClick(actionData: IAction) {
+  onActionClick(actionData: IAction, type) {
+    actionData.type = type;
     if (actionData.type === 2 || actionData.type === 5) {
       this.index.emit(true);
     } else {

@@ -61,6 +61,12 @@
         </ng-template>
         <ng-template pTemplate="header" let-columns>
           <tr>
+            <th colspan="5">Team A ({{matchService.match.teamA?.clubNameEn}})</th>
+            <th></th>
+            <th colspan="5">Team B ({{matchService.match.teamB?.clubNameEn}})</th>
+            <th></th>
+          </tr>
+          <tr>
             <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn pReorderableColumn>
               {{col.header}}
               <p-sortIcon [field]="col.field"></p-sortIcon>
