@@ -1,49 +1,73 @@
-  <div class="row">
-    <div class="col-md-6 mb-2">
-      <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-outline-secondary">{{matchService.match.teamA?.clubNameEn}}</button>
-        <button class="btn btn-outline-secondary" (click)="showMyTeamAPlayers=!showMyTeamAPlayers">
-          <i class="fas" [ngClass]="{'fa-expand-arrows-alt': showMyTeamAPlayers === true , 'fa-expand' : showMyTeamAPlayers === false}"></i>
-        </button>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="btn-group float-right" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-outline-secondary">
-          {{matchService.match.teamB?.clubNameEn}}
-        </button>
-        <button class="btn btn-outline-secondary" (click)="showMyTeamBPlayers=!showMyTeamBPlayers">
-          <i class="fas" [ngClass]="{'fa-expand-arrows-alt': showMyTeamBPlayers === true , 'fa-expand' : showMyTeamBPlayers === false}"></i>
-        </button>
-      </div>
-    </div>
-    <br>
-    <div class="col-md-3 animated fadeInLeft slow" *ngIf="showMyTeamAPlayers">
-      <ngx-players-box-team [teamName]="this.matchService.match.teamA?.nameAr" [isTeamA]="isTeamAButton"
-                            [clubName]="this.matchService.match.teamA?.clubNameEn"
-                            [teamId]="this.matchService.match.teamA?.id"
-                            [matchId]="this.matchService.match.id"
-                            (teamPlayer)="getPlayersData($event)"
-                            [teamData]="playersTeamA" [youtubePlayer]="videoOptions"></ngx-players-box-team>
-    </div>
-    <div class="col animated fadeInDown slow">
-      <ngx-youtube-player [allVideoURL]="allVideos" (videoMatchId)="getVideoMatchId($event)"
-                          (playerVideo)="getVideoPlayer($event)"></ngx-youtube-player>
-    </div>
-    <div class="col-md-3 animated fadeInRight slow" *ngIf="showMyTeamBPlayers">
-      <ngx-players-box-team [teamName]="this.matchService.match.teamB?.nameAr" [isTeamA]="isTeamBButton"
-                            [clubName]="this.matchService.match.teamB?.clubNameEn"
-                            [teamId]="this.matchService.match.teamB?.id"
-                            [matchId]="this.matchService.match.id"
-                            (teamPlayer)="getPlayersData($event)"
-                            [teamData]="playersTeamB"></ngx-players-box-team>
-    </div>
+<!--  <div class="row">-->
+<!--    <div class="col-md-6 mb-2">-->
+<!--      <div class="btn-group" role="group" aria-label="Basic example">-->
+<!--        <button type="button" class="btn btn-outline-secondary">{{matchService.match.teamA?.clubNameEn}}</button>-->
+<!--        <button class="btn btn-outline-secondary" (click)="showMyTeamAPlayers=!showMyTeamAPlayers">-->
+<!--          <i class="fas" [ngClass]="{'fa-expand-arrows-alt': showMyTeamAPlayers === true , 'fa-expand' : showMyTeamAPlayers === false}"></i>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="col-md-6">-->
+<!--      <div class="btn-group float-right" role="group" aria-label="Basic example">-->
+<!--        <button type="button" class="btn btn-outline-secondary">-->
+<!--          {{matchService.match.teamB?.clubNameEn}}-->
+<!--        </button>-->
+<!--        <button class="btn btn-outline-secondary" (click)="showMyTeamBPlayers=!showMyTeamBPlayers">-->
+<!--          <i class="fas" [ngClass]="{'fa-expand-arrows-alt': showMyTeamBPlayers === true , 'fa-expand' : showMyTeamBPlayers === false}"></i>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <br>-->
+<!--    <div class="col-md-3 animated fadeInLeft slow" *ngIf="showMyTeamAPlayers">-->
+<!--      <ngx-players-box-team [teamName]="this.matchService.match.teamA?.nameAr" [isTeamA]="isTeamAButton"-->
+<!--                            [clubName]="this.matchService.match.teamA?.clubNameEn"-->
+<!--                            [teamId]="this.matchService.match.teamA?.id"-->
+<!--                            [matchId]="this.matchService.match.id"-->
+<!--                            (teamPlayer)="getPlayersData($event)"-->
+<!--                            [teamData]="playersTeamA" [youtubePlayer]="videoOptions"></ngx-players-box-team>-->
+<!--    </div>-->
+<!--    <div class="col animated fadeInDown slow">-->
+<!--      <ngx-youtube-player [allVideoURL]="allVideos" (videoMatchId)="getVideoMatchId($event)"-->
+<!--                          (playerVideo)="getVideoPlayer($event)"></ngx-youtube-player>-->
+<!--    </div>-->
+<!--    <div class="col-md-3 animated fadeInRight slow" *ngIf="showMyTeamBPlayers">-->
+<!--      <ngx-players-box-team [teamName]="this.matchService.match.teamB?.nameAr" [isTeamA]="isTeamBButton"-->
+<!--                            [clubName]="this.matchService.match.teamB?.clubNameEn"-->
+<!--                            [teamId]="this.matchService.match.teamB?.id"-->
+<!--                            [matchId]="this.matchService.match.id"-->
+<!--                            (teamPlayer)="getPlayersData($event)"-->
+<!--                            [teamData]="playersTeamB"></ngx-players-box-team>-->
+<!--    </div>-->
+<!--  </div>-->
+<div class="row">
+  <div class="col-md-6">
+    <!--    <button type="text" (click)="displayTeamA = true" pButton icon="pi pi-plus" label="Show A"></button>-->
+    <button class="btn btn-outline-secondary" (click)="displayTeamA = true">
+      Show {{this.matchService.match.teamA?.clubNameEn}} Players</button>
   </div>
-
-<div class="animated fadeInUpBig slower">
-  <ngx-action [groupId]="this.matchService.match.groupId" [categories]="categories"
-              (actionData)="getActionsData($event)" (index)="getActionIndex($event)"></ngx-action>
+  <div class="col-md-6">
+    <!--    <button type="text" (click)="displayTeamB = true" pButton icon="pi pi-plus" label="Show B"></button>-->
+    <button class="btn btn-outline-secondary float-right" (click)="displayTeamB = true">
+      Show {{this.matchService.match.teamB?.clubNameEn}} Players</button>
+  </div>
 </div>
+<br>
+<div class="row">
+  <div class="col-md-4">
+    <ngx-action [groupId]="this.matchService.match.groupId" [categories]="categories"
+                (actionData)="getActionsData($event)" (index)="getActionIndex($event)"></ngx-action>
+  </div>
+  <div class="col-md-8">
+    <ngx-youtube-player [allVideoURL]="allVideos" (videoMatchId)="getVideoMatchId($event)"
+                        (playerVideo)="getVideoPlayer($event)"></ngx-youtube-player>
+  </div>
+</div>
+
+
+<!--<div class="animated fadeInUpBig slower">-->
+<!--  <ngx-action [groupId]="this.matchService.match.groupId" [categories]="categories"-->
+<!--              (actionData)="getActionsData($event)" (index)="getActionIndex($event)"></ngx-action>-->
+<!--</div>-->
 <br>
 <div class="row">
   <div class="col-md-12 animated fadeInUp slower">
@@ -126,3 +150,23 @@
     Delete
   </button>
 </p-dialog>
+<p-sidebar [(visible)]="displayTeamA" position="left" appendTo="body" baseZIndex="9999999" [style]="{width:'30em'}">
+  <br>
+  <br>
+  <ngx-players-box-team [teamName]="this.matchService.match.teamA?.nameAr" [isTeamA]="isTeamAButton"
+                        [clubName]="this.matchService.match.teamA?.clubNameEn"
+                        [teamId]="this.matchService.match.teamA?.id"
+                        [matchId]="this.matchService.match.id"
+                        (teamPlayer)="getPlayersData($event)"
+                        [teamData]="playersTeamA" [youtubePlayer]="videoOptions"></ngx-players-box-team>
+</p-sidebar>
+<p-sidebar [(visible)]="displayTeamB" position="right" appendTo="body" baseZIndex="9999999" [style]="{width:'30em'}">
+  <br>
+  <br>
+  <ngx-players-box-team [teamName]="this.matchService.match.teamB?.nameAr" [isTeamA]="isTeamBButton"
+                        [clubName]="this.matchService.match.teamB?.clubNameEn"
+                        [teamId]="this.matchService.match.teamB?.id"
+                        [matchId]="this.matchService.match.id"
+                        (teamPlayer)="getPlayersData($event)"
+                        [teamData]="playersTeamB"></ngx-players-box-team>
+</p-sidebar>

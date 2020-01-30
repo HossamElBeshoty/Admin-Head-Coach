@@ -179,3 +179,9 @@ body .ui-table .ui-table-tbody > tr > td {
   height: 3.75rem;
   padding: 1.25rem;
 }
+.ui-sidebar-left.ui-sidebar-active, .ui-sidebar-right.ui-sidebar-active {
+  -ms-transform: translateX(0);
+  transform: translateX(0);
+  z-index: 1156;
+  opacity: 1;
+}

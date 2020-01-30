@@ -25,6 +25,8 @@ import {IChildAction} from '../../../Models/i-child-action';
 export class AnalysisMatchPageComponent implements OnInit {
   showMyTeamAPlayers: boolean = true;
   showMyTeamBPlayers: boolean = true;
+  displayTeamA: boolean = false;
+  displayTeamB: boolean = false;
   attacks: IVideoAnalysis[] = [];
   watchAttack: IVideoAnalysis = {} as IVideoAnalysis;
   public categories: ICategory[];
