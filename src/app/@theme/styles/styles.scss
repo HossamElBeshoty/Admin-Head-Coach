@@ -171,3 +171,11 @@ body .ui-table .ui-table-tbody > tr > td {
   }
 }
 
+.nb-theme-default nb-layout-header nav {
+  background: #ffffff;
+  color: #1a2138;
+  box-shadow: 0 0.5rem 1rem 0
+  rgba(44, 51, 73, 0.1);
+  height: 3.75rem;
+  padding: 1.25rem;
+}
