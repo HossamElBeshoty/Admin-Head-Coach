@@ -15,9 +15,8 @@ import {StepsModule} from 'primeng/steps';
 import {PickListModule} from 'primeng/picklist';
 import {ToolbarModule} from 'primeng/toolbar';
 import {LightboxModule} from 'primeng/lightbox';
-
 import {TreeTableModule} from 'primeng/treetable';
-
+import {SidebarModule} from 'primeng/sidebar';
 
 @NgModule({
   declarations: [],
@@ -37,6 +36,7 @@ import {TreeTableModule} from 'primeng/treetable';
     LightboxModule,
     PickListModule,
     StepsModule,
+    SidebarModule,
     RatingModule],
   exports: [CommonModule,
     DialogModule,
@@ -53,6 +53,7 @@ import {TreeTableModule} from 'primeng/treetable';
     PickListModule,
     StepsModule,
     AutoCompleteModule,
+    SidebarModule,
     AccordionModule,
     RatingModule],
 })

@@ -18,8 +18,7 @@
       </div>
     </div>
     <br>
-    <div class="col-md-3 animated fadeInLeft slow" *ngIf="showMyTeamAPlayers"
-        >
+    <div class="col-md-3 animated fadeInLeft slow" *ngIf="showMyTeamAPlayers">
       <ngx-players-box-team [teamName]="this.matchService.match.teamA?.nameAr" [isTeamA]="isTeamAButton"
                             [clubName]="this.matchService.match.teamA?.clubNameEn"
                             [teamId]="this.matchService.match.teamA?.id"
@@ -31,8 +30,7 @@
       <ngx-youtube-player [allVideoURL]="allVideos" (videoMatchId)="getVideoMatchId($event)"
                           (playerVideo)="getVideoPlayer($event)"></ngx-youtube-player>
     </div>
-    <div class=" col-md-3 animated fadeInRight slow" *ngIf="showMyTeamBPlayers"
-       >
+    <div class="col-md-3 animated fadeInRight slow" *ngIf="showMyTeamBPlayers">
       <ngx-players-box-team [teamName]="this.matchService.match.teamB?.nameAr" [isTeamA]="isTeamBButton"
                             [clubName]="this.matchService.match.teamB?.clubNameEn"
                             [teamId]="this.matchService.match.teamB?.id"
@@ -41,7 +39,6 @@
                             [teamData]="playersTeamB"></ngx-players-box-team>
     </div>
   </div>
-
 
 <div class="animated fadeInUpBig slower">
   <ngx-action [groupId]="this.matchService.match.groupId" [categories]="categories"
