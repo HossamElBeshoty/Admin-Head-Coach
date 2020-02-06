@@ -42,13 +42,13 @@
 <div class="row">
   <div class="col-md-6">
     <!--    <button type="text" (click)="displayTeamA = true" pButton icon="pi pi-plus" label="Show A"></button>-->
-    <button class="btn btn-outline-secondary" (click)="displayTeamA = true">
-      Show {{this.matchService.match.teamA?.clubNameEn}} Players</button>
+    <button class="btn btn-sm btn-outline-secondary" (click)="displayTeamA = true">
+      <i class="fas fa-child"></i> {{this.matchService.match.teamA?.clubNameEn}} Players</button>
   </div>
   <div class="col-md-6">
     <!--    <button type="text" (click)="displayTeamB = true" pButton icon="pi pi-plus" label="Show B"></button>-->
-    <button class="btn btn-outline-secondary float-right" (click)="displayTeamB = true">
-      Show {{this.matchService.match.teamB?.clubNameEn}} Players</button>
+    <button class="btn btn-sm btn-outline-secondary float-right" (click)="displayTeamB = true">
+      <i class="fas fa-child"></i> {{this.matchService.match.teamB?.clubNameEn}} Players</button>
   </div>
 </div>
 <br>

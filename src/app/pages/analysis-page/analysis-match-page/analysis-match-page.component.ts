@@ -90,6 +90,7 @@ export class AnalysisMatchPageComponent implements OnInit {
       this.watchAttack.ta = this.playersData.clubNameEn;
       this.isTeamAButton = true;
       this.isTeamBButton = false;
+      this.displayTeamA = false;
     } else {
       this.attack.analyzes[0].playerBId = this.playersData.id;
       this.watchAttack.pb = this.playersData.nameEn;
@@ -97,6 +98,7 @@ export class AnalysisMatchPageComponent implements OnInit {
       this.watchAttack.tb = this.playersData.clubNameEn;
       this.isTeamAButton = false;
       this.isTeamBButton = true;
+      this.displayTeamB = false;
     }
   }
 
