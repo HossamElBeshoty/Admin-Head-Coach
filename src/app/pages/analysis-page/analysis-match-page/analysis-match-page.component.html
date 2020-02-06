@@ -71,7 +71,21 @@
 <br>
 <div class="row">
   <div class="col-md-12 animated fadeInUp slower">
-    <p-panel header="Events" [toggleable]="true">
+    <p-panel>
+      <p-header>
+        <div class="row">
+          <div class="col-md-3">
+            <span class="ui-panel-title ng-tns-c15-5 ng-star-inserted">Events</span>
+          </div>
+          <div class="col-md-9">
+            <div class="ui-helper-clearfix">
+              <button class="btn btn-outline-info btn-sm float-right">
+                <i class="far fa-chart-bar"></i> Statistics
+              </button>
+            </div>
+          </div>
+        </div>
+      </p-header>
       <p-table #dt1 [columns]="cols" [value]="attacks" dataKey="vin" [resizableColumns]="true"
                [reorderableColumns]="true" [scrollable]="true" scrollHeight="200px"
                stateStorage="session" stateKey="statedemo-session">
