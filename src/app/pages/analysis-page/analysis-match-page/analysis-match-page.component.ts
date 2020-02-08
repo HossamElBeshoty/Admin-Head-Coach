@@ -85,7 +85,7 @@ export class AnalysisMatchPageComponent implements OnInit {
     }
     if (this.isTeamA(this.playersData.teamId)) {
       this.attack.analyzes[0].playerAId = this.playersData.id;
-      this.watchAttack.pa = this.playersData.nameAr;
+      this.watchAttack.pa = this.playersData.nickNameEn;
       this.attack.analyzes[0].teamAId = this.playersData.teamId;
       this.watchAttack.ta = this.playersData.clubNameEn;
       this.isTeamAButton = true;
@@ -93,7 +93,7 @@ export class AnalysisMatchPageComponent implements OnInit {
       this.displayTeamA = false;
     } else {
       this.attack.analyzes[0].playerBId = this.playersData.id;
-      this.watchAttack.pb = this.playersData.nameEn;
+      this.watchAttack.pb = this.playersData.nickNameEn;
       this.attack.analyzes[0].teamBId = this.playersData.teamId;
       this.watchAttack.tb = this.playersData.clubNameEn;
       this.isTeamAButton = false;
