@@ -265,7 +265,6 @@ export class AnalysisMatchPageComponent implements OnInit {
     setTimeout(() => {
       this.videoOptions.pauseVideo();
     }, endSeconds);
-
   }
 
 

@@ -15,34 +15,35 @@ import {IMatchVideo} from '../../Models/i-match-video';
 import {Router} from '@angular/router';
 
 @Component({
-    selector: 'ngx-analysis-page',
-    templateUrl: './analysis-page.component.html',
-    styleUrls: ['./analysis-page.component.scss'],
+  selector: 'ngx-analysis-page',
+  templateUrl: './analysis-page.component.html',
+  styleUrls: ['./analysis-page.component.scss'],
 })
 export class AnalysisPageComponent implements OnInit {
-    items: MenuItem[];
-    displayNewAnalysis = false;
-    displayDeleteMatchAnalysis = false;
-    cols: any[];
-    allMatches: IMatch[] = [];
-    allClubs: IClub[] = [];
-    allGroups: IGroup[] = [];
-    allTeamsA: ITeam[] = [];
-    allTeamsB: ITeam[] = [];
-    allPlayersA: IPlayer[] = [];
-    allPlayersB: IPlayer[] = [];
-    targetPlayerA: IPlayer[] = [];
-    targetPlayerB: IPlayer[] = [];
-    matchId;
-    matchAnalysisId;
+  items: MenuItem[];
+  displayNewAnalysis = false;
+  displayDeleteMatchAnalysis = false;
+  displayNewCountsAnalysis = false;
+  cols: any[];
+  allMatches: IMatch[] = [];
+  allClubs: IClub[] = [];
+  allGroups: IGroup[] = [];
+  allTeamsA: ITeam[] = [];
+  allTeamsB: ITeam[] = [];
+  allPlayersA: IPlayer[] = [];
+  allPlayersB: IPlayer[] = [];
+  targetPlayerA: IPlayer[] = [];
+  targetPlayerB: IPlayer[] = [];
+  matchId;
+  matchAnalysisId;
 
-    constructor(public clubsService: ClubService,
-                public teamsService: TeamService,
-                public groupService: GroupService,
-                public router: Router,
-                public playerService: PlayerService,
-                public matchesService: MatchService) {
-    }
+  constructor(public clubsService: ClubService,
+              public teamsService: TeamService,
+              public groupService: GroupService,
+              public router: Router,
+              public playerService: PlayerService,
+              public matchesService: MatchService) {
+  }
 
     ngOnInit() {
         this.matchesService.match.formations = [];
@@ -55,40 +56,44 @@ export class AnalysisPageComponent implements OnInit {
                 header: 'Team A',
                 subfield: 'clubNameEn',
                 subfieldName: 'teamA.clubNameEn',
-                subTeamFieldName: 'nameEn',
+              subTeamFieldName: 'nameEn',
             },
-            {
-                field: 'teamB',
-                header: 'Team B',
-                subfield: 'clubNameEn',
-                subfieldName: 'teamB.clubNameEn',
-                subTeamFieldName: 'nameEn',
-            },
+          {
+            field: 'teamB',
+            header: 'Team B',
+            subfield: 'clubNameEn',
+            subfieldName: 'teamB.clubNameEn',
+            subTeamFieldName: 'nameEn',
+          },
         ];
-        this.getAllClubs();
-        this.getAllGroups();
-        this.getAllMatches();
+      this.getAllClubs();
+      this.getAllGroups();
+      this.getAllMatches();
     }
 
-    showNewAnalysisDialog() {
-        this.displayNewAnalysis = true;
-    }
+  showNewCountsAnalysis() {
+    this.displayNewCountsAnalysis = true;
+  }
 
-    getAllClubs() {
-        this.clubsService.getAllClubs().subscribe(res => {
-            this.allClubs = res as IClub[];
-        });
-    }
+  showNewAnalysisDialog() {
+    this.displayNewAnalysis = true;
+  }
 
-    getAllGroups() {
-        this.groupService.getAllGroupPages().subscribe(res => {
-            this.allGroups = res as IGroup[];
-        });
-    }
+  getAllClubs() {
+    this.clubsService.getAllClubs().subscribe(res => {
+      this.allClubs = res as IClub[];
+    });
+  }
 
-    getAllTeams(clubId: string, isTeamA: boolean) {
-        this.teamsService.getAllTeams(clubId).subscribe(res => {
-            if (isTeamA) {
+  getAllGroups() {
+    this.groupService.getAllGroupPages().subscribe(res => {
+      this.allGroups = res as IGroup[];
+    });
+  }
+
+  getAllTeams(clubId: string, isTeamA: boolean) {
+    this.teamsService.getAllTeams(clubId).subscribe(res => {
+      if (isTeamA) {
                 this.allTeamsA = res as ITeam[];
             } else {
                 this.allTeamsB = res as ITeam[];
