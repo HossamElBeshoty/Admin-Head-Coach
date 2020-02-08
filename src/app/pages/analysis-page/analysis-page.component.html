@@ -327,7 +327,7 @@
 <p-dialog header="New Analysis Counts" [(visible)]="displayNewCountsAnalysis" [modal]="true" [responsive]="true"
           [minY]="70"
           [baseZIndex]="10000" [style]="{width: '900px', minWidth: '800px'}">
-  <form #matchDataForm2="ngForm" style="width: 99%">
+  <form #matchDataForm2="ngForm" style="width: 99%;">
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
@@ -390,7 +390,8 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <button type="submit" class="btn btn-outline-primary float-right" [disabled]="!matchDataForm2.valid">
+        <button type="submit" class="btn btn-outline-primary float-right" routerLink="../analysis/matchAnalysisCount/1"
+                [disabled]="!matchDataForm2.valid">
           <i class="far fa-hand-peace"></i> Lets Start
         </button>
       </div>

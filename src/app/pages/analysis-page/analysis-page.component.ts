@@ -137,44 +137,53 @@ export class AnalysisPageComponent implements OnInit {
         } else {
             this.targetPlayerB.forEach(item => {
                 const obj: IFormation = {
-                    teamId: item.teamId,
-                    playerId: item.id,
-                    time: null,
-                    status: 1,
+                  teamId: item.teamId,
+                  playerId: item.id,
+                  time: null,
+                  status: 1,
                 };
-                this.matchesService.match.formations.push(obj);
+              this.matchesService.match.formations.push(obj);
             });
         }
     }
 
-    onSubmit() {
-        this.matchesService.postNewMatch().subscribe(res => {
-            this.matchId = res;
-        }, error => {
-        }, () => {
-            this.router.navigateByUrl('pages/analysis/matchAnalysis/' + this.matchId);
-        });
-    }
+  onSubmit() {
+    this.matchesService.postNewMatch().subscribe(res => {
+      this.matchId = res;
+    }, error => {
+    }, () => {
+      this.router.navigateByUrl('pages/analysis/matchAnalysis/' + this.matchId);
+    });
+  }
 
-    getAllMatches() {
-        this.matchesService.getAllMatches().subscribe(res => {
-            this.allMatches = res as IMatch[];
-        });
-    }
+  // onCountSubmit() {
+  //   this.matchesService.postNewMatch().subscribe(res => {
+  //     this.matchId = res;
+  //   }, error => {
+  //   }, () => {
+  //     this.router.navigateByUrl('analysis/matchAnalysisCount/' + this.matchId);
+  //   });
+  // }
 
-    showDeleteMatchAnalysis(matchId) {
-        this.matchAnalysisId = matchId;
-        this.displayDeleteMatchAnalysis = true;
-    }
+  getAllMatches() {
+    this.matchesService.getAllMatches().subscribe(res => {
+      this.allMatches = res as IMatch[];
+    });
+  }
 
-    deleteMatchById() {
-        this.matchesService.deleteMatch(this.matchAnalysisId).subscribe(res => {
-        }, error => {
-        }, () => {
-            const matchIndex = this.allMatches.findIndex(c => c.id = this.matchAnalysisId);
-            this.allMatches.splice(matchIndex, 1);
-            this.displayDeleteMatchAnalysis = false;
-        });
-    }
+  showDeleteMatchAnalysis(matchId) {
+    this.matchAnalysisId = matchId;
+    this.displayDeleteMatchAnalysis = true;
+  }
+
+  deleteMatchById() {
+    this.matchesService.deleteMatch(this.matchAnalysisId).subscribe(res => {
+    }, error => {
+    }, () => {
+      const matchIndex = this.allMatches.findIndex(c => c.id = this.matchAnalysisId);
+      this.allMatches.splice(matchIndex, 1);
+      this.displayDeleteMatchAnalysis = false;
+    });
+  }
 }
 

@@ -35,7 +35,8 @@ import {MinimaLight} from '@alyle/ui/themes/minima';
 import {LyButtonModule} from '@alyle/ui/button';
 import {LyToolbarModule} from '@alyle/ui/toolbar';
 import {LyResizingCroppingImageModule} from '@alyle/ui/resizing-cropping-images';
-import { UserPofileComponent } from './user-pofile/user-pofile.component';
+import {UserPofileComponent} from './user-pofile/user-pofile.component';
+import {AnalysisPageCountComponent} from './analysis-page/analysis-page-count/analysis-page-count.component';
 
 @NgModule({
   imports: [
@@ -77,6 +78,7 @@ import { UserPofileComponent } from './user-pofile/user-pofile.component';
     PlayerCardComponent,
     ImageCropperComponent,
     UserPofileComponent,
+    AnalysisPageCountComponent,
   ],
   providers: [{provide: LY_THEME, useClass: MinimaLight, multi: true}],
 
