@@ -45,7 +45,6 @@ export class UserPofileComponent implements OnInit {
     this.userAccountService.getUserById(this.userId).subscribe(res => {
       this.userData = res as IUserAccount;
       this.subscription = this.userData.userSubscriptions[0].subscription;
-
     });
   }
 
