@@ -1,3 +1,56 @@
-<p>
-  analysis-page-count works!
-</p>
+<div class="row">
+  <div class="col-md-4">
+    Actions
+  </div>
+  <div class="col-md-8">
+
+    <p-panel>
+      <p-header>
+        <div class="row">
+          <div class="col-md-6">
+            <button type="button" class="btn btn-outline-secondary btn-sm"><i class="fas fa-flag-checkered"></i> Team A
+            </button>
+          </div>
+          <div class="col-md-6">
+            <button type="button" class="btn btn-outline-secondary float-right btn-sm"><i
+              class="fas fa-flag-checkered"></i> Team B
+            </button>
+          </div>
+        </div>
+      </p-header>
+      <p-table [value]="countsData" dataKey="id" [resizableColumns]="true">
+        <ng-template pTemplate="header">
+          <tr>
+            <th colspan="3">Team A</th>
+            <th colspan="3">Team B</th>
+          </tr>
+          <tr>
+            <th>Action</th>
+            <th>Count</th>
+            <th>Description</th>
+            <th>Action</th>
+            <th>Count</th>
+            <th>Description</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-countData>
+          <tr>
+            <td>{{countData.actionA}}</td>
+            <td>{{countData.countA}}</td>
+            <td>
+              <input class="form-control" type="text" [(ngModel)]="countData.descriptionA">
+            </td>
+            <td>{{countData.actionB}}</td>
+            <td>{{countData.countB}}</td>
+            <td>
+              <input class="form-control" type="text" [(ngModel)]="countData.descriptionB">
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <p-footer>
+        <button type="button" class="btn btn-outline-success btn-sm"><i class="far fa-check-square"></i> Save</button>
+      </p-footer>
+    </p-panel>
+  </div>
+</div>
