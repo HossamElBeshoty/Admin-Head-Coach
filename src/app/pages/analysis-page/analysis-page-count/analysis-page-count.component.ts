@@ -60,14 +60,14 @@ export class AnalysisPageCountComponent implements OnInit {
   getActionsCount(event) {
     this.actionData = event;
     if (this.isTeamA(this.matchService.match.teamA.id)) {
-      console.log(this.matchService.match);
+      // console.log(this.matchService.match);
     } else if (this.isTeamA(this.matchService.match.teamB.id)) {
-      console.log(this.matchService.match);
+      // console.log(this.matchService.match);
     }
   }
 
   getTeamData(team) {
-    console.log(team.id);
+    // console.log(team.id);
   }
 
   getActionIndex(event) {
@@ -75,6 +75,6 @@ export class AnalysisPageCountComponent implements OnInit {
   }
 
   addCount() {
-    console.log(this.countsData);
+    // console.log(this.countsData);
   }
 }
