@@ -15,6 +15,10 @@ export class MatchService {
     return this.dataService.add('api/Match', this.match);
   }
 
+  postNewMatchCount() {
+    return this.dataService.add('api/Match/Count', this.match);
+  }
+
   getAllMatches() {
     return this.dataService.get('api/Match/getAll/');
   }

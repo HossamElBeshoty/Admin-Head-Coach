@@ -156,14 +156,14 @@ export class AnalysisPageComponent implements OnInit {
     });
   }
 
-  // onCountSubmit() {
-  //   this.matchesService.postNewMatch().subscribe(res => {
-  //     this.matchId = res;
-  //   }, error => {
-  //   }, () => {
-  //     this.router.navigateByUrl('analysis/matchAnalysisCount/' + this.matchId);
-  //   });
-  // }
+  onCountSubmit() {
+    this.matchesService.postNewMatchCount().subscribe(res => {
+      this.matchId = res;
+    }, error => {
+    }, () => {
+      this.router.navigateByUrl('pages/analysis/matchAnalysisCount/' + this.matchId);
+    });
+  }
 
   getAllMatches() {
     this.matchesService.getAllMatches().subscribe(res => {

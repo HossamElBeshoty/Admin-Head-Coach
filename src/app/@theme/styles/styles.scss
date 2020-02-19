@@ -185,3 +185,8 @@ body .ui-table .ui-table-tbody > tr > td {
   z-index: 1156;
   opacity: 1;
 }
+
+.nb-theme-default nb-layout-header.fixed ~ .layout-container {
+  padding-top: 3.75rem;
+  min-height: 100vh;
+}

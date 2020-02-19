@@ -1,19 +1,22 @@
 <div class="row">
   <div class="col-md-4">
-    Actions
+    <ngx-action [groupId]="this.matchService.match.groupId" [categories]="categories"
+                (actionData)="getActionsCount($event)" (index)="getActionIndex($event)"></ngx-action>
   </div>
   <div class="col-md-8">
-
     <p-panel>
       <p-header>
         <div class="row">
           <div class="col-md-6">
-            <button type="button" class="btn btn-outline-secondary btn-sm"><i class="fas fa-flag-checkered"></i> Team A
+            <button type="button" class="btn btn-outline-secondary btn-sm"
+                    (click)="getTeamData(this.matchService.match.teamA)"><i
+              class="fas fa-flag-checkered"></i> {{this.matchService.match.teamA?.clubNameEn}}
             </button>
           </div>
           <div class="col-md-6">
-            <button type="button" class="btn btn-outline-secondary float-right btn-sm"><i
-              class="fas fa-flag-checkered"></i> Team B
+            <button type="button" class="btn btn-outline-secondary float-right btn-sm"
+                    (click)="getTeamData(this.matchService.match.teamB)"><i
+              class="fas fa-flag-checkered"></i> {{this.matchService.match.teamB?.clubNameEn}}
             </button>
           </div>
         </div>
@@ -21,8 +24,8 @@
       <p-table [value]="countsData" dataKey="id" [resizableColumns]="true">
         <ng-template pTemplate="header">
           <tr>
-            <th colspan="3">Team A</th>
-            <th colspan="3">Team B</th>
+            <th colspan="3">{{this.matchService.match.teamA?.clubNameEn}}</th>
+            <th colspan="3">{{this.matchService.match.teamB?.clubNameEn}}</th>
           </tr>
           <tr>
             <th>Action</th>
@@ -49,7 +52,9 @@
         </ng-template>
       </p-table>
       <p-footer>
-        <button type="button" class="btn btn-outline-success btn-sm"><i class="far fa-check-square"></i> Save</button>
+        <button type="button" class="btn btn-outline-success btn-sm" (click)="addCount()"><i
+          class="far fa-check-square"></i> Save
+        </button>
       </p-footer>
     </p-panel>
   </div>
