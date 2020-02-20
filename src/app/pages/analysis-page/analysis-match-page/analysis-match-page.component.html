@@ -86,12 +86,12 @@
           </div>
         </div>
       </p-header>
-      <p-table #dt1 [columns]="cols" [value]="attacks" dataKey="vin" [resizableColumns]="true"
+      <p-table #dt1 [columns]="cols" [value]="attacks" dataKey="id" [resizableColumns]="true"
                [reorderableColumns]="true" [scrollable]="true" scrollHeight="200px"
-               stateStorage="session" stateKey="statedemo-session">
+               >
         <ng-template pTemplate="colgroup" let-columns>
           <colgroup>
-            <col *ngFor="let col of columns" [style.width]="col.width">
+            <col *ngFor="let col of columns" >
           </colgroup>
         </ng-template>
         <ng-template pTemplate="header" let-columns>
