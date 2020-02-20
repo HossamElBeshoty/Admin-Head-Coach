@@ -106,7 +106,7 @@ export class AnalysisPageComponent implements OnInit {
       });
 
     } else {
-      this.router.navigateByUrl('pages//matchAnalysis/' + matchId);
+      this.router.navigateByUrl('pages/analysis/matchAnalysis/' + matchId);
     }
   }
 
