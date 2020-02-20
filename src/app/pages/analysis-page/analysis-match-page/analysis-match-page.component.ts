@@ -268,6 +268,8 @@ export class AnalysisMatchPageComponent implements OnInit {
 
   displayAttackDelete(attackId) {
     this.attackDeleteId = attackId;
+    console.log(this.attackDeleteId);
+
     this.displayDeleteAttack = true;
   }
 
