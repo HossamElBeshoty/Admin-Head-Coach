@@ -78,7 +78,11 @@ export class AnalysisPageComponent implements OnInit {
   }
 
   showNewAnalysisDialog() {
+    this.matchesService.match = {} as IMatch;
+    this.matchesService.match.teamA = {} as ITeam;
+    this.matchesService.match.teamB = {} as ITeam;
     this.displayNewAnalysis = true;
+
   }
 
   getAllClubs() {
@@ -91,10 +95,11 @@ export class AnalysisPageComponent implements OnInit {
     if (hasVideo === false) {
       this.matchesService.getMatchById(matchId).subscribe(res => {
         this.matchesService.match = res as IMatch;
-
+        this.getAllTeams(this.matchesService.match.teamA.clubId, true);
+        this.getAllTeams(this.matchesService.match.teamB.clubId, false);
 
       }, () => { }, () => {
-        this.showNewAnalysisDialog();
+        this.displayNewAnalysis = true;
         setTimeout(() => {
           this.stepper.selectedIndex = 1;
         }, 0);

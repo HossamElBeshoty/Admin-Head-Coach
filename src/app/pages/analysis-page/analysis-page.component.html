@@ -104,7 +104,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="clubA">Select Club A</label>
-              <select class="form-control" id="clubA"  [ngModel]="matchesService.match.teamA.clubId" (ngModelChange)="getAllTeams($event, true)" name="clubId">
+              <select class="form-control" id="clubA"  [ngModel]="matchesService.match.teamA.clubId"  (ngModelChange)="getAllTeams($event, true)" name="clubId">
                 <option disabled>Please Select Club A</option>
                 <option *ngFor="let club of allClubs" [value]="club.id">{{club.nameEn}}</option>
               </select>
@@ -124,7 +124,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="clubB">Select Club B</label>
-              <select class="form-control" id="clubB" #selectedClubB (change)="getAllTeams(selectedClubB.value, false)">
+              <select class="form-control" id="clubB"  name="clubB" [ngModel]="matchesService.match.teamB.clubId"  (ngModelChange)="getAllTeams($event, false)">
                 <option disabled>Please Select Club B</option>
                 <option *ngFor="let club of allClubs" [value]="club.id">{{club.nameEn}}</option>
               </select>
