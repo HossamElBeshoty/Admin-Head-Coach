@@ -54,7 +54,7 @@
         <td>
           <div class="row">
             <div class="col-md-4 text-center">
-              <button class="btn btn-outline-primary" title="Go To Match" routerLink="matchAnalysis/{{rowData.id}}"><i
+              <button class="btn btn-outline-primary" title="Go To Match" (click)="goToMatch(rowData.id , rowData.hasVideo)"><i
                 class="fas fa-desktop"></i></button>
             </div>
             <div class="col-md-4 text-center">
@@ -86,7 +86,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="matchDate">Match Date</label>
-              <input type="date" name="matchDate" [(ngModel)]="matchesService.match.matchDate" #matchDate="ngModel"
+              <input type="date" name="matchDate" [ngModel]="matchesService.match.matchDate | date:'yyyy-MM-dd'" (ngModelChange)="matchesService.match.matchDate = $event" #matchDate="ngModel"
                      class="form-control" id="matchDate" required>
             </div>
           </div>
@@ -104,7 +104,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="clubA">Select Club A</label>
-              <select #selectedClubA class="form-control" id="clubA" (change)="getAllTeams(selectedClubA.value, true)">
+              <select class="form-control" id="clubA"  [ngModel]="matchesService.match.teamA.clubId" (ngModelChange)="getAllTeams($event, true)" name="clubId">
                 <option disabled>Please Select Club A</option>
                 <option *ngFor="let club of allClubs" [value]="club.id">{{club.nameEn}}</option>
               </select>
