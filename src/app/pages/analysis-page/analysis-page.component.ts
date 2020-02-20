@@ -81,6 +81,8 @@ export class AnalysisPageComponent implements OnInit {
     this.matchesService.match = {} as IMatch;
     this.matchesService.match.teamA = {} as ITeam;
     this.matchesService.match.teamB = {} as ITeam;
+    this.matchesService.match.formations = [];
+    this.matchesService.match.matchVideos = [];
     this.displayNewAnalysis = true;
 
   }
