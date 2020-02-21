@@ -135,16 +135,27 @@
   </div>
 </div>
 
-<p-dialog header="Choose" [(visible)]="displayEndWithAction" [modal]="true" [responsive]="true" appendTo="body"
-          [style]="{width: '350px', minWidth: '300px'}"
+<p-dialog header="Choose Child Action" [(visible)]="displayEndWithAction" [modal]="true" [responsive]="true"
+          appendTo="body"
+          [style]="{width: '450px', minWidth: '300px', overflowY: 'hidden'}"
           [minY]="70" [baseZIndex]="10000">
-  <div class="list-group">
-    <button type="button" *ngFor="let childAction of childActionData"
-            (click)="postChildActionInMatchAnalysis(childAction.id)"
-            class="list-group-item list-group-item-action">
-      {{childAction.nameAr}}
-    </button>
+  <div class="row text-center" >
+    <div *ngFor="let childAction of childActionData" style="width: 99.8%" class="col-md-4 text-center">
+      <button type="button"
+              (click)="postChildActionInMatchAnalysis(childAction.id)"
+              class="btn btn-block btn-outline-success">
+        {{childAction.nameAr}}
+      </button>
+      <br>
+    </div>
   </div>
+  <!--  <div class="list-group">-->
+  <!--    <button type="button" *ngFor="let childAction of childActionData"-->
+  <!--            (click)="postChildActionInMatchAnalysis(childAction.id)"-->
+  <!--            class="list-group-item list-group-item-action">-->
+  <!--      {{childAction.nameAr}}-->
+  <!--    </button>-->
+  <!--  </div>-->
 </p-dialog>
 
 
