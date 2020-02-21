@@ -67,7 +67,7 @@ export class AnalysisMatchPageComponent implements OnInit {
       {field: 'pa', header: 'Player'},
       {field: 'ca', header: 'Tactic'},
       {field: 'ea', header: 'Result'},
-      {field: 'ti', header: 'Seconds'},
+      {field: 'ti', header: 'Second'},
       {field: 'sb', header: 'Type'},
       {field: 'ab', header: 'Action'},
       {field: 'pb', header: 'Player'},
