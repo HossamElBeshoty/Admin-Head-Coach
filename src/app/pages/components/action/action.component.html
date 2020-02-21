@@ -26,13 +26,12 @@
           </div>
         </p-header>
         <div class="row">
-          <div style="height: 450px; overflow: auto; width: 100%;">
+          <div class="rowHeight">
             <div class="col-md-12" *ngFor="let item of categories">
               <p-panel>
                 <p-header>
                   <div class="ui-helper-clearfix">
-          <span class="ui-panel-title"
-                style="font-size:16px; display:inline-block; margin-top:2px;" [innerText]="item.nameEn"></span>
+          <span class="ui-panel-title" [innerText]="item.nameEn"></span>
                     <button class="btn btn-outline-danger btn-sm float-right mr-1 ml-1"
                             (click)="deleteCategoryActionDialog(item.id)"><i
                       class="fas fa-ban"></i></button>
@@ -72,7 +71,6 @@
               <br>
             </div>
           </div>
-
         </div>
       </p-panel>
   </div>

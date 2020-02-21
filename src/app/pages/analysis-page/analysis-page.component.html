@@ -1,12 +1,12 @@
 <div class="row">
   <div class="col-md-6">
-    <button class="btn btn-warning animated slow fadeInDown float-left" (click)="showNewCountsAnalysis()"><i
+    <button class="btn btn-sm btn-warning animated slow fadeInDown float-left" (click)="showNewCountsAnalysis()"><i
       class="fas fa-chart-line"></i> Add New Counts
     </button>
   </div>
   <div class="col-md-6">
     <button type="button" (click)="showNewAnalysisDialog()"
-            class="btn btn-warning animated slow fadeInDown float-right"><i class="fa fa-plus"></i> Add New
+            class="btn btn-sm btn-warning animated slow fadeInDown float-right"><i class="fa fa-plus"></i> Add New
       Analysis
     </button>
   </div>
@@ -15,8 +15,7 @@
 <div *ngIf="allMatches.length !== 0">
   <p-table #dt1 [columns]="cols" [value]="allMatches" [paginator]="true" [rows]="10" dataKey="id" sortMode="multiple"
            [resizableColumns]="true"
-           [reorderableColumns]="true"
-           stateStorage="session" stateKey="statedemo-session">
+           [reorderableColumns]="true">
     <ng-template pTemplate="header" let-columns>
       <tr>
         <th *ngFor="let col of columns" [pSortableColumn]="col.subfield?col.subfieldName:col.field" pResizableColumn
@@ -24,7 +23,7 @@
           {{col.header}}
           <p-sortIcon [field]="col.subfield?col.subfieldName:col.field"></p-sortIcon>
         </th>
-        <th></th>
+        <th style="width: 200px;"></th>
       </tr>
       <tr>
         <th *ngFor="let col of columns">
@@ -54,17 +53,17 @@
         <td>
           <div class="row">
             <div class="col-md-4 text-center">
-              <button class="btn btn-outline-primary" title="Go To Match" (click)="goToMatch(rowData.id , rowData.hasVideo)"><i
+              <button class="btn btn-sm btn-outline-primary" title="Go To Match" (click)="goToMatch(rowData.id , rowData.hasVideo)"><i
                 class="fas fa-desktop"></i></button>
             </div>
             <div class="col-md-4 text-center">
-            <button class="btn btn-outline-info" routerLink="matchAnalysisCount/{{rowData.id}}" title="Go To Counts"><i class="fas fa-sort-numeric-up"></i></button>
+            <button class="btn btn-sm btn-outline-info" routerLink="matchAnalysisCount/{{rowData.id}}" title="Go To Counts"><i class="fas fa-sort-numeric-up"></i></button>
             </div>
             <!--            <div class="col-md-4 text-center">-->
             <!--              <button class="btn btn-outline-secondary" title="Go To Report"><i class="fas fa-print"></i></button>-->
             <!--            </div>-->
             <div class="col-md-4 text-center">
-              <button class="btn btn-outline-danger" title="Delete" (click)="showDeleteMatchAnalysis(rowData.id)"><i
+              <button class="btn btn-sm btn-outline-danger" title="Delete" (click)="showDeleteMatchAnalysis(rowData.id)"><i
                 class="fas fa-trash-alt"></i></button>
             </div>
           </div>

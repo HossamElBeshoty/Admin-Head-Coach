@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <button class="btn btn-warning animated slow fadeInDown float-right "
+    <button class="btn btn-warning btn-sm animated slow fadeInDown float-right "
             (click)="showClubDialog();clubForm.resetForm()"><i
       class="fa fa-plus"></i> Add New
       Club
@@ -68,9 +68,9 @@
                           *ngIf="player.postions"> - {{player.positionName}}</span></h5>
                       </a>
 
-                      <button class="btn btn-outline-secondary" (click)="updatePlayer(player)"><i
+                      <button class="btn btn-sm btn-outline-secondary" (click)="updatePlayer(player)"><i
                         class="fas fa-pen"></i></button>
-                      <button class="btn ml-1 btn-outline-danger" (click)="showPlayerDeleteDialog(player.id)"><i
+                      <button class="btn btn-sm ml-1 btn-outline-danger" (click)="showPlayerDeleteDialog(player.id)"><i
                         class="fas fa-trash"></i></button>
                     </div>
                   </div>

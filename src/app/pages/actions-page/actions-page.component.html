@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-12">
       <button type="button"
-              class="btn btn-warning animated slow fadeInDown  float-right"
+              class="btn btn-sm btn-warning animated slow fadeInDown  float-right"
               (click)="showAddNewPageDialog();pagesForm.resetForm()"><i
         class="fa fa-plus"></i> Add New
         Action Group Page
@@ -62,7 +62,7 @@
     <ng-container *ngFor="let item of allPages;let i = index;">
       <p-tabPanel [header]="item.nameAr" [selected]="i == tabIndex">
         <div class="row">
-          <div class="col-md-12 ">
+          <div class="col-md-12 mb-2">
             <button class="btn btn-outline-danger mr-2 float-right btn-sm" (click)="showDeletePageDialog(item)"><i
               class="fas fa-ban"></i> Delete Page
             </button>

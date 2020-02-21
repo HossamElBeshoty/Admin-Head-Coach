@@ -190,3 +190,131 @@ body .ui-table .ui-table-tbody > tr > td {
   padding-top: 3.75rem;
   min-height: 100vh;
 }
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {
+  body .ui-table .ui-table-thead > tr > th {
+    padding: 0.571em 0.857em;
+    border: 1px solid #c8c8c8;
+    font-weight: 700;
+    color: #333333;
+    background-color: #f4f4f4;
+    text-align: center;
+    font-size: 11px;
+  }
+  body .ui-table .ui-table-tbody > tr > td {
+    background-color: inherit;
+    border: 1px solid #c8c8c8;
+    text-align: center;
+    font-size: 10px;
+  }
+  body .ui-panel .ui-panel-titlebar .ui-panel-title {
+    vertical-align: middle;
+    font-weight: 700;
+    font-size: 10px;
+  }
+  .ui-helper-clearfix .ui-panel-title {
+    font-size: 10px;
+    display: inline-block;
+    margin-top: 2px;
+  }
+  .nb-theme-default nb-user.size-medium .user-name {
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.25rem;
+    color: #28a745;
+    text-transform: capitalize;
+  }
+  .nb-theme-default nb-user.size-medium .user-picture {
+    height: 25px;
+    width: 25px;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+  body .ui-table .ui-table-thead > tr > th {
+    padding: 0.571em 0.857em;
+    border: 1px solid #c8c8c8;
+    font-weight: 700;
+    color: #333333;
+    background-color: #f4f4f4;
+    text-align: center;
+    font-size: 11px;
+  }
+  body .ui-table .ui-table-tbody > tr > td {
+    background-color: inherit;
+    border: 1px solid #c8c8c8;
+    text-align: center;
+    font-size: 10px;
+  }
+  body .ui-panel .ui-panel-titlebar .ui-panel-title {
+    vertical-align: middle;
+    font-weight: 700;
+    font-size: 10px;
+  }
+  .ui-helper-clearfix .ui-panel-title {
+    font-size: 10px;
+    display: inline-block;
+    margin-top: 2px;
+  }
+  .nb-theme-default nb-user.size-medium .user-name {
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.25rem;
+    color: #28a745;
+    text-transform: capitalize;
+  }
+  .nb-theme-default nb-user.size-medium .user-picture {
+    height: 25px;
+    width: 25px;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1200px) {
+  body .ui-table .ui-table-thead > tr > th {
+    padding: 0.571em 0.857em;
+    border: 1px solid #c8c8c8;
+    font-weight: 700;
+    color: #333333;
+    background-color: #f4f4f4;
+    text-align: center;
+    font-size: 11px;
+  }
+  body .ui-table .ui-table-tbody > tr > td {
+    background-color: inherit;
+    border: 1px solid #c8c8c8;
+    text-align: center;
+    font-size: 10px;
+  }
+  body .ui-panel .ui-panel-titlebar .ui-panel-title {
+    vertical-align: middle;
+    font-weight: 700;
+    font-size: 10px;
+  }
+  .ui-helper-clearfix .ui-panel-title {
+    font-size: 10px;
+    display: inline-block;
+    margin-top: 2px;
+  }
+  .nb-theme-default nb-user.size-medium .user-name {
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.25rem;
+    color: #28a745;
+    text-transform: capitalize;
+  }
+  .nb-theme-default nb-user.size-medium .user-picture {
+    height: 25px;
+    width: 25px;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+}
