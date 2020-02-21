@@ -104,7 +104,8 @@
           <tr>
             <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn pReorderableColumn>
               {{col.header}}
-              <p-sortIcon [field]="col.field"></p-sortIcon>
+<!--              <p-sortIcon [field]="col.field"></p-sortIcon>-->
+              <i class="fas fa-sort"></i>
             </th>
             <th></th>
           </tr>
