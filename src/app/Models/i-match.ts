@@ -12,4 +12,6 @@ export interface IMatch {
   groupId: string;
   formations: IFormation[];
   matchVideos: IMatchVideo[];
+  hasVideo: boolean;
+  hasCount: boolean;
 }

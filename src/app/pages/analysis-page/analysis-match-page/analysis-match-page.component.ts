@@ -23,8 +23,6 @@ import {IChildAction} from '../../../Models/i-child-action';
   styleUrls: ['./analysis-match-page.component.scss'],
 })
 export class AnalysisMatchPageComponent implements OnInit {
-  showMyTeamAPlayers: boolean = true;
-  showMyTeamBPlayers: boolean = true;
   displayTeamA: boolean = false;
   displayTeamB: boolean = false;
   attacks: IVideoAnalysis[] = [];

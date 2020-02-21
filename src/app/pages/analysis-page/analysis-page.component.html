@@ -24,7 +24,7 @@
           {{col.header}}
           <p-sortIcon [field]="col.subfield?col.subfieldName:col.field"></p-sortIcon>
         </th>
-        <th>Actions</th>
+        <th></th>
       </tr>
       <tr>
         <th *ngFor="let col of columns">
@@ -54,12 +54,15 @@
         <td>
           <div class="row">
             <div class="col-md-4 text-center">
-              <button class="btn btn-outline-primary " title="Go To Match" routerLink="matchAnalysis/{{rowData.id}}"><i
+              <button class="btn btn-outline-primary" title="Go To Match" (click)="goToMatch(rowData.id , rowData.hasVideo)"><i
                 class="fas fa-desktop"></i></button>
             </div>
             <div class="col-md-4 text-center">
-              <button class="btn btn-outline-secondary" title="Go To Report"><i class="fas fa-print"></i></button>
+            <button class="btn btn-outline-info" routerLink="matchAnalysisCount/{{rowData.id}}" title="Go To Counts"><i class="fas fa-sort-numeric-up"></i></button>
             </div>
+            <!--            <div class="col-md-4 text-center">-->
+            <!--              <button class="btn btn-outline-secondary" title="Go To Report"><i class="fas fa-print"></i></button>-->
+            <!--            </div>-->
             <div class="col-md-4 text-center">
               <button class="btn btn-outline-danger" title="Delete" (click)="showDeleteMatchAnalysis(rowData.id)"><i
                 class="fas fa-trash-alt"></i></button>
@@ -83,7 +86,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="matchDate">Match Date</label>
-              <input type="date" name="matchDate" [(ngModel)]="matchesService.match.matchDate" #matchDate="ngModel"
+              <input type="date" name="matchDate" [ngModel]="matchesService.match.matchDate | date:'yyyy-MM-dd'" (ngModelChange)="matchesService.match.matchDate = $event" #matchDate="ngModel"
                      class="form-control" id="matchDate" required>
             </div>
           </div>
@@ -101,7 +104,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="clubA">Select Club A</label>
-              <select #selectedClubA class="form-control" id="clubA" (change)="getAllTeams(selectedClubA.value, true)">
+              <select class="form-control" id="clubA"  [ngModel]="matchesService.match.teamA.clubId"  (ngModelChange)="getAllTeams($event, true)" name="clubId">
                 <option disabled>Please Select Club A</option>
                 <option *ngFor="let club of allClubs" [value]="club.id">{{club.nameEn}}</option>
               </select>
@@ -121,7 +124,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="clubB">Select Club B</label>
-              <select class="form-control" id="clubB" #selectedClubB (change)="getAllTeams(selectedClubB.value, false)">
+              <select class="form-control" id="clubB"  name="clubB" [ngModel]="matchesService.match.teamB.clubId"  (ngModelChange)="getAllTeams($event, false)">
                 <option disabled>Please Select Club B</option>
                 <option *ngFor="let club of allClubs" [value]="club.id">{{club.nameEn}}</option>
               </select>
@@ -390,7 +393,7 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <button type="submit" class="btn btn-outline-primary float-right" routerLink="../analysis/matchAnalysisCount/1"
+        <button type="submit" class="btn btn-outline-primary float-right" (click)="onCountSubmit()"
                 [disabled]="!matchDataForm2.valid">
           <i class="far fa-hand-peace"></i> Lets Start
         </button>
