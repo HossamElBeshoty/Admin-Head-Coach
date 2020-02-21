@@ -140,7 +140,7 @@
           [style]="{width: '450px', minWidth: '300px', overflowY: 'hidden'}"
           [minY]="70" [baseZIndex]="10000">
   <div class="row text-center" >
-    <div *ngFor="let childAction of childActionData" style="width: 99.8%" class="col-md-4 text-center">
+    <div *ngFor="let childAction of childActionData" style="width: 99.8%;" class="col-md-4 text-center">
       <button type="button"
               (click)="postChildActionInMatchAnalysis(childAction.id)"
               class="btn btn-block btn-outline-success">
