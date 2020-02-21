@@ -276,7 +276,7 @@ body .ui-table .ui-table-tbody > tr > td {
 }
 
 // Large devices (desktops, 992px and up)
-@media (min-width: 992px) and (max-width: 1200px) {
+@media (min-width: 992px) and (max-width: 1280px) {
   body .ui-table .ui-table-thead > tr > th {
     padding: 0.571em 0.857em;
     border: 1px solid #c8c8c8;
@@ -316,5 +316,5 @@ body .ui-table .ui-table-tbody > tr > td {
 }
 
 // Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
+@media (min-width: 1280px) {
 }
