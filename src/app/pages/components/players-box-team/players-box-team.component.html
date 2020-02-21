@@ -6,9 +6,20 @@
 <!--  </p-header>-->
 <!--  -->
 <!--</p-panel>-->
-<p-panel header="{{clubName}} - {{teamName}}" [toggleable]="true">
-  <div class="panel">
-    <div *ngFor="let player of inMatchPlayer;" class="btn-group m-1 dropdown">
+
+
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="display-4 linear-wipe text-center">
+      {{clubName}} - {{teamName}}
+    </h3>
+  </div>
+</div>
+<br>
+<div class="card border-dark mb-3">
+  <div class="card-header text-secondary text-center">In Match {{inMatchPlayer.length}} Players</div>
+  <div class="card-body text-dark">
+    <div *ngFor="let player of inMatchPlayer;" class="btn-group m-1 mb-3 dropdown">
       <button type="button" class="btn btn-sm"
               [ngClass]="{'btn-success': selectedIndex === player.id && isTeamA, 'btn-primary' : selectedIndex !== player.id || !isTeamA}"
               (click)="onPlayerClick(player)">
@@ -27,31 +38,32 @@
           Player Out</a>
       </div>
     </div>
-    <br>
-    <p-panel header="Choose Players" [toggleable]="true" collapsed="true">
-      <div class="panel">
-        <div *ngFor="let x of teamData;" class="btn-group m-1 dropdown">
-          <button type="button" class="btn btn-default btn-sm">
-            <span *ngIf="x.playerNum">({{x.playerNum}}) -</span>{{x.nickNameEn}}
-          </button>
-          <button type="button" class="btn btn-light btn-sm dropdown-toggle dropdown-toggle-split"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="sr-only">Toggle Dropright</span>
-          </button>
-          <div class="dropdown-menu">
-            <!--        <a class="dropdown-item text-warning" style="cursor: pointer;" (click)="changePlayer(x.id)"> <i-->
-            <!--          class="fas fa-exchange-alt"></i>-->
-            <!--          Change Player</a>-->
-            <a class="dropdown-item text-primary" style="cursor: pointer;" (click)="inMatch(x)"> <i
-              class="fas fa-long-arrow-alt-right"></i>
-              Player In</a>
-          </div>
+  </div>
+</div>
+<div class="fixed-bottom">
+  <p-panel header="Choose Players" [toggleable]="true" collapsed="true">
+    <div class="panel">
+      <div *ngFor="let x of teamData;" class="btn-group m-1 dropdown">
+        <button type="button" class="btn btn-default btn-sm">
+          <span *ngIf="x.playerNum">({{x.playerNum}}) -</span>{{x.nickNameEn}}
+        </button>
+        <button type="button" class="btn btn-light btn-sm dropdown-toggle dropdown-toggle-split"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="sr-only">Toggle Dropright</span>
+        </button>
+        <div class="dropdown-menu">
+          <!--        <a class="dropdown-item text-warning" style="cursor: pointer;" (click)="changePlayer(x.id)"> <i-->
+          <!--          class="fas fa-exchange-alt"></i>-->
+          <!--          Change Player</a>-->
+          <a class="dropdown-item text-primary" style="cursor: pointer;" (click)="inMatch(x)"> <i
+            class="fas fa-long-arrow-alt-right"></i>
+            Player In</a>
         </div>
       </div>
-    </p-panel>
-  </div>
+    </div>
+  </p-panel>
 
-</p-panel>
+</div>
 
 <p-dialog header="Change Player" [(visible)]="displayChangePlayer" [modal]="true" [responsive]="true" appendTo="body"
           [style]="{width: '350px', minWidth: '300px'}"
