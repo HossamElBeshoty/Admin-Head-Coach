@@ -193,8 +193,8 @@ body .ui-table .ui-table-tbody > tr > td {
 
 .linear-wipe {
   text-align: center;
-  background: -webkit-linear-gradient(left, #000 20%, #ffcc00 40%, #ffcc00 60%, #000 80%);
-  background: linear-gradient(to right, #000 20%, #ffcc00 40%, #ffcc00 60%, #000 80%);
+  background: -webkit-linear-gradient(left, #000 20%, #ffc107 40%, #ffc107 60%, #000 80%);
+  background: linear-gradient(to right, #000 20%, #ffc107 40%, #ffc107 60%, #000 80%);
   background-size: 200% auto;
   color: #000;
   //background-clip: text;
@@ -215,6 +215,39 @@ body .ui-table .ui-table-tbody > tr > td {
   to {
     background-position: -200% center;
   }
+}
+
+body .ui-paginator .ui-paginator-pages .ui-paginator-page.ui-state-active {
+  background-color: #ffc107;
+  color: #000;
+}
+
+.nb-theme-default nb-menu .menu-item a.active {
+  background-color: transparent;
+  color: #ffc107;
+}
+
+.nb-theme-default nb-menu .menu-item a.active .menu-icon {
+  color: #ffc107;
+}
+
+.nb-theme-default nb-menu .menu-item a:hover {
+  color: #ffc107;
+  cursor: pointer;
+}
+
+.nb-theme-default nb-menu .menu-item a:hover .menu-icon {
+  color: #ffc107;
+}
+
+body .ui-tabview.ui-tabview-top .ui-tabview-nav li.ui-state-active, body .ui-tabview.ui-tabview-bottom .ui-tabview-nav li.ui-state-active, body .ui-tabview.ui-tabview-left .ui-tabview-nav li.ui-state-active, body .ui-tabview.ui-tabview-right .ui-tabview-nav li.ui-state-active {
+  background-color: #ffc107;
+  border: 1px solid #ffc107;
+}
+
+body .ui-tabview.ui-tabview-top .ui-tabview-nav li.ui-state-active:hover, body .ui-tabview.ui-tabview-bottom .ui-tabview-nav li.ui-state-active:hover, body .ui-tabview.ui-tabview-left .ui-tabview-nav li.ui-state-active:hover, body .ui-tabview.ui-tabview-right .ui-tabview-nav li.ui-state-active:hover {
+  border: 1px solid #ffc107;
+  background-color: #ffc107;
 }
 
 // Extra small devices (portrait phones, less than 576px)

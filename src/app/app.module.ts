@@ -59,7 +59,7 @@ import {ToastrModule} from 'ngx-toastr';
     LyThemeModule.setTheme('minima-light'),
     ToastrModule.forRoot({
       timeOut: 1500,
-      positionClass: 'toast-top-right',
+      positionClass: 'toast-bottom-center',
       preventDuplicates: true,
       progressBar: true,
     }),
