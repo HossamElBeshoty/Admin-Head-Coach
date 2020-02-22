@@ -7,13 +7,12 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="assets/Animation/animate.css">
-  <link rel="icon" type="image/png" href="assets/images/logo.png">
-  <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
+  <link rel="icon" type="image/png" href="assets/images/upstrick dark.png">
+  <link rel="icon" type="image/x-icon" href="assets/images/upstrick dark.png">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500|Material+Icons" rel="stylesheet">
 </head>
 
@@ -22,31 +21,31 @@
 <style>
   @-webkit-keyframes spin {
     0% {
-      transform: rotate(0)
+      transform: rotate(0);
     }
 
     100% {
-      transform: rotate(360deg)
+      transform: rotate(360deg);
     }
   }
 
   @-moz-keyframes spin {
     0% {
-      -moz-transform: rotate(0)
+      -moz-transform: rotate(0);
     }
 
     100% {
-      -moz-transform: rotate(360deg)
+      -moz-transform: rotate(360deg);
     }
   }
 
   @keyframes spin {
     0% {
-      transform: rotate(0)
+      transform: rotate(0);
     }
 
     100% {
-      transform: rotate(360deg)
+      transform: rotate(360deg);
     }
   }
 
@@ -58,7 +57,7 @@
     height: 100%;
     z-index: 1003;
     background-image: url("assets/images/bg.jpeg");
-    overflow: hidden
+    overflow: hidden;
   }
 
   .spinner div:first-child {
@@ -72,33 +71,33 @@
     border-radius: 50%;
     box-shadow: 0 3px 3px 0 rgba(255, 56, 106, 1);
     transform: translate3d(0, 0, 0);
-    animation: spin 2s linear infinite
+    animation: spin 2s linear infinite;
   }
 
-  .spinner div:first-child:after,
-  .spinner div:first-child:before {
+  .spinner div:first-child::after,
+  .spinner div:first-child::before {
     content: '';
     position: absolute;
-    border-radius: 50%
+    border-radius: 50%;
   }
 
-  .spinner div:first-child:before {
+  .spinner div:first-child::before {
     top: 5px;
     left: 5px;
     right: 5px;
     bottom: 5px;
     box-shadow: 0 3px 3px 0 rgb(255, 228, 32);
     -webkit-animation: spin 3s linear infinite;
-    animation: spin 3s linear infinite
+    animation: spin 3s linear infinite;
   }
 
-  .spinner div:first-child:after {
+  .spinner div:first-child::after {
     top: 15px;
     left: 15px;
     right: 15px;
     bottom: 15px;
     box-shadow: 0 3px 3px 0 rgba(61, 175, 255, 1);
-    animation: spin 1.5s linear infinite
+    animation: spin 1.5s linear infinite;
   }
 </style>
 <div id="nb-global-spinner" class="spinner">
