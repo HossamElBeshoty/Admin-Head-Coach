@@ -240,12 +240,18 @@ body .ui-paginator .ui-paginator-pages .ui-paginator-page.ui-state-active {
   color: #ffc107;
 }
 
-body .ui-tabview.ui-tabview-top .ui-tabview-nav li.ui-state-active, body .ui-tabview.ui-tabview-bottom .ui-tabview-nav li.ui-state-active, body .ui-tabview.ui-tabview-left .ui-tabview-nav li.ui-state-active, body .ui-tabview.ui-tabview-right .ui-tabview-nav li.ui-state-active {
+body .ui-tabview.ui-tabview-top .ui-tabview-nav li.ui-state-active,
+body .ui-tabview.ui-tabview-bottom .ui-tabview-nav li.ui-state-active,
+body .ui-tabview.ui-tabview-left .ui-tabview-nav li.ui-state-active,
+body .ui-tabview.ui-tabview-right .ui-tabview-nav li.ui-state-active {
   background-color: #ffc107;
   border: 1px solid #ffc107;
 }
 
-body .ui-tabview.ui-tabview-top .ui-tabview-nav li.ui-state-active:hover, body .ui-tabview.ui-tabview-bottom .ui-tabview-nav li.ui-state-active:hover, body .ui-tabview.ui-tabview-left .ui-tabview-nav li.ui-state-active:hover, body .ui-tabview.ui-tabview-right .ui-tabview-nav li.ui-state-active:hover {
+body .ui-tabview.ui-tabview-top .ui-tabview-nav li.ui-state-active:hover,
+body .ui-tabview.ui-tabview-bottom .ui-tabview-nav li.ui-state-active:hover,
+body .ui-tabview.ui-tabview-left .ui-tabview-nav li.ui-state-active:hover,
+body .ui-tabview.ui-tabview-right .ui-tabview-nav li.ui-state-active:hover {
   border: 1px solid #ffc107;
   background-color: #ffc107;
 }
