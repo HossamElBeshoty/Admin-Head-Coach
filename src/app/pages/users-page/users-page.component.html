@@ -38,7 +38,7 @@
           </div>
           <div class="col-md-3">
             <button type="button" class="btn btn-sm btn-outline-danger" title="Reset Password"
-                    (click)="showResetPasswordDialog()">
+                    (click)="showResetPasswordDialog(rowData.id)">
               <i class="fas fa-redo"></i>
             </button>
           </div>
@@ -152,38 +152,48 @@
 <p-dialog header="Reset Password" [(visible)]="displayResetPassword" [modal]="true" [responsive]="true"
           [style]="{width: '350px', minWidth: '350px'}" [minY]="70"
           [baseZIndex]="10000" appendTo="body">
-  <form action="" style="width: 99%;">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="form-group">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text bg-white">
-                <i class="fas fa-unlock"></i>
-              </div>
+  <form [formGroup]="userAccountService.resetPasswordForm" autocomplete="off" style="width: 99%;" (submit)="resetPassword()">
+    <div formGroupName="passwords">
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text bg-white">
+              <i class="fas fa-unlock"></i>
             </div>
-            <input class="form-control" placeholder="Insert New Password">
           </div>
+          <input class="form-control" type="password" placeholder="Insert New Password" formControlName="newPassword" required>
         </div>
+        <label class="text-danger"
+               *ngIf="userAccountService.resetPasswordForm.get('passwords.newPassword').touched && userAccountService.resetPasswordForm.get('passwords.newPassword').errors?.required">
+          Please Insert The New Password</label>
+        <label class="text-danger"
+               *ngIf="userAccountService.resetPasswordForm.get('passwords.newPassword').touched && userAccountService.resetPasswordForm.get('passwords.newPassword').errors?.minlength">
+          Your Password Must Be More Than 6 Characters</label>
       </div>
-      <div class="col-md-12">
-        <div class="form-group">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text bg-white">
-                <i class="fas fa-lock"></i>
-              </div>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text bg-white">
+              <i class="fas fa-lock"></i>
             </div>
-            <input class="form-control" placeholder="Insert Confirm Password">
           </div>
+          <input class="form-control" type="password" placeholder="Insert Confirm Password" formControlName="confirmNewPassword"
+                 required>
         </div>
-      </div>
-      <div class="col-md-12">
-        <button (click)="displayResetPassword = false" class="btn btn-outline-success btn-sm btn-block">
-          <i class="far fa-thumbs-up"></i>
-          Submit
-        </button>
+        <label class="text-danger"
+               *ngIf="userAccountService.resetPasswordForm.get('passwords.confirmNewPassword').touched && userAccountService.resetPasswordForm.get('passwords.confirmNewPassword').errors?.required">
+          Please Confirm The New Password</label>
+        <label class="text-danger"
+               *ngIf="userAccountService.resetPasswordForm.get('passwords.confirmNewPassword').touched && userAccountService.resetPasswordForm.get('passwords.confirmNewPassword').errors?.passwordMismatch">
+          Confirm Password Does Not Match</label>
       </div>
     </div>
+    <button  [disabled]="!userAccountService.resetPasswordForm.valid"
+            class="btn btn-outline-success btn-sm btn-block">
+       <span *ngIf="spinner === true" class="spinner-border spinner-border-sm" role="status"
+             aria-hidden="true"></span>
+      <i *ngIf="spinner === false" class="far fa-thumbs-up"></i>
+      Submit
+    </button>
   </form>
 </p-dialog>

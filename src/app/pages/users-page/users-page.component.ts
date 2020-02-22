@@ -63,8 +63,9 @@ export class UsersPageComponent implements OnInit {
     this.userName = userName;
   }
 
-  showResetPasswordDialog() {
+  showResetPasswordDialog(userId) {
     this.displayResetPassword = true;
+    this.userId = userId;
   }
 
   sendVerificationCode() {
@@ -89,6 +90,16 @@ export class UsersPageComponent implements OnInit {
     }, error => {
     }, () => {
       this.getUserSubscriptions(this.userId);
+    });
+  }
+
+  resetPassword() {
+    this.spinner = true;
+    this.userAccountService.resetPassword(this.userId).subscribe(res => {
+    }, error => {
+    }, () => {
+      this.displayResetPassword = false;
+      this.spinner = false;
     });
   }
 }
