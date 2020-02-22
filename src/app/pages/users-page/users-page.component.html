@@ -1,20 +1,10 @@
 <p-table #dt [columns]="cols" [value]="allUsers" [paginator]="true" [rows]="10" dataKey="id">
-  <!--  <ng-template pTemplate="caption">-->
-  <!--    <div class="ui-helper-clearfix">-->
-  <!--      <button type="button" (click)="dt.exportCSV()" class="btn btn-outline-primary float-left"><i-->
-  <!--        class="fas fa-file-download"></i> All Data-->
-  <!--      </button>-->
-  <!--      <button type="button" class="btn btn-warning float-right"><i-->
-  <!--        class="fas fa-user-plus"></i> Add New User-->
-  <!--      </button>-->
-  <!--    </div>-->
-  <!--  </ng-template>-->
   <ng-template pTemplate="header" let-columns>
     <tr>
       <th *ngFor="let col of columns">
         {{col.header}}
       </th>
-      <th style="width: 200px;"></th>
+      <th style="width: 250px;"></th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-expanded="expanded" let-rowData let-columns="columns">
@@ -30,25 +20,28 @@
       </td>
       <td>
         <div class="row text-center">
-          <div class="col-md-4">
+          <div class="col-md-3">
             <button type="button" class="btn btn-sm btn-outline-success" title="Go To Profile"
                     [routerLink]="['../user/' , rowData.id]"><i
               class="far fa-user"></i></button>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <button type="button" class="btn btn-sm btn-outline-secondary" title="User Subscriptions"
                     (click)="getUserSubscriptions(rowData.id);"><i
               class="fas fa-table"></i></button>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <button type="button" class="btn btn-sm btn-outline-info" title="Send Activation Code"
                     (click)="showActivationDialog(rowData.id, rowData.name)">
-              <i
-                class="fas fa-code"></i></button>
+              <i class="fas fa-code"></i>
+            </button>
           </div>
-          <!--          <div class="col-md-3">-->
-          <!--            <button type="button" class="btn btn-outline-danger"><i class="fas fa-user-times"></i></button>-->
-          <!--          </div>-->
+          <div class="col-md-3">
+            <button type="button" class="btn btn-sm btn-outline-danger" title="Reset Password"
+                    (click)="showResetPasswordDialog()">
+              <i class="fas fa-redo"></i>
+            </button>
+          </div>
         </div>
       </td>
     </tr>
@@ -155,4 +148,42 @@
        class="far fa-thumbs-up"></i>
     Activate
   </button>
+</p-dialog>
+<p-dialog header="Reset Password" [(visible)]="displayResetPassword" [modal]="true" [responsive]="true"
+          [style]="{width: '350px', minWidth: '350px'}" [minY]="70"
+          [baseZIndex]="10000" appendTo="body">
+  <form action="" style="width: 99%;">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white">
+                <i class="fas fa-unlock"></i>
+              </div>
+            </div>
+            <input class="form-control" placeholder="Insert New Password">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white">
+                <i class="fas fa-lock"></i>
+              </div>
+            </div>
+            <input class="form-control" placeholder="Insert Confirm Password">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <button (click)="displayResetPassword = false" class="btn btn-outline-success btn-sm btn-block">
+          <i class="far fa-thumbs-up"></i>
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
 </p-dialog>
