@@ -14,6 +14,7 @@ export class UsersPageComponent implements OnInit {
   display: boolean = false;
   displayAllUserSubscriptions: boolean = false;
   displayActivationCode: boolean = false;
+  displayResetPassword: boolean = false;
   allUsers;
   allUserSubscriptions;
   userId;
@@ -60,6 +61,10 @@ export class UsersPageComponent implements OnInit {
     this.displayActivationCode = true;
     this.userId = userId;
     this.userName = userName;
+  }
+
+  showResetPasswordDialog() {
+    this.displayResetPassword = true;
   }
 
   sendVerificationCode() {
