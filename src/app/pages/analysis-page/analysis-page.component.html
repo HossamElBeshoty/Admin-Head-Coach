@@ -85,7 +85,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="matchDate">Match Date</label>
-              <input type="date" name="matchDate" [ngModel]="matchesService.match.matchDate | date:'yyyy-MM-dd'" (ngModelChange)="matchesService.match.matchDate = $event" #matchDate="ngModel"
+              <input type="date" name="matchDate" [ngModel]="matchesService.match?.matchDate | date:'yyyy-MM-dd'" (ngModelChange)="matchesService.match.matchDate = $event" #matchDate="ngModel"
                      class="form-control" id="matchDate" required>
             </div>
           </div>

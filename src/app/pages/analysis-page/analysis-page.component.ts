@@ -97,9 +97,11 @@ export class AnalysisPageComponent implements OnInit {
     if (hasVideo === false) {
       this.matchesService.getMatchById(matchId).subscribe(res => {
         this.matchesService.match = res as IMatch;
+        this.matchesService.match.formations = [];
+        this.matchesService.match.matchVideos = [];
         this.getAllTeams(this.matchesService.match.teamA.clubId, true);
         this.getAllTeams(this.matchesService.match.teamB.clubId, false);
-
+        this.getAllPlayers();
       }, () => { }, () => {
         this.displayNewAnalysis = true;
         setTimeout(() => {
