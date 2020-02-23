@@ -19,25 +19,35 @@
 <div class="card border-dark mb-3">
   <div class="card-header text-secondary text-center">In Match {{inMatchPlayer.length}} Players</div>
   <div class="card-body text-dark">
-    <div *ngFor="let player of inMatchPlayer;" class="btn-group m-1 mb-3 dropdown">
-      <button type="button" class="btn btn-sm"
-              [ngClass]="{'btn-success': selectedIndex === player.id && isTeamA, 'btn-primary' : selectedIndex !== player.id || !isTeamA}"
-              (click)="onPlayerClick(player)">
-        <span *ngIf="player.playerNum">({{player.playerNum}}) -</span>    {{player.nickNameEn}}
-      </button>
-      <button type="button" class="btn btn-light btn-sm dropdown-toggle dropdown-toggle-split"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <span class="sr-only">Toggle Dropright</span>
-      </button>
-      <div class="dropdown-menu">
-        <!--        <a class="dropdown-item text-warning" style="cursor: pointer;" (click)="changePlayer(x.id)"> <i-->
-        <!--          class="fas fa-exchange-alt"></i>-->
-        <!--          Change Player</a>-->
-        <a class="dropdown-item text-danger" style="cursor: pointer;" (click)="outMatch(player)"> <i
-          class="fas fa-long-arrow-alt-left"></i>
-          Player Out</a>
+    <div class="row">
+      <div *ngFor="let player of inMatchPlayer;" class="col-md-6">
+        <div class="btn-group m-1 mb-3 dropdown">
+          <button type="button" class="btn btn-sm btn-block"
+                  style="white-space:nowrap; width: 120px; overflow: hidden; text-overflow: ellipsis;"
+                  [ngClass]="{'btn-success': selectedIndex === player.id && isTeamA, 'btn-primary' : selectedIndex !== player.id || !isTeamA}"
+                  (click)="onPlayerClick(player)">
+            <span *ngIf="player.playerNum">({{player.playerNum}}) -</span>
+            <span style="text-overflow: ellipsis; overflow: hidden; white-space:nowrap;">
+               {{player.nickNameEn}}
+            </span>
+
+          </button>
+          <button type="button" class="btn btn-light btn-sm dropdown-toggle dropdown-toggle-split"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropright</span>
+          </button>
+          <div class="dropdown-menu">
+            <!--        <a class="dropdown-item text-warning" style="cursor: pointer;" (click)="changePlayer(x.id)"> <i-->
+            <!--          class="fas fa-exchange-alt"></i>-->
+            <!--          Change Player</a>-->
+            <a class="dropdown-item text-danger" style="cursor: pointer;" (click)="outMatch(player)"> <i
+              class="fas fa-long-arrow-alt-left"></i>
+              Player Out</a>
+          </div>
+        </div>
       </div>
     </div>
+
   </div>
 </div>
 <div class="fixed-bottom">
