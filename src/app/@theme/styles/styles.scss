@@ -34,6 +34,10 @@
   outline: none;
 }
 
+.nb-theme-default nb-layout .layout .layout-container nb-sidebar.fixed, .nb-theme-default nb-layout .layout .layout-container nb-sidebar .main-container-fixed {
+  top: 3.75rem;
+}
+
 body .ui-fieldset .ui-fieldset-legend a {
   padding: 0.571em 1em;
   border: 1px solid #c8c8c8;
@@ -80,13 +84,10 @@ body {
 
 .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done,
 .mat-step-header .mat-step-icon-state-edit {
-  background-color: #007ad9;
+  background-color: #ffc107;
   color: white;
 }
 
-.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
-  background-color: #007ad9;
-}
 
 input.ng-touched.ng-invalid,
 select.ng-touched.ng-invalid {

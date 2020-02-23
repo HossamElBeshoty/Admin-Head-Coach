@@ -15,6 +15,7 @@ import {IAction} from '../../../Models/i-action';
 import {IAttackAnalysis} from '../../../Models/i-attack-analysis';
 import {ChildActionService} from '../../../Service/child-action.service';
 import {IChildAction} from '../../../Models/i-child-action';
+import {MenuItem} from 'primeng/api';
 
 
 @Component({
@@ -47,6 +48,8 @@ export class AnalysisMatchPageComponent implements OnInit {
   displayDeleteAttack: boolean = false;
   childActionData: IChildAction[];
   attackDeleteId;
+  items: MenuItem[];
+  dropDownListId;
 
   constructor(public categoryService: CategoryService,
               public matchService: MatchService,
@@ -74,6 +77,22 @@ export class AnalysisMatchPageComponent implements OnInit {
       {field: 'cb', header: 'Tactic'},
       {field: 'eb', header: 'Result'},
     ];
+    this.items = [
+      {
+        label: 'Play In Time', icon: 'fas fa-play fa-1x m-1 text-primary', command: () => {
+          this.playVideoInTime();
+        },
+      },
+      {
+        label: 'Delete', icon: 'fas fa-ban fa-1x m-1 text-danger', command: () => {
+          this.displayAttackDelete();
+        },
+      },
+    ];
+  }
+
+  getIdInDropDownList(id) {
+    this.dropDownListId = id;
   }
 
   getPlayersData(event) {
@@ -253,8 +272,8 @@ export class AnalysisMatchPageComponent implements OnInit {
     return seconds;
   }
 
-  playVideoInTime(id) {
-    const playAttack = this.attacks.find(c => c.id === id);
+  playVideoInTime() {
+    const playAttack = this.attacks.find(c => c.id === this.dropDownListId);
     const startSeconds = this.convertTimeToSeconds(playAttack.tf) - 5;
     const endSeconds = ((this.convertTimeToSeconds(playAttack.tt) - startSeconds) + 5) * 1000;
     const vId = this.videoOptions.getVideoData().video_id;
@@ -266,16 +285,15 @@ export class AnalysisMatchPageComponent implements OnInit {
   }
 
 
-  displayAttackDelete(attackId) {
-    this.attackDeleteId = attackId;
+  displayAttackDelete() {
     this.displayDeleteAttack = true;
   }
 
   deleteOneAttack() {
-    this.attackService.deleteAttack(this.attackDeleteId).subscribe(res => {
+    this.attackService.deleteAttack(this.dropDownListId).subscribe(res => {
     }, error => {
     }, () => {
-      const index = this.attacks.findIndex(c => c.ai === this.attackDeleteId);
+      const index = this.attacks.findIndex(c => c.ai === this.dropDownListId);
       this.attacks.splice(index, 1);
       this.displayDeleteAttack = false;
     });

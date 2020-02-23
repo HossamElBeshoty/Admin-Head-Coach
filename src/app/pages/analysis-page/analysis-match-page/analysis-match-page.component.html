@@ -124,10 +124,12 @@
               {{rowData[col.field]}}
             </td>
             <td>
-              <i class="fas fa-play fa-1x m-1 text-primary" style="cursor: pointer;"
-                 (click)="playVideoInTime(rowData.id)"></i>
-              <i class="fas fa-ban fa-1x m-1 text-danger" style="cursor: pointer;"
-                 (click)="displayAttackDelete(rowData.ai)"></i>
+              <!--              <i class="fas fa-play fa-1x m-1 text-primary" style="cursor: pointer;"-->
+              <!--                 (click)="playVideoInTime(rowData.id)"></i>-->
+              <!--              <i class="fas fa-ban fa-1x m-1 text-danger" style="cursor: pointer;"-->
+              <!--                 (click)="displayAttackDelete(rowData.ai)"></i>-->
+              <p-splitButton icon="fas fa-cogs" [model]="items" (onDropdownClick)="getIdInDropDownList(rowData.id)"
+                             styleClass="ui-button-secondary" appendTo="body"></p-splitButton>
             </td>
           </tr>
         </ng-template>
