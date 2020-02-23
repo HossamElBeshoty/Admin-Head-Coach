@@ -79,23 +79,13 @@ export class AnalysisMatchPageComponent implements OnInit {
     ];
     this.items = [
       {
-        label: 'Play In Time', icon: 'fas fa-play fa-1x m-1 text-primary', command: () => {
-          this.playVideoInTime();
-        },
-      },
-      {
         label: 'Play In 3 Second', icon: 'fas fa-play fa-1x m-1 text-primary', command: () => {
-          this.playVideoInTime();
+          this.playVideoInThreeTime();
         },
       },
       {
         label: 'Play In 5  Second', icon: 'fas fa-play fa-1x m-1 text-primary', command: () => {
-          this.playVideoInTime();
-        },
-      },
-      {
-        label: 'Delete Attack', icon: 'fas fa-ban fa-1x m-1 text-danger', command: () => {
-          this.displayAttackDelete();
+          this.playVideoInFiveTime();
         },
       },
     ];
@@ -282,7 +272,31 @@ export class AnalysisMatchPageComponent implements OnInit {
     return seconds;
   }
 
-  playVideoInTime() {
+  playVideoInTime(id) {
+    const playAttack = this.attacks.find(c => c.id === id);
+    const startSeconds = this.convertTimeToSeconds(playAttack.tf);
+    const endSeconds = (this.convertTimeToSeconds(playAttack.tt) - startSeconds) * 1000;
+    const vId = this.videoOptions.getVideoData().video_id;
+    this.videoOptions.cueVideoById(vId, startSeconds);
+    this.videoOptions.playVideo();
+    setTimeout(() => {
+      this.videoOptions.pauseVideo();
+    }, endSeconds);
+  }
+
+  playVideoInThreeTime() {
+    const playAttack = this.attacks.find(c => c.id === this.dropDownListId);
+    const startSeconds = this.convertTimeToSeconds(playAttack.tf) - 3;
+    const endSeconds = ((this.convertTimeToSeconds(playAttack.tt) - startSeconds) + 3) * 1000;
+    const vId = this.videoOptions.getVideoData().video_id;
+    this.videoOptions.cueVideoById(vId, startSeconds);
+    this.videoOptions.playVideo();
+    setTimeout(() => {
+      this.videoOptions.pauseVideo();
+    }, endSeconds);
+  }
+
+  playVideoInFiveTime() {
     const playAttack = this.attacks.find(c => c.id === this.dropDownListId);
     const startSeconds = this.convertTimeToSeconds(playAttack.tf) - 5;
     const endSeconds = ((this.convertTimeToSeconds(playAttack.tt) - startSeconds) + 5) * 1000;
@@ -294,8 +308,8 @@ export class AnalysisMatchPageComponent implements OnInit {
     }, endSeconds);
   }
 
-
-  displayAttackDelete() {
+  displayAttackDelete(id) {
+    this.attackDeleteId = id;
     this.displayDeleteAttack = true;
   }
 
