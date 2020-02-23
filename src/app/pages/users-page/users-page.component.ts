@@ -32,7 +32,7 @@ export class UsersPageComponent implements OnInit {
       {field: 'name', header: 'Name'},
       {field: 'creationDate', header: 'Date'},
       {field: 'matchesCount', header: 'MatchesCount'},
-      // {field: 'email', header: 'Email'},
+      {field: 'email', header: 'Email'},
       {field: 'lockoutEnabled', header: 'Activation'},
     ];
     this.colsUserSubscriptions = [

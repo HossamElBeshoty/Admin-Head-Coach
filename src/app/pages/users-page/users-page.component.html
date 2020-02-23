@@ -9,7 +9,7 @@
   </ng-template>
   <ng-template pTemplate="body" let-expanded="expanded" let-rowData let-columns="columns">
     <tr>
-      <td *ngFor="let col of columns">
+      <td *ngFor="let col of columns" style="text-overflow: ellipsis; overflow: hidden; white-space:nowrap;">
         <div *ngIf="col.field === 'creationDate'; then nested_object_content  else normal_content "></div>
         <ng-template #nested_object_content>
           {{rowData[col.field] |  date: 'dd-MM-yyyy'}}
