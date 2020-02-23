@@ -84,7 +84,17 @@ export class AnalysisMatchPageComponent implements OnInit {
         },
       },
       {
-        label: 'Delete', icon: 'fas fa-ban fa-1x m-1 text-danger', command: () => {
+        label: 'Play In 3 Second', icon: 'fas fa-play fa-1x m-1 text-primary', command: () => {
+          this.playVideoInTime();
+        },
+      },
+      {
+        label: 'Play In 5  Second', icon: 'fas fa-play fa-1x m-1 text-primary', command: () => {
+          this.playVideoInTime();
+        },
+      },
+      {
+        label: 'Delete Attack', icon: 'fas fa-ban fa-1x m-1 text-danger', command: () => {
           this.displayAttackDelete();
         },
       },

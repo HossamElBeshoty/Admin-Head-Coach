@@ -128,7 +128,8 @@
               <!--                 (click)="playVideoInTime(rowData.id)"></i>-->
               <!--              <i class="fas fa-ban fa-1x m-1 text-danger" style="cursor: pointer;"-->
               <!--                 (click)="displayAttackDelete(rowData.ai)"></i>-->
-              <p-splitButton icon="fas fa-cogs" [model]="items" (onDropdownClick)="getIdInDropDownList(rowData.id)"
+              <p-splitButton [showTransitionOptions]="'325ms ease-out'" [hideTransitionOptions]="'295ms ease-in'" icon="fas fa-cogs"
+                             [model]="items" (onDropdownClick)="getIdInDropDownList(rowData.id)"
                              styleClass="ui-button-secondary" appendTo="body"></p-splitButton>
             </td>
           </tr>
