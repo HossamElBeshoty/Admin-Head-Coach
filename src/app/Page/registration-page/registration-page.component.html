@@ -84,21 +84,3 @@
     </form>
   </div>
 </div>
-
-
-<p-dialog header="Thank You" [(visible)]="displayRegistration" [modal]="true" [responsive]="true"
-          [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
-          [baseZIndex]="10000" appendTo="body">
-  <div class="text-center">
-    <i class="fas fa-money-bill-wave fa-4x text-success "></i>
-  </div>
-  <br>
-  <h6 class="text-center">
-    Are You Sure To Delete This Category?!
-  </h6>
-  <br>
-  <button class="btn btn-outline-success btn-sm btn-block" type="submit" (click)="displayRegistration= false"><i
-    class="fas fa-key"></i>
-    Stay Tuned
-  </button>
-</p-dialog>

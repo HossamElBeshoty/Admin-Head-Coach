@@ -11,7 +11,6 @@ import {ISubscription} from '../../Models/i-subscription';
 })
 export class RegistrationPageComponent implements OnInit {
   spinner = false;
-  displayRegistration: boolean = false;
   allSubscriptions: ISubscription[];
   matchCount = 0;
   errorMessages = [];
