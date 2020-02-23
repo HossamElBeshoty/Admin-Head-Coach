@@ -22,8 +22,8 @@
     <div class="row">
       <div *ngFor="let player of inMatchPlayer;" class="col-md-6">
         <div class="btn-group m-1 mb-3 dropdown">
-          <button type="button" class="btn btn-sm btn-block"
-                  style="white-space:nowrap; width: 120px; overflow: hidden; text-overflow: ellipsis;"
+          <button type="button" class="btn btn-sm"
+                  style="white-space:nowrap; max-width: 120px; overflow: hidden; text-overflow: ellipsis;"
                   [ngClass]="{'btn-success': selectedIndex === player.id && isTeamA, 'btn-primary' : selectedIndex !== player.id || !isTeamA}"
                   (click)="onPlayerClick(player)">
             <span *ngIf="player.playerNum">({{player.playerNum}}) -</span>
