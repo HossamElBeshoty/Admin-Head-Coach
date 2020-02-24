@@ -5,14 +5,14 @@
         <div class="row">
           <div class="col-md-6">
             <button type="button" class="btn  btn-sm"
-                    (click)="activatedTeamA=!activatedTeamA"
+                    (click)="activatedTeamB=false;activatedTeamA=true"
                     [ngClass]="activatedTeamA ? 'btn-primary' : ' btn-outline-secondary'"><i
               class="fas fa-flag-checkered"></i> {{this.matchService.match.teamA?.clubNameEn}}
             </button>
           </div>
           <div class="col-md-6">
             <button type="button" class="btn btn-outline-secondary float-right btn-sm"
-                    (click)="activatedTeamB=!activatedTeamB"
+                    (click)="activatedTeamB=true;activatedTeamA=false"
                     [ngClass]="activatedTeamB ? 'btn-primary' : ' btn-outline-secondary'"><i
               class="fas fa-flag-checkered"></i> {{this.matchService.match.teamB?.clubNameEn}}
             </button>
@@ -49,7 +49,7 @@
       <!--          </tr>-->
       <!--        </ng-template>-->
       <!--      </p-table>-->
-      <p-table [value]="countsData">
+      <p-table [value]="countAnalyzeService.CountAnalyzeList">
         <ng-template pTemplate="header">
           <tr>
             <th rowspan="2">Action</th>
@@ -65,9 +65,9 @@
         </ng-template>
         <ng-template pTemplate="body" let-countData>
           <tr>
-            <td>{{countData.action}}</td>
-            <td>{{countData.countTeamA}}</td>
-            <td>{{countData.countTeamB}}</td>
+            <td>{{countData.actionNameEn}}</td>
+            <td>{{countData.countOfTeamA}}</td>
+            <td>{{countData.countOfTeamB}}</td>
             <td>
               <input class="form-control" type="text" [(ngModel)]="countData.description">
             </td>

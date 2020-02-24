@@ -16,7 +16,7 @@ export class CountAnalyzeService {
   }
 
   getAllCountAnalyzes(matchId: string) {
-    return this.dataService.get('api/CountAnalyze/GetByCategoryId/' + matchId);
+    return this.dataService.get('api/CountAnalyze/' + matchId);
   }
 
   updateCountAnalyze() {

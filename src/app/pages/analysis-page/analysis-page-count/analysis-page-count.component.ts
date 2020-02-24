@@ -1,10 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {MatchService} from '../../../Service/match.service';
-import {ICategory} from '../../../Models/i-category';
-import {IMatch} from '../../../Models/i-match';
-import {CategoryService} from '../../../Service/category.service';
-import {ActivatedRoute} from '@angular/router';
-import {IAction} from '../../../Models/i-action';
+import { ICountAnalyze } from './../../../Models/i-countAnalyze';
+import { CountAnalyzeService } from './../../../Service/countAnalyze.service';
+import { Component, OnInit } from '@angular/core';
+import { MatchService } from '../../../Service/match.service';
+import { ICategory } from '../../../Models/i-category';
+import { IMatch } from '../../../Models/i-match';
+import { CategoryService } from '../../../Service/category.service';
+import { ActivatedRoute } from '@angular/router';
+import { IAction } from '../../../Models/i-action';
 
 @Component({
   selector: 'ngx-analysis-page-count',
@@ -15,37 +17,20 @@ export class AnalysisPageCountComponent implements OnInit {
   public categories: ICategory[];
   actionIndex: boolean;
   actionData: IAction = {} as IAction;
-  // countsData = [
-  //   {
-  //     teamAId: '83714999-ab30-ea11-a2e2-a7e3b419311e',
-  //     actionA: 'Attack',
-  //     countA: 4,
-  //     descriptionA: 'Nice Attack',
-  //     teamBId: '6f0a2932-ae30-ea11-a2e2-a7e3b419311e',
-  //     actionB: 'Defence',
-  //     countB: 2,
-  //     descriptionB: 'Bad Defence',
-  //   },
-  // ];
-  countsData: any[];
+
   activatedTeamA: boolean = false;
   activatedTeamB: boolean = false;
-  constructor(public matchService: MatchService,
-              public categoryService: CategoryService,
-              public activatedRoute: ActivatedRoute) {
+  constructor(
+    public matchService: MatchService,
+    public categoryService: CategoryService,
+    public countAnalyzeService: CountAnalyzeService,
+    public activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.matchService.match.id = this.activatedRoute.snapshot.params.id;
     this.getMatchData();
-    this.countsData = [
-      {
-        action: 'Back 2 Back',
-        countTeamA: '4',
-        countTeamB: '6',
-        description: 'Good Defence',
-      },
-    ];
+    this.getAllCountAnalyzes();
   }
 
   getMatchData() {
@@ -61,6 +46,11 @@ export class AnalysisPageCountComponent implements OnInit {
     return this.matchService.match.teamA.id === id;
   }
 
+  getAllCountAnalyzes() {
+    this.countAnalyzeService.getAllCountAnalyzes(this.matchService.match.id).subscribe(res => {
+      this.countAnalyzeService.CountAnalyzeList = res as ICountAnalyze[];
+    });
+  }
   getPageCategory(id) {
     this.categoryService.getCategories(id).subscribe(res => {
       this.categories = res as ICategory[];
@@ -69,11 +59,40 @@ export class AnalysisPageCountComponent implements OnInit {
 
   getActionsCount(event) {
     this.actionData = event;
-    if (this.isTeamA(this.matchService.match.teamA.id)) {
-      // console.log(this.matchService.match);
-    } else if (this.isTeamA(this.matchService.match.teamB.id)) {
-      // console.log(this.matchService.match);
+    const index = this.countAnalyzeService.CountAnalyzeList.findIndex(c => c.actionId === this.actionData.id);
+
+    if (index === -1) {
+      this.countAnalyzeService.CountAnalyze = {
+        actionId: this.actionData.id,
+        teamAId: this.matchService.match.teamA.id,
+        teamBId: this.matchService.match.teamB.id,
+        countOfTeamA: 0,
+        countOfTeamB: 0,
+        matchId: this.matchService.match.id,
+        actionNameEn: this.actionData.nameEn,
+         actionNameAr: this.actionData.nameAr,
+      };
+      if (this.activatedTeamB) {
+        this.countAnalyzeService.CountAnalyze.countOfTeamB += 1;
+      } else {
+        this.countAnalyzeService.CountAnalyze.countOfTeamA += 1;
+      }
+      this.countAnalyzeService.postCountAnalyze().subscribe(res => {
+        this.countAnalyzeService.CountAnalyze.id = res as string;
+      }, () => { }, () => {
+        this.countAnalyzeService.CountAnalyzeList.push(this.countAnalyzeService.CountAnalyze);
+      });
+
+    } else {
+      const selectedData = this.countAnalyzeService.CountAnalyzeList.find(c => c.actionId === this.actionData.id);
+      if (this.activatedTeamB) {
+        selectedData.countOfTeamB += 1;
+      } else {
+        selectedData.countOfTeamA += 1;
+      }
     }
+
+
   }
 
   getTeamData(team) {
@@ -85,6 +104,6 @@ export class AnalysisPageCountComponent implements OnInit {
   }
 
   addCount() {
-    // console.log(this.countsData);
+    this.countAnalyzeService.updateCountAnalyze().subscribe();
   }
 }
