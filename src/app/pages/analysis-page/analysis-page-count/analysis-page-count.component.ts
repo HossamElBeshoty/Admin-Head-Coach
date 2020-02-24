@@ -15,19 +15,21 @@ export class AnalysisPageCountComponent implements OnInit {
   public categories: ICategory[];
   actionIndex: boolean;
   actionData: IAction = {} as IAction;
-  countsData = [
-    {
-      teamAId: '83714999-ab30-ea11-a2e2-a7e3b419311e',
-      actionA: 'Attack',
-      countA: 4,
-      descriptionA: 'Nice Attack',
-      teamBId: '6f0a2932-ae30-ea11-a2e2-a7e3b419311e',
-      actionB: 'Defence',
-      countB: 2,
-      descriptionB: 'Bad Defence',
-    },
-  ];
-
+  // countsData = [
+  //   {
+  //     teamAId: '83714999-ab30-ea11-a2e2-a7e3b419311e',
+  //     actionA: 'Attack',
+  //     countA: 4,
+  //     descriptionA: 'Nice Attack',
+  //     teamBId: '6f0a2932-ae30-ea11-a2e2-a7e3b419311e',
+  //     actionB: 'Defence',
+  //     countB: 2,
+  //     descriptionB: 'Bad Defence',
+  //   },
+  // ];
+  countsData: any[];
+  activatedTeamA: boolean = false;
+  activatedTeamB: boolean = false;
   constructor(public matchService: MatchService,
               public categoryService: CategoryService,
               public activatedRoute: ActivatedRoute) {
@@ -36,6 +38,14 @@ export class AnalysisPageCountComponent implements OnInit {
   ngOnInit() {
     this.matchService.match.id = this.activatedRoute.snapshot.params.id;
     this.getMatchData();
+    this.countsData = [
+      {
+        action: 'Back 2 Back',
+        countTeamA: '4',
+        countTeamB: '6',
+        description: 'Good Defence',
+      },
+    ];
   }
 
   getMatchData() {
