@@ -4,14 +4,16 @@
       <p-header>
         <div class="row">
           <div class="col-md-6">
-            <button type="button" class="btn btn-outline-secondary btn-sm"
-                    (click)="getTeamData(this.matchService.match.teamA)"><i
+            <button type="button" class="btn  btn-sm"
+                    (click)="activatedTeamA=!activatedTeamA"
+                    [ngClass]="activatedTeamA ? 'btn-primary' : ' btn-outline-secondary'"><i
               class="fas fa-flag-checkered"></i> {{this.matchService.match.teamA?.clubNameEn}}
             </button>
           </div>
           <div class="col-md-6">
             <button type="button" class="btn btn-outline-secondary float-right btn-sm"
-                    (click)="getTeamData(this.matchService.match.teamB)"><i
+                    (click)="activatedTeamB=!activatedTeamB"
+                    [ngClass]="activatedTeamB ? 'btn-primary' : ' btn-outline-secondary'"><i
               class="fas fa-flag-checkered"></i> {{this.matchService.match.teamB?.clubNameEn}}
             </button>
           </div>

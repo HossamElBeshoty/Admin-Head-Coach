@@ -28,6 +28,8 @@ export class AnalysisPageCountComponent implements OnInit {
   //   },
   // ];
   countsData: any[];
+  activatedTeamA: boolean = false;
+  activatedTeamB: boolean = false;
   constructor(public matchService: MatchService,
               public categoryService: CategoryService,
               public activatedRoute: ActivatedRoute) {
