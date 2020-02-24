@@ -4,6 +4,7 @@ export interface ICountAnalyze {
   teamAId: string ;
   action: string ;
   teamBId: string ;
-  count: number ;
+  countOfTeamA: number ;
+  countOfTeamB: number ;
   description: string;
 }
