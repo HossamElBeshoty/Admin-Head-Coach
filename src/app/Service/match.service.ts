@@ -10,7 +10,7 @@ export class MatchService {
   match = {} as IMatch;
 
   constructor(private dataService: DataService) {
-    this.match.teamA = { } as ITeam;
+    this.match.teamA = {} as ITeam;
     this.match.teamB = {} as ITeam;
   }
 
