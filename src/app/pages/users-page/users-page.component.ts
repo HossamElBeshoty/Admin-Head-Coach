@@ -22,7 +22,7 @@ export class UsersPageComponent implements OnInit {
   spinner = false;
   allSubscriptions: ISubscription[] = [];
 
-  constructor(private  userAccountService: UserAccountService, public subscriptionService: SubscriptionService) {
+  constructor(public userAccountService: UserAccountService, public subscriptionService: SubscriptionService) {
   }
 
   ngOnInit() {
