@@ -157,6 +157,7 @@ body .ui-table .ui-table-tbody > tr > td {
 .ui-table-scrollable-header {
   overflow-y: scroll;
 }
+
 //@media (min-width: 992px) and (max-width: 1199.98px) {
 //  body .ui-table .ui-table-thead > tr > th {
 //    padding: 0.1em 0.3em;
@@ -176,11 +177,11 @@ body .ui-table .ui-table-tbody > tr > td {
 .nb-theme-default nb-layout-header nav {
   background: #ffffff;
   color: #1a2138;
-  box-shadow: 0 0.5rem 1rem 0
-  rgba(44, 51, 73, 0.1);
+  box-shadow: 0 0.5rem 1rem 0 rgba(44, 51, 73, 0.1);
   height: 3.75rem;
   padding: 1.25rem;
 }
+
 .ui-sidebar-left.ui-sidebar-active, .ui-sidebar-right.ui-sidebar-active {
   -ms-transform: translateX(0);
   transform: translateX(0);
@@ -351,7 +352,7 @@ body .ui-tabview.ui-tabview-right .ui-tabview-nav li.ui-state-active:hover {
     color: #333333;
     background-color: #f4f4f4;
     text-align: center;
-    font-size: 13px;
+    font-size: 11px;
   }
   body .ui-table .ui-table-tbody > tr > td {
     background-color: inherit;

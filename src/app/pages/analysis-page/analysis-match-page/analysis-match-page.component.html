@@ -90,17 +90,17 @@
     <!--    </p-panel>-->
     <p-table #dt1 [columns]="cols" [value]="attacks" dataKey="id" [resizableColumns]="true"
              [reorderableColumns]="true" [scrollable]="true" scrollHeight="200px">
-      <ng-template pTemplate="colgroup" let-columns>
-        <colgroup>
-          <col *ngFor="let col of columns">
-        </colgroup>
-      </ng-template>
+<!--      <ng-template pTemplate="colgroup" let-columns>-->
+<!--        <colgroup>-->
+<!--          <col *ngFor="let col of columns">-->
+<!--        </colgroup>-->
+<!--      </ng-template>-->
       <ng-template pTemplate="header" let-columns>
         <tr>
           <th colspan="5">Team A ({{matchService.match.teamA?.clubNameEn}})</th>
           <th></th>
           <th colspan="5">Team B ({{matchService.match.teamB?.clubNameEn}})</th>
-          <th></th>
+          <th style="width: 100px;"></th>
         </tr>
         <tr>
           <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn pReorderableColumn>
@@ -124,7 +124,7 @@
           <td *ngFor="let col of columns">
             {{rowData[col.field]}}
           </td>
-          <td >
+          <td style="width: 100px;">
             <!--              <i class="fas fa-play fa-1x m-1 text-primary" style="cursor: pointer;"-->
             <!--                 (click)="playVideoInTime(rowData.id)"></i>-->
             <i class="fas fa-ban fa-1x text-danger" style="cursor: pointer;"
