@@ -55,11 +55,11 @@
 <div class="row">
   <div class="col-md-4">
     <ngx-action [groupId]="this.matchService.match.groupId" [categories]="categories"
-                (actionData)="getActionsData($event)" (index)="getActionIndex($event)"></ngx-action>
+      (actionData)="getActionsData($event)" (index)="getActionIndex($event)"></ngx-action>
   </div>
   <div class="col-md-8">
     <ngx-youtube-player [allVideoURL]="allVideos" (videoMatchId)="getVideoMatchId($event)"
-                        (playerVideo)="getVideoPlayer($event)"></ngx-youtube-player>
+      (playerVideo)="getVideoPlayer($event)"></ngx-youtube-player>
   </div>
 </div>
 
@@ -88,13 +88,13 @@
     <!--      </p-header>-->
 
     <!--    </p-panel>-->
-    <p-table #dt1 [columns]="cols" [value]="attacks" dataKey="id" [resizableColumns]="true"
-             [reorderableColumns]="true" [scrollable]="true" scrollHeight="200px">
-<!--      <ng-template pTemplate="colgroup" let-columns>-->
-<!--        <colgroup>-->
-<!--          <col *ngFor="let col of columns">-->
-<!--        </colgroup>-->
-<!--      </ng-template>-->
+    <p-table #dt1 [columns]="cols" [value]="attacks" dataKey="id" [resizableColumns]="true" [reorderableColumns]="true"
+      [scrollable]="true" scrollHeight="200px">
+      <!--      <ng-template pTemplate="colgroup" let-columns>-->
+      <!--        <colgroup>-->
+      <!--          <col *ngFor="let col of columns">-->
+      <!--        </colgroup>-->
+      <!--      </ng-template>-->
       <ng-template pTemplate="header" let-columns>
         <tr>
           <th colspan="5">Team A ({{matchService.match.teamA?.clubNameEn}})</th>
@@ -113,8 +113,8 @@
         <tr>
           <th *ngFor="let col of columns" [ngSwitch]="col.field" class="ui-fluid">
             <input class="form-control" type="text"
-                   (input)="dt1.filter($event.target.value, col.field, col.filterMatchMode)"
-                   [value]="dt1.filters[col.field]?.value">
+              (input)="dt1.filter($event.target.value, col.field, col.filterMatchMode)"
+              [value]="dt1.filters[col.field]?.value">
           </th>
           <th></th>
         </tr>
@@ -128,27 +128,30 @@
             <!--              <i class="fas fa-play fa-1x m-1 text-primary" style="cursor: pointer;"-->
             <!--                 (click)="playVideoInTime(rowData.id)"></i>-->
             <i class="fas fa-ban fa-1x text-danger" style="cursor: pointer;"
-               (click)="displayAttackDelete(rowData.ai)"></i>
+              (click)="displayAttackDelete(rowData.ai)"></i>
             <p-splitButton [showTransitionOptions]="'325ms ease-out'" (onClick)="playVideoInTime(rowData.id)"
-                           [hideTransitionOptions]="'295ms ease-in'" icon="fas fa-play fa-1x text-primary"
-                           [model]="items" (onDropdownClick)="getIdInDropDownList(rowData.id)"
-                           styleClass="ui-button-secondary" appendTo="body"></p-splitButton>
+              [hideTransitionOptions]="'295ms ease-in'" icon="fas fa-play fa-1x text-primary" [model]="items"
+              (onDropdownClick)="getIdInDropDownList(rowData.id)" styleClass="ui-button-secondary" appendTo="body">
+            </p-splitButton>
           </td>
         </tr>
       </ng-template>
     </p-table>
   </div>
+
+  <div class="col-md-12 mt-5">
+    <button (click)="dt1.exportCSV()" class="btn btn-info btn-sm float-left">
+      <i class="far fa-chart-bar"></i> Export Report
+    </button>
+  </div>
 </div>
 
 <p-dialog header="Choose Child Action" [(visible)]="displayEndWithAction" [modal]="true" [responsive]="true"
-          appendTo="body"
-          [style]="{width: '450px', minWidth: '300px', overflowY: 'hidden'}"
-          [minY]="70" [baseZIndex]="10000">
-  <div class="row text-center" >
+  appendTo="body" [style]="{width: '450px', minWidth: '300px', overflowY: 'hidden'}" [minY]="70" [baseZIndex]="10000">
+  <div class="row text-center">
     <div *ngFor="let childAction of childActionData" style="width: 99.8%;" class="col-md-4 text-center">
-      <button type="button"
-              (click)="postChildActionInMatchAnalysis(childAction.id)"
-              class="btn btn-block btn-outline-success">
+      <button type="button" (click)="postChildActionInMatchAnalysis(childAction.id)"
+        class="btn btn-block btn-outline-success">
         {{childAction.nameAr}}
       </button>
       <br>
@@ -164,9 +167,8 @@
 </p-dialog>
 
 
-<p-dialog header="Delete Attack" [(visible)]="displayDeleteAttack" [modal]="true" [responsive]="true"
-          [minY]="70" appendTo="body" [style]="{width: '350px', minWidth: '200px'}"
-          [baseZIndex]="10000">
+<p-dialog header="Delete Attack" [(visible)]="displayDeleteAttack" [modal]="true" [responsive]="true" [minY]="70"
+  appendTo="body" [style]="{width: '350px', minWidth: '200px'}" [baseZIndex]="10000">
   <div class="text-center">
     <i class="fas fa-exclamation-circle fa-4x text-danger "></i>
   </div>
@@ -176,7 +178,7 @@
   </h6>
   <br>
   <button class="btn btn-outline-danger btn-sm btn-block" type="submit" (click)="deleteOneAttack()"><i
-    class="fas fa-bomb"></i>
+      class="fas fa-bomb"></i>
     Delete
   </button>
 </p-dialog>
@@ -184,19 +186,15 @@
   <br>
   <br>
   <ngx-players-box-team [teamName]="this.matchService.match.teamA?.nameAr" [isTeamA]="isTeamAButton"
-                        [clubName]="this.matchService.match.teamA?.clubNameEn"
-                        [teamId]="this.matchService.match.teamA?.id"
-                        [matchId]="this.matchService.match.id"
-                        (teamPlayer)="getPlayersData($event)"
-                        [teamData]="playersTeamA" [youtubePlayer]="videoOptions"></ngx-players-box-team>
+    [clubName]="this.matchService.match.teamA?.clubNameEn" [teamId]="this.matchService.match.teamA?.id"
+    [matchId]="this.matchService.match.id" (teamPlayer)="getPlayersData($event)" [teamData]="playersTeamA"
+    [youtubePlayer]="videoOptions"></ngx-players-box-team>
 </p-sidebar>
 <p-sidebar [(visible)]="displayTeamB" position="right" appendTo="body" baseZIndex="9999999" [style]="{width:'30em'}">
   <br>
   <br>
   <ngx-players-box-team [teamName]="this.matchService.match.teamB?.nameAr" [isTeamA]="isTeamBButton"
-                        [clubName]="this.matchService.match.teamB?.clubNameEn"
-                        [teamId]="this.matchService.match.teamB?.id"
-                        [matchId]="this.matchService.match.id"
-                        (teamPlayer)="getPlayersData($event)"
-                        [teamData]="playersTeamB"></ngx-players-box-team>
+    [clubName]="this.matchService.match.teamB?.clubNameEn" [teamId]="this.matchService.match.teamB?.id"
+    [matchId]="this.matchService.match.id" (teamPlayer)="getPlayersData($event)" [teamData]="playersTeamB">
+  </ngx-players-box-team>
 </p-sidebar>
