@@ -314,10 +314,10 @@ export class AnalysisMatchPageComponent implements OnInit {
   }
 
   deleteOneAttack() {
-    this.attackService.deleteAttack(this.dropDownListId).subscribe(res => {
+    this.attackService.deleteAttack(this.attackDeleteId).subscribe(res => {
     }, error => {
     }, () => {
-      const index = this.attacks.findIndex(c => c.ai === this.dropDownListId);
+      const index = this.attacks.findIndex(c => c.ai === this.attackDeleteId);
       this.attacks.splice(index, 1);
       this.displayDeleteAttack = false;
     });
