@@ -79,12 +79,12 @@ export class AnalysisMatchPageComponent implements OnInit {
     ];
     this.items = [
       {
-        label: 'Play In 3 Second', icon: 'fas fa-play fa-1x m-1 text-primary', command: () => {
+        label: 'Play In 10 Second', icon: 'fas fa-play fa-1x m-1 text-primary', command: () => {
           this.playVideoInThreeTime();
         },
       },
       {
-        label: 'Play In 5  Second', icon: 'fas fa-play fa-1x m-1 text-primary', command: () => {
+        label: 'Play In 15  Second', icon: 'fas fa-play fa-1x m-1 text-primary', command: () => {
           this.playVideoInFiveTime();
         },
       },
@@ -274,8 +274,8 @@ export class AnalysisMatchPageComponent implements OnInit {
 
   playVideoInTime(id) {
     const playAttack = this.attacks.find(c => c.id === id);
-    const startSeconds = this.convertTimeToSeconds(playAttack.tf);
-    const endSeconds = (this.convertTimeToSeconds(playAttack.tt) - startSeconds) * 1000;
+    const startSeconds = this.convertTimeToSeconds(playAttack.tf) - 5;
+    const endSeconds = ((this.convertTimeToSeconds(playAttack.tt) - startSeconds) - 5) * 1000;
     const vId = this.videoOptions.getVideoData().video_id;
     this.videoOptions.cueVideoById(vId, startSeconds);
     this.videoOptions.playVideo();
@@ -286,8 +286,8 @@ export class AnalysisMatchPageComponent implements OnInit {
 
   playVideoInThreeTime() {
     const playAttack = this.attacks.find(c => c.id === this.dropDownListId);
-    const startSeconds = this.convertTimeToSeconds(playAttack.tf) - 3;
-    const endSeconds = ((this.convertTimeToSeconds(playAttack.tt) - startSeconds) + 3) * 1000;
+    const startSeconds = this.convertTimeToSeconds(playAttack.tf) - 10;
+    const endSeconds = ((this.convertTimeToSeconds(playAttack.tt) - startSeconds) + 10) * 1000;
     const vId = this.videoOptions.getVideoData().video_id;
     this.videoOptions.cueVideoById(vId, startSeconds);
     this.videoOptions.playVideo();
@@ -298,8 +298,8 @@ export class AnalysisMatchPageComponent implements OnInit {
 
   playVideoInFiveTime() {
     const playAttack = this.attacks.find(c => c.id === this.dropDownListId);
-    const startSeconds = this.convertTimeToSeconds(playAttack.tf) - 5;
-    const endSeconds = ((this.convertTimeToSeconds(playAttack.tt) - startSeconds) + 5) * 1000;
+    const startSeconds = this.convertTimeToSeconds(playAttack.tf) - 15;
+    const endSeconds = ((this.convertTimeToSeconds(playAttack.tt) - startSeconds) + 15) * 1000;
     const vId = this.videoOptions.getVideoData().video_id;
     this.videoOptions.cueVideoById(vId, startSeconds);
     this.videoOptions.playVideo();
