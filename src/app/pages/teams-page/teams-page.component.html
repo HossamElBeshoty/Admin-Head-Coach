@@ -58,14 +58,14 @@
               <br>
               <div class="row">
                 <div class="text-center" *ngFor="let player of allPlayers">
-                  <div class="card m-2 shadow" style="width: 14rem;">
+                  <div class="card m-2 shadow" style="width: 9rem;">
                     <img
                       [src]="player.imagePath!= null ?  player.imagePath.includes('data:image')?player.imagePath:apiEndPoint + player.imagePath: '../assets/images/default-avatar-png-5.png'"
                       class="card-img-top" [alt]="player.nameEn">
                     <div class="card-body">
                       <a routerLink="../player/{{player.id}}">
-                        <h5 class="card-title">{{player.nameEn}} <span
-                          *ngIf="player.postions"> - {{player.positionName}}</span></h5>
+                        <h6 class="card-title">{{player.nickNameEn}} <span
+                          *ngIf="player.postions"> - {{player.positionName}}</span></h6>
                       </a>
 
                       <button class="btn btn-sm btn-outline-secondary" (click)="updatePlayer(player)"><i
@@ -261,10 +261,12 @@
                 <i class="far fa-flag"></i>
               </div>
             </div>
-            <select class="form-control"  id="playerNationality" name="nationalityId"
+            <select class="form-control" id="playerNationality" name="nationalityId"
                     [(ngModel)]="playerService.player.nationalityId"
                     #playerNationality="ngModel">
-              <option *ngFor="let x of allNationalities" [selected]="x.id.toString()==='7c82ef1a-641b-ea11-b448-309c231f8290'" [value]="x.id">{{x.nameEn}}</option>
+              <option *ngFor="let x of allNationalities"
+                      [selected]="x.id.toString()==='7c82ef1a-641b-ea11-b448-309c231f8290'"
+                      [value]="x.id">{{x.nameEn}}</option>
             </select>
           </div>
         </div>
