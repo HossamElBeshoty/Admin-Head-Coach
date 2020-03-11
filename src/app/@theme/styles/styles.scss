@@ -259,6 +259,11 @@ body .ui-tabview.ui-tabview-right .ui-tabview-nav li.ui-state-active:hover {
   background-color: #ffc107;
 }
 
+.navigation .link nb-icon {
+  font-size: 2rem;
+  color: #ffc107;
+}
+
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
 }

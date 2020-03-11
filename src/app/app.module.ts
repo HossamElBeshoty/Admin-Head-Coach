@@ -28,10 +28,11 @@ import {LyResizingCroppingImageModule} from '@alyle/ui/resizing-cropping-images'
 import {PrimengModule} from './pages/primeng.module';
 import {VerificationCodePageComponent} from './Page/verification-code-page/verification-code-page.component';
 import {ToastrModule} from 'ngx-toastr';
+import { ForgetPasswordComponent } from './Page/forget-password/forget-password.component';
 
 
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent, RegistrationPageComponent, VerificationCodePageComponent],
+  declarations: [AppComponent, LoginPageComponent, RegistrationPageComponent, VerificationCodePageComponent, ForgetPasswordComponent],
 
   imports: [
     BrowserModule,

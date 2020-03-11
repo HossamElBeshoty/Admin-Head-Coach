@@ -4,12 +4,9 @@ import {NbAuthComponent} from '@nebular/auth';
 import {LoginPageComponent} from './Page/login-page/login-page.component';
 import {RegistrationPageComponent} from './Page/registration-page/registration-page.component';
 import {VerificationCodePageComponent} from './Page/verification-code-page/verification-code-page.component';
+import {ForgetPasswordComponent} from './Page/forget-password/forget-password.component';
 
 const routes: Routes = [
-  // {
-  //   path: 'login', component: LoginPageComponent,
-  // },
-
   {
     path: 'pages',
     loadChildren: () => import('app/pages/pages.module')
@@ -23,10 +20,10 @@ const routes: Routes = [
         path: '',
         component: LoginPageComponent,
       },
-      // {
-      //   path: 'login',
-      //   component: NbLoginComponent,
-      // },
+      {
+        path: 'forgetPassword',
+        component: ForgetPasswordComponent,
+      },
       {
         path: 'register',
         component: RegistrationPageComponent,
