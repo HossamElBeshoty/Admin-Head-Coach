@@ -15,6 +15,7 @@ import {AnalysisMatchPageComponent} from './analysis-page/analysis-match-page/an
 import {AuthGuard} from '../auth/auth.guard';
 import {UserPofileComponent} from './user-pofile/user-pofile.component';
 import {AnalysisPageCountComponent} from './analysis-page/analysis-page-count/analysis-page-count.component';
+import {ReportDetailsComponent} from './reports-page/report-details/report-details.component';
 
 const routes: Routes = [{
   path: '',
@@ -56,6 +57,10 @@ const routes: Routes = [{
     {
       path: 'user/:id',
       component: UserPofileComponent,
+    },
+    {
+      path: 'report/:id',
+      component: ReportDetailsComponent,
     },
     {
       path: 'analysis/matchAnalysis/:id',

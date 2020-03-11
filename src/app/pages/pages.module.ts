@@ -37,6 +37,7 @@ import {LyToolbarModule} from '@alyle/ui/toolbar';
 import {LyResizingCroppingImageModule} from '@alyle/ui/resizing-cropping-images';
 import {UserPofileComponent} from './user-pofile/user-pofile.component';
 import {AnalysisPageCountComponent} from './analysis-page/analysis-page-count/analysis-page-count.component';
+import { ReportDetailsComponent } from './reports-page/report-details/report-details.component';
 
 @NgModule({
   imports: [
@@ -79,6 +80,7 @@ import {AnalysisPageCountComponent} from './analysis-page/analysis-page-count/an
     ImageCropperComponent,
     UserPofileComponent,
     AnalysisPageCountComponent,
+    ReportDetailsComponent,
   ],
   providers: [{provide: LY_THEME, useClass: MinimaLight, multi: true}],
 
