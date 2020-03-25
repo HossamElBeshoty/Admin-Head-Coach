@@ -7,8 +7,8 @@
 //}
 
 .img-wrapper {
-  width: 250px;
-  height: 250px;
+  width: 150px;
+  height: 150px;
   position: relative;
   overflow: hidden;
 }
@@ -48,7 +48,7 @@
   text-align: center;
   text-transform: uppercase;
   margin: 0;
-  padding: 10px 0;
+  padding: 5px 0;
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -72,9 +72,9 @@
 }
 
 .img-wrapper ul li {
-  background: #333;
-  height: 40px;
-  width: 40px;
+  background: #ffc107;
+  height: 35px;
+  width: 35px;
   text-align: center;
   line-height: 40px;
   transform: perspective(800px) rotateY(90deg);
@@ -104,13 +104,13 @@
 
 .img-wrapper ul li a {
   cursor: pointer;
-  color: #ffc107;
-  background: rgba(255, 255, 255, 0);
+  color: rgba(255, 255, 255, 0);
+  background: #ffc107;
 }
 
 .img-wrapper ul li i {
-  color: #ffc107;
-  background: rgba(255, 255, 255, 0);
+  color: #000;
+  background: #ffc107;
 }
 
 .img-wrapper ul li i:hover {
