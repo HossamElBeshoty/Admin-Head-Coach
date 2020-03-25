@@ -53,17 +53,20 @@
         <td>
           <div class="row">
             <div class="col-md-4 text-center">
-              <button class="btn btn-sm btn-outline-primary" title="Go To Match" (click)="goToMatch(rowData.id , rowData.hasVideo)"><i
+              <button class="btn btn-sm btn-outline-primary" title="Go To Match"
+                      (click)="goToMatch(rowData.id , rowData.hasVideo)"><i
                 class="fas fa-desktop"></i></button>
             </div>
             <div class="col-md-4 text-center">
-            <button class="btn btn-sm btn-outline-info" routerLink="matchAnalysisCount/{{rowData.id}}" title="Go To Counts"><i class="fas fa-sort-numeric-up"></i></button>
+              <button class="btn btn-sm btn-outline-info" routerLink="matchAnalysisCount/{{rowData.id}}"
+                      title="Go To Counts"><i class="fas fa-sort-numeric-up"></i></button>
             </div>
             <!--            <div class="col-md-4 text-center">-->
             <!--              <button class="btn btn-outline-secondary" title="Go To Report"><i class="fas fa-print"></i></button>-->
             <!--            </div>-->
             <div class="col-md-4 text-center">
-              <button class="btn btn-sm btn-outline-danger" title="Delete" (click)="showDeleteMatchAnalysis(rowData.id)"><i
+              <button class="btn btn-sm btn-outline-danger" title="Delete"
+                      (click)="showDeleteMatchAnalysis(rowData.id)"><i
                 class="fas fa-trash-alt"></i></button>
             </div>
           </div>
@@ -85,7 +88,8 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="matchDate">Match Date</label>
-              <input type="date" name="matchDate" [ngModel]="matchesService.match?.matchDate | date:'yyyy-MM-dd'" (ngModelChange)="matchesService.match.matchDate = $event" #matchDate="ngModel"
+              <input type="date" name="matchDate" [ngModel]="matchesService.match?.matchDate | date:'yyyy-MM-dd'"
+                     (ngModelChange)="matchesService.match.matchDate = $event" #matchDate="ngModel"
                      class="form-control" id="matchDate" required>
             </div>
           </div>
@@ -103,7 +107,8 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="clubA">Select Club A</label>
-              <select class="form-control" id="clubA"  [ngModel]="matchesService.match.teamA.clubId"  (ngModelChange)="getAllTeams($event, true)" name="clubId">
+              <select class="form-control" id="clubA" [ngModel]="matchesService.match.teamA.clubId"
+                      (ngModelChange)="getAllTeams($event, true)" name="clubId">
                 <option disabled>Please Select Club A</option>
                 <option *ngFor="let club of allClubs" [value]="club.id">{{club.nameEn}}</option>
               </select>
@@ -123,7 +128,8 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="clubB">Select Club B</label>
-              <select class="form-control" id="clubB"  name="clubB" [ngModel]="matchesService.match.teamB.clubId"  (ngModelChange)="getAllTeams($event, false)">
+              <select class="form-control" id="clubB" name="clubB" [ngModel]="matchesService.match.teamB.clubId"
+                      (ngModelChange)="getAllTeams($event, false)">
                 <option disabled>Please Select Club B</option>
                 <option *ngFor="let club of allClubs" [value]="club.id">{{club.nameEn}}</option>
               </select>
@@ -226,41 +232,46 @@
       <form #youtubeURLForm="ngForm">
         <ng-template matStepLabel>Youtube URL</ng-template>
         <div class="row">
+
           <div class="col-md-12">
             <button class="btn btn-outline-primary float-right btn-block mb-3 btn-sm" (click)="addNewYoutubeInput()"><i
               class="fas fa-plus"></i> Add New Video
             </button>
           </div>
-          <div class="col-md-12" *ngFor="let x of matchesService.match.matchVideos; let i = index">
-            <div class="row">
-              <div class="col-md-10">
-                <div class="form-group">
-                  <label for="Youtube Link">Youtube Link Name</label>
-                  <input type="text" class="form-control" id="name"
-                         [(ngModel)]="matchesService.match.matchVideos[i].name"
-                         #name="ngModel"
-                         name="name"
-                         placeholder="Please Enter Youtube Link Name" required>
+          <div style="max-height: 300px; width: 100%; overflow: auto">
+            <div class="col-md-12" *ngFor="let x of matchesService.match.matchVideos; let i = index">
+              <div class="row">
+                <div class="col-md-10">
+                  <div class="form-group">
+                    <label for="Youtube Link">Youtube Link Name</label>
+                    <input type="text" class="form-control" id="name"
+                           [(ngModel)]="matchesService.match.matchVideos[i].name"
+                           #name="ngModel"
+                           name="name"
+                           placeholder="Please Enter Youtube Link Name" required>
+                  </div>
+                </div>
+                <div class="col-md-10">
+                  <div class="form-group">
+                    <label for="Youtube Link">Youtube Link</label>
+                    <input type="text" class="form-control" id="Youtube Link"
+                           [(ngModel)]="matchesService.match.matchVideos[i].path"
+                           #matchVideos="ngModel"
+                           name="matchVideos"
+                           placeholder="Please Enter Youtube Link" required>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <br>
+                  <button class="btn btn-outline-danger mt-2" (click)="deleteYoutubeInput(i)"><i
+                    class="fas fa-minus"></i>
+                  </button>
                 </div>
               </div>
-              <div class="col-md-10">
-                <div class="form-group">
-                  <label for="Youtube Link">Youtube Link</label>
-                  <input type="text" class="form-control" id="Youtube Link"
-                         [(ngModel)]="matchesService.match.matchVideos[i].path"
-                         #matchVideos="ngModel"
-                         name="matchVideos"
-                         placeholder="Please Enter Youtube Link" required>
-                </div>
-              </div>
-              <div class="col-md-2">
-                <br>
-                <button class="btn btn-outline-danger mt-2" (click)="deleteYoutubeInput(i)"><i class="fas fa-minus"></i>
-                </button>
-              </div>
-            </div>
 
+            </div>
           </div>
+
         </div>
         <div class="row">
           <div class="col-md-6 float-left">
