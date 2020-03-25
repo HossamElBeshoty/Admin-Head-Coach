@@ -1,137 +1,350 @@
-<div class="row">
-  <div class="col-md-3 animated slow fadeInUp line-in-middle">
-    <!--    <ngx-user-card></ngx-user-card>-->
-    <div class="card shadow">
-      <img
-        [src]="playerData?.imagePath != null ? playerData?.imagePath.includes('data:image')?playerData?.imagePath: apiEndPoint+ playerData?.imagePath: '../assets/images/default-avatar-png-5.png'"
-        alt="Avatar">
-      <div class="container">
-        <h4><b>{{playerData?.nickNameAr}}</b></h4>
-        <p>{{playerData?.positionName}}</p>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-9 animated slow fadeInRight">
-    <p-tabView>
-      <p-tabPanel header="Data">
-        <p-fieldset legend="Name" styleClass="myFieldset">
-          <span for="">{{playerData?.nameAr}}</span>
-        </p-fieldset>
-        <p-fieldset legend="Known As" styleClass="myFieldset">
-          <span for="">{{playerData?.nickNameAr}}</span>
-        </p-fieldset>
-        <p-fieldset legend="Date Of Birth" styleClass="myFieldset">
-          <span for="">{{playerData?.birthDate | date}}</span>
-        </p-fieldset>
-        <p-fieldset legend="Height" styleClass="myFieldset">
-          <span for="">{{playerData?.height}}</span>
-        </p-fieldset>
-        <p-fieldset legend="Player Work Rate (Attacking/Defensive)" styleClass="myFieldset">
-          <span for="">Medium / High</span>
-        </p-fieldset>
-        <p-fieldset legend="Preferred Foot" styleClass="myFieldset">
-          <span *ngIf="playerData?.preferred === 1" for="">Right</span>
-          <span *ngIf="playerData?.preferred === 2" for="">Left</span>
-        </p-fieldset>
-        <!--        <p-fieldset legend="Week Feet" styleClass="myFieldset">-->
-        <!--          <p-rating [ngModel]="val1" disabled="true" stars="10"></p-rating>-->
-        <!--        </p-fieldset>-->
-        <p-fieldset legend="Skill Moves" styleClass="myFieldset">
-          <p-rating [ngModel]="val1" disabled="true" stars="10"></p-rating>
-        </p-fieldset>
-      </p-tabPanel>
-      <p-tabPanel header="Matches">
-        <p-accordion>
-          <p-accordionTab header="Ahly Vs. Zamalik">
-            <p-table [value]="matches">
-              <ng-template pTemplate="header">
-                <tr>
-                  <th>Date</th>
-                  <th>Team A</th>
-                  <th>Team B</th>
-                  <th>Action</th>
-                </tr>
-              </ng-template>
-              <ng-template pTemplate="body" let-match>
-                <tr>
-                  <td>{{match.date}}</td>
-                  <td>{{match.teamA}}</td>
-                  <td>{{match.teamB}}</td>
-                  <td>View Match</td>
-                </tr>
-              </ng-template>
-            </p-table>
-          </p-accordionTab>
-          <p-accordionTab header="Barcelona Vs. Real Madrid">
-            <p-table [value]="matches">
-              <ng-template pTemplate="header">
-                <tr>
-                  <th>Date</th>
-                  <th>Team A</th>
-                  <th>Team B</th>
-                  <th>Action</th>
-                </tr>
-              </ng-template>
-              <ng-template pTemplate="body" let-match>
-                <tr>
-                  <td>{{match.date}}</td>
-                  <td>{{match.teamA}}</td>
-                  <td>{{match.teamB}}</td>
-                  <td>View Match</td>
-                </tr>
-              </ng-template>
-            </p-table>
-          </p-accordionTab>
-          <p-accordionTab header="Atletico Madrid Vs. Liverpool">
-            <p-table [value]="matches">
-              <ng-template pTemplate="header">
-                <tr>
-                  <th>Date</th>
-                  <th>Team A</th>
-                  <th>Team B</th>
-                  <th>Action</th>
-                </tr>
-              </ng-template>
-              <ng-template pTemplate="body" let-match>
-                <tr>
-                  <td>{{match.date}}</td>
-                  <td>{{match.teamA}}</td>
-                  <td>{{match.teamB}}</td>
-                  <td>View Match</td>
-                </tr>
-              </ng-template>
-            </p-table>
-          </p-accordionTab>
-        </p-accordion>
-      </p-tabPanel>
-      <p-tabPanel header="Analysis">
-        <div class="row" style="margin-bottom: 1em;">
-          <div class="col-md-6">
-            <button type="button" class="btn btn-outline-primary float-left"
-                    (click)="openNext()"><i
-              class="fas fa-sort-amount-down"></i> Next Tactic
-            </button>
-          </div>
-          <div class="col-md-6">
-            <button type="button" class="btn btn-outline-primary float-right"
-                    (click)="openPrev()">Previous Tactic <i class="fas fa-sort-amount-up"></i></button>
+<!--<div class="row">-->
+<!--  <div class="col-md-3 animated slow fadeInUp line-in-middle">-->
+<!--    &lt;!&ndash;    <ngx-user-card></ngx-user-card>&ndash;&gt;-->
+<!--    <div class="card shadow">-->
+<!--      <img-->
+<!--        [src]="playerData?.imagePath != null ? playerData?.imagePath.includes('data:image')?playerData?.imagePath: apiEndPoint+ playerData?.imagePath: '../assets/images/default-avatar-png-5.png'"-->
+<!--        alt="Avatar">-->
+<!--      <div class="container">-->
+<!--        <h4><b>{{playerData?.nickNameAr}}</b></h4>-->
+<!--        <p>{{playerData?.positionName}}</p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="col-md-9 animated slow fadeInRight">-->
+<!--    <p-tabView>-->
+<!--      <p-tabPanel header="Data">-->
+<!--        <p-fieldset legend="Name" styleClass="myFieldset">-->
+<!--          <span for="">{{playerData?.nameAr}}</span>-->
+<!--        </p-fieldset>-->
+<!--        <p-fieldset legend="Known As" styleClass="myFieldset">-->
+<!--          <span for="">{{playerData?.nickNameAr}}</span>-->
+<!--        </p-fieldset>-->
+<!--        <p-fieldset legend="Date Of Birth" styleClass="myFieldset">-->
+<!--          <span for="">{{playerData?.birthDate | date}}</span>-->
+<!--        </p-fieldset>-->
+<!--        <p-fieldset legend="Height" styleClass="myFieldset">-->
+<!--          <span for="">{{playerData?.height}}</span>-->
+<!--        </p-fieldset>-->
+<!--        <p-fieldset legend="Player Work Rate (Attacking/Defensive)" styleClass="myFieldset">-->
+<!--          <span for="">Medium / High</span>-->
+<!--        </p-fieldset>-->
+<!--        <p-fieldset legend="Preferred Foot" styleClass="myFieldset">-->
+<!--          <span *ngIf="playerData?.preferred === 1" for="">Right</span>-->
+<!--          <span *ngIf="playerData?.preferred === 2" for="">Left</span>-->
+<!--        </p-fieldset>-->
+<!--        &lt;!&ndash;        <p-fieldset legend="Week Feet" styleClass="myFieldset">&ndash;&gt;-->
+<!--        &lt;!&ndash;          <p-rating [ngModel]="val1" disabled="true" stars="10"></p-rating>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </p-fieldset>&ndash;&gt;-->
+<!--        <p-fieldset legend="Skill Moves" styleClass="myFieldset">-->
+<!--          <p-rating [ngModel]="val1" disabled="true" stars="10"></p-rating>-->
+<!--        </p-fieldset>-->
+<!--      </p-tabPanel>-->
+<!--      <p-tabPanel header="Matches">-->
+<!--        <p-accordion>-->
+<!--          <p-accordionTab header="Ahly Vs. Zamalik">-->
+<!--            <p-table [value]="matches">-->
+<!--              <ng-template pTemplate="header">-->
+<!--                <tr>-->
+<!--                  <th>Date</th>-->
+<!--                  <th>Team A</th>-->
+<!--                  <th>Team B</th>-->
+<!--                  <th>Action</th>-->
+<!--                </tr>-->
+<!--              </ng-template>-->
+<!--              <ng-template pTemplate="body" let-match>-->
+<!--                <tr>-->
+<!--                  <td>{{match.date}}</td>-->
+<!--                  <td>{{match.teamA}}</td>-->
+<!--                  <td>{{match.teamB}}</td>-->
+<!--                  <td>View Match</td>-->
+<!--                </tr>-->
+<!--              </ng-template>-->
+<!--            </p-table>-->
+<!--          </p-accordionTab>-->
+<!--          <p-accordionTab header="Barcelona Vs. Real Madrid">-->
+<!--            <p-table [value]="matches">-->
+<!--              <ng-template pTemplate="header">-->
+<!--                <tr>-->
+<!--                  <th>Date</th>-->
+<!--                  <th>Team A</th>-->
+<!--                  <th>Team B</th>-->
+<!--                  <th>Action</th>-->
+<!--                </tr>-->
+<!--              </ng-template>-->
+<!--              <ng-template pTemplate="body" let-match>-->
+<!--                <tr>-->
+<!--                  <td>{{match.date}}</td>-->
+<!--                  <td>{{match.teamA}}</td>-->
+<!--                  <td>{{match.teamB}}</td>-->
+<!--                  <td>View Match</td>-->
+<!--                </tr>-->
+<!--              </ng-template>-->
+<!--            </p-table>-->
+<!--          </p-accordionTab>-->
+<!--          <p-accordionTab header="Atletico Madrid Vs. Liverpool">-->
+<!--            <p-table [value]="matches">-->
+<!--              <ng-template pTemplate="header">-->
+<!--                <tr>-->
+<!--                  <th>Date</th>-->
+<!--                  <th>Team A</th>-->
+<!--                  <th>Team B</th>-->
+<!--                  <th>Action</th>-->
+<!--                </tr>-->
+<!--              </ng-template>-->
+<!--              <ng-template pTemplate="body" let-match>-->
+<!--                <tr>-->
+<!--                  <td>{{match.date}}</td>-->
+<!--                  <td>{{match.teamA}}</td>-->
+<!--                  <td>{{match.teamB}}</td>-->
+<!--                  <td>View Match</td>-->
+<!--                </tr>-->
+<!--              </ng-template>-->
+<!--            </p-table>-->
+<!--          </p-accordionTab>-->
+<!--        </p-accordion>-->
+<!--      </p-tabPanel>-->
+<!--      <p-tabPanel header="Analysis">-->
+<!--        <div class="row" style="margin-bottom: 1em;">-->
+<!--          <div class="col-md-6">-->
+<!--            <button type="button" class="btn btn-outline-primary float-left"-->
+<!--                    (click)="openNext()"><i-->
+<!--              class="fas fa-sort-amount-down"></i> Next Tactic-->
+<!--            </button>-->
+<!--          </div>-->
+<!--          <div class="col-md-6">-->
+<!--            <button type="button" class="btn btn-outline-primary float-right"-->
+<!--                    (click)="openPrev()">Previous Tactic <i class="fas fa-sort-amount-up"></i></button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <p-accordion [activeIndex]="indexAnalysis">-->
+<!--          <p-accordionTab header="Tactic 1">-->
+<!--            <p-progressBar [value]="50"></p-progressBar>-->
+<!--          </p-accordionTab>-->
+<!--          <p-accordionTab header="Tactic 2">-->
+<!--            <p-progressBar [value]="70"></p-progressBar>-->
+<!--          </p-accordionTab>-->
+<!--          <p-accordionTab header="Tactic 3">-->
+<!--            <p-progressBar [value]="40"></p-progressBar>-->
+<!--          </p-accordionTab>-->
+<!--          <p-accordionTab header="Tactic 4">-->
+<!--            <p-progressBar [value]="90"></p-progressBar>-->
+<!--          </p-accordionTab>-->
+<!--        </p-accordion>-->
+<!--      </p-tabPanel>-->
+<!--    </p-tabView>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="dashboard-area">
+  <div class="row">
+    <div class="col-12">
+      <div class="mb-3 bg-light">
+        <div class="row">
+          <div class="col-12">
+            <div class="row">
+              <div class="col-md-6 ml-auto mr-auto">
+                <div class="profiles p-3 my-4 rounded text-center shadow">
+                  <div class="avatars">
+                    <img
+                      [src]="playerData?.imagePath != null ? playerData?.imagePath.includes('data:image')?playerData?.imagePath: apiEndPoint+ playerData?.imagePath: '../assets/images/default-avatar-png-5.png'"
+                      alt="Circle Image"
+                      class="avatar-lg img-thumbnail img-fluid" data-toggle="tooltip" data-placement="bottom"
+                      title="" data-original-title="Edit avatar images">
+
+                  </div>
+                  <div class="names">
+                    <h3 class="title text-warning">{{playerData?.nickNameEn}} - {{playerData?.positionName}}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <p-accordion [activeIndex]="indexAnalysis">
-          <p-accordionTab header="Tactic 1">
-            <p-progressBar [value]="50"></p-progressBar>
-          </p-accordionTab>
-          <p-accordionTab header="Tactic 2">
-            <p-progressBar [value]="70"></p-progressBar>
-          </p-accordionTab>
-          <p-accordionTab header="Tactic 3">
-            <p-progressBar [value]="40"></p-progressBar>
-          </p-accordionTab>
-          <p-accordionTab header="Tactic 4">
-            <p-progressBar [value]="90"></p-progressBar>
-          </p-accordionTab>
-        </p-accordion>
-      </p-tabPanel>
-    </p-tabView>
+      </div>
+    </div>
+    <div class="col-12">
+      <p-tabView>
+        <p-tabPanel header="Data">
+          <div class="row">
+            <div class="col-md-2" *ngIf="playerData?.nameEn">
+              <div class="card border-warning mb-3">
+                <div class="card-header text-center">Player Name</div>
+                <div class="card-body text-dark">
+                  <h6 class="card-title text-center">{{playerData?.nameEn}}</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2" *ngIf="playerData?.nickNameEn">
+              <div class="card border-warning mb-3">
+                <div class="card-header text-center">Player Known As</div>
+                <div class="card-body text-dark">
+                  <h6 class="card-title text-center">{{playerData?.nickNameEn}}</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2" *ngIf="playerData?.birthDate">
+              <div class="card border-warning mb-3">
+                <div class="card-header text-center">Date Of Birth</div>
+                <div class="card-body text-dark">
+                  <h6 class="card-title text-center">{{playerData?.birthDate | date}}</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2" *ngIf="playerData?.height">
+              <div class="card border-warning mb-3">
+                <div class="card-header text-center">Height</div>
+                <div class="card-body text-dark">
+                  <h6 class="card-title text-center">{{playerData?.height}}</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="card border-warning mb-3">
+                <div class="card-header text-center">Player Work Rate (Attacking/Defensive)</div>
+                <div class="card-body text-dark">
+                  <h6 class="card-title text-center">Medium / High</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="card border-warning mb-3" *ngIf="playerData?.preferred">
+                <div class="card-header text-center">Preferred Hand</div>
+                <div class="card-body text-dark">
+                  <h6 class="card-title text-center" *ngIf="playerData?.preferred === 1">Right</h6>
+                  <h6 class="card-title text-center" *ngIf="playerData?.preferred === 2">Left</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="card border-warning mb-3">
+                <div class="card-header text-center">Skill Moves</div>
+                <div class="card-body text-dark text-center">
+                  <p-rating [ngModel]="val1" disabled="true" stars="10"></p-rating>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--          <p-fieldset legend="Name" styleClass="myFieldset">-->
+          <!--            <span for="">{{playerData?.nameEn}}</span>-->
+          <!--          </p-fieldset>-->
+          <!--          <p-fieldset legend="Known As" styleClass="myFieldset">-->
+          <!--            <span for="">{{playerData?.nickNameEn}}</span>-->
+          <!--          </p-fieldset>-->
+          <!--          <p-fieldset legend="Date Of Birth" styleClass="myFieldset">-->
+          <!--            <span for="">{{playerData?.birthDate | date}}</span>-->
+          <!--          </p-fieldset>-->
+          <!--          <p-fieldset legend="Height" styleClass="myFieldset">-->
+          <!--            <span for="">{{playerData?.height}}</span>-->
+          <!--          </p-fieldset>-->
+          <!--          <p-fieldset legend="Player Work Rate (Attacking/Defensive)" styleClass="myFieldset">-->
+          <!--            <span for="">Medium / High</span>-->
+          <!--          </p-fieldset>-->
+          <!--          <p-fieldset legend="Preferred Foot" styleClass="myFieldset">-->
+          <!--            <span *ngIf="playerData?.preferred === 1">Right</span>-->
+          <!--            <span *ngIf="playerData?.preferred === 2">Left</span>-->
+          <!--          </p-fieldset>-->
+          <!--        <p-fieldset legend="Week Feet" styleClass="myFieldset">-->
+          <!--          <p-rating [ngModel]="val1" disabled="true" stars="10"></p-rating>-->
+          <!--        </p-fieldset>-->
+          <!--          <p-fieldset legend="Skill Moves" styleClass="myFieldset">-->
+          <!--            <p-rating [ngModel]="val1" disabled="true" stars="10"></p-rating>-->
+          <!--          </p-fieldset>-->
+        </p-tabPanel>
+        <p-tabPanel header="Matches">
+          <p-accordion>
+            <p-accordionTab header="Ahly Vs. Zamalik">
+              <p-table [value]="matches">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Date</th>
+                    <th>Team A</th>
+                    <th>Team B</th>
+                    <th>Action</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-match>
+                  <tr>
+                    <td>{{match.date}}</td>
+                    <td>{{match.teamA}}</td>
+                    <td>{{match.teamB}}</td>
+                    <td>View Match</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </p-accordionTab>
+            <p-accordionTab header="Barcelona Vs. Real Madrid">
+              <p-table [value]="matches">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Date</th>
+                    <th>Team A</th>
+                    <th>Team B</th>
+                    <th>Action</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-match>
+                  <tr>
+                    <td>{{match.date}}</td>
+                    <td>{{match.teamA}}</td>
+                    <td>{{match.teamB}}</td>
+                    <td>View Match</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </p-accordionTab>
+            <p-accordionTab header="Atletico Madrid Vs. Liverpool">
+              <p-table [value]="matches">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Date</th>
+                    <th>Team A</th>
+                    <th>Team B</th>
+                    <th>Action</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-match>
+                  <tr>
+                    <td>{{match.date}}</td>
+                    <td>{{match.teamA}}</td>
+                    <td>{{match.teamB}}</td>
+                    <td>View Match</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </p-accordionTab>
+          </p-accordion>
+        </p-tabPanel>
+        <p-tabPanel header="Analysis">
+          <div class="row" style="margin-bottom: 1em;">
+            <div class="col-md-6">
+              <button type="button" class="btn btn-outline-primary float-left"
+                      (click)="openNext()"><i
+                class="fas fa-sort-amount-down"></i> Next Tactic
+              </button>
+            </div>
+            <div class="col-md-6">
+              <button type="button" class="btn btn-outline-primary float-right"
+                      (click)="openPrev()">Previous Tactic <i class="fas fa-sort-amount-up"></i></button>
+            </div>
+          </div>
+          <p-accordion [activeIndex]="indexAnalysis">
+            <p-accordionTab header="Tactic 1">
+              <p-progressBar [value]="50"></p-progressBar>
+            </p-accordionTab>
+            <p-accordionTab header="Tactic 2">
+              <p-progressBar [value]="70"></p-progressBar>
+            </p-accordionTab>
+            <p-accordionTab header="Tactic 3">
+              <p-progressBar [value]="40"></p-progressBar>
+            </p-accordionTab>
+            <p-accordionTab header="Tactic 4">
+              <p-progressBar [value]="90"></p-progressBar>
+            </p-accordionTab>
+          </p-accordion>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
   </div>
 </div>
