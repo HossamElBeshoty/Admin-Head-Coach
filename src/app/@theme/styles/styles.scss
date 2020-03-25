@@ -264,6 +264,18 @@ body .ui-tabview.ui-tabview-right .ui-tabview-nav li.ui-state-active:hover {
   color: #ffc107;
 }
 
+body .ui-accordion .ui-accordion-header:not(.ui-state-disabled).ui-state-active a {
+  background-color: #ffc107;
+  border: 1px solid #ffc107;
+  color: #ffffff;
+}
+
+body .ui-accordion .ui-accordion-header:not(.ui-state-disabled).ui-state-active:hover a {
+  border: 1px solid #ffc107;
+  background-color: #ffc107;
+  color: #ffffff;
+}
+
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
 }
