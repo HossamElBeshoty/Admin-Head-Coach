@@ -7,7 +7,6 @@ import {DashboardModule} from './dashboard/dashboard.module';
 import {ECommerceModule} from './e-commerce/e-commerce.module';
 import {PagesRoutingModule} from './pages-routing.module';
 import {MiscellaneousModule} from './miscellaneous/miscellaneous.module';
-import {HomePageComponent} from './home-page/home-page.component';
 import {AnalysisPageComponent} from './analysis-page/analysis-page.component';
 import {ClubsPageComponent} from './clubs-page/clubs-page.component';
 import {TeamsPageComponent} from './teams-page/teams-page.component';
@@ -37,7 +36,7 @@ import {LyToolbarModule} from '@alyle/ui/toolbar';
 import {LyResizingCroppingImageModule} from '@alyle/ui/resizing-cropping-images';
 import {UserPofileComponent} from './user-pofile/user-pofile.component';
 import {AnalysisPageCountComponent} from './analysis-page/analysis-page-count/analysis-page-count.component';
-import { ReportDetailsComponent } from './reports-page/report-details/report-details.component';
+import {ReportDetailsComponent} from './reports-page/report-details/report-details.component';
 
 @NgModule({
   imports: [
@@ -59,7 +58,6 @@ import { ReportDetailsComponent } from './reports-page/report-details/report-det
   ],
   declarations: [
     PagesComponent,
-    HomePageComponent,
     AnalysisPageComponent,
     ClubsPageComponent,
     TeamsPageComponent,
