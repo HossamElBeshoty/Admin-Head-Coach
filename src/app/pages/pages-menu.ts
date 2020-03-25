@@ -30,12 +30,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/analysis',
     home: true,
   },
-  {
-    title: 'Comparison',
-    icon: 'pantone-outline',
-    link: '/pages/comparison',
-    home: true,
-  },
+  // {
+  //   title: 'Comparison',
+  //   icon: 'pantone-outline',
+  //   link: '/pages/comparison',
+  //   home: true,
+  // },
   {
     title: 'Reports',
     icon: 'clipboard-outline',

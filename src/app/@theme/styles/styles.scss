@@ -276,6 +276,11 @@ body .ui-accordion .ui-accordion-header:not(.ui-state-disabled).ui-state-active:
   color: #ffffff;
 }
 
+body .ui-table .ui-sortable-column.ui-state-highlight {
+  background-color: #ffc107;
+  color: #ffffff;
+}
+
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
 }
