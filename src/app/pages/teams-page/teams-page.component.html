@@ -7,7 +7,7 @@
     </button>
   </div>
 </div>
-
+<br>
 <div class="animated slower fadeInUp" *ngIf="allClubs.length !== 0">
   <p-tabView (onChange)="onChangeTab($event.index)">
     <ng-container *ngFor="let item of allClubs;let i = index;">
@@ -77,7 +77,7 @@
                 <!--                </div>-->
 
 
-                <div class="col-3 image-area" *ngFor="let player of allPlayers">
+                <div class="p-2 image-area" *ngFor="let player of allPlayers">
                   <div class="img-wrapper m-2">
                     <img
                       [src]="player.imagePath!= null ?  player.imagePath.includes('data:image')?player.imagePath:apiEndPoint + player.imagePath: '../assets/images/default-avatar-png-5.png'"
