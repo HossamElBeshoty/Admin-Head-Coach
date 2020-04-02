@@ -10,8 +10,11 @@ import {Component} from '@angular/core';
       <b>
         <a href="http://emd4it.com" target="_blank">EMD4IT Development Force</a
         ></b
-      ></span
+      >
+        Version <b>1.5.13</b>
+    </span
     >
+
     <div class="socials">
       <a href="#" target="_blank" class="ion ion-social-github"></a>
       <a href="https://www.facebook.com/amr.mossad.12979?ref=bookmarks" target="_blank"
