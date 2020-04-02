@@ -419,9 +419,9 @@
         <p-tabPanel header="Head 2 Head">
           <div class="row">
             <div class="col-md-12">
-              <button class="btn btn-sm btn-outline-primary float-right">
+              <button (click)="showPlayerComparisonDialog()" class="btn btn-sm btn-outline-primary float-right">
                 <i class="fas fa-user-friends"></i>
-                Choose Player To Compare
+                Choose Player
               </button>
             </div>
           </div>
@@ -538,3 +538,41 @@
     </div>
   </div>
 </div>
+<p-dialog header="Choose Player" [modal]="true" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}"
+          [minY]="70" appendTo="body" [baseZIndex]="10000" [(visible)]="displayPlayerComparisonDialog">
+  <form action="">
+    <div class="form-group">
+      <label for="club">Club</label>
+      <select id="club" class="form-control">
+        <option value="">1</option>
+        <option value="">1</option>
+        <option value="">1</option>
+        <option value="">1</option>
+        <option value="">1</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="team">Team</label>
+      <select id="team" class="form-control">
+        <option value="">1</option>
+        <option value="">1</option>
+        <option value="">1</option>
+        <option value="">1</option>
+        <option value="">1</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="Player">Player</label>
+      <select id="Player" class="form-control">
+        <option value="">1</option>
+        <option value="">1</option>
+        <option value="">1</option>
+        <option value="">1</option>
+        <option value="">1</option>
+      </select>
+    </div>
+    <button (click)="displayPlayerComparisonDialog = false" class="btn btn-block btn-outline-success"><i
+      class="far fa-check-square"></i> Submit
+    </button>
+  </form>
+</p-dialog>

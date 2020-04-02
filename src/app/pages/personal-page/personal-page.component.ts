@@ -11,6 +11,7 @@ import {PlayerPositions} from '../../Models/player-positions';
   styleUrls: ['./personal-page.component.scss'],
 })
 export class PersonalPageComponent implements OnInit {
+  displayPlayerComparisonDialog = false;
   val1: number = 5;
   matches = [
     {
@@ -47,5 +48,9 @@ export class PersonalPageComponent implements OnInit {
         this.playerData.positionName = pos.position;
       }
     });
+  }
+
+  showPlayerComparisonDialog() {
+    this.displayPlayerComparisonDialog = true;
   }
 }
