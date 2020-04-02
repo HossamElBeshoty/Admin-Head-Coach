@@ -26,7 +26,6 @@ export class PersonalPageComponent implements OnInit {
       fTO: '1',
     },
   ];
-  indexAnalysis: number = -1;
   playerId;
   playerData: IPlayer;
   apiEndPoint = environment.apiEndPoint;
@@ -38,14 +37,6 @@ export class PersonalPageComponent implements OnInit {
   ngOnInit() {
     this.playerId = this.activatedRoute.snapshot.params.id;
     this.getPlayer();
-  }
-
-  openNext() {
-    this.indexAnalysis = (this.indexAnalysis === 3) ? 0 : this.indexAnalysis + 1;
-  }
-
-  openPrev() {
-    this.indexAnalysis = (this.indexAnalysis <= 0) ? 3 : this.indexAnalysis - 1;
   }
 
   getPlayer() {

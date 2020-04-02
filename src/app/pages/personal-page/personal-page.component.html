@@ -376,34 +376,6 @@
             </p-accordionTab>
           </p-accordion>
         </p-tabPanel>
-        <p-tabPanel header="Analysis">
-          <div class="row" style="margin-bottom: 1em;">
-            <div class="col-md-6">
-              <button type="button" class="btn btn-outline-primary float-left"
-                      (click)="openNext()"><i
-                class="fas fa-sort-amount-down"></i> Next Tactic
-              </button>
-            </div>
-            <div class="col-md-6">
-              <button type="button" class="btn btn-outline-primary float-right"
-                      (click)="openPrev()">Previous Tactic <i class="fas fa-sort-amount-up"></i></button>
-            </div>
-          </div>
-          <p-accordion [activeIndex]="indexAnalysis">
-            <p-accordionTab header="Tactic 1">
-              <p-progressBar [value]="50"></p-progressBar>
-            </p-accordionTab>
-            <p-accordionTab header="Tactic 2">
-              <p-progressBar [value]="70"></p-progressBar>
-            </p-accordionTab>
-            <p-accordionTab header="Tactic 3">
-              <p-progressBar [value]="40"></p-progressBar>
-            </p-accordionTab>
-            <p-accordionTab header="Tactic 4">
-              <p-progressBar [value]="90"></p-progressBar>
-            </p-accordionTab>
-          </p-accordion>
-        </p-tabPanel>
         <p-tabPanel header="Statistics">
           <div class="row">
             <div class="col-md-6">
@@ -441,6 +413,124 @@
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Head 2 Head">
+          <div class="row">
+            <div class="col-md-12">
+              <button class="btn btn-sm btn-outline-primary float-right">
+                <i class="fas fa-user-friends"></i>
+                Choose Player To Compare
+              </button>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-12 ">
+              <p-accordion>
+                <p-accordionTab header="Goals Per Game">
+                  <div class="row">
+                    <div class="col-md-6 border-right">
+                      <p-progressBar [value]="50"></p-progressBar>
+                    </div>
+                    <div class="col-md-6">
+                      <p-progressBar [value]="20"></p-progressBar>
+                    </div>
+                  </div>
+
+                </p-accordionTab>
+                <p-accordionTab header="Assists Per Game">
+                  <div class="row">
+                    <div class="col-md-6 border-right">
+                      <p-progressBar [value]="54"></p-progressBar>
+                    </div>
+                    <div class="col-md-6">
+                      <p-progressBar [value]="45"></p-progressBar>
+                    </div>
+                  </div>
+                </p-accordionTab>
+                <p-accordionTab header="Steels Per Game">
+                  <div class="row">
+                    <div class="col-md-6 border-right">
+                      <p-progressBar [value]="32"></p-progressBar>
+                    </div>
+                    <div class="col-md-6">
+                      <p-progressBar [value]="14"></p-progressBar>
+                    </div>
+                  </div>
+                </p-accordionTab>
+                <p-accordionTab header="Efficiency (%)">
+                  <div class="row">
+                    <div class="col-md-6 border-right">
+                      <p-progressBar [value]="87"></p-progressBar>
+                    </div>
+                    <div class="col-md-6">
+                      <p-progressBar [value]="98"></p-progressBar>
+                    </div>
+                  </div>
+                </p-accordionTab>
+                <p-accordionTab header="Turnovers Per Game">
+                  <div class="row">
+                    <div class="col-md-6 border-right">
+                      <p-progressBar [value]="78"></p-progressBar>
+                    </div>
+                    <div class="col-md-6">
+                      <p-progressBar [value]="20"></p-progressBar>
+                    </div>
+                  </div>
+                </p-accordionTab>
+                <p-accordionTab header="Fastest Shot (km/h)">
+                  <div class="row">
+                    <div class="col-md-6 border-right">
+                      <p-progressBar [value]="56"></p-progressBar>
+                    </div>
+                    <div class="col-md-6">
+                      <p-progressBar [value]="54"></p-progressBar>
+                    </div>
+                  </div>
+                </p-accordionTab>
+                <p-accordionTab header="Fastest Sprint (km/h)">
+                  <div class="row">
+                    <div class="col-md-6 border-right">
+                      <p-progressBar [value]="18"></p-progressBar>
+                    </div>
+                    <div class="col-md-6">
+                      <p-progressBar [value]="65"></p-progressBar>
+                    </div>
+                  </div>
+                </p-accordionTab>
+                <p-accordionTab header="Highest Jump (cm)">
+                  <div class="row">
+                    <div class="col-md-6 border-right">
+                      <p-progressBar [value]="25"></p-progressBar>
+                    </div>
+                    <div class="col-md-6">
+                      <p-progressBar [value]="52"></p-progressBar>
+                    </div>
+                  </div>
+                </p-accordionTab>
+                <p-accordionTab header="Avg. Passes Per Game">
+                  <div class="row">
+                    <div class="col-md-6 border-right">
+                      <p-progressBar [value]="99"></p-progressBar>
+                    </div>
+                    <div class="col-md-6">
+                      <p-progressBar [value]="89"></p-progressBar>
+                    </div>
+                  </div>
+                </p-accordionTab>
+                <p-accordionTab header="Avg. minutes played">
+                  <div class="row">
+                    <div class="col-md-6 border-right">
+                      <p-progressBar [value]="52"></p-progressBar>
+                    </div>
+                    <div class="col-md-6">
+                      <p-progressBar [value]="22"></p-progressBar>
+                    </div>
+                  </div>
+                </p-accordionTab>
+              </p-accordion>
             </div>
           </div>
         </p-tabPanel>
