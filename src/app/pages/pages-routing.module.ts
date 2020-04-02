@@ -16,6 +16,7 @@ import {AuthGuard} from '../auth/auth.guard';
 import {UserPofileComponent} from './user-pofile/user-pofile.component';
 import {AnalysisPageCountComponent} from './analysis-page/analysis-page-count/analysis-page-count.component';
 import {ReportDetailsComponent} from './reports-page/report-details/report-details.component';
+import {TeamDetailsComponent} from './teams-page/team-details/team-details.component';
 
 const routes: Routes = [{
   path: '',
@@ -29,6 +30,10 @@ const routes: Routes = [{
     {
       path: 'teams',
       component: TeamsPageComponent,
+    },
+    {
+      path: 'teams/:id',
+      component: TeamDetailsComponent,
     },
     {
       path: 'actions',

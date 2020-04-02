@@ -14,10 +14,13 @@
       <p-tabPanel header="{{item.nameEn}}" [selected]="i == tabIndex">
         <div class="row">
           <div class="col-md-6">
-            <img style="height: 100px; width: 100px;"
-                 [src]="item.logoPath!= null ?  item.logoPath.includes('data:image')?item.logoPath:apiEndPoint + item.logoPath: '../assets/images/default-avatar-png-5.png'"
-                 class="img-fluid img-thumbnail"
-                 [alt]="item.nameEn">
+            <a routerLink="../teams/{{item.id}}">
+              <img style="height: 100px; width: 100px;"
+                   [src]="item.logoPath!= null ?  item.logoPath.includes('data:image')?item.logoPath:apiEndPoint + item.logoPath: '../assets/images/default-avatar-png-5.png'"
+                   class="img-fluid img-thumbnail"
+                   [alt]="item.nameEn">
+            </a>
+
           </div>
           <div class="col-md-6">
             <button class="btn btn-outline-danger float-right ml-2 btn-sm" (click)="showClubDeleteDialog(item.id)"><i
