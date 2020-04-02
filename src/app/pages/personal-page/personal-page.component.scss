@@ -186,7 +186,7 @@
   text-transform: uppercase;
 }
 
-.goal-area {
+.goal-vertical {
   display: inline-block;
   vertical-align: top;
   width: 100%;
@@ -195,10 +195,27 @@
   background-image: url("~assets/images/football_goal_PNG24.png");
   background-size: contain;
   background-repeat: no-repeat;
-  justify-content: center;
 }
 
-.goal-area span {
+.goal-vertical span {
+  background-color: #ffc107;
+  border-radius: 10px;
+  color: #fff;
+  padding: 4px;
+}
+
+.goal-horizontal {
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-image: url("~assets/images/Empty_handball_field.svg.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.goal-horizontal span {
   background-color: #ffc107;
   border-radius: 10px;
   color: #fff;
