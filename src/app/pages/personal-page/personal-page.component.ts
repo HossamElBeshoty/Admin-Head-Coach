@@ -13,13 +13,25 @@ import {PlayerPositions} from '../../Models/player-positions';
 export class PersonalPageComponent implements OnInit {
   val1: number = 5;
   matches = [
-    {date: '12/4/2019', teamA: 'Ahly', teamB: 'Zamalik'},
+    {
+      against: 'Ahly',
+      gS: '4/5(80%)',
+      sixM: '',
+      wing: '',
+      nineM: '2',
+      sevenM: '',
+      fSKM: '139',
+      fT: '',
+      bT: '1',
+      fTO: '1',
+    },
   ];
   indexAnalysis: number = -1;
   playerId;
   playerData: IPlayer;
   apiEndPoint = environment.apiEndPoint;
   positionArray = PlayerPositions.positionArray;
+
   constructor(public playerService: PlayerService, public activatedRoute: ActivatedRoute) {
   }
 

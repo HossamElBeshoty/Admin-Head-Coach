@@ -138,7 +138,7 @@
 
 <div class="dashboard-area">
   <div class="row">
-    <div class="col-3">
+    <div class="col-2">
       <div class="mb-3 bg-light">
         <div class="row">
           <div class="col-12">
@@ -162,99 +162,92 @@
         </div>
       </div>
     </div>
-    <div class="col-9">
+    <div class="col-10">
       <p-tabView>
         <p-tabPanel header="Data">
           <div class="row">
             <div class="col-md-3" *ngIf="playerData?.nameEn">
               <div class="card border-warning mb-3">
                 <div class="card-header text-center">Player Name</div>
-                <div class="card-body text-dark">
-                  <h6 class="card-title text-center">{{playerData?.nameEn}}</h6>
+                <div class="card-body text-center text-dark">
+                  <b class="card-title">{{playerData?.nameEn}}</b>
                 </div>
               </div>
             </div>
             <div class="col-md-3" *ngIf="playerData?.nickNameEn">
               <div class="card border-warning mb-3">
-                <div class="card-header text-center">Player Known As</div>
-                <div class="card-body text-dark">
-                  <h6 class="card-title text-center">{{playerData?.nickNameEn}}</h6>
+                <div class="card-header text-center">NickName</div>
+                <div class="card-body text-center text-dark">
+                  <b class="card-title">{{playerData?.nickNameEn}}</b>
                 </div>
               </div>
             </div>
             <div class="col-md-3" *ngIf="playerData?.birthDate">
               <div class="card border-warning mb-3">
                 <div class="card-header text-center">Date Of Birth</div>
-                <div class="card-body text-dark">
-                  <h6 class="card-title text-center">{{playerData?.birthDate | date}}</h6>
+                <div class="card-body text-center text-dark">
+                  <b class="card-title">{{playerData?.birthDate | date}}</b>
                 </div>
               </div>
             </div>
             <div class="col-md-3" *ngIf="playerData?.height">
               <div class="card border-warning mb-3">
                 <div class="card-header text-center">Height</div>
-                <div class="card-body text-dark">
-                  <h6 class="card-title text-center">{{playerData?.height}}</h6>
+                <div class="card-body text-center text-dark">
+                  <b class="card-title">{{playerData?.height}}</b>
                 </div>
               </div>
             </div>
             <div class="col-md-3">
               <div class="card border-warning mb-3">
                 <div class="card-header text-center">Nationality</div>
-                <div class="card-body text-dark">
-                  <h6 class="card-title text-center">Egyptian</h6>
+                <div class="card-body text-center text-dark">
+                  <b class="card-title">Egyptian</b>
                 </div>
               </div>
             </div>
             <div class="col-md-3">
               <div class="card border-warning mb-3">
                 <div class="card-header text-center">Matches</div>
-                <div class="card-body text-dark">
-                  <h6 class="card-title text-center">4</h6>
+                <div class="card-body text-center text-dark">
+                  <b class="card-title">4</b>
                 </div>
               </div>
             </div>
             <div class="col-md-3">
               <div class="card border-warning mb-3">
                 <div class="card-header text-center">Goals</div>
-                <div class="card-body text-dark">
-                  <h6 class="card-title text-center">9</h6>
+                <div class="card-body text-center text-dark">
+                  <b class="card-title">9</b>
                 </div>
               </div>
             </div>
             <div class="col-md-3">
               <div class="card border-warning mb-3">
                 <div class="card-header text-center">Weight</div>
-                <div class="card-body text-dark">
-                  <h6 class="card-title text-center">90 </h6>
+                <div class="card-body text-center text-dark">
+                  <b class="card-title">90 </b>
                 </div>
               </div>
             </div>
-            <div class="col-md-3">
-              <div class="card border-warning mb-3">
-                <div class="card-header text-center">Player Work Rate (Attacking/Defensive)</div>
-                <div class="card-body text-dark">
-                  <h6 class="card-title text-center">Medium / High</h6>
-                </div>
-              </div>
-            </div>
+
             <div class="col-md-3">
               <div class="card border-warning mb-3" *ngIf="playerData?.preferred">
-                <div class="card-header text-center">Preferred Hand</div>
-                <div class="card-body text-dark">
-                  <h6 class="card-title text-center" *ngIf="playerData?.preferred === 1">Right</h6>
-                  <h6 class="card-title text-center" *ngIf="playerData?.preferred === 2">Left</h6>
+                <div class="card-header text-center">Preferred <i class="fas fa-hand-paper"></i></div>
+                <div class="card-body text-center text-dark">
+                  <b class="card-title" *ngIf="playerData?.preferred === 1">Right</b>
+                  <b class="card-title" *ngIf="playerData?.preferred === 2">Left</b>
                 </div>
               </div>
             </div>
-            <div class="col-md-3">
-              <div class="card border-warning mb-3">
-                <div class="card-header text-center">Skill Moves</div>
-                <div class="card-body text-dark text-center">
-                  <p-rating [ngModel]="val1" disabled="true" stars="10"></p-rating>
-                </div>
-              </div>
-            </div>
+            <!--            <div class="col-md-3">-->
+            <!--              <div class="card border-warning mb-3">-->
+            <!--                <div class="card-header text-center">Skill Moves</div>-->
+            <!--                <div class="card-body text-dark text-center">-->
+            <!--                  <p-rating [ngModel]="val1" disabled="true" stars="10"></p-rating>-->
+            <!--                </div>-->
+            <!--              </div>-->
+            <!--            </div>-->
           </div>
 
           <!--          <p-fieldset legend="Name" styleClass="myFieldset">-->
@@ -289,18 +282,30 @@
               <p-table [value]="matches">
                 <ng-template pTemplate="header">
                   <tr>
-                    <th>Date</th>
-                    <th>Team A</th>
-                    <th>Team B</th>
-                    <th>Action</th>
+                    <th>Against</th>
+                    <th>G/S(%)</th>
+                    <th>6M</th>
+                    <th>Wing</th>
+                    <th>9M</th>
+                    <th>7M</th>
+                    <th>FS(KM/H)</th>
+                    <th>FT</th>
+                    <th>BT</th>
+                    <th>FTO</th>
                   </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-match>
                   <tr>
-                    <td>{{match.date}}</td>
-                    <td>{{match.teamA}}</td>
-                    <td>{{match.teamB}}</td>
-                    <td>View Match</td>
+                    <td>{{match.against}}</td>
+                    <td>{{match.gS}}</td>
+                    <td>{{match.sixM}}</td>
+                    <td>{{match.wing}}</td>
+                    <td>{{match.nineM}}</td>
+                    <td>{{match.sevenM}}</td>
+                    <td>{{match.fSKM}}</td>
+                    <td>{{match.fT}}</td>
+                    <td>{{match.bT}}</td>
+                    <td>{{match.fTO}}</td>
                   </tr>
                 </ng-template>
               </p-table>
@@ -309,18 +314,30 @@
               <p-table [value]="matches">
                 <ng-template pTemplate="header">
                   <tr>
-                    <th>Date</th>
-                    <th>Team A</th>
-                    <th>Team B</th>
-                    <th>Action</th>
+                    <th>Against</th>
+                    <th>G/S(%)</th>
+                    <th>6M</th>
+                    <th>Wing</th>
+                    <th>9M</th>
+                    <th>7M</th>
+                    <th>FS(KM/H)</th>
+                    <th>FT</th>
+                    <th>BT</th>
+                    <th>FTO</th>
                   </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-match>
                   <tr>
-                    <td>{{match.date}}</td>
-                    <td>{{match.teamA}}</td>
-                    <td>{{match.teamB}}</td>
-                    <td>View Match</td>
+                    <td>{{match.against}}</td>
+                    <td>{{match.gS}}</td>
+                    <td>{{match.sixM}}</td>
+                    <td>{{match.wing}}</td>
+                    <td>{{match.nineM}}</td>
+                    <td>{{match.sevenM}}</td>
+                    <td>{{match.fSKM}}</td>
+                    <td>{{match.fT}}</td>
+                    <td>{{match.bT}}</td>
+                    <td>{{match.fTO}}</td>
                   </tr>
                 </ng-template>
               </p-table>
@@ -329,18 +346,30 @@
               <p-table [value]="matches">
                 <ng-template pTemplate="header">
                   <tr>
-                    <th>Date</th>
-                    <th>Team A</th>
-                    <th>Team B</th>
-                    <th>Action</th>
+                    <th>Against</th>
+                    <th>G/S(%)</th>
+                    <th>6M</th>
+                    <th>Wing</th>
+                    <th>9M</th>
+                    <th>7M</th>
+                    <th>FS(KM/H)</th>
+                    <th>FT</th>
+                    <th>BT</th>
+                    <th>FTO</th>
                   </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-match>
                   <tr>
-                    <td>{{match.date}}</td>
-                    <td>{{match.teamA}}</td>
-                    <td>{{match.teamB}}</td>
-                    <td>View Match</td>
+                    <td>{{match.against}}</td>
+                    <td>{{match.gS}}</td>
+                    <td>{{match.sixM}}</td>
+                    <td>{{match.wing}}</td>
+                    <td>{{match.nineM}}</td>
+                    <td>{{match.sevenM}}</td>
+                    <td>{{match.fSKM}}</td>
+                    <td>{{match.fT}}</td>
+                    <td>{{match.bT}}</td>
+                    <td>{{match.fTO}}</td>
                   </tr>
                 </ng-template>
               </p-table>
