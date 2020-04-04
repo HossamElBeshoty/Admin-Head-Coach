@@ -6,10 +6,11 @@ import {RegistrationPageComponent} from './Page/registration-page/registration-p
 import {VerificationCodePageComponent} from './Page/verification-code-page/verification-code-page.component';
 import {ForgetPasswordComponent} from './Page/forget-password/forget-password.component';
 
+// @ts-ignore
 const routes: Routes = [
   {
     path: 'pages',
-    loadChildren: () => import('app/pages/pages.module')
+    loadChildren: () => import('../app/pages/pages.module')
       .then(m => m.PagesModule),
   },
   {

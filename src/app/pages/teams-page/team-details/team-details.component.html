@@ -1,3 +1,33 @@
-<p>
-  team-details works!
-</p>
+<p-table #dt [columns]="cols" [value]="players" selectionMode="multiple">
+
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">
+        {{col.header}}
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr [pSelectableRow]="rowData">
+      <td *ngFor="let col of columns">
+        {{rowData[col.field]}}
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+    <div class="row">
+      <div class="col-md-6">
+        <button (click)="exportExcel()" class="btn btn-success btn-sm float-left">
+          <i class="fas fa-file-excel"></i>
+          Export Excel Sheet
+        </button>
+      </div>
+      <div class="col-md-6">
+        <button (click)="exportPdf()" class="btn btn-danger btn-sm float-right">
+          <i class="fas fa-file-pdf"></i>
+          Export PDF Sheet
+        </button>
+      </div>
+    </div>
+  </ng-template>
+</p-table>
