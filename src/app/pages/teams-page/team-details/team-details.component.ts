@@ -63,9 +63,9 @@ export class TeamDetailsComponent implements OnInit {
   }
 
   exportPdf() {
-    import('jspdf').then(jsPDF => {
+    import('jspdf').then((jspdf: any) => {
       import('jspdf-autotable').then(x => {
-        const doc = new jsPDF.default(0, 0);
+        const doc = new jspdf.default(0, 0);
         doc.autoTable(this.cols, this.players);
         doc.save('Upstricke.pdf');
       });
