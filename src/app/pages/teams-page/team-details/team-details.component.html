@@ -1,16 +1,21 @@
 <p-table #dt [columns]="cols" [value]="players" selectionMode="multiple">
-
   <ng-template pTemplate="header" let-columns>
     <tr>
       <th *ngFor="let col of columns">
         {{col.header}}
       </th>
+      <th></th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-rowData let-columns="columns">
-    <tr [pSelectableRow]="rowData">
+    <tr>
       <td *ngFor="let col of columns">
         {{rowData[col.field]}}
+      </td>
+      <td>
+        <button title="Go To Player" routerLink="../../player/1" class="btn btn-sm btn-outline-primary">
+          <i class="fas fa-user-tag"></i>
+        </button>
       </td>
     </tr>
   </ng-template>
