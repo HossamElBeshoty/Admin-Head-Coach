@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {TeamService} from '../../../Service/team.service';
 import {ActivatedRoute} from '@angular/router';
-import jsPDF from 'jspdf';
 
 @Component({
   selector: 'ngx-team-details',
@@ -40,9 +38,8 @@ export class TeamDetailsComponent implements OnInit {
     },
   ];
 
-  columns: any[];
 
-  constructor(private teamService: TeamService, private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute) {
     this.teamID = this.route.snapshot.params['id'];
   }
 
