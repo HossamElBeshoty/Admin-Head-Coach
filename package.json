@@ -1,13 +1,10 @@
 {
-  "name": "ngx-admin",
+  "name": "ngx-admin-upstricke",
   "version": "4.0.1",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/akveo/ngx-admin.git"
-  },
-  "bugs": {
-    "url": "https://github.com/akveo/ngx-admin/issues"
+    "url": "git+https://github.com/HossamElBeshoty/Admin-Head-Coach"
   },
   "scripts": {
     "ng": "ng",
