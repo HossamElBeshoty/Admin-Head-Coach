@@ -10,6 +10,8 @@ export class ReportsPageComponent implements OnInit {
   cumulativeTeamStatistics: any[];
   collapsed = false;
   cols: any[];
+
+  displayNewReportDialog: boolean = false;
   reports = [
     {report: 'asd', teamA: 'Zamalik', teamB: 'Ahly'},
   ];
@@ -123,5 +125,9 @@ export class ReportsPageComponent implements OnInit {
 
   openPrev() {
     this.index = (this.index <= 0) ? 3 : this.index - 1;
+  }
+
+  showAddReportDialog() {
+    this.displayNewReportDialog = true;
   }
 }

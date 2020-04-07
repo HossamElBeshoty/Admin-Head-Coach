@@ -214,41 +214,271 @@
 <!--  </p-accordion>-->
 
 <!--</div>-->
-<div class="row">
-  <div class="col-md-12">
-    <button class="btn btn-warning btn-sm animated slow fadeInDown float-right ">
-      <i class="fas fa-file-alt"></i> Add New Report
-    </button>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <button (click)="showAddReportDialog()" class="btn btn-warning btn-sm animated slow fadeInDown float-right">
+        <i class="fas fa-file-alt"></i>
+        Add New Report
+      </button>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <p-table [columns]="cols" [value]="reports">
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns">
+              {{col.header}}
+            </th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr>
+            <td *ngFor="let col of columns">
+              {{rowData[col.field]}}
+            </td>
+            <td>
+              <div class="row">
+                <div class="col-md-6">
+                  <button class="btn btn-sm btn-outline-primary" routerLink="/pages/report/5">
+                    <i class="fas fa-print"></i>
+                  </button>
+                </div>
+                <div class="col-md-6">
+                  <button class="btn btn-sm btn-outline-danger">
+                    <i class="far fa-trash-alt"></i>
+                  </button>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
   </div>
 </div>
-<br>
-<div class="container-fluid">
-  <p-table [columns]="cols" [value]="reports">
-    <ng-template pTemplate="header" let-columns>
-      <tr>
-        <th *ngFor="let col of columns">
-          {{col.header}}
-        </th>
-        <th></th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-      <tr>
-        <td *ngFor="let col of columns">
-          {{rowData[col.field]}}
-        </td>
-        <td>
-          <div class="row">
-            <div class="col-md-6">
-              <button class="btn btn-sm btn-outline-primary" routerLink="/pages/report/5"><i class="fas fa-print"></i>
-              </button>
+<p-dialog header="New Report" styleClass="disable-scroll" [(visible)]="displayNewReportDialog" [modal]="true"
+          [responsive]="true" [minY]="70"
+          [baseZIndex]="10000" [style]="{width: '50vw'}">
+  <form action="" style="width: 99%;">
+    <div class="row">
+      <div class="col-md-6 form-group">
+        <label for="reportDate">Report Date</label>
+        <input type="date" id="reportDate" class="form-control">
+      </div>
+      <div class="col-md-6 form-group">
+        <label for="exampleFormControlSelect1">Select Match</label>
+        <select class="form-control" id="exampleFormControlSelect1">
+          <option>Zamalik VS Ahly</option>
+          <option>Zamalik VS Taragy</option>
+          <option>Zamalik VS Sahel El Agg</option>
+        </select>
+      </div>
+      <div class="col-md-6 form-group">
+        <p-panel>
+          <p-header>
+            <div class="row">
+              <div class="col-md-3">
+                <span class="ui-panel-title ng-tns-c15-5 ng-star-inserted"> Start</span>
+              </div>
+              <div class="col-md-9">
+                <div class="ui-helper-clearfix">
+                  <button class="btn btn-outline-primary btn-sm float-right">
+                    Choose Start Actions
+                  </button>
+                </div>
+              </div>
             </div>
-            <div class="col-md-6">
-              <button class="btn btn-sm btn-outline-danger"><i class="far fa-trash-alt"></i></button>
+          </p-header>
+          <div class="row">
+            <div class="col">
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="Action1" checked>
+                <label class="form-check-label" for="Action1">Start1</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="Action2" checked>
+                <label class="form-check-label" for="Action2">Start2</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="Action3" checked>
+                <label class="form-check-label" for="Action3">Start3</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="Action4" checked>
+                <label class="form-check-label" for="Action4">Start4</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="Action5" checked>
+                <label class="form-check-label" for="Action5">Start5</label>
+              </div>
             </div>
           </div>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
-</div>
+        </p-panel>
+      </div>
+      <div class="col-md-6 form-group">
+        <p-panel>
+          <p-header>
+            <div class="row">
+              <div class="col-md-3">
+                <span class="ui-panel-title ng-tns-c15-5 ng-star-inserted"> End</span>
+              </div>
+              <div class="col-md-9">
+                <div class="ui-helper-clearfix">
+                  <button class="btn btn-outline-primary btn-sm float-right">
+                    Choose End Actions
+                  </button>
+                </div>
+              </div>
+            </div>
+          </p-header>
+          <div class="row">
+            <div class="col">
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="End1" checked>
+                <label class="form-check-label" for="End1">End1</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="End2" checked>
+                <label class="form-check-label" for="Action2">End2</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="End3" checked>
+                <label class="form-check-label" for="End3">End3</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="End4" checked>
+                <label class="form-check-label" for="End4">End4</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="End5" checked>
+                <label class="form-check-label" for="End5">End5</label>
+              </div>
+            </div>
+          </div>
+        </p-panel>
+      </div>
+      <div class="col-md-6 form-group">
+        <p-panel>
+          <p-header>
+            <div class="row">
+              <div class="col-md-3">
+                <span class="ui-panel-title ng-tns-c15-5 ng-star-inserted"> Tactics</span>
+              </div>
+              <div class="col-md-9">
+                <div class="ui-helper-clearfix">
+                  <button class="btn btn-outline-primary btn-sm float-right">
+                    Choose Tactics Actions
+                  </button>
+                </div>
+              </div>
+            </div>
+          </p-header>
+          <div class="row">
+            <div class="col">
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="Tactics1" checked>
+                <label class="form-check-label" for="Tactics1">Tactics1</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="Tactics2" checked>
+                <label class="form-check-label" for="Tactics2">Tactics2</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="Tactics3" checked>
+                <label class="form-check-label" for="Tactics3">Tactics3</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="Tactics4" checked>
+                <label class="form-check-label" for="Tactics4">Tactics4</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="Tactics5" checked>
+                <label class="form-check-label" for="Tactics5">Tactics5</label>
+              </div>
+            </div>
+          </div>
+        </p-panel>
+      </div>
+      <div class="col-md-6 form-group">
+        <p-panel>
+          <p-header>
+            <div class="row">
+              <div class="col-md-3">
+                <span class="ui-panel-title ng-tns-c15-5 ng-star-inserted"> Penalties</span>
+              </div>
+              <div class="col-md-9">
+                <div class="ui-helper-clearfix">
+                  <button class="btn btn-outline-primary btn-sm float-right">
+                    Choose Penalties Actions
+                  </button>
+                </div>
+              </div>
+            </div>
+          </p-header>
+          <div class="row">
+            <div class="col">
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="Penalties1" checked>
+                <label class="form-check-label" for="Penalties1">Penalties1</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="Penalties2" checked>
+                <label class="form-check-label" for="Penalties2">Penalties2</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="Penalties3" checked>
+                <label class="form-check-label" for="Penalties3">Penalties3</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="Penalties4" checked>
+                <label class="form-check-label" for="Penalties4">Penalties4</label>
+              </div>
+            </div>
+          </div>
+        </p-panel>
+      </div>
+      <div class="col-md-12">
+        <button class="btn btn-outline-primary float-right" routerLink="/pages/report/5">
+          <i class="far fa-thumbs-up"></i>
+          Submit
+        </button>
+      </div>
+    </div>
+
+  </form>
+</p-dialog>
