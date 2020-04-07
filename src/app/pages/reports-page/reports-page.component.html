@@ -261,7 +261,7 @@
     </div>
   </div>
 </div>
-<p-dialog header="New Report" styleClass="disable-scroll" [(visible)]="displayNewReportDialog" [modal]="true"
+<p-dialog header="New Report" [(visible)]="displayNewReportDialog" [modal]="true"
           [responsive]="true" [minY]="70"
           [baseZIndex]="10000" [style]="{width: '50vw'}">
   <form action="" style="width: 99%;">
@@ -287,7 +287,7 @@
               </div>
               <div class="col-md-9">
                 <div class="ui-helper-clearfix">
-                  <button class="btn btn-outline-primary btn-sm float-right">
+                  <button (click)="showStartActions()" class="btn btn-outline-primary btn-sm float-right">
                     Choose Start Actions
                   </button>
                 </div>
@@ -337,7 +337,7 @@
               </div>
               <div class="col-md-9">
                 <div class="ui-helper-clearfix">
-                  <button class="btn btn-outline-primary btn-sm float-right">
+                  <button (click)="showStartActions()" class="btn btn-outline-primary btn-sm float-right">
                     Choose End Actions
                   </button>
                 </div>
@@ -387,7 +387,7 @@
               </div>
               <div class="col-md-9">
                 <div class="ui-helper-clearfix">
-                  <button class="btn btn-outline-primary btn-sm float-right">
+                  <button (click)="showStartActions()" class="btn btn-outline-primary btn-sm float-right">
                     Choose Tactics Actions
                   </button>
                 </div>
@@ -437,7 +437,7 @@
               </div>
               <div class="col-md-9">
                 <div class="ui-helper-clearfix">
-                  <button class="btn btn-outline-primary btn-sm float-right">
+                  <button (click)="showStartActions()" class="btn btn-outline-primary btn-sm float-right">
                     Choose Penalties Actions
                   </button>
                 </div>
@@ -480,5 +480,58 @@
       </div>
     </div>
 
+  </form>
+</p-dialog>
+
+
+<p-dialog header="Start Actions" [(visible)]="displayStartDialog" [modal]="true"
+          [responsive]="true" [minY]="70"
+          [baseZIndex]="10000" [style]="{width: '25vw'}">
+  <form action="" style="width: 99%;">
+    <div class="card border-warning">
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input">
+              <label class="form-check-label">Start1</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input">
+              <label class="form-check-label">Start2</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input">
+              <label class="form-check-label">Start3</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input">
+              <label class="form-check-label">Start4</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input">
+              <label class="form-check-label">Start5</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <button (click)="displayStartDialog = false;" class="btn-block btn-outline-primary btn-sm">
+          <i class="far fa-thumbs-up"></i>
+          Submit
+        </button>
+      </div>
+    </div>
   </form>
 </p-dialog>

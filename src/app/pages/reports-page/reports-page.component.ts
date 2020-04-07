@@ -12,6 +12,7 @@ export class ReportsPageComponent implements OnInit {
   cols: any[];
 
   displayNewReportDialog: boolean = false;
+  displayStartDialog: boolean = false;
   reports = [
     {report: 'asd', teamA: 'Zamalik', teamB: 'Ahly'},
   ];
@@ -129,5 +130,9 @@ export class ReportsPageComponent implements OnInit {
 
   showAddReportDialog() {
     this.displayNewReportDialog = true;
+  }
+
+  showStartActions() {
+    this.displayStartDialog = true;
   }
 }
